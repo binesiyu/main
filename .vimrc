@@ -456,10 +456,10 @@ nnoremap <leader>/ :let @/=""<CR>
 " nnoremap <leader>/ :nohlsearch<CR>
 
 " map Ctrl-Tab to switch window
-nnoremap <S-Up> <C-W><Up>
-nnoremap <S-Down> <C-W><Down>
-nnoremap <S-Left> <C-W><Left>
-nnoremap <S-Right> <C-W><Right>
+nnoremap <leader>wk <C-W><Up>
+nnoremap <leader>wj <C-W><Down>
+nnoremap <leader>wh <C-W><Left>
+nnoremap <leader>wl <C-W><Right>
 
 " easy buffer navigation
 " NOTE: if we already map to EXbn,EXbp. skip setting this

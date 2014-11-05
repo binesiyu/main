@@ -14,8 +14,24 @@ endif
 noremap ; :
 vnoremap ; :
 map <leader>nn <plug>NERDTreeTabsToggle<CR>
-color Monokai-binesiyu
+" color Monokai-binesiyu
 
 if WINDOWS()
        autocmd GUIEnter * simalt ~x
 endif
+
+ " vim-airline {
+ "       if has('gui_running')
+ "           let g:airline_powerline_fonts = 1
+ "       else
+ "           let g:airline_powerline_fonts = 0
+ "       endif
+ "       let g:airline_theme = 'powerlineish'
+ "       let g:airline#extensions#tabline#enabled = 1
+ "       let g:airline#extensions#tabline#show_buffers = 1
+ "       let g:airline#extensions#tabline#buffer_nr_show = 1
+ "       let g:airline#extensions#tabline#fnamemod = ':t'
+ "       " let g:airline_section_b = "%{fnamemodify(bufname('%'),':p:.:h').'/'}"
+ "       " let g:airline_section_c = '%t'
+ "       let g:airline_section_warning = airline#section#create(['syntastic'])
+ "   " }
