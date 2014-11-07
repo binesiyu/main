@@ -56,16 +56,16 @@ call exgsearch#register_hotkey( 102, 0, '<leader><S-f>', ":GS ", 'Shortcut for :
 Plugin 'exvim/ex-tags'
 
 call extags#register_hotkey( 100, 0, '<leader>ts', ":EXTagsToggle<CR>", 'Toggle tag select window.' )
-call extags#register_hotkey( 101, 0, '<leader>]', ":EXTagsCWord<CR>", 'Tag select current word.' )
+call extags#register_hotkey( 101, 0, '<leader>tt', ":EXTagsCWord<CR>", 'Tag select current word.' )
 " DISABLE: nnoremap <unique> <leader>] :exec 'ts ' . expand('<cword>')<CR>
 
 " ex-symbol
 " ---------------------------------------------------
 Plugin 'exvim/ex-symbol'
 
-call exsymbol#register_hotkey( 100, 0, '<leader>ss', ":EXSymbolList<CR>", 'List all symbols.' )
-call exsymbol#register_hotkey( 101, 0, '<leader>sq', ":EXSymbolOpen<CR>", 'Open symbols window.' )
-call exsymbol#register_hotkey( 102, 0, '<leader>sg', ":EXSymbolCWord<CR>", 'List symbols contains current word.' )
+call exsymbol#register_hotkey( 100, 0, '<leader>sl', ":EXSymbolList<CR>", 'List all symbols.' )
+call exsymbol#register_hotkey( 101, 0, '<leader>st', ":EXSymbolToggle<CR>", 'Open symbols window.' )
+call exsymbol#register_hotkey( 102, 0, '<leader>ss', ":EXSymbolCWord<CR>", 'List symbols contains current word.' )
 
 if has('gui_running')
     if has ('mac')
@@ -192,11 +192,11 @@ let tlist_actionscript_settings = 'actionscript;c:class;f:method;p:property;v:va
 
 " ex-minibufexpl
 " ---------------------------------------------------
-Plugin 'exvim/ex-minibufexpl'
-let g:miniBufExplBuffersNeeded = 0
-let g:miniBufExplUseSingleClick = 1 " If you would like to single click on tabs rather than double clicking on them to goto the selected buffer. 
-let g:miniBufExplMaxSize = 1 " <max lines: default 0> setting this to 0 will mean the window gets as big as needed to fit all your buffers. 
-let g:miniBufExplTabWrap = 1
+" Plugin 'exvim/ex-minibufexpl'
+" let g:miniBufExplBuffersNeeded = 0
+" let g:miniBufExplUseSingleClick = 1 " If you would like to single click on tabs rather than double clicking on them to goto the selected buffer. 
+" let g:miniBufExplMaxSize = 1 " <max lines: default 0> setting this to 0 will mean the window gets as big as needed to fit all your buffers. 
+" let g:miniBufExplTabWrap = 1
 " let g:miniBufExplDebugMode  = 3
 " let g:miniBufExplDebugLevel = 0
 
@@ -252,7 +252,7 @@ else
 endif
 
 let g:airline_theme = 'powerlineish'
-let g:airline#extensions#tabline#enabled = 0 " NOTE: When you open lots of buffers and typing text, it is so slow.
+let g:airline#extensions#tabline#enabled = 1 " NOTE: When you open lots of buffers and typing text, it is so slow.
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
