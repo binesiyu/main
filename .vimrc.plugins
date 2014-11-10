@@ -190,15 +190,6 @@ let tlist_actionscript_settings = 'actionscript;c:class;f:method;p:property;v:va
 "     \ ],
 " \ }
 
-" ex-minibufexpl
-" ---------------------------------------------------
-" Plugin 'exvim/ex-minibufexpl'
-" let g:miniBufExplBuffersNeeded = 0
-" let g:miniBufExplUseSingleClick = 1 " If you would like to single click on tabs rather than double clicking on them to goto the selected buffer. 
-" let g:miniBufExplMaxSize = 1 " <max lines: default 0> setting this to 0 will mean the window gets as big as needed to fit all your buffers. 
-" let g:miniBufExplTabWrap = 1
-" let g:miniBufExplDebugMode  = 3
-" let g:miniBufExplDebugLevel = 0
 
 " ex-autocomplpop: invoke when you input text
 " ---------------------------------------------------
@@ -266,20 +257,6 @@ let g:ctrlp_working_path_mode = ''
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
 let g:ctrlp_follow_symlinks = 2
 nnoremap <unique> <leader>bs :CtrlPBuffer<CR>
-
-" vim-fugitive: invoke most by :Gdiff
-" ---------------------------------------------------
-Plugin 'tpope/vim-fugitive'
-
-" vim-surround: invoke when you select words and press 's'
-" ---------------------------------------------------
-Plugin 'tpope/vim-surround'
-
-xmap s <Plug>VSurround
-
-" DISABLE
-" " Plugin 'tpope/vim-dispatch'
-" " ---------------------------------------------------
 
 " nerdtree: invoke by :NERDTreeToggle
 " ---------------------------------------------------
@@ -427,69 +404,6 @@ let c_gnu = 1
 let c_no_curly_error = 1
 let c_no_bracket_error = 1
 
-"}}}
-
-" web {{{
-
-" ex-typescript
-" ---------------------------------------------------
-Plugin 'exvim/ex-typescript'
-
-" emmet-vim
-" ---------------------------------------------------
-Plugin 'mattn/emmet-vim'
-
-" make sure emmet only enable in html,css files
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-
-" vim-indent-guides: invoke by <leader>ig
-" ---------------------------------------------------
-Plugin 'nathanaelkane/vim-indent-guides'
-
-let g:indent_guides_guide_size = 1
-
-" vim-javascript
-" ---------------------------------------------------
-Plugin 'pangloss/vim-javascript'
-
-" vim-coffee-script
-" ---------------------------------------------------
-Plugin 'kchmck/vim-coffee-script'
-
-" vim-html
-" ---------------------------------------------------
-Plugin 'exvim/ex-indenthtml.vim'
-
-
-" DISABLE: Slow to open big css file
-" vim-css-color
-" ---------------------------------------------------
-" Plugin 'skammer/vim-css-color'
-
-" vim-css3-syntax
-Plugin 'hail2u/vim-css3-syntax'
-
-" vim-less
-" ---------------------------------------------------
-Plugin 'groenewege/vim-less'
-
-" vim-stylus
-" ---------------------------------------------------
-Plugin 'wavded/vim-stylus'
-
-" vim-markdown
-" ---------------------------------------------------
-Plugin 'plasticboy/vim-markdown'
-
-let g:vim_markdown_initial_foldlevel=9999
-
-"}}}
-
-" TEST {{{
-" " test-loading
-" echomsg "test-loading: .vimrc"
-" Plugin 'exvim/test-loading'
 "}}}
 
 " vim:ts=4:sw=4:sts=4 et fdm=marker:

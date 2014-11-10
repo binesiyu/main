@@ -114,6 +114,7 @@ syntax on " required
 " Default colorscheme setup
 "/////////////////////////////////////////////////////////////////////////////
 
+set notimeout
 if has('gui_running')
     set background=dark
 else
@@ -121,7 +122,7 @@ else
     set t_Co=256 " make sure our terminal use 256 color
     let g:solarized_termcolors = 256
 endif
-colorscheme solarized
+colorscheme Monokai-binesiyu
 " colorscheme exlightgray
 
 "/////////////////////////////////////////////////////////////////////////////
@@ -426,16 +427,14 @@ endif
 map Q gq
 
 " define the copy/paste judged by clipboard
-if &clipboard ==# 'unnamed'
-    " fix the visual paste bug in vim
-    " vnoremap <silent>p :call g:()<CR>
-else
-    " general copy/paste.
-    " NOTE: y,p,P could be mapped by other key-mapping
-    map <leader>y "*y
-    map <leader>p "*p
-    map <leader>P "*P
+if has('clipboard')
+    "if has('unnamedplus')  " When possible use + register for copy-paste
+        "set clipboard=unnamedplus
+    "else         " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+    "endif
 endif
+
 
 " copy folder path to clipboard, foo/bar/foobar.c => foo/bar/
 nnoremap <silent> <leader>y1 :let @*=fnamemodify(bufname('%'),":p:h")<CR>

@@ -20,18 +20,22 @@ if WINDOWS()
        autocmd GUIEnter * simalt ~x
 endif
 
- " vim-airline {
- "       if has('gui_running')
- "           let g:airline_powerline_fonts = 1
- "       else
- "           let g:airline_powerline_fonts = 0
- "       endif
- "       let g:airline_theme = 'powerlineish'
- "       let g:airline#extensions#tabline#enabled = 1
- "       let g:airline#extensions#tabline#show_buffers = 1
- "       let g:airline#extensions#tabline#buffer_nr_show = 1
- "       let g:airline#extensions#tabline#fnamemod = ':t'
- "       " let g:airline_section_b = "%{fnamemodify(bufname('%'),':p:.:h').'/'}"
- "       " let g:airline_section_c = '%t'
- "       let g:airline_section_warning = airline#section#create(['syntastic'])
- "   " }
+" Code folding options
+nmap <leader>z0 :set foldlevel=0<CR>
+nmap <leader>z1 :set foldlevel=1<CR>
+nmap <leader>z2 :set foldlevel=2<CR>
+nmap <leader>z3 :set foldlevel=3<CR>
+nmap <leader>z4 :set foldlevel=4<CR>
+nmap <leader>z5 :set foldlevel=5<CR>
+nmap <leader>z6 :set foldlevel=6<CR>
+nmap <leader>z7 :set foldlevel=7<CR>
+nmap <leader>z8 :set foldlevel=8<CR>
+nmap <leader>z9 :set foldlevel=9<CR>
+
+" Most prefer to toggle search highlighting rather than clear the current
+" search results. To clear search highlighting rather than toggle it on
+" and off, add the following to your .vimrc.before.local file:
+nmap <silent> <leader>/ :nohlsearch<CR>
+" Map <Leader>ff to display all lines with keyword under cursor
+" and ask which one to jump to
+nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
