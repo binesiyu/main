@@ -102,7 +102,7 @@ Plugin 'exvim/ex-taglist'
 " F4:  Switch on/off TagList
 nnoremap <unique> <silent> <F4> :TlistToggle<CR>
 
-"let Tlist_Ctags_Cmd = $VIM.'/vimfiles/ctags.exe' " location of ctags tool 
+let Tlist_Ctags_Cmd = $VIM.'/vimfiles/ctags.exe' " location of ctags tool 
 let Tlist_Show_One_File = 1 " Displaying tags for only one file~
 let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself 
 let Tlist_Use_Right_Window = 1 " split to the right side of the screen 
