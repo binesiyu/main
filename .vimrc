@@ -183,7 +183,7 @@ set nowrap " do not wrap text
 
 " only supoort in 7.3 or higher
 if v:version >= 703
-    set noacd " no autochchdir
+    set acd " no autochchdir
 endif
 
 " set default guifont
