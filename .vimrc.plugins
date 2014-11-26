@@ -508,6 +508,7 @@ let g:LargeFile= 5 " files >= 5MB will use LargeFile rules
 " ---------------------------------------------------
 " Plugin 'mattn/webapi-vim'
 " Plugin 'mattn/gist-vim'
-
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
 
 " vim:ts=4:sw=4:sts=4 et fdm=marker:
