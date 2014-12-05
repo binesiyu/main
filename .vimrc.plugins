@@ -511,4 +511,8 @@ let g:LargeFile= 5 " files >= 5MB will use LargeFile rules
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 
+Plugin 'xolox/vim-misc'  " required by lua.vim
+Plugin 'xolox/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
+let g:lua_define_completefunc = 0
+" let g:lua_define_omnifunc = 0
 " vim:ts=4:sw=4:sts=4 et fdm=marker:
