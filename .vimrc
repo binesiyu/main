@@ -181,10 +181,6 @@ set nu " show line number
 set scrolloff=7 " minimal number of screen lines to keep above and below the cursor
 set nowrap " do not wrap text
 
-" only supoort in 7.3 or higher
-if v:version >= 703
-    set acd " no autochchdir
-endif
 
 " set default guifont
 if has('gui_running')

@@ -15,6 +15,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " general plugins {{{
 
+let g:exlib = 1
 if exists('g:exlib')
     " ex-config:
     " ---------------------------------------------------
@@ -260,6 +261,14 @@ if exists('g:exlib')
             exec printf('Tabularize /%s', c)
         endif
     endfunction
+    " only supoort in 7.3 or higher
+    if v:version >= 703
+        set noacd " no autochchdir
+    endif
+else
+    if v:version >= 703
+        set acd " no autochchdir
+    endif
 endif
 " vim-airline
 " ---------------------------------------------------
