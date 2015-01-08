@@ -533,6 +533,7 @@ if exists('g:haskell')
     " Plugin 'travitch/hasksyn'
     " Plugin 'Twinside/vim-haskellConceal'
     " Plugin 'Twinside/vim-haskellFold'
+    Plugin 'Twinside/vim-hoogle'
     Plugin 'lukerandall/haskellmode-vim'
     let g:haddock_browser="firefox.exe"
     let g:haddock_docdir='C:\Program Files\Haskell Platform\2014.2.0.0\doc\html\'
@@ -553,6 +554,20 @@ if exists('g:haskell')
 	nmap <silent> <leader>ht :GhcModType<CR>
 	" Insert type of expression under cursor
 	nmap <silent> <leader>hT :GhcModTypeInsert<CR>
+    " Hoogle the word under the cursor
+	nnoremap <silent> <leader>hh :Hoogle<CR>
+	
+	" Hoogle and prompt for input
+	nnoremap <leader>hH :Hoogle
+	
+	" Hoogle for detailed documentation (e.g. "Functor")
+	nnoremap <silent> <leader>hi :HoogleInfo<CR>
+	
+	" Hoogle for detailed documentation and prompt for input
+	nnoremap <leader>hI :HoogleInfo
+	
+	" Hoogle, close the Hoogle window
+	nnoremap <silent> <leader>hz :HoogleClose<CR>
     " if !executable("ghcmod")
         " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
     " endif
