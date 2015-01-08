@@ -538,6 +538,9 @@ if exists('g:haskell')
     let g:haddock_docdir='C:\Program Files\Haskell Platform\2014.2.0.0\doc\html\'
     Plugin 'eagletmt/neco-ghc'
     Plugin 'eagletmt/ghcmod-vim'
+    Plugin 'nbouscal/vim-stylish-haskell'
+    " Use stylish haskell instead of par for haskell buffers
+	autocmd FileType haskell let &formatprg="stylish-haskell"
     "Plugin 'Shougo/vimproc'
     " Plugin 'adinapoli/cumino'
     " Plugin 'bitc/vim-hdevtools'
@@ -546,7 +549,10 @@ if exists('g:haskell')
     " Workaround broken colour highlighting in Haskell
     autocmd FileType haskell setlocal nospell
     autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
+    " Type of expression under cursor
+	nmap <silent> <leader>ht :GhcModType<CR>
+	" Insert type of expression under cursor
+	nmap <silent> <leader>hT :GhcModTypeInsert<CR>
     " if !executable("ghcmod")
         " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
     " endif
