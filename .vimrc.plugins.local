@@ -6,3 +6,9 @@
 " Example: Plugin 'foo/bar/foobar'
 Plugin 'binesiyu/vim-monokia'
 Plugin 'jistr/vim-nerdtree-tabs'
+
+Plugin 'moll/vim-bbye'
+nnoremap <Leader>bd :Bdelete<CR>
+
+" Plugin 'zhaocai/GoldenView.Vim'
+

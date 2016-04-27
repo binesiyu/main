@@ -39,4 +39,4 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-nmap <C-d> <C-z>
+" nmap <C-d> <C-z>

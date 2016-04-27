@@ -61,7 +61,7 @@ if WINDOWS()
         " fallback into cp1252 instead of eg. iso-8859-15.
         " Newer Windows files might contain utf-8 or utf-16 LE so we might
         " want to try them first.
-        set fileencodings=ucs-bom,utf-8,utf-16le,gbk,gb2312,big5,iso-8859-15
+        set fileencodings=ucs-bom,utf-8,gbk,gb2312,big5,iso-8859-15,utf-16le
     endif
 
 else
@@ -180,6 +180,7 @@ set matchtime=0 " 0 second to show the matching paren ( much faster )
 set nu " show line number
 set scrolloff=7 " minimal number of screen lines to keep above and below the cursor
 set nowrap " do not wrap text
+set cursorline
 
 
 " set default guifont
