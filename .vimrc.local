@@ -17,20 +17,25 @@ map <leader>nn <plug>NERDTreeTabsToggle<CR>
 " color Monokai-binesiyu
 
 if WINDOWS()
-       autocmd GUIEnter * simalt ~x
+    if has('autocmd')
+        augroup maxwindow
+           au!
+           autocmd GUIEnter * simalt ~x
+        augroup END
+    endif
 endif
 
 " Code folding options
-nmap <leader>z0 :set foldlevel=0<CR>
-nmap <leader>z1 :set foldlevel=1<CR>
-nmap <leader>z2 :set foldlevel=2<CR>
-nmap <leader>z3 :set foldlevel=3<CR>
-nmap <leader>z4 :set foldlevel=4<CR>
-nmap <leader>z5 :set foldlevel=5<CR>
-nmap <leader>z6 :set foldlevel=6<CR>
-nmap <leader>z7 :set foldlevel=7<CR>
-nmap <leader>z8 :set foldlevel=8<CR>
-nmap <leader>z9 :set foldlevel=9<CR>
+nmap <leader>f0 :set foldlevel=0<CR>
+nmap <leader>f1 :set foldlevel=1<CR>
+nmap <leader>f2 :set foldlevel=2<CR>
+nmap <leader>f3 :set foldlevel=3<CR>
+nmap <leader>f4 :set foldlevel=4<CR>
+nmap <leader>f5 :set foldlevel=5<CR>
+nmap <leader>f6 :set foldlevel=6<CR>
+nmap <leader>f7 :set foldlevel=7<CR>
+nmap <leader>f8 :set foldlevel=8<CR>
+nmap <leader>f9 :set foldlevel=9<CR>
 
 " Most prefer to toggle search highlighting rather than clear the current
 " search results. To clear search highlighting rather than toggle it on
@@ -40,3 +45,80 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 " and ask which one to jump to
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 " nmap <C-d> <C-z>
+
+function! s:ExpandFilenameAndExecute(command, file)
+    execute a:command . " " . expand(a:file, ":p")
+endfunction
+ 
+function! s:EditVimrc13Config()
+    call <SID>ExpandFilenameAndExecute("tabedit", "$VIM/.vimrc")
+    call <SID>ExpandFilenameAndExecute("vsplit", "$VIM/.vimrc.local")
+    call <SID>ExpandFilenameAndExecute("split", "$VIM/.vimrc.plugins")
+    wincmd l
+    call <SID>ExpandFilenameAndExecute("split", "$VIM/.vimrc.plugins.local")
+ 
+    execute bufwinnr(".vimrc") . "wincmd w"
+endfunction
+ 
+let s:edit_config_mapping='<leader>ee'
+let s:apply_config_mapping='<leader>er'
+execute "noremap " . s:edit_config_mapping " :call <SID>EditVimrc13Config()<CR>"
+execute "noremap " . s:apply_config_mapping . " :source $VIM/.vimrc<CR>"
+
+let g:spf13_no_wrapRelMotion = 1
+if !exists('g:spf13_no_wrapRelMotion')
+    " Same for 0, home, end, etc
+    function! WrapRelativeMotion(key, ...)
+        let vis_sel=""
+        if a:0
+            let vis_sel="gv"
+        endif
+        if &wrap
+            execute "normal!" vis_sel . "g" . a:key
+        else
+            execute "normal!" vis_sel . a:key
+        endif
+    endfunction
+
+    " Map g* keys in Normal, Operator-pending, and Visual+select
+    noremap $ :call WrapRelativeMotion("$")<CR>
+    noremap <End> :call WrapRelativeMotion("$")<CR>
+    noremap 0 :call WrapRelativeMotion("0")<CR>
+    noremap <Home> :call WrapRelativeMotion("0")<CR>
+    noremap ^ :call WrapRelativeMotion("^")<CR>
+    " Overwrite the operator pending $/<End> mappings from above
+    " to force inclusive motion with :execute normal!
+    onoremap $ v:call WrapRelativeMotion("$")<CR>
+    onoremap <End> v:call WrapRelativeMotion("$")<CR>
+    " Overwrite the Visual+select mode mappings from above
+    " to ensure the correct vis_sel flag is passed to function
+    vnoremap $ :<C-U>call WrapRelativeMotion("$", 1)<CR>
+    vnoremap <End> :<C-U>call WrapRelativeMotion("$", 1)<CR>
+    vnoremap 0 :<C-U>call WrapRelativeMotion("0", 1)<CR>
+    vnoremap <Home> :<C-U>call WrapRelativeMotion("0", 1)<CR>
+    vnoremap ^ :<C-U>call WrapRelativeMotion("^", 1)<CR>
+
+    if has("user_commands")
+        command! -bang -nargs=* -complete=file E e<bang> <args>
+        command! -bang -nargs=* -complete=file W w<bang> <args>
+        command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+        command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+        command! -bang Wa wa<bang>
+        command! -bang WA wa<bang>
+        command! -bang Q q<bang>
+        command! -bang QA qa<bang>
+        command! -bang Qa qa<bang>
+    endif
+
+    cmap Tabe tabe
+
+    " Yank from the cursor to the end of the line, to be consistent with C and D.
+    nnoremap Y y$
+    " Some helpers to edit mode
+    " http://vimcasts.org/e/14
+    cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+    map <leader>ew :e %%
+    map <leader>es :sp %%
+    map <leader>ev :vsp %%
+    map <leader>et :tabe %%
+endif

@@ -182,6 +182,11 @@ set scrolloff=7 " minimal number of screen lines to keep above and below the cur
 set nowrap " do not wrap text
 set cursorline
 
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 " set default guifont
 if has('gui_running')
