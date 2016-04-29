@@ -16,6 +16,9 @@ vnoremap ; :
 map <leader>nn <plug>NERDTreeTabsToggle<CR>
 " color Monokai-binesiyu
 
+set splitbelow
+set splitright
+
 if WINDOWS()
     if has('autocmd')
         augroup maxwindow
@@ -60,11 +63,15 @@ function! s:EditVimrc13Config()
     execute bufwinnr(".vimrc") . "wincmd w"
 endfunction
  
-let s:edit_config_mapping='<leader>ee'
-let s:apply_config_mapping='<leader>er'
+let s:edit_config_mapping='<leader>ve'
+let s:apply_config_mapping='<leader>vr'
 execute "noremap " . s:edit_config_mapping " :call <SID>EditVimrc13Config()<CR>"
 execute "noremap " . s:apply_config_mapping . " :source $VIM/.vimrc<CR>"
 
+highlight clear SignColumn      " SignColumn should match background
+highlight clear LineNr          " Current line number row will have same background color in relative mode
+"highlight clear CursorLineNr    " Remove highlight color from current line number
+"
 let g:spf13_no_wrapRelMotion = 1
 if !exists('g:spf13_no_wrapRelMotion')
     " Same for 0, home, end, etc

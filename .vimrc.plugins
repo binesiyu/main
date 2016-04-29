@@ -10,9 +10,57 @@ source $VIMRUNTIME/ftplugin/man.vim
 " let Vundle manage Vundle, required
 " ---------------------------------------------------
 Plugin 'gmarik/Vundle.vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
 
 "}}}
 
+Plugin 'rhysd/conflict-marker.vim'
+"Plugin 'jiangmiao/auto-pairs'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'vim-scripts/sessionman.vim'
+nmap <leader>sl :SessionList<CR>
+nmap <leader>ss :SessionSave<CR>
+nmap <leader>sc :SessionClose<CR>
+Plugin 'matchit.zip'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'nathanaelkane/vim-indent-guides'
+" indent_guides {
+    if isdirectory(expand("~/.vim/bundle/vim-indent-guides/"))
+        let g:indent_guides_start_level = 2
+        let g:indent_guides_guide_size = 1
+        let g:indent_guides_enable_on_vim_startup = 1
+    endif
+" }
+Plugin 'mhinz/vim-signify'
+Plugin 'tpope/vim-abolish.git'
+Plugin 'osyo-manga/vim-over'
+
+Plugin 'kana/vim-textobj-user'
+Plugin 'kana/vim-textobj-indent'
+Plugin 'reedes/vim-textobj-sentence'
+augroup textobj_sentence
+  autocmd!
+  autocmd FileType markdown call textobj#sentence#init()
+  autocmd FileType textile call textobj#sentence#init()
+  autocmd FileType text call textobj#sentence#init()
+augroup END
+
+Plugin 'reedes/vim-textobj-quote'
+augroup textobj_quote
+    autocmd!
+    autocmd FileType markdown call textobj#quote#init()
+    autocmd FileType textile call textobj#quote#init()
+    autocmd FileType text call textobj#quote#init({'educate': 0})
+augroup END
+
+Plugin 'gcmt/wildfire.vim'
+" Wildfire {
+let g:wildfire_objects = {
+            \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
+            \ "html,xml" : ["at"],
+            \ }
+" }
 " general plugins {{{
 
 " let g:exlib = 1
@@ -36,6 +84,22 @@ endif
 " ---------------------------------------------------
 Plugin 'godlygeek/tabular'
 
+nmap <Leader>a& :Tabularize /&<CR>
+vmap <Leader>a& :Tabularize /&<CR>
+nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+nmap <Leader>a=> :Tabularize /=><CR>
+vmap <Leader>a=> :Tabularize /=><CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
+nmap <Leader>a:: :Tabularize /:\zs<CR>
+vmap <Leader>a:: :Tabularize /:\zs<CR>
+nmap <Leader>a, :Tabularize /,<CR>
+vmap <Leader>a, :Tabularize /,<CR>
+nmap <Leader>a,, :Tabularize /,\zs<CR>
+vmap <Leader>a,, :Tabularize /,\zs<CR>
+nmap <Leader>a<Bar> :Tabularizd /<Bar><CR>
+vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 nnoremap <silent> <leader>= :call g:Tabular(1)<CR>
 xnoremap <silent> <leader>= :call g:Tabular(0)<CR>
 function! g:Tabular(ignore_range) range
@@ -70,13 +134,22 @@ let g:airline_section_warning = airline#section#create(['syntastic'])
 
 " ctrlp: invoke by <ctrl-p>
 Plugin 'kien/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
 let g:ctrlp_follow_symlinks = 2
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+" CtrlP extensions
+let g:ctrlp_extensions = ['funky']
+
+"funky
+nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <leader>bs :CtrlPBuffer<CR>
 
 " vim-markdown
-Plugin 'plasticboy/vim-markdown'
+" Plugin 'plasticboy/vim-markdown'
 
 " nerdtree: invoke by :NERDTreeToggle
 " ---------------------------------------------------
@@ -86,9 +159,11 @@ let g:NERDTreeWinSize = 30
 let g:NERDTreeMouseMode = 1
 let g:NERDTreeMapToggleZoom = '<Space>' 
 let g:nerdtree_tabs_open_on_gui_startup=0
+let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
 " nerdcommenter: invoke by <leader>c<space>, <leader>cl, <leader>cu, <F11> or <C-F11>
 " ---------------------------------------------------
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-commentary'
 
 let g:NERDSpaceDelims = 1
 let g:NERDRemoveExtraSpaces = 1
@@ -260,20 +335,6 @@ nnoremap <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle=1
 let g:undotree_WindowLayout = 4
 
-" NOTE: this will prevent undotree closed then jump to minibufexpl
-function! g:CloseUndotree()
-    call UndotreeHide()
-    call ex#window#goto_edit_window()
-endfunction
-
-function! g:Undotree_CustomMap()
-    if has('gui_running')
-        nnoremap <silent> <script> <buffer> <ESC> :call g:CloseUndotree()<CR>
-    else
-        nnoremap <silent> <script> <buffer> <leader><ESC> :call g:CloseUndotree()<CR>
-    endif
-endfunction
-
 
 " vim-easymotion: invoke by <leader><leader> w,b,e,ge,f,F,h,i,j,k,/ 
 " ---------------------------------------------------
@@ -306,6 +367,20 @@ Plugin 'xolox/vim-misc'  " required by lua.vim
 Plugin 'xolox/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
 let g:lua_define_completefunc = 0
 let g:lua_define_completion_mappings = 0
+
+Plugin 'tpope/vim-fugitive'
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+nnoremap <silent> <leader>gr :Gread<CR>
+nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>ge :Gedit<CR>
+" Mnemonic _i_nteractive
+nnoremap <silent> <leader>gi :Git add -p %<CR>
+nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
 " let g:haskell = 1
 if exists('g:haskell')

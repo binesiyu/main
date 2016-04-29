@@ -461,6 +461,7 @@ nnoremap <leader>wk <C-W><Up>
 nnoremap <leader>wj <C-W><Down>
 nnoremap <leader>wh <C-W><Left>
 nnoremap <leader>wl <C-W><Right>
+nnoremap <leader>wm <C-W>_
 
 " easy buffer navigation
 " NOTE: if we already map to EXbn,EXbp. skip setting this
