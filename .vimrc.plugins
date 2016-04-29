@@ -26,13 +26,12 @@ Plugin 'matchit.zip'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'nathanaelkane/vim-indent-guides'
 " indent_guides {
-    if isdirectory(expand("~/.vim/bundle/vim-indent-guides/"))
-        let g:indent_guides_start_level = 2
-        let g:indent_guides_guide_size = 1
-        let g:indent_guides_enable_on_vim_startup = 1
-    endif
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
 " }
 Plugin 'mhinz/vim-signify'
+let g:signify_vcs_list = [ 'git']
 Plugin 'tpope/vim-abolish.git'
 Plugin 'osyo-manga/vim-over'
 
@@ -135,6 +134,7 @@ let g:airline_section_warning = airline#section#create(['syntastic'])
 " ctrlp: invoke by <ctrl-p>
 Plugin 'kien/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'jasoncodes/ctrlp-modified.vim'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
 let g:ctrlp_follow_symlinks = 2
@@ -145,8 +145,10 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_extensions = ['funky']
 
 "funky
+nnoremap <Leader>fm :CtrlPModified<CR>
+nnoremap <Leader>fg :CtrlPBranch<CR>
 nnoremap <Leader>fu :CtrlPFunky<Cr>
-nnoremap <leader>bs :CtrlPBuffer<CR>
+nnoremap <leader>fb :CtrlPBuffer<CR>
 
 " vim-markdown
 " Plugin 'plasticboy/vim-markdown'

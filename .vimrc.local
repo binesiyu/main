@@ -18,6 +18,7 @@ map <leader>nn <plug>NERDTreeTabsToggle<CR>
 
 set splitbelow
 set splitright
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 if WINDOWS()
     if has('autocmd')
@@ -72,6 +73,10 @@ highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
 "highlight clear CursorLineNr    " Remove highlight color from current line number
 "
+nmap <F2> :set wrap!<BAR>set wrap?<CR>
+nmap <F11> :set cursorline!<BAR>set nocursorline?<CR>
+nmap <F12> :set cursorcolumn!<BAR>set nocursorcolumn?<CR>
+
 let g:spf13_no_wrapRelMotion = 1
 if !exists('g:spf13_no_wrapRelMotion')
     " Same for 0, home, end, etc
