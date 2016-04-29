@@ -13,7 +13,6 @@ endif
 
 noremap ; :
 vnoremap ; :
-map <leader>nn <plug>NERDTreeTabsToggle<CR>
 " color Monokai-binesiyu
 
 set splitbelow

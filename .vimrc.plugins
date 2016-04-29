@@ -23,7 +23,6 @@ nmap <leader>sl :SessionList<CR>
 nmap <leader>ss :SessionSave<CR>
 nmap <leader>sc :SessionClose<CR>
 Plugin 'matchit.zip'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'nathanaelkane/vim-indent-guides'
 " indent_guides {
 let g:indent_guides_start_level = 2
@@ -156,12 +155,16 @@ nnoremap <leader>fb :CtrlPBuffer<CR>
 " nerdtree: invoke by :NERDTreeToggle
 " ---------------------------------------------------
 Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 
 let g:NERDTreeWinSize = 30
 let g:NERDTreeMouseMode = 1
 let g:NERDTreeMapToggleZoom = '<Space>' 
 let g:nerdtree_tabs_open_on_gui_startup=0
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+map <leader>nn <plug>NERDTreeTabsToggle<CR>
+map <F2> <plug>NERDTreeTabsToggle<CR>
+
 " nerdcommenter: invoke by <leader>c<space>, <leader>cl, <leader>cu, <F11> or <C-F11>
 " ---------------------------------------------------
 Plugin 'scrooloose/nerdcommenter'

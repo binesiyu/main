@@ -8,6 +8,7 @@ Plugin 'binesiyu/vim-monokia'
 
 Plugin 'moll/vim-bbye'
 nnoremap <Leader>bd :Bdelete<CR>
+nnoremap <F4> :Bdelete<CR>
 
 " Plugin 'zhaocai/GoldenView.Vim'
 
