@@ -325,6 +325,8 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 " " ---------------------------------------------------
+Plugin 'Konfekt/FastFold'
+Plugin 'Konfekt/FoldText'
 
 " Plugin 'msanders/snipmate.vim'
 " " ---------------------------------------------------
@@ -387,7 +389,7 @@ nnoremap <silent> <leader>ge :Gedit<CR>
 nnoremap <silent> <leader>gi :Git add -p %<CR>
 nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
-" let g:haskell = 1
+let g:haskell = 1
 if exists('g:haskell')
     if exists('g:exvim_custom_path')
         let vimrc_plugins_haskell = g:exvim_custom_path.'/.vimrc.haskell'

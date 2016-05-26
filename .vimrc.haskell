@@ -3,14 +3,14 @@ let g:haskell_conceal = 0
 let g:haskell_conceal_enumerations = 0
 " Plugin 'travitch/hasksyn'
 " Plugin 'Twinside/vim-haskellConceal'
-" Plugin 'Twinside/vim-haskellFold'
+Plugin 'Twinside/vim-haskellFold'
 Plugin 'Twinside/vim-hoogle'
 Plugin 'lukerandall/haskellmode-vim'
 let g:haskellmode_completion_ghc=0
 let g:haskellmode_completion_haddock=0
 let g:ghc_symbolcache=1
-let g:haddock_browser="firefox.exe"
-let g:haddock_docdir='C:\HaskellPlatform\2014.2.0.0\doc\html'
+let g:haddock_browser="chrome.exe"
+let g:haddock_docdir='C:\HaskellPlatform\7.10.3\doc\html'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'nbouscal/vim-stylish-haskell'
