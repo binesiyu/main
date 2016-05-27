@@ -41,7 +41,7 @@ nnoremap <silent> <leader>hi :HoogleInfo<CR>
 nnoremap <leader>hI :HoogleInfo
 
 " Hoogle, close the Hoogle window
-nnoremap <silent> <leader>hz :HoogleClose<CR>
+nnoremap <silent> <leader>hc :HoogleClose<CR>
 " if !executable("ghcmod")
     " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
 " endif
