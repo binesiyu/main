@@ -16,6 +16,8 @@ nnoremap <F5> :edit ++ff=dos<CR>
 Plugin 'mtth/scratch.vim'
 " Window chooser
 Plugin 't9md/vim-choosewin'
+
+Plugin 'adimit/prolog.vim'
 " invoke with '-'
 nnoremap <leader>ww :ChooseWin<CR>
 " if you want to use overlay feature
