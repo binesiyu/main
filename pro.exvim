@@ -7,14 +7,18 @@
 project_type = all -- { all, build, clang, data, doc, game, server, shell, web, ... }
 
 -- Project Settings:
-version = 10
+version = 13
 project_name = 'pro'
 
 -- File And Folder Filters:
 folder_filter_mode = exclude -- { include, exclude }
-folder_filter +=bin,dist,git,graphviz,osx,unix,windows
+folder_filter += bin,dist,git,graphviz,osx,unix,windows
 file_filter +=
-file_ignore_pattern += 
+file_ignore_pattern +=
+
+-- Editing:
+indent = 8
+expand_tab = true -- { true, false }
 
 -- Building:
 builder = gulp -- { gulp, grunt, gcc, xcode, vs, unity3d, ... }
@@ -32,6 +36,8 @@ gsearch_engine = idutils -- { idutils, grep }
 enable_tags = true -- { true, false }
 enable_symbols = true -- { true, false }
 enable_inherits = true -- { true, false }
+enable_custom_tags = false -- { true, false }
+custom_tags_file =
 
 -- ex-cscope Options:
 enable_cscope = false -- { true, false }

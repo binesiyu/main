@@ -122,8 +122,8 @@ else
     set t_Co=256 " make sure our terminal use 256 color
     let g:solarized_termcolors = 256
 endif
-colorscheme Monokai-binesiyu
-" colorscheme exlightgray
+" colorscheme Monokai-binesiyu
+colorscheme solarized
 
 "/////////////////////////////////////////////////////////////////////////////
 " General
@@ -212,9 +212,9 @@ if has('gui_running')
             set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
         elseif OSX()
             if getfontname( 'DejaVu Sans Mono for Powerline' ) != ''
-                set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
+                set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h13
             elseif getfontname( 'DejaVu Sans Mono' ) != ''
-                set guifont=DejaVu\ Sans\ Mono:h15
+                set guifont=DejaVu\ Sans\ Mono:h13
             endif
         elseif WINDOWS()
             if getfontname( 'DejaVu Sans Mono for Powerline' ) != ''
@@ -374,6 +374,7 @@ if has('autocmd')
         au FileType cs set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f:///,f://
         au FileType vim set comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",f:\"
         au FileType lua set comments=f:--
+        au FileType lua set foldmethod=indent
 
         " if edit python scripts, check if have \t. ( python said: the programme can only use \t or not, but can't use them together )
         au FileType python,coffee call s:check_if_expand_tab()

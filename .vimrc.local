@@ -18,6 +18,7 @@ vnoremap ; :
 set splitbelow
 set splitright
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+set noerrorbells visualbell t_vb=
 
 if WINDOWS()
     if has('autocmd')
@@ -47,6 +48,7 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+nmap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
 " nmap <C-d> <C-z>
 
 function! s:ExpandFilenameAndExecute(command, file)
@@ -54,11 +56,11 @@ function! s:ExpandFilenameAndExecute(command, file)
 endfunction
  
 function! s:EditVimrc13Config()
-    call <SID>ExpandFilenameAndExecute("tabedit", "$VIM/.vimrc")
-    call <SID>ExpandFilenameAndExecute("vsplit", "$VIM/.vimrc.local")
-    call <SID>ExpandFilenameAndExecute("split", "$VIM/.vimrc.plugins")
+    call <SID>ExpandFilenameAndExecute("tabedit", "$HOME/.vimrc")
+    call <SID>ExpandFilenameAndExecute("vsplit", "$HOME/.vimrc.local")
+    call <SID>ExpandFilenameAndExecute("split", "$HOME/.vimrc.plugins")
     wincmd l
-    call <SID>ExpandFilenameAndExecute("split", "$VIM/.vimrc.plugins.local")
+    call <SID>ExpandFilenameAndExecute("split", "$HOME/.vimrc.plugins.local")
  
     execute bufwinnr(".vimrc") . "wincmd w"
 endfunction
@@ -66,7 +68,7 @@ endfunction
 let s:edit_config_mapping='<leader>ve'
 let s:apply_config_mapping='<leader>vr'
 execute "noremap " . s:edit_config_mapping " :call <SID>EditVimrc13Config()<CR>"
-execute "noremap " . s:apply_config_mapping . " :source $VIM/.vimrc<CR>"
+execute "noremap " . s:apply_config_mapping . " :source $HOME/.vimrc<CR>"
 
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
@@ -133,3 +135,10 @@ if !exists('g:spf13_no_wrapRelMotion')
     map <leader>ev :vsp %%
     map <leader>et :tabe %%
 endif
+" 检测函数（检测光标位置处文字的样式名）
+function! SynStack()
+    echo map(synstack(line('.'),col('.')),'synIDattr(v:val, "name")')
+endfunc
+
+" 绑定检测键位（按键后样式名信息会输出在指令栏的位置）
+nnoremap <leader>yi :call SynStack()<CR>

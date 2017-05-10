@@ -19,9 +19,9 @@ Plugin 'rhysd/conflict-marker.vim'
 "Plugin 'jiangmiao/auto-pairs'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-scripts/sessionman.vim'
-nmap <leader>sl :SessionList<CR>
-nmap <leader>ss :SessionSave<CR>
-nmap <leader>sc :SessionClose<CR>
+" nmap <leader>sl :SessionList<CR>
+" nmap <leader>ss :SessionSave<CR>
+" nmap <leader>sc :SessionClose<CR>
 Plugin 'matchit.zip'
 Plugin 'nathanaelkane/vim-indent-guides'
 " indent_guides {
@@ -61,7 +61,7 @@ let g:wildfire_objects = {
 " }
 " general plugins {{{
 
-" let g:exlib = 1
+let g:exlib = 1
 if exists('g:exlib')
     if exists('g:exvim_custom_path')
         let vimrc_plugins_ex = g:exvim_custom_path.'/.vimrc.ex'
@@ -121,7 +121,7 @@ else
     let g:airline_powerline_fonts = 0
 endif
 
-let g:airline_theme = 'powerlineish'
+" let g:airline_theme = 'powerlineish'
 let g:airline#extensions#tabline#enabled = 1 " NOTE: When you open lots of buffers and typing text, it is so slow.
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -139,7 +139,7 @@ let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
 let g:ctrlp_follow_symlinks = 2
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+    \ 'file':  '\v(\.cpp|\.h|\.hh|\.cxx|\.lua|\.c)@<!$'}
 " CtrlP extensions
 let g:ctrlp_extensions = ['funky']
 
@@ -148,6 +148,7 @@ nnoremap <Leader>fm :CtrlPModified<CR>
 nnoremap <Leader>fg :CtrlPBranch<CR>
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <leader>fb :CtrlPBuffer<CR>
+nnoremap <leader>fa :Ack<CR>
 
 " vim-markdown
 " Plugin 'plasticboy/vim-markdown'
@@ -201,9 +202,9 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
+    \ 'scheme' : $HOME.'/.gosh_completions',
+    \ 'lua' : $HOME.'/.vim/bundle/vim-quick-community/key-dict'
         \ }
-
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
@@ -372,11 +373,15 @@ Plugin 'tpope/vim-repeat'
 
 Plugin 'xolox/vim-misc'  " required by lua.vim
 Plugin 'xolox/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
+Plugin 'tbastos/vim-lua'
 let g:lua_define_completefunc = 0
 let g:lua_define_completion_mappings = 0
+let lua_version = 5
+let lua_subversion = 1
+
 
 Plugin 'tpope/vim-fugitive'
-nnoremap <silent> <leader>gs :Gstatus<CR>
+" nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
@@ -387,7 +392,7 @@ nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>ge :Gedit<CR>
 " Mnemonic _i_nteractive
 nnoremap <silent> <leader>gi :Git add -p %<CR>
-nnoremap <silent> <leader>gg :SignifyToggle<CR>
+" nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
 let g:haskell = 1
 if exists('g:haskell')

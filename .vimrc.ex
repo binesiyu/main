@@ -192,6 +192,11 @@ let g:showmarks_ignore_type = 'hqm' " Ignore help, quickfix, non-modifiable buff
 let g:showmarks_hlline_lower = 1
 let g:showmarks_hlline_upper = 0 
 
+highlight clear  ShowMarksHLl " This group is used to highlight all the lowercase marks.
+highlight clear  ShowMarksHLu " This group is used to highlight all the uppercase marks.
+highlight clear  ShowMarksHLo " This group is used to highlight all other marks.
+highlight clear  ShowMarksHLm " This group is used when multiple marks are on the same line.
+
 " ex-visincr: invoke when select text and type ':II'
 " ---------------------------------------------------
 Plugin 'exvim/ex-visincr'
