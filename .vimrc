@@ -120,7 +120,12 @@ if has('gui_running')
 else
     set background=dark
     set t_Co=256 " make sure our terminal use 256 color
-    let g:solarized_termcolors = 16
+    if OSX()
+        let g:solarized_termcolors = 16
+    else
+
+        let g:solarized_termcolors = 256
+    endif
     " let g:solarized_termtrans=1
 endif
 " colorscheme Monokai-binesiyu
