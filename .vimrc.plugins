@@ -348,12 +348,12 @@ let g:undotree_WindowLayout = 4
 " ---------------------------------------------------
 Plugin 'Lokaltog/vim-easymotion'
 
-map <leader><leader>/ <Plug>(easymotion-sn)
-omap <leader><leader>/ <Plug>(easymotion-tn)
-map <leader><leader>j <Plug>(easymotion-j)
-map <leader><leader>k <Plug>(easymotion-k)
-map <leader><leader>l <Plug>(easymotion-lineforward)
-map <leader><leader>h <Plug>(easymotion-linebackward)
+map <space><space> <Plug>(easymotion-sn)
+omap <space><space> <Plug>(easymotion-tn)
+map <space>j <Plug>(easymotion-j)
+map <space>k <Plug>(easymotion-k)
+map <space>l <Plug>(easymotion-lineforward)
+map <space>h <Plug>(easymotion-linebackward)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 " LargeFile
