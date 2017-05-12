@@ -190,6 +190,7 @@ augroup CursorLine
 augroup END
 
 " set default guifont
+if !LINUX()
 if has('gui_running')
     augroup ex_gui_font
         " check and determine the gui font after GUIEnter.
@@ -229,6 +230,7 @@ if has('gui_running')
             endif
         endif
     endfunction
+endif
 endif
 
 " ------------------------------------------------------------------
