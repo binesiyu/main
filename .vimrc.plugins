@@ -121,7 +121,7 @@ else
     let g:airline_powerline_fonts = 1
 endif
 
-" let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'powerlineish'
 let g:airline#extensions#tabline#enabled = 1 " NOTE: When you open lots of buffers and typing text, it is so slow.
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
