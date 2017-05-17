@@ -142,6 +142,7 @@ let g:ctrlp_custom_ignore = {
     \ 'file':  '\v(\.cpp|\.h|\.hh|\.cxx|\.lua|\.c)@<!$'}
 " CtrlP extensions
 let g:ctrlp_extensions = ['funky']
+let g:ctrlp_use_caching = 1
 
 "funky
 nnoremap <Leader>fm :CtrlPModified<CR>
@@ -347,13 +348,14 @@ let g:undotree_WindowLayout = 4
 " vim-easymotion: invoke by <leader><leader> w,b,e,ge,f,F,h,i,j,k,/ 
 " ---------------------------------------------------
 Plugin 'Lokaltog/vim-easymotion'
-
-map <space><space> <Plug>(easymotion-sn)
-omap <space><space> <Plug>(easymotion-tn)
-map <space>j <Plug>(easymotion-j)
-map <space>k <Plug>(easymotion-k)
-map <space>l <Plug>(easymotion-lineforward)
-map <space>h <Plug>(easymotion-linebackward)
+map f <Plug>(easymotion-prefix)
+map ff <Plug>(easymotion-sn)
+omap ff <Plug>(easymotion-tn)
+map fj <Plug>(easymotion-j)
+map fk <Plug>(easymotion-k)
+map fl <Plug>(easymotion-lineforward)
+map fh <Plug>(easymotion-linebackward)
+map f. <Plug>(easymotion-repeat)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 " LargeFile
