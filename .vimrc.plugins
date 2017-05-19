@@ -143,6 +143,7 @@ let g:ctrlp_custom_ignore = {
 " CtrlP extensions
 let g:ctrlp_extensions = ['funky']
 let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
 
 let g:ctrlp_cmd = 'CtrlPBuffer'
 "funky
@@ -151,6 +152,7 @@ nnoremap <Leader>fg :CtrlPBranch<CR>
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <leader>fb :CtrlPBuffer<CR>
 nnoremap <leader>ff :CtrlP<CR>
+nnoremap <leader>fl :CtrlPMRUFiles<CR>
 nnoremap <leader>fa :Ack<CR>
 
 " vim-markdown
