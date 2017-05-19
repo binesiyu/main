@@ -207,7 +207,7 @@ Plugin 'exvim/ex-matchit'
 
 " ex-easyhl:
 " ---------------------------------------------------
-Plugin 'exvim/ex-easyhl'
+"Plugin 'exvim/ex-easyhl'
 
 " searchcompl: invoke by /
 " ---------------------------------------------------
