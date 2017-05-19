@@ -144,11 +144,13 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_extensions = ['funky']
 let g:ctrlp_use_caching = 1
 
+let g:ctrlp_cmd = 'CtrlPBuffer'
 "funky
 nnoremap <Leader>fm :CtrlPModified<CR>
 nnoremap <Leader>fg :CtrlPBranch<CR>
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <leader>fb :CtrlPBuffer<CR>
+nnoremap <leader>ff :CtrlP<CR>
 nnoremap <leader>fa :Ack<CR>
 
 " vim-markdown
@@ -348,14 +350,13 @@ let g:undotree_WindowLayout = 4
 " vim-easymotion: invoke by <leader><leader> w,b,e,ge,f,F,h,i,j,k,/ 
 " ---------------------------------------------------
 Plugin 'Lokaltog/vim-easymotion'
-map f <Plug>(easymotion-prefix)
-map ff <Plug>(easymotion-sn)
-omap ff <Plug>(easymotion-tn)
-map fj <Plug>(easymotion-j)
-map fk <Plug>(easymotion-k)
-map fl <Plug>(easymotion-lineforward)
-map fh <Plug>(easymotion-linebackward)
-map f. <Plug>(easymotion-repeat)
+nmap f <Plug>(easymotion-prefix)
+nmap ff <Plug>(easymotion-sn)
+nmap fj <Plug>(easymotion-j)
+nmap fk <Plug>(easymotion-k)
+nmap fl <Plug>(easymotion-lineforward)
+nmap fh <Plug>(easymotion-linebackward)
+nmap f. <Plug>(easymotion-repeat)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 " LargeFile

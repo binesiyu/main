@@ -47,7 +47,7 @@ nmap <leader>f9 :set foldlevel=9<CR>
 nmap <silent> <leader>/ :nohlsearch<CR>
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
-nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+nmap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 nmap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
 " nmap <C-d> <C-z>
 
