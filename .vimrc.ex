@@ -77,7 +77,7 @@ call exqfix#register_hotkey( 101, 0, '<leader>qq', ":EXQFixPaste<CR>", 'Open qui
 " ---------------------------------------------------
 Plugin 'exvim/ex-hierarchy'
 
-nnoremap <unique> <leader>hv :EXHierarchyCWord<CR>
+" nnoremap <unique> <leader>hv :EXHierarchyCWord<CR>
 
 " ex-taglist: invoke by <F4>
 " ---------------------------------------------------
@@ -208,7 +208,7 @@ Plugin 'exvim/ex-matchit'
 " ex-easyhl:
 " ---------------------------------------------------
 Plugin 'exvim/ex-easyhl'
-let g:easyhl_no_mappings = 0 
+let g:easyhl_no_mappings = 1 
 nnoremap <unique> <silent> <leader>j1 :EasyhlWord 1<CR>
 nnoremap <unique> <silent> <leader>j2 :EasyhlWord 2<CR>
 nnoremap <unique> <silent> <leader>j3 :EasyhlWord 3<CR>
