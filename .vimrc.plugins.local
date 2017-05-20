@@ -4,7 +4,7 @@
 
 " Add your customized plugins:
 " Example: Plugin 'foo/bar/foobar'
-Plugin 'binesiyu/vim-monokia'
+" Plugin 'binesiyu/vim-monokia'
 
 Plugin 'moll/vim-bbye'
 nnoremap <Leader>bd :Bdelete<CR>
