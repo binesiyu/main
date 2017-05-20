@@ -435,7 +435,8 @@ endif
 " NOTE: F10 looks like have some feature, when map with F10, the map will take no effects
 
 " Don't use Ex mode, use Q for formatting
-map Q gq
+" map Q gq
+map Q =
 
 " define the copy/paste judged by clipboard
 if has('clipboard')
@@ -482,8 +483,8 @@ if !hasmapto(':EXbp<CR>') && mapcheck('<C-h>','n') == ''
 endif
 
 " easy diff goto
-noremap <C-k> [c
-noremap <C-j> ]c
+" noremap <C-k> [c
+" noremap <C-j> ]c
 
 " enhance '<' '>' , do not need to reselect the block after shift it.
 vnoremap < <gv
