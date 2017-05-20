@@ -64,7 +64,11 @@ let g:ex_symbol_select_cmd = 'TS'
 " ---------------------------------------------------
 Plugin 'exvim/ex-cscope'
 
-call excscope#register_hotkey( 100, 0, '<leader>cd', ":EXCSToggle<CR>", 'Toggle cscope window.' )
+call excscope#register_hotkey( 100, 0, '<leader>ds', ":EXCSToggle<CR>", 'Toggle cscope window.' )
+call excscope#register_hotkey( 101, 0, '<leader>dd', ":CSDD<CR>", 'Find functions called by this function' )
+call excscope#register_hotkey( 102, 0, '<leader>dc', ":CSCD<CR>", 'Find functions calling by this function' )
+call excscope#register_hotkey( 103, 0, '<leader>di', ":CSID<CR>", 'Find files #including this file' )
+call excscope#register_hotkey( 104, 0, '<leader>dg', ":CSGD<CR>", 'Find this definition' )
 
 " ex-qfix
 " ---------------------------------------------------
