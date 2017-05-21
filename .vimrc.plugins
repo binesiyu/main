@@ -378,7 +378,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 
 Plugin 'xolox/vim-misc'  " required by lua.vim
-Plugin 'xolox/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
+" Plugin 'xolox/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
+Plugin 'binesiyu/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
 Plugin 'tbastos/vim-lua'
 let g:lua_define_completefunc = 0
 let g:lua_define_completion_mappings = 0
