@@ -360,6 +360,13 @@ nmap fk <Plug>(easymotion-k)
 nmap fl <Plug>(easymotion-lineforward)
 nmap fh <Plug>(easymotion-linebackward)
 nmap f. <Plug>(easymotion-repeat)
+vmap f <Plug>(easymotion-prefix)
+vmap ff <Plug>(easymotion-sn)
+vmap fj <Plug>(easymotion-j)
+vmap fk <Plug>(easymotion-k)
+vmap fl <Plug>(easymotion-lineforward)
+vmap fh <Plug>(easymotion-linebackward)
+vmap f. <Plug>(easymotion-repeat)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 " LargeFile
