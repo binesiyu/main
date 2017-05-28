@@ -124,7 +124,8 @@ else
         let g:solarized_termcolors = 16
     else
 
-        let g:solarized_termcolors = 256
+        let g:solarized_termcolors = 16
+        " let g:solarized_termcolors = 256
     endif
     " let g:solarized_termtrans=1
 endif
