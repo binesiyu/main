@@ -17,7 +17,7 @@ Plugin 'nbouscal/vim-stylish-haskell'
 " Use stylish haskell instead of par for haskell buffers
 autocmd FileType haskell let &formatprg="stylish-haskell"
 "Plugin 'Shougo/vimproc'
-" Plugin 'adinapoli/cumino'
+Plugin 'adinapoli/cumino'
 " Plugin 'bitc/vim-hdevtools'
 " Workaround vim-commentary for Haskell
 autocmd FileType haskell setlocal commentstring=--\ %s
