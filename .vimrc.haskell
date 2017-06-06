@@ -1,6 +1,7 @@
 Plugin 'dag/vim2hs'
 let g:haskell_conceal = 0
 let g:haskell_conceal_enumerations = 0
+let g:haskell_tabular = 0
 " Plugin 'travitch/hasksyn'
 " Plugin 'Twinside/vim-haskellConceal'
 Plugin 'Twinside/vim-haskellFold'
@@ -16,6 +17,7 @@ Plugin 'eagletmt/ghcmod-vim'
 Plugin 'nbouscal/vim-stylish-haskell'
 " Use stylish haskell instead of par for haskell buffers
 autocmd FileType haskell let &formatprg="stylish-haskell"
+autocmd FileType haskell compiler ghc
 "Plugin 'Shougo/vimproc'
 " if OSX()
     " let g:cumino_default_terminal = "iTerm"
