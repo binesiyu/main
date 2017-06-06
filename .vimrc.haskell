@@ -2,6 +2,7 @@ Plugin 'dag/vim2hs'
 let g:haskell_conceal = 0
 let g:haskell_conceal_enumerations = 0
 let g:haskell_tabular = 0
+" Plugin 'neovimhaskell/haskell-vim'
 " Plugin 'travitch/hasksyn'
 " Plugin 'Twinside/vim-haskellConceal'
 Plugin 'Twinside/vim-haskellFold'
