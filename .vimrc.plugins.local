@@ -29,6 +29,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'binesiyu/vim-quick-community'
 " Plugin 'vim-scripts/CSApprox'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'benmills/vimux'
 
 Plugin 'roxma/vim-tweak'
 
