@@ -96,3 +96,12 @@ endfunc
 func! tweak#wtb_switch#buflisted()
   return filter(range(1, bufnr('$')), 'buflisted(v:val)')
 endfunc
+
+
+Plugin 'vim-scripts/ingo-library'
+Plugin 'vim-scripts/SearchHighlighting'
+let g:SearchHighlighting_NoJump = 0 
+let g:SearchHighlighting_ExtendStandardCommands = 1 
+nmap <Leader>*  <Plug>SearchHighlightingGStar 
+nmap <Leader>g* <Plug>SearchHighlightingStar 
+vmap <Leader>*  <Plug>SearchHighlightingGStar 
