@@ -158,5 +158,6 @@ function! StripTrailingWhitespace()
         let @/=_s
         call cursor(l, c)
 endfunction
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql,lua autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+" autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql,lua autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+nnoremap <leader>ws :call StripTrailingWhitespace()<CR>
 " }
