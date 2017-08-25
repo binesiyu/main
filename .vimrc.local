@@ -161,3 +161,15 @@ endfunction
 " autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql,lua autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 nnoremap <leader>ws :call StripTrailingWhitespace()<CR>
 " }
+nnoremap <leader>th  :tabfirst<CR>
+nnoremap <leader>tj  :tabnext<CR>
+nnoremap <leader>tk  :tabprev<CR>
+nnoremap <leader>tl  :tablast<CR>
+" nnoremap <leader>tt  :tabedit<Space>
+nnoremap <leader>tn  :tabnext<Space>
+nnoremap <leader>tm  :tabm<Space>
+nnoremap <leader>td  :tabclose<CR>
+" Alternatively use
+"nnoremap <leader>th :tabnext<CR>
+"nnoremap <leader>tl :tabprev<CR>
+"nnoremap <leader>tn :tabnew<CR>
