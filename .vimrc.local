@@ -193,7 +193,9 @@ nnoremap <leader>tj  :tabnext<CR>
 nnoremap <leader>tk  :tabprev<CR>
 nnoremap <leader>tl  :tablast<CR>
 " nnoremap <leader>tt  :tabedit<Space>
-nnoremap <leader>tn  :tabnext<Space>
+" nnoremap <leader>tn  :tabnext<Space>
+nnoremap <leader>tn  :tabnew<CR>
+nnoremap <leader>tc  :tabclose<CR>
 nnoremap <leader>tm  :tabm<Space>
 nnoremap <leader>td  :tabclose<CR>
 nnoremap <leader>t1  1gt
