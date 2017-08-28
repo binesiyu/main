@@ -74,8 +74,8 @@ highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
 "highlight clear CursorLineNr    " Remove highlight color from current line number
 "
-map <F1> <Esc>
-imap <F1> <Esc>
+map <F1> :echo<CR>
+imap <F1> <C-o>:echo<CR>
 nmap <F2> :set wrap!<BAR>set wrap?<CR>
 nmap <F4> :set ignorecase!<BAR>set ignorecase?<CR>
 nmap <F11> :set cursorline!<BAR>set nocursorline?<CR>
