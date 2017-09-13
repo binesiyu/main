@@ -31,9 +31,11 @@ Plugin 'exvim/ex-project'
 " ---------------------------------------------------
 Plugin 'exvim/ex-gsearch'
 
+let g:ex_gsearch_ignore_case = 0
 call exgsearch#register_hotkey( 100, 0, '<leader>gs', ":EXGSearchToggle<CR>", 'Toggle global search window.' )
 call exgsearch#register_hotkey( 101, 0, '<leader>gg', ":EXGSearchCWord<CR>", 'Search current word.' )
-call exgsearch#register_hotkey( 102, 0, '<leader><S-f>', ":GS ", 'Shortcut for :GS' )
+call exgsearch#register_hotkey( 102, 0, '<leader><S-f>', ":GSW ", 'Shortcut for :GSW' )
+call exgsearch#register_hotkey( 102, 0, '<leader>gf', ":GSW <C-R>*<CR> ", 'Shortcut for :GSW' )
 
 " ex-tagselect
 " ---------------------------------------------------
