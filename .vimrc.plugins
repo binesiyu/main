@@ -155,7 +155,7 @@ nnoremap <Leader>fm :CtrlPModified<CR>
 nnoremap <Leader>fg :CtrlPBranch<CR>
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <leader>fb :CtrlPBuffer<CR>
-nnoremap <leader>ff :CtrlP<CR>
+" nnoremap <leader>ff :CtrlP<CR>
 nnoremap <leader>fr :CtrlPMRU<CR>
 nnoremap <leader>fl :CtrlPMRUFiles<CR>
 nnoremap <leader>fa :Ack<CR>
