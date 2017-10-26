@@ -81,6 +81,8 @@ nmap <F2> :set wrap!<BAR>set wrap?<CR>
 nmap <F4> :set relativenumber!<BAR>set relativenumber?<CR>
 nmap <F11> :set cursorline!<BAR>set nocursorline?<CR>
 nmap <F12> :set cursorcolumn!<BAR>set nocursorcolumn?<CR>
+nmap <Space> 4<C-e>
+nmap <S-Space> 4<C-y>
 
 nnoremap <F3> :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 nnoremap <leader>ff :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
