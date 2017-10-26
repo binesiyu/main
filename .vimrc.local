@@ -77,7 +77,8 @@ highlight clear LineNr          " Current line number row will have same backgro
 map <F1> :echo<CR>
 imap <F1> <C-o>:echo<CR>
 nmap <F2> :set wrap!<BAR>set wrap?<CR>
-nmap <F4> :set ignorecase!<BAR>set ignorecase?<CR>
+" nmap <F4> :set ignorecase!<BAR>set ignorecase?<CR>
+nmap <F4> :set relativenumber!<BAR>set relativenumber?<CR>
 nmap <F11> :set cursorline!<BAR>set nocursorline?<CR>
 nmap <F12> :set cursorcolumn!<BAR>set nocursorcolumn?<CR>
 

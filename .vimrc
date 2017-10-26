@@ -185,6 +185,7 @@ endif
 
 set matchtime=0 " 0 second to show the matching paren ( much faster )
 set nu " show line number
+set rnu " show line number
 set scrolloff=7 " minimal number of screen lines to keep above and below the cursor
 set nowrap " do not wrap text
 set cursorline
