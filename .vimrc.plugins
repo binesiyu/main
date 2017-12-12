@@ -161,7 +161,7 @@ nnoremap <leader>fl :CtrlPMRUFiles<CR>
 nnoremap <leader>fa :Ack<CR>
 
 " vim-markdown
-" Plugin 'plasticboy/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
 
 " nerdtree: invoke by :NERDTreeToggle
 " ---------------------------------------------------
