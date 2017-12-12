@@ -163,6 +163,14 @@ nnoremap <leader>fa :Ack<CR>
 " vim-markdown
 Plugin 'plasticboy/vim-markdown'
 
+Plugin 'iamcco/markdown-preview.vim'
+if OSX()
+    let g:mkdp_path_to_chrome="open -a Google\\ Chrome"
+endif
+let g:mkdp_auto_close=1
+" nmap <F7> <Plug>MarkdownPreview
+" nmap <F8> <Plug>StopMarkdownPreview
+
 " nerdtree: invoke by :NERDTreeToggle
 " ---------------------------------------------------
 Plugin 'scrooloose/nerdtree'
