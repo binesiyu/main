@@ -3,12 +3,11 @@
 std = 'lua51c'
 --global = false
 allow_defined_top = true
-globals = {'string','table','math'
-            ,'cc', 'ccui', 'ccs','tolua','cca'
-            ,'dump', 'transition', 'class','display'
+globals = {'cc', 'ccui', 'ccs' 
+            ,'dump', 'transition', 'class'
             ,'gModuleMgr','worldMapDefine','gMapMoveLineModel'
             ,'i18n'
-            ,'SoraDGetChildByName','SoraDCreateBasePanel','SoraDAddMessage','SoraDFIsRA'
+            ,'SoraDGetChildByName','SoraDCreateBasePanel','SoraDAddMessage'
             ,'include','handler'
         }
 exclude_files = {'src/cocos/**.lua'}
