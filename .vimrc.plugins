@@ -205,8 +205,8 @@ let g:syntastic_lua_checkers = ["luac", "luacheck"]
 let g:syntastic_lua_luacheck_args = "--no-unused-args" 
 if OSX()
     let g:syntastic_lua_luacheck_exec = "~/.luarocks/bin/luacheck"
-    let g:syntastic_lua_luacheck_quiet_messages = {
-                \ "regex": ["accessing undefined variable \'Sora.*","accessing undefined variable \'g.*"]}
+    " let g:syntastic_lua_luacheck_quiet_messages = {
+                " \ "regex": ["accessing undefined variable \'Sora.*","accessing undefined variable \'g.*"]}
 endif
 
 " this will make html file by Angular.js ignore errors
