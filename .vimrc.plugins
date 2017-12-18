@@ -143,7 +143,7 @@ let g:ctrlp_custom_ignore = {
     \ 'file':  '\v(\.cpp|\.h|\.hh|\.cxx|\.lua|\.c)@<!$'}
 let g:ctrlp_reuse_window = 'exproject\|nerdtree\|netrw\|help\|quickfix'
 let g:ctrlp_by_filename = 1
-let g:ctrlp_switch_buffer = 'et'
+let g:ctrlp_switch_buffer = ''
 " CtrlP extensions
 let g:ctrlp_extensions = ['funky']
 let g:ctrlp_use_caching = 1
