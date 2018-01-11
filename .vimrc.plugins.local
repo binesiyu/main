@@ -31,17 +31,17 @@ Plugin 'binesiyu/vim-quick-community'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 
-" Plugin 'roxma/vim-tweak'
+Plugin 'roxma/vim-tweak'
 
-" nnoremap <expr> <Leader>1 tweak#wtb_switch#key_leader_bufnum(1)
-" nnoremap <expr> <Leader>2 tweak#wtb_switch#key_leader_bufnum(2)
-" nnoremap <expr> <Leader>3 tweak#wtb_switch#key_leader_bufnum(3)
-" nnoremap <expr> <Leader>4 tweak#wtb_switch#key_leader_bufnum(4)
-" nnoremap <expr> <Leader>5 tweak#wtb_switch#key_leader_bufnum(5)
-" nnoremap <expr> <Leader>6 tweak#wtb_switch#key_leader_bufnum(6)
-" nnoremap <expr> <Leader>7 tweak#wtb_switch#key_leader_bufnum(7)
-" nnoremap <expr> <Leader>8 tweak#wtb_switch#key_leader_bufnum(8)
-" nnoremap <expr> <Leader>9 tweak#wtb_switch#key_leader_bufnum(9)
+nnoremap <expr> <Leader>b1 tweak#wtb_switch#key_leader_bufnum(1)
+nnoremap <expr> <Leader>b2 tweak#wtb_switch#key_leader_bufnum(2)
+nnoremap <expr> <Leader>b3 tweak#wtb_switch#key_leader_bufnum(3)
+nnoremap <expr> <Leader>b4 tweak#wtb_switch#key_leader_bufnum(4)
+nnoremap <expr> <Leader>b5 tweak#wtb_switch#key_leader_bufnum(5)
+nnoremap <expr> <Leader>b6 tweak#wtb_switch#key_leader_bufnum(6)
+nnoremap <expr> <Leader>b7 tweak#wtb_switch#key_leader_bufnum(7)
+nnoremap <expr> <Leader>b8 tweak#wtb_switch#key_leader_bufnum(8)
+nnoremap <expr> <Leader>b9 tweak#wtb_switch#key_leader_bufnum(9)
 
 Plugin 'vim-scripts/ingo-library'
 Plugin 'vim-scripts/SearchHighlighting'
