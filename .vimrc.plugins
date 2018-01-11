@@ -203,6 +203,8 @@ map <C-F11> <Plug>NERDCommenterUncomment
 Plugin 'scrooloose/syntastic'
 let g:syntastic_lua_checkers = ["luac", "luacheck"]
 let g:syntastic_lua_luacheck_args = "--no-unused-args" 
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
 if OSX()
     let g:syntastic_lua_luacheck_exec = "~/.luarocks/bin/luacheck"
     " let g:syntastic_lua_luacheck_quiet_messages = {

@@ -216,12 +216,12 @@ nnoremap <leader>t9  9gt
 "nnoremap <leader>tl :tabprev<CR>
 "nnoremap <leader>tn :tabnew<CR>
 
-nnoremap <leader>w1  1<C-W>W
-nnoremap <leader>w2  2<C-W>W
-nnoremap <leader>w3  3<C-W>W
-nnoremap <leader>w4  4<C-W>W
-nnoremap <leader>w5  5<C-W>W
-nnoremap <leader>w6  6<C-W>W
-nnoremap <leader>w7  7<C-W>W
-nnoremap <leader>w8  8<C-W>W
-nnoremap <leader>w9  9<C-W>W
+nnoremap <leader>1  1<C-W>W
+nnoremap <leader>2  2<C-W>W
+nnoremap <leader>3  3<C-W>W
+nnoremap <leader>4  4<C-W>W
+nnoremap <leader>5  5<C-W>W
+nnoremap <leader>6  6<C-W>W
+nnoremap <leader>7  7<C-W>W
+nnoremap <leader>8  8<C-W>W
+nnoremap <leader>9  9<C-W>W
