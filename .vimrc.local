@@ -73,6 +73,8 @@ execute "noremap " . s:apply_config_mapping . " :source $HOME/.vimrc<CR>"
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
 "highlight clear CursorLineNr    " Remove highlight color from current line number
+hi VertSplit ctermbg=NONE guibg=NONE
+set fillchars+=vert:│
 "
 map <F1> :echo<CR>
 imap <F1> <C-o>:echo<CR>
@@ -86,6 +88,7 @@ nmap <S-Space> 4<C-y>
 
 nnoremap <F3> :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 nnoremap <leader>ff :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+cnoremap w!! %!sudo tee > /dev/null %
 " set guioptions+=a
 function! MakePattern(text)
   let pat = escape(a:text, '\')

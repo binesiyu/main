@@ -214,6 +214,14 @@ endif
 " this will make html file by Angular.js ignore errors
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
+nnoremap <silent> <leader>el :Error<CR>
+nnoremap <silent> <leader>ec :lclose<CR>
+nnoremap <silent> <leader>ee :lnext<CR>
+nnoremap <silent> <leader>en :lnext<CR>
+nnoremap <silent> <leader>ep :lprevious<CR>
+nnoremap <silent> <leader>eN :lNext<CR>
+
+
 Plugin 'Shougo/neocomplete'
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
