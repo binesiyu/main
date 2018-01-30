@@ -466,7 +466,7 @@ nnoremap <silent> <leader>y2 :let @*=fnamemodify(bufname('%'),":p:t")<CR>
 " copy full path to clipboard, foo/bar/foobar.c => foo/bar/foobar.c
 nnoremap <silent> <leader>y3 :let @*=fnamemodify(bufname('%'),":p")<CR>
 
-nnoremap <leader>/ :let @/=""<CR>
+" nnoremap <leader>/ :let @/=""<CR>
 " DISABLE: though nohlsearch is standard way in Vim, but it will not erase the
 "          search pattern, which is not so good when use it with exVim's <leader>r
 "          filter method
