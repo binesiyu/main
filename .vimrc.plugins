@@ -475,7 +475,22 @@ let lua_version = 5
 let lua_subversion = 1
 
 
+Plugin 'junegunn/gv.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'lambdalisue/gina.vim'
+
+" nnoremap <silent> <leader>gs :Gina status<CR>
+nnoremap <silent> <leader>gi :Gina status<CR>
+nnoremap <silent> <leader>gS :Gina add %<CR>
+nnoremap <silent> <leader>gU :Gina reset -q %<CR>
+nnoremap <silent> <leader>gc :Gina commit<CR>
+nnoremap <silent> <leader>gp :Gina push<CR>
+nnoremap <silent> <leader>gd :Gina diff<CR>
+nnoremap <silent> <leader>gA :Gina add .<CR>
+nnoremap <silent> <leader>gb :Gina blame<CR>
+nnoremap <silent> <leader>gV :GV!<CR>
+nnoremap <silent> <leader>gv :GV'<CR>
 " nnoremap <silent> <leader>gs :Gstatus<CR>
 " nnoremap <silent> <leader>gd :Gdiff<CR>
 " nnoremap <silent> <leader>gc :Gcommit<CR>
