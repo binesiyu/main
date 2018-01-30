@@ -1,7 +1,4 @@
-"/////////////////////////////////////////////////////////////////////////////
-" basic
-"/////////////////////////////////////////////////////////////////////////////
-
+" basic {
 set nocompatible " be iMproved, required
 
 function! OSX()
@@ -21,10 +18,9 @@ if !exists('g:exvim_custom_path')
         set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
     endif
 endif
+" }
 
-"/////////////////////////////////////////////////////////////////////////////
-" language and encoding setup
-"/////////////////////////////////////////////////////////////////////////////
+" language and encoding setup {
 
 " always use English menu
 " NOTE: this must before filetype off, otherwise it won't work
@@ -73,11 +69,11 @@ scriptencoding utf-8
 
 let mapleader = ','
 let maplocalleader=mapleader
-"/////////////////////////////////////////////////////////////////////////////
-" Bundle steup
-"/////////////////////////////////////////////////////////////////////////////
+" }
 
-" vundle#begin
+" Bundle steup {
+
+" vundle#begin {{
 filetype off " required
 
 " set the runtime path to include Vundle
@@ -106,15 +102,13 @@ if filereadable(expand(vimrc_plugins_local_path))
     exec 'source ' . fnameescape(vimrc_plugins_local_path)
 endif
 
-" vundle#end
+" vundle#end }}
 filetype plugin indent on " required
 syntax on " required
+" }
 
-"/////////////////////////////////////////////////////////////////////////////
-" Default colorscheme setup
-"/////////////////////////////////////////////////////////////////////////////
+" Default colorscheme setup {
 
-set notimeout
 if has('gui_running')
     set background=dark
 else
@@ -131,54 +125,55 @@ else
 endif
 " colorscheme Monokai-binesiyu
 colorscheme solarized
+" }
 
-"/////////////////////////////////////////////////////////////////////////////
-" General
-"/////////////////////////////////////////////////////////////////////////////
+" General {
 
+" backup swap {{
 "set path=.,/usr/include/*,, " where gf, ^Wf, :find will search
+set notimeout
 set nobackup " make backup file and leave it around
 set noswf "
 
 " setup back and swap directory
-let data_dir = $HOME.'/.data/'
-let backup_dir = data_dir . 'backup'
-let swap_dir = data_dir . 'swap'
-if finddir(data_dir) == ''
-    silent call mkdir(data_dir)
-endif
-if finddir(backup_dir) == ''
-    silent call mkdir(backup_dir)
-endif
-if finddir(swap_dir) == ''
-    silent call mkdir(swap_dir)
-endif
-unlet backup_dir
-unlet swap_dir
-unlet data_dir
+" let data_dir = $HOME.'/.data/'
+" let backup_dir = data_dir . 'backup'
+" let swap_dir = data_dir . 'swap'
+" if finddir(data_dir) == ''
+    " silent call mkdir(data_dir)
+" endif
+" if finddir(backup_dir) == ''
+    " silent call mkdir(backup_dir)
+" endif
+" if finddir(swap_dir) == ''
+    " silent call mkdir(swap_dir)
+" endif
+" unlet backup_dir
+" unlet swap_dir
+" unlet data_dir
 
 set backupdir=$HOME/.data/backup " where to put backup file
 set directory=$HOME/.data/swap " where to put swap file
+" }}
 
+" history {{
 " Redefine the shell redirection operator to receive both the stderr messages and stdout messages
 set shellredir=>%s\ 2>&1
 set history=50 " keep 50 lines of command line history
 set updatetime=1000 " default = 4000
 set autoread " auto read same-file change ( better for vc/vim change )
 set maxmempattern=1000 " enlarge maxmempattern from 1000 to ... (2000000 will give it without limit)
+" }}
 
-"/////////////////////////////////////////////////////////////////////////////
-" xterm settings
-"/////////////////////////////////////////////////////////////////////////////
+" xterm settings {{
 
 behave xterm  " set mouse behavior as xterm
 if &term =~ 'xterm'
     set mouse=a
 endif
+" }}
 
-"/////////////////////////////////////////////////////////////////////////////
-" Variable settings ( set all )
-"/////////////////////////////////////////////////////////////////////////////
+" Variable settings ( set all ) {{
 
 " ------------------------------------------------------------------
 " Desc: Visual
@@ -196,8 +191,9 @@ augroup CursorLine
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 augroup END
+" }}
 
-" set default guifont
+" set default guifont {{
 if !LINUX()
 if has('gui_running')
     augroup ex_gui_font
@@ -240,10 +236,9 @@ if has('gui_running')
     endfunction
 endif
 endif
+" }}
 
-" ------------------------------------------------------------------
-" Desc: Vim UI
-" ------------------------------------------------------------------
+" Vim UI {{
 
 set wildmenu " turn on wild menu, try typing :h and press <Tab>
 set showcmd " display incomplete commands
@@ -255,12 +250,13 @@ set lazyredraw " do not redraw while executing macros (much faster)
 set display+=lastline " for easy browse last line with wrap text
 set laststatus=2 " always have status-line
 set titlestring=%t\ (%{expand(\"%:p:.:h\")}/)
+" }}
 
-" set window size (if it's GUI)
+" set window size (if it's GUI) {{
 if has('gui_running')
     " set window's width to 130 columns and height to 40 rows
     if exists('+lines')
-        set lines=40
+        set lines=40                " 40 lines of text instead of 24
     endif
     if exists('+columns')
         set columns=130
@@ -272,19 +268,20 @@ if has('gui_running')
     " else
     "     " TODO: no way right now
     " endif
+    " disable menu & toolbar
+    set guioptions-=T           " Remove the toolbar
+    set guioptions-=m           " Remove the menu
+    set guioptions-=L           " Remove the
+    set guioptions-=b           " Remove the
+    set guioptions-=r           " Remove the
+    set gcr=a:block-blinkon0    "noblock"
 endif
+" }}
+
+
+" Text edit {{
 
 set showfulltag " show tag with function protype.
-set guioptions+=b " present the bottom scrollbar when the longest visible line exceed the window
-
-" disable menu & toolbar
-set guioptions-=m
-set guioptions-=T
-
-" ------------------------------------------------------------------
-" Desc: Text edit
-" ------------------------------------------------------------------
-
 set ai " autoindent
 set si " smartindent
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
@@ -317,17 +314,15 @@ set ve=block " in visual block mode, cursor can be positioned where there is no 
 " set Number format to null(default is octal) , when press CTRL-A on number
 " like 007, it would not become 010
 set nf=
+" }}
 
-" ------------------------------------------------------------------
-" Desc: Fold text
-" ------------------------------------------------------------------
+" Fold text {{
 
 set foldmethod=marker foldmarker={,} foldlevel=9999
 set diffopt=filler,context:9999
+" }}
 
-" ------------------------------------------------------------------
-" Desc: Search
-" ------------------------------------------------------------------
+" Search {{
 
 set showmatch " show matching paren
 set incsearch " do incremental searching
@@ -338,10 +333,17 @@ set smartcase " set smartcase mode on, If there is upper case character in the s
 " set this to use id-utils for global search
 set grepprg=lid\ -Rgrep\ -s
 set grepformat=%f:%l:%m
+" }}
 
-"/////////////////////////////////////////////////////////////////////////////
-" Auto Command
-"/////////////////////////////////////////////////////////////////////////////
+" window op {{
+set splitbelow
+set splitright
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+set noerrorbells visualbell t_vb=
+"}}
+" }
+
+" Auto Command {
 
 " ------------------------------------------------------------------
 " Desc: Only do this part when compiled with support for autocommands.
@@ -430,10 +432,9 @@ if has('autocmd')
         endif
     endfunction
 endif
+" }
 
-"/////////////////////////////////////////////////////////////////////////////
-" Key Mappings
-"/////////////////////////////////////////////////////////////////////////////
+" Key Mappings {
 
 " NOTE: F10 looks like have some feature, when map with F10, the map will take no effects
 
@@ -451,6 +452,11 @@ if has('clipboard')
 endif
 
 
+" change ; to :
+noremap ; :
+vnoremap ; :
+
+cnoremap w!! %!sudo tee > /dev/null %
 " copy folder path to clipboard, foo/bar/foobar.c => foo/bar/
 nnoremap <silent> <leader>y1 :let @*=fnamemodify(bufname('%'),":p:h")<CR>
 
@@ -460,8 +466,6 @@ nnoremap <silent> <leader>y2 :let @*=fnamemodify(bufname('%'),":p:t")<CR>
 " copy full path to clipboard, foo/bar/foobar.c => foo/bar/foobar.c
 nnoremap <silent> <leader>y3 :let @*=fnamemodify(bufname('%'),":p")<CR>
 
-" F8 or <leader>/:  Set Search pattern highlight on/off
-nnoremap <F8> :let @/=""<CR>
 nnoremap <leader>/ :let @/=""<CR>
 " DISABLE: though nohlsearch is standard way in Vim, but it will not erase the
 "          search pattern, which is not so good when use it with exVim's <leader>r
@@ -505,9 +509,40 @@ noremap <Down> gj
 " even be separated by punctuation (such as "abc = def").
 nnoremap <silent> <leader>sw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<cr><c-o>
 
-"/////////////////////////////////////////////////////////////////////////////
-" local setup
-"/////////////////////////////////////////////////////////////////////////////
+" Most prefer to toggle search highlighting rather than clear the current
+" search results. To clear search highlighting rather than toggle it on
+" and off, add the following to your .vimrc.before.local file:
+" nmap <silent> <leader>/ :nohlsearch<CR>
+" Map <Leader>ff to display all lines with keyword under cursor
+" and ask which one to jump to
+nmap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+nmap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
+nnoremap <leader>ff :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
+map <F1> :echo<CR>
+imap <F1> <C-o>:echo<CR>
+nmap <F2> :set wrap!<BAR>set wrap?<CR>
+nnoremap <F3> :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+" nmap <F4> :set ignorecase!<BAR>set ignorecase?<CR>
+nmap <F4> :set relativenumber!<BAR>set relativenumber?<CR>
+" F8 or <leader>/:  Set Search pattern highlight on/off
+nnoremap <F8> :let @/=""<CR>
+nmap <F11> :set cursorline!<BAR>set nocursorline?<CR>
+nmap <F12> :set cursorcolumn!<BAR>set nocursorcolumn?<CR>
+nmap <Space> 4<C-e>
+nmap <S-Space> 4<C-y>
+"}
+
+" fix colorscheme {
+
+highlight clear SignColumn      " SignColumn should match background
+highlight clear LineNr          " Current line number row will have same background color in relative mode
+"highlight clear CursorLineNr    " Remove highlight color from current line number
+hi VertSplit ctermbg=NONE guibg=NONE
+set fillchars+=vert:│
+" }
+
+" local setup {
 
 let vimrc_local_path = '~/.vimrc.local'
 if exists('g:exvim_custom_path')

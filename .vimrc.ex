@@ -248,13 +248,13 @@ Plugin 'altercation/vim-colors-solarized'
 
 " ex-cref: invoke by <leader>cr
 " ---------------------------------------------------
-Plugin 'exvim/ex-cref'
+" Plugin 'exvim/ex-cref'
 
 " this is modified for default c syntax highlight settings 
 " make it don't highlight error pattern
-let c_gnu = 1
-let c_no_curly_error = 1
-let c_no_bracket_error = 1
+" let c_gnu = 1
+" let c_no_curly_error = 1
+" let c_no_bracket_error = 1
 
 "}}}
 " only supoort in 7.3 or higher

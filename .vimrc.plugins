@@ -15,10 +15,11 @@ Plugin 'tomtom/tlib_vim'
 
 "}}}
 
+" ui {
 " Plugin 'rhysd/conflict-marker.vim'
 "Plugin 'jiangmiao/auto-pairs'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'vim-scripts/sessionman.vim'
+" Plugin 'vim-scripts/sessionman.vim'
 " nmap <leader>sl :SessionList<CR>
 " nmap <leader>ss :SessionSave<CR>
 " nmap <leader>sc :SessionClose<CR>
@@ -33,7 +34,9 @@ Plugin 'mhinz/vim-signify'
 let g:signify_vcs_list = [ 'git']
 " Plugin 'tpope/vim-abolish.git'
 Plugin 'osyo-manga/vim-over'
+"}
 
+" textobj {
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-indent'
 Plugin 'reedes/vim-textobj-sentence'
@@ -53,7 +56,6 @@ augroup textobj_quote
 augroup END
 
 Plugin 'gcmt/wildfire.vim'
-" Wildfire {
 let g:wildfire_objects = {
             \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
             \ "html,xml" : ["at"],
@@ -61,6 +63,7 @@ let g:wildfire_objects = {
 " }
 " general plugins {{{
 
+" ex {{{
 let g:exlib = 1
 if exists('g:exlib')
     if exists('g:exvim_custom_path')
@@ -77,6 +80,7 @@ else
         set acd " no autochchdir
     endif
 endif
+" }}}
 
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
@@ -96,7 +100,7 @@ nmap <Leader>a, :Tabularize /,<CR>
 vmap <Leader>a, :Tabularize /,<CR>
 nmap <Leader>a,, :Tabularize /,\zs<CR>
 vmap <Leader>a,, :Tabularize /,\zs<CR>
-nmap <Leader>a<Bar> :Tabularizd /<Bar><CR>
+nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 nnoremap <silent> <leader>= :call g:Tabular(1)<CR>
 xnoremap <silent> <leader>= :call g:Tabular(0)<CR>
@@ -409,7 +413,6 @@ let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 Plugin 'vim-scripts/LargeFile'
 let g:LargeFile= 5 " files >= 5MB will use LargeFile rules
 
-"}}}
 
 " DISABLE: I'm using GistBox https://app.gistboxapp.com/ instead
 " " gist-vim: Invoke by :Gist
@@ -443,6 +446,7 @@ Plugin 'tpope/vim-fugitive'
 " nnoremap <silent> <leader>gi :Git add -p %<CR>
 " nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
+" haskell {{{{
 let g:haskell = 1
 if exists('g:haskell')
     if exists('g:exvim_custom_path')
@@ -455,6 +459,7 @@ if exists('g:haskell')
         exec 'source ' . fnameescape(vimrc_plugins_haskell)
     endif
 endif
+"}}}}
+"}}}
 
-" let g:lua_define_omnifunc = 0
 " vim:ts=4:sw=4:sts=4 et fdm=marker:
