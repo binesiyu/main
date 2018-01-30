@@ -1,12 +1,12 @@
 
 " ex-config:
 " ---------------------------------------------------
-Plugin 'exvim/ex-config'
+Plugin 'binesiyu/ex-config'
 " nnoremap <unique> <leader>ve :call exconfig#edit_cur_vimentry ()<CR>
 
 " ex-utility:
 " ---------------------------------------------------
-Plugin 'exvim/ex-utility'
+Plugin 'binesiyu/ex-utility'
 
 nnoremap <unique> <silent> <Leader>bd :EXbd<CR>
 nnoremap <unique> <silent> <Leader>l :EXbn<CR>
@@ -29,7 +29,7 @@ Plugin 'exvim/ex-project'
 
 " ex-gsearch
 " ---------------------------------------------------
-Plugin 'exvim/ex-gsearch'
+Plugin 'binesiyu/ex-gsearch'
 
 let g:ex_gsearch_ignore_case = 0
 call exgsearch#register_hotkey( 100, 0, '<leader>gs', ":EXGSearchToggle<CR>", 'Toggle global search window.' )
@@ -39,7 +39,7 @@ call exgsearch#register_hotkey( 102, 0, '<leader>gf', ":GSW <C-R>*<CR> ", 'Short
 
 " ex-tagselect
 " ---------------------------------------------------
-Plugin 'exvim/ex-tags'
+Plugin 'binesiyu/ex-tags'
 
 call extags#register_hotkey( 100, 0, '<leader>ts', ":EXTagsToggle<CR>", 'Toggle tag select window.' )
 call extags#register_hotkey( 101, 0, '<leader>tt', ":EXTagsCWord<CR>", 'Tag select current word.' )
@@ -47,7 +47,7 @@ call extags#register_hotkey( 101, 0, '<leader>tt', ":EXTagsCWord<CR>", 'Tag sele
 
 " ex-symbol
 " ---------------------------------------------------
-Plugin 'exvim/ex-symbol'
+Plugin 'binesiyu/ex-symbol'
 
 call exsymbol#register_hotkey( 100, 0, '<leader>sl', ":EXSymbolList<CR>", 'List all symbols.' )
 call exsymbol#register_hotkey( 101, 0, '<leader>st', ":EXSymbolToggle<CR>", 'Open symbols window.' )
@@ -64,7 +64,7 @@ let g:ex_symbol_select_cmd = 'TS'
 
 " ex-cscope
 " ---------------------------------------------------
-Plugin 'exvim/ex-cscope'
+Plugin 'binesiyu/ex-cscope'
 
 call excscope#register_hotkey( 100, 0, '<leader>ds', ":EXCSToggle<CR>", 'Toggle cscope window.' )
 call excscope#register_hotkey( 101, 0, '<leader>dc', ":CSDD<CR>", 'Find functions called by this function' )

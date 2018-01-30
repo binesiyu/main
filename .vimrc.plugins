@@ -43,7 +43,7 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 " }
-Plugin 'mhinz/vim-signify'
+Plugin 'binesiyu/vim-signify'
 let g:signify_vcs_list = [ 'git']
 " Plugin 'tpope/vim-abolish.git'
 Plugin 'osyo-manga/vim-over'
@@ -402,7 +402,7 @@ let g:undotree_WindowLayout = 4
 
 " vim-easymotion: invoke by <leader><leader> w,b,e,ge,f,F,h,i,j,k,/ 
 " ---------------------------------------------------
-Plugin 'Lokaltog/vim-easymotion'
+Plugin 'binesiyu/vim-easymotion'
 nmap f <Plug>(easymotion-prefix)
 nmap ff <Plug>(easymotion-sn)
 nmap fj <Plug>(easymotion-j)
@@ -460,7 +460,7 @@ Plugin 'tpope/vim-fugitive'
 " nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
 " haskell {{{{
-let g:haskell = 1
+" let g:haskell = 1
 if exists('g:haskell')
     if exists('g:exvim_custom_path')
         let vimrc_plugins_haskell = g:exvim_custom_path.'/.vimrc.haskell'

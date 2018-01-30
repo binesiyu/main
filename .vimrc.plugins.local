@@ -31,7 +31,7 @@ Plugin 'binesiyu/vim-quick-community'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 
-Plugin 'roxma/vim-tweak'
+Plugin 'binesiyu/vim-tweak'
 
 nnoremap <expr> <Leader>b1 tweak#wtb_switch#key_leader_bufnum(1)
 nnoremap <expr> <Leader>b2 tweak#wtb_switch#key_leader_bufnum(2)
