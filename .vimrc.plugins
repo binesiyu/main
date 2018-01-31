@@ -1,5 +1,5 @@
+scriptencoding utf-8
 " Pathogen or Vundle (deafult is Vundle) {{{
-
 " Comment-out if you want to use pahogen
 " execute pathogen#infect()
 " com! -nargs=+ Bundle
@@ -247,21 +247,50 @@ map <C-F11> <Plug>NERDCommenterUncomment
 
 " syntastic: invoke when you save file and have syntac-checker
 " ---------------------------------------------------
-Plugin 'scrooloose/syntastic'
-let g:syntastic_lua_checkers = ["luac", "luacheck"]
-let g:syntastic_lua_luacheck_args = "--no-unused-args" 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-if OSX()
-    let g:syntastic_lua_luacheck_exec = "~/.luarocks/bin/luacheck"
-    " let g:syntastic_lua_luacheck_quiet_messages = {
-                " \ "regex": ["accessing undefined variable \'Sora.*","accessing undefined variable \'g.*"]}
+" let g:syntastic = 1
+if exists('g:syntastic')
+    Plugin 'scrooloose/syntastic'
+    let g:syntastic_lua_checkers = ["luac", "luacheck"]
+    let g:syntastic_lua_luacheck_args = "--no-unused-args" 
+    " let g:syntastic_always_populate_loc_list = 1
+    " let g:syntastic_auto_loc_list = 1
+    let syntastic_error_symbol = '✖'
+    let syntastic_warning_symbol = '➤'
+    let syntastic_info_symbol = '🛈'
+
+    let syntastic_style_error_symbol = '✖'
+    let syntastic_style_warning_symbol = '➤'
+
+    if OSX()
+        let g:syntastic_lua_luacheck_exec = "~/.luarocks/bin/luacheck"
+        " let g:syntastic_lua_luacheck_quiet_messages = {
+        " \ "regex": ["accessing undefined variable \'Sora.*","accessing undefined variable \'g.*"]}
+    endif
+
+    " this will make html file by Angular.js ignore errors
+    let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+    nnoremap <silent> <leader>el :Error<CR>
+else
+    Plugin 'neomake/neomake'
+    " When writing a buffer.
+    call neomake#configure#automake('w')
+    " 1 open list and move cursor 2 open list without move cursor
+    let g:neomake_open_list =  0
+    let g:neomake_verbose =  0
+    let g:neomake_lua_enabled_makers = ['luacheck']
+    let g:neomake_lua_luacheck_exe = expand('~/.luarocks/bin/luacheck')
+    let g:neomake_error_sign = get(g:, 'neomake_error_sign', {
+                \ 'text': '✖',
+                \ })
+    let g:neomake_warning_sign = get(g:, 'neomake_warning_sign', {
+                \ 'text': '➤',
+                \ })
+    let g:neomake_info_sign = get(g:, 'neomake_info_sign', {
+                \ 'text': '🛈',
+                \ })
+    nnoremap <silent> <leader>el :lopen<CR>
 endif
 
-" this will make html file by Angular.js ignore errors
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-
-nnoremap <silent> <leader>el :Error<CR>
 nnoremap <silent> <leader>ec :lclose<CR>
 nnoremap <silent> <leader>ee :lnext<CR>
 nnoremap <silent> <leader>en :lnext<CR>
@@ -490,7 +519,7 @@ nnoremap <silent> <leader>gd :Gina diff<CR>
 nnoremap <silent> <leader>gA :Gina add .<CR>
 nnoremap <silent> <leader>gb :Gina blame<CR>
 nnoremap <silent> <leader>gV :GV!<CR>
-nnoremap <silent> <leader>gv :GV'<CR>
+nnoremap <silent> <leader>gv :GV<CR>
 " nnoremap <silent> <leader>gs :Gstatus<CR>
 " nnoremap <silent> <leader>gd :Gdiff<CR>
 " nnoremap <silent> <leader>gc :Gcommit<CR>
