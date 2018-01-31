@@ -2,7 +2,7 @@
 
 export ORIGINAL_PATH=`pwd`
 
-echo "Check and install Vundle."
+echo "Check and install dein."
 
 # if we don't have folder vimfiles, create it.
 if [ ! -d "./vimfiles/" ]; then
@@ -10,21 +10,23 @@ if [ ! -d "./vimfiles/" ]; then
 fi
 cd ./vimfiles/
 
-# if we don't have bundle, create it.
-if [ ! -d "./bundle/" ]; then
-    mkdir ./bundle/
+# if we don't have dein, create it.
+if [ ! -d "./dein/" ]; then
+    mkdir ./dein/
 fi
-cd ./bundle/
+cd ./dein/
 
-# download or update vundle in ./vimfiles/bundle/
-if [ ! -d "./Vundle.vim/" ]; then
-    git clone https://github.com/gmarik/Vundle.vim Vundle.vim
+# download or update vundle in ./vimfiles/dein/
+if [ ! -d "./repos/github.com.Shougo/dein.vim/" ]; then
+	mkdir -p ./repos/github.com/Shougo/dein.vim
+    # TODO: please check if the dein is latest version
+    git clone https://github.com/Shougo/dein.vim ./repos/github.com/Shougo/dein.vim
 fi
 
 # download and install bundles through Vundle in this repository
 echo "Update vim-plugins."
 cd ${ORIGINAL_PATH}
-vim -u .vimrc.mini --cmd "set rtp=./vimfiles,\$VIMRUNTIME,./vimfiles/after" +PluginClean +PluginUpdate +qall
+vim -u .vimrc.mini --cmd "set rtp=./vimfiles,\$VIMRUNTIME,./vimfiles/after"  +PluginUpdate +qall
 
 # go back
 cd ${ORIGINAL_PATH}

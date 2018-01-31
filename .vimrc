@@ -79,28 +79,47 @@ filetype off " required
 " set the runtime path to include Vundle
 if exists('g:exvim_custom_path')
     let g:ex_tools_path = g:exvim_custom_path.'/vimfiles/tools/'
-    exec 'set rtp+=' . fnameescape ( g:exvim_custom_path.'/vimfiles/bundle/Vundle.vim/' )
-    call vundle#rc(g:exvim_custom_path.'/vimfiles/bundle/')
+    let g:ex_dein_path = g:exvim_custom_path.'/vimfiles/dein'
+    exec 'set rtp+=' . fnameescape ( g:exvim_custom_path.'/vimfiles/dein/repos/github.com/Shougo/dein.vim/' )
 else
     let g:ex_tools_path = '~/.vim/tools/'
-    set rtp+=~/.vim/bundle/Vundle.vim/
-    call vundle#rc('~/.vim/bundle/')
+    let g:ex_dein_path = '~/.vim/dein/'
+    set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 endif
 
-" load .vimrc.plugins & .vimrc.plugins.local
-if exists('g:exvim_custom_path')
-    let vimrc_plugins_path = g:exvim_custom_path.'/.vimrc.plugins'
-    let vimrc_plugins_local_path = g:exvim_custom_path.'/.vimrc.plugins.local'
-else
-    let vimrc_plugins_path = '~/.vimrc.plugins'
-    let vimrc_plugins_local_path = '~/.vimrc.plugins.local'
-endif
-if filereadable(expand(vimrc_plugins_path))
-    exec 'source ' . fnameescape(vimrc_plugins_path)
-endif
-if filereadable(expand(vimrc_plugins_local_path))
-    exec 'source ' . fnameescape(vimrc_plugins_local_path)
-endif
+" Plugin Commands
+com! -nargs=+  -bar   Plugin
+\ call dein#add(<args>)
+" PluginInstall
+com! -nargs=* -bang -complete=custom,vundle#scripts#complete PluginInstall
+\ call dein#install()
+" PluginUpdate
+com! -nargs=* -bang -complete=custom,vundle#scripts#complete PluginUpdate
+\ call dein#update()
+
+" if dein#load_state(g:ex_dein_path)
+    call dein#begin(g:ex_dein_path)
+    " call dein#add('Shougo/dein.vim')
+    Plugin 'Shougo/dein.vim'
+
+    " load .vimrc.plugins & .vimrc.plugins.local
+    if exists('g:exvim_custom_path')
+        let vimrc_plugins_path = g:exvim_custom_path.'/.vimrc.plugins'
+        let vimrc_plugins_local_path = g:exvim_custom_path.'/.vimrc.plugins.local'
+    else
+        let vimrc_plugins_path = '~/.vimrc.plugins'
+        let vimrc_plugins_local_path = '~/.vimrc.plugins.local'
+    endif
+    if filereadable(expand(vimrc_plugins_path))
+        exec 'source ' . fnameescape(vimrc_plugins_path)
+    endif
+    if filereadable(expand(vimrc_plugins_local_path))
+        exec 'source ' . fnameescape(vimrc_plugins_local_path)
+    endif
+
+    call dein#end()
+    " call dein#save_state()
+" endif
 
 " vundle#end }}
 filetype plugin indent on " required

@@ -85,7 +85,7 @@ endfunction
 " nmap <leader>sl :SessionList<CR>
 " nmap <leader>ss :SessionSave<CR>
 " nmap <leader>sc :SessionClose<CR>
-Plugin 'matchit.zip'
+Plugin 'vim-scripts/matchit.zip'
 Plugin 'nathanaelkane/vim-indent-guides'
 " indent_guides {
 let g:indent_guides_start_level = 2
