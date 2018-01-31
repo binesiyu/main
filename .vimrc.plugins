@@ -16,6 +16,55 @@ Plugin 'tomtom/tlib_vim'
 "}}}
 
 " ui {
+Plugin 'mhinz/vim-startify'
+let g:startify_custom_header = [
+        \ '',
+        \ '',
+        \ '     VVVVVVVV           VVVVVVVVIIIIIIIIIIMMMMMMMM               MMMMMMMM     ',
+        \ '     V::::::V           V::::::VI::::::::IM:::::::M             M:::::::M     ',
+        \ '     V::::::V           V::::::VI::::::::IM::::::::M           M::::::::M     ',
+        \ '     V::::::V           V::::::VII::::::IIM:::::::::M         M:::::::::M     ',
+        \ '      V:::::V           V:::::V   I::::I  M::::::::::M       M::::::::::M     ',
+        \ '       V:::::V         V:::::V    I::::I  M:::::::::::M     M:::::::::::M     ',
+        \ '        V:::::V       V:::::V     I::::I  M:::::::M::::M   M::::M:::::::M     ',
+        \ '         V:::::V     V:::::V      I::::I  M::::::M M::::M M::::M M::::::M     ',
+        \ '          V:::::V   V:::::V       I::::I  M::::::M  M::::M::::M  M::::::M     ',
+        \ '           V:::::V V:::::V        I::::I  M::::::M   M:::::::M   M::::::M     ',
+        \ '            V:::::V:::::V         I::::I  M::::::M    M:::::M    M::::::M     ',
+        \ '             V:::::::::V          I::::I  M::::::M     MMMMM     M::::::M     ',
+        \ '              V:::::::V         II::::::IIM::::::M               M::::::M     ',
+        \ '               V:::::V          I::::::::IM::::::M               M::::::M     ',
+        \ '                V:::V           I::::::::IM::::::M               M::::::M     ',
+        \ '                 VVV            IIIIIIIIIIMMMMMMMM               MMMMMMMM     ',
+        \ '',
+        \ '',
+        \ ]
+let g:startify_session_dir = $HOME .  '/.data/' . ( has('nvim') ? 'nvim' : 'vim' ) . '/session'
+let g:startify_files_number = 6
+let g:startify_list_order = [
+      \ ['   These are my bookmarks:'],
+      \ 'bookmarks',
+      \ ['   My most recently used files in the current directory:'],
+      \ 'dir',
+      \ ['   My most recently used files:'],
+      \ 'files',
+      \ ['   These are my sessions:'],
+      \ 'sessions',
+      \ ]
+let g:startify_bookmarks = [ {'c': '~/.vimrc'}, '~/.zshrc' ]
+let g:startify_update_oldfiles = 1
+" let g:startify_disable_at_vimenter = 1
+let g:startify_session_autoload = 1
+let g:startify_session_persistence = 1
+"let g:startify_session_delete_buffers = 0
+let g:startify_change_to_dir = 0
+"let g:startify_change_to_vcs_root = 0  " vim-rooter has same feature
+let g:startify_skiplist = [
+      \ 'COMMIT_EDITMSG',
+      \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
+      \ 'bundle/.*/doc',
+      \ ]
+
 " Plugin 'rhysd/conflict-marker.vim'
 "Plugin 'jiangmiao/auto-pairs'
 Plugin 'terryma/vim-multiple-cursors'
@@ -42,6 +91,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'man', 'startify', 'vimfiler']
 " }
 Plugin 'binesiyu/vim-signify'
 let g:signify_vcs_list = [ 'git']
@@ -58,8 +108,8 @@ let g:signify_vcs_list = [ 'git']
   map /  <Plug>(incsearch-forward)
   map ?  <Plug>(incsearch-backward)
   map g/ <Plug>(incsearch-stay)
-  map n  <Plug>(incsearch-nohl-n)
-  map N  <Plug>(incsearch-nohl-N)
+  " map n  <Plug>(incsearch-nohl-n)
+  " map N  <Plug>(incsearch-nohl-N)
   map *  <Plug>(incsearch-nohl-*)
   map #  <Plug>(incsearch-nohl-#)
   map g* <Plug>(incsearch-nohl-g*)
