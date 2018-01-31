@@ -157,26 +157,6 @@ function! g:Tabular(ignore_range) range
     endif
 endfunction
 
-" vim-airline
-" ---------------------------------------------------
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-if has('gui_running')
-    let g:airline_powerline_fonts = 1
-else
-    let g:airline_powerline_fonts = 1
-endif
-
-let g:airline_theme = 'powerlineish'
-let g:airline#extensions#tabline#enabled = 1 " NOTE: When you open lots of buffers and typing text, it is so slow.
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-" let g:airline_section_b = "%{fnamemodify(bufname('%'),':p:.:h').'/'}"
-" let g:airline_section_c = '%t'
-let g:airline_section_y = 'B:%{bufnr("%")} W:%{winnr()}'
-let g:airline_section_warning = airline#section#create(['syntastic'])
 
 " ctrlp: invoke by <ctrl-p>
 Plugin 'kien/ctrlp.vim'
@@ -363,6 +343,31 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 "let g:neocomplete#enable_auto_select = 1
 "let g:neocomplete#disable_auto_complete = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" vim-airline
+" ---------------------------------------------------
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+if has('gui_running')
+    let g:airline_powerline_fonts = 1
+else
+    let g:airline_powerline_fonts = 1
+endif
+
+let g:airline_theme = 'powerlineish'
+let g:airline#extensions#tabline#enabled = 1 " NOTE: When you open lots of buffers and typing text, it is so slow.
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline_section_b = "%{fnamemodify(bufname('%'),':p:.:h').'/'}"
+" let g:airline_section_c = '%t'
+let g:airline_section_y = 'B:%{bufnr("%")} W:%{winnr()}'
+if exists('g:syntastic')
+    let g:airline_section_warning = airline#section#create(['syntastic'])
+else
+    let g:airline_section_warning = airline#section#create(['neomake'])
+endif
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
