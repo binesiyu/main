@@ -553,10 +553,10 @@ let lua_version = 5
 let lua_subversion = 1
 
 
-Plugin 'junegunn/gv.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'lambdalisue/gina.vim'
+Plugin 'junegunn/gv.vim',{ 'on_cmd' : ['GV']}
+Plugin 'tpope/vim-fugitive',{ 'merged' : 0}
+Plugin 'airblade/vim-gitgutter',{ 'merged' : 0}
+Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
 
 " nnoremap <silent> <leader>gs :Gina status<CR>
 nnoremap <silent> <leader>gi :Gina status<CR>
