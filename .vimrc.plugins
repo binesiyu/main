@@ -535,12 +535,6 @@ vmap f. <Plug>(easymotion-repeat)
 vmap fg <Plug>(easymotion-jumptoanywhere)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
-" LargeFile
-" ---------------------------------------------------
-Plugin 'vim-scripts/LargeFile'
-let g:LargeFile= 5 " files >= 5MB will use LargeFile rules
-
-
 " DISABLE: I'm using GistBox https://app.gistboxapp.com/ instead
 " " gist-vim: Invoke by :Gist
 " ---------------------------------------------------

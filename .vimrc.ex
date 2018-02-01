@@ -211,28 +211,6 @@ Plugin 'exvim/ex-visincr'
 " ---------------------------------------------------
 Plugin 'exvim/ex-matchit'
 
-" ex-easyhl:
-" ---------------------------------------------------
-Plugin 'exvim/ex-easyhl'
-let g:easyhl_no_mappings = 1 
-nnoremap <unique> <silent> <leader>j1 :EasyhlWord 1<CR>
-nnoremap <unique> <silent> <leader>j2 :EasyhlWord 2<CR>
-nnoremap <unique> <silent> <leader>j3 :EasyhlWord 3<CR>
-nnoremap <unique> <silent> <leader>j4 :EasyhlWord 4<CR>
-
-vnoremap <unique> <silent> <leader>j1 :EasyhlRange 1<CR>
-vnoremap <unique> <silent> <leader>j2 :EasyhlRange 2<CR>
-vnoremap <unique> <silent> <leader>j3 :EasyhlRange 3<CR>
-vnoremap <unique> <silent> <leader>j4 :EasyhlRange 4<CR>
-
-nnoremap <unique> <silent> <leader>j0 :EasyhlCancel 0<CR>
-
-nnoremap <unique> <silent> <Leader>k0 :EasyhlCancel 0<CR>
-nnoremap <unique> <silent> <Leader>k1 :EasyhlCancel 1<CR>
-nnoremap <unique> <silent> <Leader>k2 :EasyhlCancel 2<CR>
-nnoremap <unique> <silent> <Leader>k3 :EasyhlCancel 3<CR>
-nnoremap <unique> <silent> <Leader>k4 :EasyhlCancel 4<CR>
-
 " searchcompl: invoke by /
 " ---------------------------------------------------
 Plugin 'exvim/ex-searchcompl'
@@ -244,19 +222,6 @@ Plugin 'exvim/ex-colorschemes'
 " vim-color-solarized
 " ---------------------------------------------------
 Plugin 'altercation/vim-colors-solarized'
-" c-lang {{{
-
-" ex-cref: invoke by <leader>cr
-" ---------------------------------------------------
-" Plugin 'exvim/ex-cref'
-
-" this is modified for default c syntax highlight settings 
-" make it don't highlight error pattern
-" let c_gnu = 1
-" let c_no_curly_error = 1
-" let c_no_bracket_error = 1
-
-"}}}
 " only supoort in 7.3 or higher
 if v:version >= 703
     set noacd " no autochchdir
