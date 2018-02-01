@@ -244,94 +244,209 @@ let g:plug_denite = 1
 if exists('g:plug_denite')
     " Plugin 'Shougo/denite.nvim',{ 'merged' : 0,'lazy' : 0}
     Plugin 'Shougo/denite.nvim'
-    " denite option
-    let s:denite_options = {
-                \ 'default' : {
-                \ 'winheight' : 8,
-                \ 'mode' : 'insert',
-                \ 'quit' : 'true',
-                \ 'highlight_matched_char' : 'MoreMsg',
-                \ 'highlight_matched_range' : 'MoreMsg',
-                \ 'direction': 'rightbelow',
-                \ 'statusline' : has('patch-7.4.1154') ? v:false : 0,
-                \ 'prompt' : '➭',
-                \ 'cursor_pos' : '$',
-                \ }}
+    if !dein#check_install('denite.nvim')
+        " denite option
+        let s:denite_options = {
+                    \ 'default' : {
+                    \ 'winheight' : 8,
+                    \ 'mode' : 'insert',
+                    \ 'quit' : 'true',
+                    \ 'highlight_matched_char' : 'MoreMsg',
+                    \ 'highlight_matched_range' : 'MoreMsg',
+                    \ 'direction': 'rightbelow',
+                    \ 'statusline' : has('patch-7.4.1154') ? v:false : 0,
+                    \ 'prompt' : '➭',
+                    \ 'cursor_pos' : '$',
+                    \ }}
 
-    function! s:profile(opts) abort
-        for fname in keys(a:opts)
-            for dopt in keys(a:opts[fname])
-                call denite#custom#option(fname, dopt, a:opts[fname][dopt])
+        function! s:profile(opts) abort
+            for fname in keys(a:opts)
+                for dopt in keys(a:opts[fname])
+                    call denite#custom#option(fname, dopt, a:opts[fname][dopt])
+                endfor
             endfor
+        endfunction
+
+        call s:profile(s:denite_options)
+
+        " buffer source
+        call denite#custom#var(
+                    \ 'buffer',
+                    \ 'date_format', '%m-%d-%Y %H:%M:%S')
+
+        " denite command
+        " For ripgrep
+        call denite#custom#var('file_rec', 'command',
+                    \ ['rg', '--hidden', '--files', '--glob', '!.git', '--glob', '']
+                    \ )
+        " \ + zvim#util#Generate_ignore(g:spacevim_wildignore, 'rg')
+
+        call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+        call denite#custom#var('file_rec/git', 'command',
+                    \ ['git', 'ls-files', '-co', '--exclude-standard'])
+        " Ripgrep command on grep source
+        call denite#custom#var('grep', 'command', ['rg'])
+        call denite#custom#var('grep', 'default_opts',
+                    \ ['--vimgrep', '--no-heading'])
+        call denite#custom#var('grep', 'recursive_opts', [])
+        call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+        call denite#custom#var('grep', 'separator', ['--'])
+        call denite#custom#var('grep', 'final_opts', [])
+        " KEY MAPPINGS
+        let s:insert_mode_mappings = [
+                    \  ['<C-J>', '<denite:move_to_next_line>', 'noremap'],
+                    \  ['<C-K>', '<denite:move_to_previous_line>', 'noremap'],
+                    \  ['<C-N>', '<denite:assign_next_matched_text>', 'noremap'],
+                    \  ['<C-P>', '<denite:assign_previous_matched_text>', 'noremap'],
+                    \  ['<Esc>', '<denite:enter_mode:normal>', 'noremap'],
+                    \  ['<Up>', '<denite:assign_previous_text>', 'noremap'],
+                    \  ['<Down>', '<denite:assign_next_text>', 'noremap'],
+                    \  ['<C-Y>', '<denite:redraw>', 'noremap'],
+                    \ ]
+
+        " \ ['<Tab>', '<denite:move_to_next_line>', 'noremap'],
+        " \ ['<S-tab>', '<denite:move_to_previous_line>', 'noremap'],
+        let s:normal_mode_mappings = [
+                    \   ["'", '<denite:toggle_select_down>', 'noremap'],
+                    \   ['<C-n>', '<denite:jump_to_next_source>', 'noremap'],
+                    \   ['<C-p>', '<denite:jump_to_previous_source>', 'noremap'],
+                    \   ['gg', '<denite:move_to_first_line>', 'noremap'],
+                    \   ['st', '<denite:do_action:tabopen>', 'noremap'],
+                    \   ['sg', '<denite:do_action:vsplit>', 'noremap'],
+                    \   ['sv', '<denite:do_action:split>', 'noremap'],
+                    \   ['q', '<denite:quit>', 'noremap'],
+                    \   ['r', '<denite:redraw>', 'noremap'],
+                    \ ]
+
+        for s:m in s:insert_mode_mappings
+            call denite#custom#map('insert', s:m[0], s:m[1], s:m[2])
         endfor
-    endfunction
+        for s:m in s:normal_mode_mappings
+            call denite#custom#map('normal', s:m[0], s:m[1], s:m[2])
+        endfor
 
-    call s:profile(s:denite_options)
-
-    " buffer source
-    call denite#custom#var(
-                \ 'buffer',
-                \ 'date_format', '%m-%d-%Y %H:%M:%S')
-
-    " denite command
-    " For ripgrep
-    call denite#custom#var('file_rec', 'command',
-                \ ['rg', '--hidden', '--files', '--glob', '!.git', '--glob', '']
-                \ )
-                " \ + zvim#util#Generate_ignore(g:spacevim_wildignore, 'rg')
-
-    call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-    call denite#custom#var('file_rec/git', 'command',
-                \ ['git', 'ls-files', '-co', '--exclude-standard'])
-    " Ripgrep command on grep source
-    call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts',
-                \ ['--vimgrep', '--no-heading'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-    " KEY MAPPINGS
-    let s:insert_mode_mappings = [
-                \  ['<C-J>', '<denite:move_to_next_line>', 'noremap'],
-                \  ['<C-K>', '<denite:move_to_previous_line>', 'noremap'],
-                \  ['<C-N>', '<denite:assign_next_matched_text>', 'noremap'],
-                \  ['<C-P>', '<denite:assign_previous_matched_text>', 'noremap'],
-                \  ['<Esc>', '<denite:enter_mode:normal>', 'noremap'],
-                \  ['<Up>', '<denite:assign_previous_text>', 'noremap'],
-                \  ['<Down>', '<denite:assign_next_text>', 'noremap'],
-                \  ['<C-Y>', '<denite:redraw>', 'noremap'],
-                \ ]
-
-                " \ ['<Tab>', '<denite:move_to_next_line>', 'noremap'],
-                " \ ['<S-tab>', '<denite:move_to_previous_line>', 'noremap'],
-    let s:normal_mode_mappings = [
-                \   ["'", '<denite:toggle_select_down>', 'noremap'],
-                \   ['<C-n>', '<denite:jump_to_next_source>', 'noremap'],
-                \   ['<C-p>', '<denite:jump_to_previous_source>', 'noremap'],
-                \   ['gg', '<denite:move_to_first_line>', 'noremap'],
-                \   ['st', '<denite:do_action:tabopen>', 'noremap'],
-                \   ['sg', '<denite:do_action:vsplit>', 'noremap'],
-                \   ['sv', '<denite:do_action:split>', 'noremap'],
-                \   ['q', '<denite:quit>', 'noremap'],
-                \   ['r', '<denite:redraw>', 'noremap'],
-                \ ]
-
-    for s:m in s:insert_mode_mappings
-        call denite#custom#map('insert', s:m[0], s:m[1], s:m[2])
-    endfor
-    for s:m in s:normal_mode_mappings
-        call denite#custom#map('normal', s:m[0], s:m[1], s:m[2])
-    endfor
-
-    unlet s:m s:insert_mode_mappings s:normal_mode_mappings
+        unlet s:m s:insert_mode_mappings s:normal_mode_mappings
 
 
-    nnoremap <silent> <C-p> :Denite file_rec<CR>
-    nnoremap <leader>fb :Denite buffer<CR>
-    nnoremap <leader>fc :DeniteCursorWord<CR>
-    nnoremap <leader>fg :Denite grep<CR>
+        nnoremap <silent> <C-p> :Denite file_rec<CR>
+        nnoremap <leader>fb :Denite buffer<CR>
+        nnoremap <leader>fc :DeniteCursorWord<CR>
+        nnoremap <leader>fg :Denite grep<CR>
+    endif
 endif
+" unite
+let g:plug_unite = 1
+if exists('g:plug_unite')
+    " Plugin  'Shougo/unite.vim',{ 'merged' : 0 }
+    Plugin  'Shougo/unite.vim'
+    Plugin  'Shougo/neomru.vim'
+    if !dein#check_install('unite.vim')
+        call unite#filters#matcher_default#use(['matcher_fuzzy'])
+        call unite#filters#sorter_default#use(['sorter_rank'])
+        call unite#custom#profile('default', 'context', {
+                    \   'safe': 0,
+                    \   'start_insert': 1,
+                    \   'ignorecase' : 1,
+                    \   'short_source_names': 1,
+                    \   'update_time': 200,
+                    \   'direction': 'rightbelow',
+                    \   'winwidth': 40,
+                    \   'winheight': 15,
+                    \   'max_candidates': 100,
+                    \   'no_auto_resize': 1,
+                    \   'vertical_preview': 1,
+                    \   'cursor_line_time': '0.10',
+                    \   'hide_icon': 0,
+                    \   'candidate-icon': ' ',
+                    \   'marked_icon': '✓',
+                    \   'prompt' : '➭ '
+                    \ })
+        call unite#custom#profile('source/neobundle/update', 'context', {
+                    \   'start_insert' : 0,
+                    \ })
+
+        let g:unite_source_buffer_time_format = get(g:,
+                    \ 'unite_source_buffer_time_format', '(%m-%d-%Y %H:%M:%S) ')
+        let g:unite_split_rule = get(g:, 'unite_split_rule', 'botright')
+        let g:unite_winheight = get(g:, 'unite_winheight', 25)
+
+        nnoremap <silent><leader>fm  :<C-u>Unite -start-insert mapping<CR>
+    endif
+
+    Plugin 'Shougo/vimfiler.vim',{'on_cmd' : ['VimFiler', 'VimFilerBufferDir']}
+
+    if !dein#check_install('vimfiler.vim')
+        let g:vimfiler_as_default_explorer = get(g:, 'vimfiler_as_default_explorer', 1)
+        let g:vimfiler_restore_alternate_file = get(g:, 'vimfiler_restore_alternate_file', 1)
+        let g:vimfiler_tree_indentation = get(g:, 'vimfiler_tree_indentation', 1)
+        let g:vimfiler_tree_leaf_icon = get(g:, 'vimfiler_tree_leaf_icon', '')
+        let g:vimfiler_tree_opened_icon = get(g:, 'vimfiler_tree_opened_icon', '▼')
+        let g:vimfiler_tree_closed_icon = get(g:, 'vimfiler_tree_closed_icon', '▷')
+        let g:vimfiler_file_icon = get(g:, 'vimfiler_file_icon', '')
+        let g:vimfiler_readonly_file_icon = get(g:, 'vimfiler_readonly_file_icon', '*')
+        let g:vimfiler_marked_file_icon = get(g:, 'vimfiler_marked_file_icon', '√')
+        let g:vimfiler_direction = get(g:, 'vimfiler_direction', 'rightbelow')
+        "let g:vimfiler_preview_action = 'auto_preview'
+        let g:vimfiler_ignore_pattern = get(g:, 'vimfiler_ignore_pattern', [
+                    \ '^\.git$',
+                    \ '^\.DS_Store$',
+                    \ '^\.init\.vim-rplugin\~$',
+                    \ '^\.netrwhist$',
+                    \ '\.class$',
+                    \ '^\.'
+                    \])
+        call vimfiler#custom#profile('default', 'context', {
+                    \ 'explorer' : 1,
+                    \ 'winwidth' : 30,
+                    \ 'winminwidth' : 30,
+                    \ 'toggle' : 1,
+                    \ 'auto_expand': 1,
+                    \ 'direction' : g:vimfiler_direction,
+                    \ 'parent': 0,
+                    \ 'status' : 1,
+                    \ 'safe' : 0,
+                    \ 'split' : 1,
+                    \ 'hidden': 1,
+                    \ 'no_quit' : 1,
+                    \ 'force_hide' : 0,
+                    \ 'auto_cd' : 1,
+                    \ })
+
+        "catch
+        "endtry
+        augroup vfinit
+            au!
+            autocmd FileType vimfiler call s:vimfilerinit()
+        augroup END
+        function! s:vimfilerinit()
+            setl nonumber
+            setl norelativenumber
+
+            silent! nunmap <buffer> <Space>
+            silent! nunmap <buffer> <C-l>
+            silent! nunmap <buffer> <C-j>
+            silent! nunmap <buffer> E
+            silent! nunmap <buffer> -
+            silent! nunmap <buffer> s
+
+            nnoremap <silent><buffer><expr> sg  vimfiler#do_action('vsplit')
+            nnoremap <silent><buffer><expr> sv  vimfiler#do_action('split')
+            nnoremap <silent><buffer><expr> st  vimfiler#do_action('tabswitch')
+            nmap <buffer> gx      <Plug>(vimfiler_execute_vimfiler_associated)
+            nmap <buffer> '       <Plug>(vimfiler_toggle_mark_current_line)
+            nmap <buffer> v       <Plug>(vimfiler_quick_look)
+            nmap <buffer> p       <Plug>(vimfiler_preview_file)
+            nmap <buffer> V       <Plug>(vimfiler_clear_mark_all_lines)
+            nmap <buffer> i       <Plug>(vimfiler_switch_to_history_directory)
+            nmap <buffer> <Tab>   <Plug>(vimfiler_switch_to_other_window)
+            nmap <buffer> <C-r>   <Plug>(vimfiler_redraw_screen)
+            nmap <buffer> <Left>  <Plug>(vimfiler_smart_h)
+            nmap <buffer> <Right> <Plug>(vimfiler_smart_l)
+        endf
+        noremap <silent> <leader>nn :VimFiler<CR>
+    endif
+endif
+
 " vim-markdown
 Plugin 'plasticboy/vim-markdown'
 
@@ -345,17 +460,20 @@ let g:mkdp_auto_close=1
 
 " nerdtree: invoke by :NERDTreeToggle
 " ---------------------------------------------------
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+" let g:plug_nerdtree = 1
+if exists('g:plug_nerdtree')
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'jistr/vim-nerdtree-tabs'
 
-let g:NERDTreeWinSize = 30
-let g:NERDTreeMouseMode = 1
-let g:NERDTreeMapToggleZoom = '<Space>' 
-let g:nerdtree_tabs_open_on_gui_startup=0
-let g:nerdtree_tabs_open_on_new_tab=0
-let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-map <leader>nn <plug>NERDTreeTabsToggle<CR>
-" map <F2> <plug>NERDTreeTabsToggle<CR>
+    let g:NERDTreeWinSize = 30
+    let g:NERDTreeMouseMode = 1
+    let g:NERDTreeMapToggleZoom = '<Space>' 
+    let g:nerdtree_tabs_open_on_gui_startup=0
+    let g:nerdtree_tabs_open_on_new_tab=0
+    let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+    map <leader>nn <plug>NERDTreeTabsToggle<CR>
+    " map <F2> <plug>NERDTreeTabsToggle<CR>
+endif
 
 " nerdcommenter: invoke by <leader>c<space>, <leader>cl, <leader>cu, <F11> or <C-F11>
 " ---------------------------------------------------
