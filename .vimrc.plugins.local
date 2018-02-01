@@ -26,7 +26,7 @@ let g:choosewin_statusline_replace = 0 " don't replace statusline
 
 Plugin 'vim-scripts/BufOnly.vim'
 Plugin 'mileszs/ack.vim'
-Plugin 'binesiyu/vim-quick-community'
+Plugin 'binesiyu/vim-quick-community',{ 'merged' : 0}
 " Plugin 'vim-scripts/CSApprox'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
