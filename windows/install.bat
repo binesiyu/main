@@ -12,7 +12,7 @@ if not exist .\dein\ (mkdir .\dein\)
 cd .\dein\
 
 rem download or update vundle in ./vimfiles/dein/
-if not exist .\repos\github.com\Shougo\dein.vim\ (git clone https://github.com/gmarik/Vundle.vim .\repos\github.com\Shougo\dein.vim)
+if not exist .\repos\github.com\Shougo\dein.vim\ (git clone https://github.com/Shougo/dein.vim .\repos\github.com\Shougo\dein.vim)
 
 rem download and install bundles through Vundle in this repository
 echo Update vim-plugins.
