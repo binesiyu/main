@@ -153,7 +153,7 @@ colorscheme solarized
 set notimeout
 set nobackup " make backup file and leave it around
 set noswf "
-set acd "autochchdir
+" set acd "autochchdir
 
 " setup back and swap directory
 " let data_dir = $HOME.'/.data/'

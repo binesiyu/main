@@ -7,9 +7,7 @@ scriptencoding utf-8
 " man.vim: invoked by :Man {name}
 source $VIMRUNTIME/ftplugin/man.vim
 
-" let Vundle manage Vundle, required
 " ---------------------------------------------------
-Plugin 'gmarik/Vundle.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'Shougo/vimproc'
@@ -272,7 +270,7 @@ if exists('g:plug_ctrlp')
 endif
 
 " denite
-" let g:plug_denite = 1
+let g:plug_denite = 1
 if exists('g:plug_denite')
     " Plugin 'Shougo/denite.nvim',{ 'merged' : 0,'lazy' : 0}
     Plugin 'Shougo/denite.nvim'
@@ -361,14 +359,14 @@ if exists('g:plug_denite')
         unlet s:m s:insert_mode_mappings s:normal_mode_mappings
 
 
-        nnoremap <silent> <C-p> :Denite file_rec<CR>
+        nnoremap <leader>fd :Denite file_rec<CR>
         nnoremap <leader>fb :Denite buffer<CR>
         nnoremap <leader>fc :DeniteCursorWord<CR>
         nnoremap <leader>fg :Denite grep<CR>
     endif
 endif
 " unite
-" let g:plug_unite = 1
+let g:plug_unite = 1
 if exists('g:plug_unite')
     " Plugin  'Shougo/unite.vim',{ 'merged' : 0 }
     Plugin  'Shougo/unite.vim'
@@ -406,7 +404,25 @@ if exists('g:plug_unite')
         nnoremap <silent><leader>fm  :<C-u>Unite -start-insert mapping<CR>
     endif
 
-    Plugin 'Shougo/vimfiler.vim',{'on_cmd' : ['VimFiler', 'VimFilerBufferDir']}
+    function! Vimfiler_init() abort
+        call vimfiler#custom#profile('default', 'context', {
+                    \ 'explorer' : 1,
+                    \ 'winwidth' : 30,
+                    \ 'winminwidth' : 30,
+                    \ 'toggle' : 1,
+                    \ 'auto_expand': 1,
+                    \ 'direction' : g:vimfiler_direction,
+                    \ 'parent': 0,
+                    \ 'status' : 1,
+                    \ 'safe' : 0,
+                    \ 'split' : 1,
+                    \ 'hidden': 1,
+                    \ 'no_quit' : 1,
+                    \ 'force_hide' : 0,
+                    \ 'auto_cd' : 1,
+                    \ })
+    endfunction
+    Plugin 'Shougo/vimfiler.vim',{'merged' : 0,'on_cmd' : ['VimFiler', 'VimFilerBufferDir'],'hook_source' : function('Vimfiler_init'), 'on_path': '.*'}
 
     if !dein#check_install('vimfiler.vim')
         let g:vimfiler_as_default_explorer = get(g:, 'vimfiler_as_default_explorer', 1)
@@ -428,25 +444,7 @@ if exists('g:plug_unite')
                     \ '\.class$',
                     \ '^\.'
                     \])
-        call vimfiler#custom#profile('default', 'context', {
-                    \ 'explorer' : 1,
-                    \ 'winwidth' : 30,
-                    \ 'winminwidth' : 30,
-                    \ 'toggle' : 1,
-                    \ 'auto_expand': 1,
-                    \ 'direction' : g:vimfiler_direction,
-                    \ 'parent': 0,
-                    \ 'status' : 1,
-                    \ 'safe' : 0,
-                    \ 'split' : 1,
-                    \ 'hidden': 1,
-                    \ 'no_quit' : 1,
-                    \ 'force_hide' : 0,
-                    \ 'auto_cd' : 1,
-                    \ })
 
-        "catch
-        "endtry
         augroup vfinit
             au!
             autocmd FileType vimfiler call s:vimfilerinit()
@@ -476,7 +474,7 @@ if exists('g:plug_unite')
             nmap <buffer> <Left>  <Plug>(vimfiler_smart_h)
             nmap <buffer> <Right> <Plug>(vimfiler_smart_l)
         endf
-        noremap <silent> <leader>nn :VimFiler<CR>
+        noremap <silent> <leader>nv :VimFiler<CR>
     endif
 endif
 
