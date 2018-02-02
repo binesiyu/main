@@ -12,6 +12,7 @@ source $VIMRUNTIME/ftplugin/man.vim
 Plugin 'gmarik/Vundle.vim'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
+Plugin 'Shougo/vimproc'
 
 "}}}
 let g:vim_wildignore
@@ -329,11 +330,12 @@ if exists('g:plug_denite')
                     \  ['<C-K>', '<denite:move_to_previous_line>', 'noremap'],
                     \  ['<C-N>', '<denite:assign_next_matched_text>', 'noremap'],
                     \  ['<C-P>', '<denite:assign_previous_matched_text>', 'noremap'],
-                    \  ['<Esc>', '<denite:enter_mode:normal>', 'noremap'],
+                    \  ['q', '<denite:quit>', 'noremap'],
                     \  ['<Up>', '<denite:assign_previous_text>', 'noremap'],
                     \  ['<Down>', '<denite:assign_next_text>', 'noremap'],
                     \  ['<C-Y>', '<denite:redraw>', 'noremap'],
                     \ ]
+                    " \  ['<Esc>', '<denite:enter_mode:normal>', 'noremap'],
 
         " \ ['<Tab>', '<denite:move_to_next_line>', 'noremap'],
         " \ ['<S-tab>', '<denite:move_to_previous_line>', 'noremap'],
@@ -412,7 +414,7 @@ if exists('g:plug_unite')
         let g:vimfiler_tree_indentation = get(g:, 'vimfiler_tree_indentation', 1)
         let g:vimfiler_tree_leaf_icon = get(g:, 'vimfiler_tree_leaf_icon', '')
         let g:vimfiler_tree_opened_icon = get(g:, 'vimfiler_tree_opened_icon', '▼')
-        let g:vimfiler_tree_closed_icon = get(g:, 'vimfiler_tree_closed_icon', '▷')
+        let g:vimfiler_tree_closed_icon = get(g:, 'vimfiler_tree_closed_icon', '►')
         let g:vimfiler_file_icon = get(g:, 'vimfiler_file_icon', '')
         let g:vimfiler_readonly_file_icon = get(g:, 'vimfiler_readonly_file_icon', '*')
         let g:vimfiler_marked_file_icon = get(g:, 'vimfiler_marked_file_icon', '√')
@@ -715,7 +717,6 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " Plugin 'Valloric/YouCompleteMe'
 " " ---------------------------------------------------
 
-Plugin 'Shougo/vimproc'
 " TODO: choose a snippet plugin
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'

@@ -21,7 +21,7 @@ Plugin 'exvim/ex-aftercolors'
 
 " ex-vimentry
 " ---------------------------------------------------
-Plugin 'exvim/ex-vimentry'
+Plugin 'binesiyu/ex-vimentry'
 
 " ex-project
 " ---------------------------------------------------
@@ -222,8 +222,5 @@ Plugin 'exvim/ex-colorschemes'
 " vim-color-solarized
 " ---------------------------------------------------
 Plugin 'altercation/vim-colors-solarized'
-" only supoort in 7.3 or higher
-if v:version >= 703
-    set noacd " no autochchdir
-endif
 
+" vim:ft=vim:ts=4:sw=4:sts=4 et fdm=marker:
