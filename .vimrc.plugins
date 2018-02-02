@@ -14,7 +14,30 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 
 "}}}
+let g:vim_wildignore
+      \ = '*/tmp/*,*.so,*.swp,*.zip,*.class,tags,*.jpg,
+      \*.ttf,*.TTF,*.png,*/target/*,*/.exvim*/*,
+      \.git,.svn,.hg,.DS_Store,*.svg'
 
+fu! Generate_ignore(ignore,tool, ...) abort
+    let ignore = []
+    if a:tool ==# 'ag'
+        for ig in split(a:ignore,',')
+            call add(ignore, '--ignore')
+            call add(ignore, "'" . ig . "'")
+        endfor
+    elseif a:tool ==# 'rg'
+        for ig in split(a:ignore,',')
+            call add(ignore, '-g')
+            if a:0 > 0
+                call add(ignore, "'!" . ig . "'")
+            else
+                call add(ignore, '!' . ig)
+            endif
+        endfor
+    endif
+    return ignore
+endf
 " ui {
 Plugin 'mhinz/vim-startify'
 let g:startify_custom_header = [
@@ -51,7 +74,11 @@ let g:startify_list_order = [
       \ ['   These are my sessions:'],
       \ 'sessions',
       \ ]
-let g:startify_bookmarks = [ {'c': '~/.vimrc'}, '~/.zshrc' ]
+let g:startify_bookmarks = [{'k' : '~/Documents/dev/kingdom-of-heaven-client/koh.exvim'},
+            \ {'c': '~/Documents/dev/kingdom-of-heaven-client/koh-c.exvim'}, 
+            \'~/.vimrc',
+            \'~/.zshrc',
+            \]
 let g:startify_update_oldfiles = 1
 " let g:startify_disable_at_vimenter = 1
 let g:startify_session_autoload = 1
@@ -207,7 +234,7 @@ function! g:Tabular(ignore_range) range
     endif
 endfunction
 
-" let g:plug_ctrlp = 1
+let g:plug_ctrlp = 1
 if exists('g:plug_ctrlp')
     " ctrlp: invoke by <ctrl-p>
     Plugin 'kien/ctrlp.vim'
@@ -226,6 +253,10 @@ if exists('g:plug_ctrlp')
     let g:ctrlp_extensions = ['funky']
     let g:ctrlp_use_caching = 1
     let g:ctrlp_clear_cache_on_exit = 0
+    if executable('rg') && !exists('g:ctrlp_user_command')
+        let g:ctrlp_user_command = 'rg %s --no-ignore --hidden --files -g "" '
+                    \ . join(Generate_ignore(g:vim_wildignore,'rg', 1))
+    endif
 
     " let g:ctrlp_cmd = 'CtrlPBuffer'
     "funky
@@ -240,7 +271,7 @@ if exists('g:plug_ctrlp')
 endif
 
 " denite
-let g:plug_denite = 1
+" let g:plug_denite = 1
 if exists('g:plug_denite')
     " Plugin 'Shougo/denite.nvim',{ 'merged' : 0,'lazy' : 0}
     Plugin 'Shougo/denite.nvim'
@@ -278,8 +309,8 @@ if exists('g:plug_denite')
         " For ripgrep
         call denite#custom#var('file_rec', 'command',
                     \ ['rg', '--hidden', '--files', '--glob', '!.git', '--glob', '']
+                    \ + Generate_ignore(g:vim_wildignore, 'rg')
                     \ )
-        " \ + zvim#util#Generate_ignore(g:spacevim_wildignore, 'rg')
 
         call denite#custom#alias('source', 'file_rec/git', 'file_rec')
         call denite#custom#var('file_rec/git', 'command',
@@ -335,7 +366,7 @@ if exists('g:plug_denite')
     endif
 endif
 " unite
-let g:plug_unite = 1
+" let g:plug_unite = 1
 if exists('g:plug_unite')
     " Plugin  'Shougo/unite.vim',{ 'merged' : 0 }
     Plugin  'Shougo/unite.vim'
@@ -460,7 +491,7 @@ let g:mkdp_auto_close=1
 
 " nerdtree: invoke by :NERDTreeToggle
 " ---------------------------------------------------
-" let g:plug_nerdtree = 1
+let g:plug_nerdtree = 1
 if exists('g:plug_nerdtree')
     Plugin 'scrooloose/nerdtree'
     Plugin 'jistr/vim-nerdtree-tabs'
