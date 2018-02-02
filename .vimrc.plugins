@@ -73,9 +73,10 @@ let g:startify_list_order = [
       \ ['   These are my sessions:'],
       \ 'sessions',
       \ ]
-let g:startify_bookmarks = [{'k' : '~/Documents/dev/kingdom-of-heaven-client/koh.exvim'},
-            \ {'c': '~/Documents/dev/kingdom-of-heaven-client/koh-c.exvim'}, 
+let g:startify_bookmarks = [{'c' : '~/Documents/dev/kingdom-of-heaven-client/koh.exvim'},
+            \ {'k': '~/Documents/dev/kingdom-of-heaven-client/koh-c.exvim'}, 
             \'~/.vimrc',
+            \'~/.vimrc.plugins',
             \'~/.zshrc',
             \]
 let g:startify_update_oldfiles = 1
@@ -278,7 +279,7 @@ if exists('g:plug_denite')
         " denite option
         let s:denite_options = {
                     \ 'default' : {
-                    \ 'winheight' : 8,
+                    \ 'winheight' : 10,
                     \ 'mode' : 'insert',
                     \ 'quit' : 'true',
                     \ 'highlight_matched_char' : 'MoreMsg',
@@ -328,12 +329,11 @@ if exists('g:plug_denite')
                     \  ['<C-K>', '<denite:move_to_previous_line>', 'noremap'],
                     \  ['<C-N>', '<denite:assign_next_matched_text>', 'noremap'],
                     \  ['<C-P>', '<denite:assign_previous_matched_text>', 'noremap'],
-                    \  ['q', '<denite:quit>', 'noremap'],
+                    \  ['<Esc>', '<denite:enter_mode:normal>', 'noremap'],
                     \  ['<Up>', '<denite:assign_previous_text>', 'noremap'],
                     \  ['<Down>', '<denite:assign_next_text>', 'noremap'],
                     \  ['<C-Y>', '<denite:redraw>', 'noremap'],
                     \ ]
-                    " \  ['<Esc>', '<denite:enter_mode:normal>', 'noremap'],
 
         " \ ['<Tab>', '<denite:move_to_next_line>', 'noremap'],
         " \ ['<S-tab>', '<denite:move_to_previous_line>', 'noremap'],
@@ -347,6 +347,7 @@ if exists('g:plug_denite')
                     \   ['sv', '<denite:do_action:split>', 'noremap'],
                     \   ['q', '<denite:quit>', 'noremap'],
                     \   ['r', '<denite:redraw>', 'noremap'],
+                    \   ['<Esc>', '<denite:quit>', 'noremap'],
                     \ ]
 
         for s:m in s:insert_mode_mappings
@@ -382,7 +383,7 @@ if exists('g:plug_unite')
                     \   'update_time': 200,
                     \   'direction': 'rightbelow',
                     \   'winwidth': 40,
-                    \   'winheight': 15,
+                    \   'winheight': 10,
                     \   'max_candidates': 100,
                     \   'no_auto_resize': 1,
                     \   'vertical_preview': 1,
