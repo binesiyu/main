@@ -360,8 +360,8 @@ if exists('g:plug_denite')
 
         nnoremap <leader>fd :Denite file_rec<CR>
         " nnoremap <leader>fb :Denite buffer<CR>
-        nnoremap <leader>fg :DeniteCursorWord grep<CR>
-        nnoremap <leader>fc :DenitecursorWord <CR>
+        nnoremap <leader>fg :Denite grep<CR>
+        nnoremap <leader>fc :DeniteCursorWord grep<CR>
     endif
 endif
 " unite
