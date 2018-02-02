@@ -81,7 +81,7 @@ call exqfix#register_hotkey( 101, 0, '<leader>qq', ":EXQFixPaste<CR>", 'Open qui
 
 " ex-hierarchy
 " ---------------------------------------------------
-Plugin 'exvim/ex-hierarchy'
+" Plugin 'exvim/ex-hierarchy'
 
 " nnoremap <unique> <leader>hv :EXHierarchyCWord<CR>
 
@@ -207,17 +207,9 @@ highlight clear  ShowMarksHLm " This group is used when multiple marks are on th
 " ---------------------------------------------------
 Plugin 'exvim/ex-visincr'
 
-" ex-matchit: invoke by %
-" ---------------------------------------------------
-Plugin 'exvim/ex-matchit'
-
 " searchcompl: invoke by /
 " ---------------------------------------------------
 Plugin 'exvim/ex-searchcompl'
-
-" ex-colorschemes
-" ---------------------------------------------------
-Plugin 'exvim/ex-colorschemes'
 
 " vim-color-solarized
 " ---------------------------------------------------

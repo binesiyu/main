@@ -5,7 +5,9 @@ scriptencoding utf-8
 " com! -nargs=+ Bundle
 
 " man.vim: invoked by :Man {name}
-source $VIMRUNTIME/ftplugin/man.vim
+" source $VIMRUNTIME/ftplugin/man.vim
+" matchit
+source $VIMRUNTIME/macros/matchit.vim
 
 " ---------------------------------------------------
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -112,7 +114,6 @@ endfunction
 " nmap <leader>sl :SessionList<CR>
 " nmap <leader>ss :SessionSave<CR>
 " nmap <leader>sc :SessionClose<CR>
-Plugin 'vim-scripts/matchit.zip'
 Plugin 'nathanaelkane/vim-indent-guides'
 " indent_guides {
 let g:indent_guides_start_level = 2
@@ -120,9 +121,6 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['nerdtree','help', 'man', 'startify', 'vimfiler']
 " }
-Plugin 'binesiyu/vim-signify'
-let g:signify_vcs_list = [ 'git']
-" Plugin 'tpope/vim-abolish.git'
 "}
 
 " textobj {
@@ -361,9 +359,9 @@ if exists('g:plug_denite')
 
 
         nnoremap <leader>fd :Denite file_rec<CR>
-        nnoremap <leader>fb :Denite buffer<CR>
-        nnoremap <leader>fc :DeniteCursorWord<CR>
-        nnoremap <leader>fg :Denite grep<CR>
+        " nnoremap <leader>fb :Denite buffer<CR>
+        nnoremap <leader>fg :DeniteCursorWord grep<CR>
+        nnoremap <leader>fc :DenitecursorWord <CR>
     endif
 endif
 " unite
@@ -797,10 +795,13 @@ let lua_version = 5
 let lua_subversion = 1
 
 
+" Plugin 'tpope/vim-abolish.git'
 Plugin 'junegunn/gv.vim',{ 'on_cmd' : ['GV']}
-Plugin 'tpope/vim-fugitive',{ 'merged' : 0}
 Plugin 'airblade/vim-gitgutter',{ 'merged' : 0}
 Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
+
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
 
 " nnoremap <silent> <leader>gs :Gina status<CR>
 nnoremap <silent> <leader>gi :Gina status<CR>
@@ -813,19 +814,6 @@ nnoremap <silent> <leader>gA :Gina add .<CR>
 nnoremap <silent> <leader>gb :Gina blame<CR>
 nnoremap <silent> <leader>gV :GV!<CR>
 nnoremap <silent> <leader>gv :GV<CR>
-" nnoremap <silent> <leader>gs :Gstatus<CR>
-" nnoremap <silent> <leader>gd :Gdiff<CR>
-" nnoremap <silent> <leader>gc :Gcommit<CR>
-" nnoremap <silent> <leader>gb :Gblame<CR>
-" nnoremap <silent> <leader>gl :Glog<CR>
-" nnoremap <silent> <leader>gp :Git push<CR>
-" nnoremap <silent> <leader>gr :Gread<CR>
-" nnoremap <silent> <leader>gw :Gwrite<CR>
-" nnoremap <silent> <leader>ge :Gedit<CR>
-" Mnemonic _i_nteractive
-" nnoremap <silent> <leader>gi :Git add -p %<CR>
-" nnoremap <silent> <leader>gg :SignifyToggle<CR>
-
 " haskell {{{{
 " let g:haskell = 1
 if exists('g:haskell')
