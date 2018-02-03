@@ -185,34 +185,4 @@ call exqfix#register_hotkey( 101, 0, '<leader>qq', ":EXQFixPaste<CR>", 'Open qui
 " ---------------------------------------------------
 " Plugin 'exvim/ex-autocomplpop'
 
-" ex-showmarks: invoke by m... or <leader>mm, <leader>ma
-" ---------------------------------------------------
-Plugin 'exvim/ex-showmarks'
-
-" TODO: bootleq/ShowMarks on github is well organized in code, but have lots 
-" bugs, consider merge his code and fixes the bugs 
-let g:showmarks_enable = 1
-let g:showmarks_include = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-let g:showmarks_ignore_type = 'hqm' " Ignore help, quickfix, non-modifiable buffers
-" Hilight lower & upper marks
-let g:showmarks_hlline_lower = 1
-let g:showmarks_hlline_upper = 0 
-
-highlight clear  ShowMarksHLl " This group is used to highlight all the lowercase marks.
-highlight clear  ShowMarksHLu " This group is used to highlight all the uppercase marks.
-highlight clear  ShowMarksHLo " This group is used to highlight all other marks.
-highlight clear  ShowMarksHLm " This group is used when multiple marks are on the same line.
-
-" ex-visincr: invoke when select text and type ':II'
-" ---------------------------------------------------
-Plugin 'exvim/ex-visincr'
-
-" searchcompl: invoke by /
-" ---------------------------------------------------
-Plugin 'exvim/ex-searchcompl'
-
-" vim-color-solarized
-" ---------------------------------------------------
-Plugin 'altercation/vim-colors-solarized'
-
 " vim:ft=vim:ts=4:sw=4:sts=4 et fdm=marker:

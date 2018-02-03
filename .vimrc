@@ -279,7 +279,7 @@ if has('gui_running')
         set lines=40                " 40 lines of text instead of 24
     endif
     if exists('+columns')
-        set columns=130
+        set columns=150
     endif
 
     " DISABLE
