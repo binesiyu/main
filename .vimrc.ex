@@ -9,11 +9,11 @@ Plugin 'binesiyu/ex-config'
 Plugin 'binesiyu/ex-utility'
 
 nnoremap <unique> <silent> <Leader>bd :EXbd<CR>
-nnoremap <unique> <silent> <Leader>l :EXbn<CR>
-nnoremap <unique> <silent> <Leader>h :EXbp<CR>
-nnoremap <unique> <silent> <C-Tab> :EXbalt<CR>
-nnoremap <unique> <silent> <Leader><Tab> :EXsw<CR>
-nmap <unique> <silent> <Leader><Esc> :EXgp<CR><ESC>
+" nnoremap <unique> <silent> <Leader>l :EXbn<CR>
+" nnoremap <unique> <silent> <Leader>h :EXbp<CR>
+" nnoremap <unique> <silent> <C-Tab> :EXbalt<CR>
+" nnoremap <unique> <silent> <Leader><Tab> :EXsw<CR>
+" nmap <unique> <silent> <Leader><Esc> :EXgp<CR><ESC>
 
 " ex-aftercolor
 " ---------------------------------------------------
@@ -117,69 +117,6 @@ call exqfix#register_hotkey( 101, 0, '<leader>qq', ":EXQFixPaste<CR>", 'Open qui
 " let tlist_hlsl_settings = 'c;d:macro;g:enum;s:struct;u:union;t:typedef;v:variable;f:function'
 " add actionscript language
 " let tlist_actionscript_settings = 'actionscript;c:class;f:method;p:property;v:variable'
-
-" DISABLE: use tlist instead
-" " exvim/ex-tagbar: invoke by <F4>
-" " ---------------------------------------------------
-" Plugin 'exvim/ex-tagbar'
-
-" nnoremap <unique> <silent> <F4> :TagbarToggle<CR>
-
-" let g:tagbar_sort = 0
-" let g:tagbar_map_preview = '<CR>'
-" if has('gui_running')
-"     let g:tagbar_map_close = '<Esc>' 
-" else
-"     let g:tagbar_map_close = '<leader><Esc>' 
-" endif
-" let g:tagbar_map_zoomwin = '<Space>' 
-" let g:tagbar_zoomwidth = 80
-" let g:tagbar_autofocus = 1
-" let g:tagbar_iconchars = ['+', '-']
-
-" " use command ':TagbarGetTypeConfig lang' change your settings 
-" let g:tagbar_type_javascript = {
-"     \ 'ctagsbin': 'ctags',
-"     \ 'kinds' : [
-"         \ 'v:global variables:0:0',
-"         \ 'c:classes',
-"         \ 'p:properties:0:0',
-"         \ 'm:methods',
-"         \ 'f:functions',
-"         \ 'r:object',
-"     \ ],
-" \ }
-" let g:tagbar_type_c = {
-"     \ 'kinds' : [
-"         \ 'd:macros:0:0',
-"         \ 'p:prototypes:0:0',
-"         \ 'g:enums',
-"         \ 'e:enumerators:0:0',
-"         \ 't:typedefs:0:0',
-"         \ 's:structs',
-"         \ 'u:unions',
-"         \ 'm:members:0:0',
-"         \ 'v:variables:0:0',
-"         \ 'f:functions',
-"     \ ],
-" \ }
-" let g:tagbar_type_cpp = {
-"     \ 'kinds' : [
-"         \ 'd:macros:0:0',
-"         \ 'p:prototypes:0:0',
-"         \ 'g:enums',
-"         \ 'e:enumerators:0:0',
-"         \ 't:typedefs:0:0',
-"         \ 'n:namespaces',
-"         \ 'c:classes',
-"         \ 's:structs',
-"         \ 'u:unions',
-"         \ 'f:functions',
-"         \ 'm:members:0:0',
-"         \ 'v:variables:0:0',
-"     \ ],
-" \ }
-
 
 " ex-autocomplpop: invoke when you input text
 " ---------------------------------------------------

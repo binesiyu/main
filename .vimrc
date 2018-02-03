@@ -143,7 +143,11 @@ else
     " let g:solarized_termtrans=1
 endif
 " colorscheme Monokai-binesiyu
-colorscheme solarized
+if WINDOWS()
+    colorscheme gruvbox
+elseif
+    colorscheme solarized
+endif
 " }
 
 " General {
@@ -153,7 +157,7 @@ colorscheme solarized
 set notimeout
 set nobackup " make backup file and leave it around
 set noswf "
-" set acd "autochchdir
+set acd "autochchdir
 
 " setup back and swap directory
 " let data_dir = $HOME.'/.data/'
@@ -244,7 +248,7 @@ if has('gui_running')
             endif
         elseif WINDOWS()
             if getfontname( 'DejaVu Sans Mono for Powerline' ) != ''
-                set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI
+                set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI:qDRAFT
             elseif getfontname( 'DejaVu Sans Mono' ) != ''
                 set guifont=DejaVu\ Sans\ Mono:h11:cANSI
             elseif getfontname( 'Consolas' ) != ''
