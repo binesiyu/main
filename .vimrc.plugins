@@ -97,19 +97,6 @@ let g:startify_skiplist = [
 " Plugin 'rhysd/conflict-marker.vim'
 "Plugin 'jiangmiao/auto-pairs'
 Plugin 'terryma/vim-multiple-cursors'
-" Called once right before you start selecting multiple cursors
-function! Multiple_cursors_before()
-  if exists(':NeoCompleteLock')==2
-    exe 'NeoCompleteLock'
-  endif
-endfunction
-
-" Called once only when the multiple selection is canceled (default <Esc>)
-function! Multiple_cursors_after()
-  if exists(':NeoCompleteUnlock')==2
-    exe 'NeoCompleteUnlock'
-  endif
-endfunction
 " Plugin 'vim-scripts/sessionman.vim'
 " nmap <leader>sl :SessionList<CR>
 " nmap <leader>ss :SessionSave<CR>
@@ -403,27 +390,8 @@ if exists('g:plug_unite')
         nnoremap <silent><leader>fm  :<C-u>Unite -start-insert mapping<CR>
     endif
 
-    function! Vimfiler_init() abort
-        call vimfiler#custom#profile('default', 'context', {
-                    \ 'explorer' : 1,
-                    \ 'winwidth' : 30,
-                    \ 'winminwidth' : 30,
-                    \ 'toggle' : 1,
-                    \ 'auto_expand': 1,
-                    \ 'direction' : g:vimfiler_direction,
-                    \ 'parent': 0,
-                    \ 'status' : 1,
-                    \ 'safe' : 0,
-                    \ 'split' : 1,
-                    \ 'hidden': 1,
-                    \ 'no_quit' : 1,
-                    \ 'force_hide' : 0,
-                    \ 'auto_cd' : 1,
-                    \ })
-    endfunction
-    Plugin 'Shougo/vimfiler.vim',{'merged' : 0,'on_cmd' : ['VimFiler', 'VimFilerBufferDir'],'hook_source' : function('Vimfiler_init'), 'on_path': '.*'}
 
-    if !dein#check_install('vimfiler.vim')
+    function! Vimfiler_init() abort
         let g:vimfiler_as_default_explorer = get(g:, 'vimfiler_as_default_explorer', 1)
         let g:vimfiler_restore_alternate_file = get(g:, 'vimfiler_restore_alternate_file', 1)
         let g:vimfiler_tree_indentation = get(g:, 'vimfiler_tree_indentation', 1)
@@ -443,6 +411,23 @@ if exists('g:plug_unite')
                     \ '\.class$',
                     \ '^\.'
                     \])
+
+        call vimfiler#custom#profile('default', 'context', {
+                    \ 'explorer' : 1,
+                    \ 'winwidth' : 30,
+                    \ 'winminwidth' : 30,
+                    \ 'toggle' : 1,
+                    \ 'auto_expand': 1,
+                    \ 'direction' : g:vimfiler_direction,
+                    \ 'parent': 0,
+                    \ 'status' : 1,
+                    \ 'safe' : 0,
+                    \ 'split' : 1,
+                    \ 'hidden': 1,
+                    \ 'no_quit' : 1,
+                    \ 'force_hide' : 0,
+                    \ 'auto_cd' : 1,
+                    \ })
 
         augroup vfinit
             au!
@@ -474,7 +459,8 @@ if exists('g:plug_unite')
             nmap <buffer> <Right> <Plug>(vimfiler_smart_l)
         endf
         noremap <silent> <leader>nv :VimFiler<CR>
-    endif
+    endfunction
+    Plugin 'Shougo/vimfiler.vim',{'merged' : 0,'on_cmd' : ['VimFiler', 'VimFilerBufferDir'],'hook_source' : function('Vimfiler_init'), 'on_path': '.*'}
 endif
 
 " vim-markdown
@@ -571,150 +557,215 @@ nnoremap <silent> <leader>ep :lprevious<CR>
 nnoremap <silent> <leader>eN :lNext<CR>
 
 
-Plugin 'Shougo/neocomplete'
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-" let g:neocomplete#max_list = 10
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions',
-    \ 'lua' : $HOME.'/.vim/bundle/vim-quick-community/key-dict'
-        \ }
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" let g:plug_neocomplete = 1
+if exists('g:plug_neocomplete')
+    Plugin 'Shougo/neocomplete'
+    "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+    " Disable AutoComplPop.
+    let g:acp_enableAtStartup = 0
+    " Use neocomplete.
+    let g:neocomplete#enable_at_startup = 1
+    " Use smartcase.
+    let g:neocomplete#enable_smart_case = 1
+    " Set minimum syntax keyword length.
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
+    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+    " let g:neocomplete#max_list = 10
+    " Define dictionary.
+    let g:neocomplete#sources#dictionary#dictionaries = {
+        \ 'default' : '',
+        \ 'vimshell' : $HOME.'/.vimshell_hist',
+        \ 'scheme' : $HOME.'/.gosh_completions',
+        \ 'lua' : $HOME.'/.vim/bundle/vim-quick-community/key-dict'
+            \ }
+    " Define keyword.
+    if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
+    " Plugin key-mappings.
+    inoremap <expr><C-g>     neocomplete#undo_completion()
+    inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+    " Recommended key-mappings.
+    " <CR>: close popup and save indent.
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function()
+      return neocomplete#close_popup() . "\<CR>"
+      " For no inserting <CR> key.
+      "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+    endfunction
+    " <TAB>: completion.
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+    inoremap <expr><C-y>  neocomplete#close_popup()
+    inoremap <expr><C-e>  neocomplete#cancel_popup()
+    " Close popup by <Space>.
+    "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
-" For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplete#enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplete#enable_insert_char_pre = 1
+    " For cursor moving in insert mode(Not recommended)
+    "inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
+    "inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
+    "inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
+    "inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
+    " Or set this.
+    "let g:neocomplete#enable_cursor_hold_i = 1
+    " Or set this.
+    "let g:neocomplete#enable_insert_char_pre = 1
 
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
+    " AutoComplPop like behavior.
+    "let g:neocomplete#enable_auto_select = 1
 
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+    " Shell like behavior(not recommended).
+    "set completeopt+=longest
+    "let g:neocomplete#enable_auto_select = 1
+    "let g:neocomplete#disable_auto_complete = 1
+    "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
-" vim-airline
-" ---------------------------------------------------
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+    " Enable heavy omni completion.
+    if !exists('g:neocomplete#sources#omni#input_patterns')
+      let g:neocomplete#sources#omni#input_patterns = {}
+    endif
+    "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+    "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+    "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-if has('gui_running')
-    let g:airline_powerline_fonts = 1
+    " For perlomni.vim setting.
+    " https://github.com/c9s/perlomni.vim
+    let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+    " Called once right before you start selecting multiple cursors
+    function! Multiple_cursors_before()
+        if exists(':NeoCompleteLock')==2
+            exe 'NeoCompleteLock'
+        endif
+    endfunction
+
+    " Called once only when the multiple selection is canceled (default <Esc>)
+    function! Multiple_cursors_after()
+        if exists(':NeoCompleteUnlock')==2
+            exe 'NeoCompleteUnlock'
+        endif
+    endfunction
 else
-    let g:airline_powerline_fonts = 1
+    function! Deoplete_init() abort
+        " deoplete options
+        let g:deoplete#enable_at_startup = get(g:, 'deoplete#enable_at_startup', 1)
+        let g:deoplete#enable_ignore_case = get(g:, 'deoplete#enable_ignore_case', 1)
+        let g:deoplete#enable_smart_case = get(g:, 'deoplete#enable_smart_case', 1)
+        let g:deoplete#enable_camel_case = get(g:, 'deoplete#enable_camel_case', 1)
+        let g:deoplete#enable_refresh_always = get(g:, 'deoplete#enable_refresh_always', 1)
+        let g:deoplete#max_abbr_width = get(g:, 'deoplete#max_abbr_width', 0)
+        let g:deoplete#max_menu_width = get(g:, 'deoplete#max_menu_width', 0)
+        " init deoplet option dict
+        let g:deoplete#ignore_sources = get(g:,'deoplete#ignore_sources',{})
+        let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
+        let g:deoplete#omni_patterns = get(g:, 'deoplete#omni_patterns', {})
+        let g:deoplete#keyword_patterns = get(g:, 'deoplete#keyword_patterns', {})
+        let g:deoplete#auto_complete_delay = 150
+
+        " sh
+        let g:deoplete#ignore_sources.sh = get(g:deoplete#ignore_sources, 'sh', ['around', 'member', 'tag', 'syntax'])
+
+        " go
+        let g:deoplete#ignore_sources.go = get(g:deoplete#ignore_sources, 'go', ['omni'])
+        call deoplete#custom#set('go', 'mark', '')
+        call deoplete#custom#set('go', 'rank', 9999)
+
+        " markdown
+        let g:deoplete#ignore_sources.markdown = get(g:deoplete#ignore_sources, 'markdown', ['tag'])
+
+        " perl
+        let g:deoplete#omni#input_patterns.perl = get(g:deoplete#omni#input_patterns, 'perl', [
+              \'[^. \t0-9]\.\w*',
+              \'[^. \t0-9]\->\w*',
+              \'[^. \t0-9]\::\w*',
+              \])
+
+        " javascript
+        "let g:deoplete#omni#input_patterns.javascript = get(g:deoplete#omni#input_patterns, 'javascript', ['[^. \t0-9]\.\w*'])
+        let g:deoplete#ignore_sources.javascript = get(g:deoplete#ignore_sources, 'javascript', ['omni'])
+        call deoplete#custom#set('ternjs', 'mark', 'tern')
+        call deoplete#custom#set('ternjs', 'rank', 9999)
+
+        " typescript
+        let g:deoplete#ignore_sources.typescript = get(g:deoplete#ignore_sources, 'typescript', ['tag','omni', 'syntax'])
+        call deoplete#custom#set('typescript', 'rank', 9999)
+        " gitcommit
+        let g:deoplete#omni#input_patterns.gitcommit = get(g:deoplete#omni#input_patterns, 'gitcommit', [
+              \'[ ]#[ 0-9a-zA-Z]*',
+              \])
+
+        let g:deoplete#ignore_sources.gitcommit = get(g:deoplete#ignore_sources, 'gitcommit', ['neosnippet'])
+
+        " lua
+        let g:deoplete#omni_patterns.lua = get(g:deoplete#omni_patterns, 'lua', '.')
+
+        " c c++
+        call deoplete#custom#set('clang2', 'mark', '')
+        let g:deoplete#ignore_sources.c = get(g:deoplete#ignore_sources, 'c', ['omni'])
+
+        " rust
+        let g:deoplete#ignore_sources.rust = get(g:deoplete#ignore_sources, 'rust', ['omni'])
+        call deoplete#custom#set('racer', 'mark', '')
+
+        " vim
+        let g:deoplete#ignore_sources.vim = get(g:deoplete#ignore_sources, 'vim', ['tag'])
+
+        " clojure
+        let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
+
+        " public settings
+        call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
+        let g:deoplete#ignore_sources._ = get(g:deoplete#ignore_sources, '_', ['around', 'LanguageClient'])
+        for key in keys(g:deoplete#ignore_sources)
+          if key != '_' && index(keys(get(g:, 'LanguageClient_serverCommands', {})), key) == -1
+            let g:deoplete#ignore_sources[key] = g:deoplete#ignore_sources[key] + ['around', 'LanguageClient']
+          endif
+        endfor
+        inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+        inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+        set isfname-==
+
+        " Called once right before you start selecting multiple cursors
+        function! Multiple_cursors_before()
+            call deoplete#disable()
+        endfunction
+
+        " Called once only when the multiple selection is canceled (default <Esc>)
+        function! Multiple_cursors_after()
+            call deoplete#enable()
+        endfunction
+    endfunction
+    Plugin 'Shougo/deoplete.nvim', {
+          \ 'on_event' : 'InsertEnter',
+          \ 'hook_source' : function('Deoplete_init'),
+          \ 'on_path' : '.*',
+          \ }
+    if !has('nvim')
+      Plugin 'roxma/nvim-yarp',  {'merged': 0}
+      Plugin 'roxma/vim-hug-neovim-rpc',  {'merged': 0}
+    endif
 endif
 
-let g:airline_theme = 'powerlineish'
-let g:airline#extensions#tabline#enabled = 1 " NOTE: When you open lots of buffers and typing text, it is so slow.
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-" let g:airline_section_b = "%{fnamemodify(bufname('%'),':p:.:h').'/'}"
-" let g:airline_section_c = '%t'
-let g:airline_section_y = 'B:%{bufnr("%")} W:%{winnr()}'
-if exists('g:syntastic')
-    let g:airline_section_warning = airline#section#create(['syntastic'])
-else
-    let g:airline_section_warning = airline#section#create(['neomake'])
-endif
-
+" " ---------------------------------------------------
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-" DISABLE: use ex-autocomplpop instead
-" " neocomplcache: invoke when you insert words
-" Plugin 'Shougo/neocomplcache.vim'
 " " ---------------------------------------------------
+" completesource
+Plugin 'Shougo/neco-syntax',          { 'on_event' : 'InsertEnter'}
+Plugin 'Shougo/neopairs.vim',         { 'on_event' : 'InsertEnter'}
+Plugin 'Raimondi/delimitMate',        { 'merged' : 0}
+Plugin 'tenfyzhong/CompleteParameter.vim',  {'merged': 0}
 
-" let g:neocomplcache_enable_at_startup = 1
-" let g:neocomplcache_auto_completion_start_length = 2
-" let g:neocomplcache_enable_smart_case = 1
-" let g:neocomplcache_enable_auto_select = 1 " let neocomplcache's completion behavior like AutoComplPop
-" " let g:neocomplcache_disable_auto_complete = 1 " Enable this if you like TAB for complete
-" " inoremap <C-p> <C-x><C-u>
-" " inoremap <expr><TAB>  pumvisible() ? '\<Down>' : '<TAB>'
-" " inoremap <expr><S-TAB>  pumvisible() ? '\<Up>' : ''
-
-" DISABLE: use ex-autocomplpop instead
-" " neocomplete: invoke when you insert words
-" Plugin 'Shougo/neocomplete.vim'
-" " ---------------------------------------------------
-
-" let g:neocomplete#enable_at_startup = 1
-" let g:neocomplete#enable_smart_case = 1
-" let g:neocomplete#enable_auto_select = 1 " let neocomplete's completion behavior like AutoComplPop
-" " Enable omni completion.
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" DISABLE: use ex-autocomplpop instead
-" " YouCompleteMe
-" Plugin 'Valloric/YouCompleteMe'
-" " ---------------------------------------------------
-
-" TODO: choose a snippet plugin
+" choose a snippet plugin
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'honza/vim-snippets'
@@ -726,12 +777,35 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+function! SuperTab() abort
+    if getline('.')[col('.')-2] ==# '{'&& pumvisible()
+        return "\<C-n>"
+    endif
+    if neosnippet#expandable() && getline('.')[col('.')-2] ==# '(' && !pumvisible()
+        return "\<Plug>(neosnippet_expand)"
+    elseif neosnippet#jumpable()
+                \ && getline('.')[col('.')-2] ==# '(' && !pumvisible() 
+                \ && !neosnippet#expandable()
+        return "\<plug>(neosnippet_jump)"
+    elseif neosnippet#expandable_or_jumpable() && getline('.')[col('.')-2] !=#'('
+        return "\<plug>(neosnippet_expand_or_jump)"
+    elseif pumvisible()
+        return "\<C-n>"
+    elseif complete_parameter#jumpable(1) && getline('.')[col('.')-2] !=# ')'
+        return "\<plug>(complete_parameter#goto_next_parameter)"
+    else
+        return "\<tab>"
+    endif
+endfunction
+
+imap <expr><TAB> SuperTab()
+smap <expr><TAB> SuperTab()
+" imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)"
+" \: pumvisible() ? "\<C-n>" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)"
+" \: "\<TAB>"
 
 " For snippet_complete marker.
 if has('conceal')
@@ -790,6 +864,7 @@ Plugin 'xolox/vim-misc'  " required by lua.vim
 Plugin 'binesiyu/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
 Plugin 'tbastos/vim-lua'
 let g:lua_define_completefunc = 0
+let g:lua_define_omnifunc = 0
 let g:lua_define_completion_mappings = 0
 let lua_version = 5
 let lua_subversion = 1
@@ -814,6 +889,32 @@ nnoremap <silent> <leader>gA :Gina add .<CR>
 nnoremap <silent> <leader>gb :Gina blame<CR>
 nnoremap <silent> <leader>gV :GV!<CR>
 nnoremap <silent> <leader>gv :GV<CR>
+
+" vim-airline
+" ---------------------------------------------------
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+if has('gui_running')
+    let g:airline_powerline_fonts = 1
+else
+    let g:airline_powerline_fonts = 1
+endif
+
+let g:airline_theme = 'powerlineish'
+let g:airline#extensions#tabline#enabled = 1 " NOTE: When you open lots of buffers and typing text, it is so slow.
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline_section_b = "%{fnamemodify(bufname('%'),':p:.:h').'/'}"
+" let g:airline_section_c = '%t'
+let g:airline_section_y = 'B:%{bufnr("%")} W:%{winnr()}'
+if exists('g:syntastic')
+    let g:airline_section_warning = airline#section#create(['syntastic'])
+else
+    let g:airline_section_warning = airline#section#create(['neomake'])
+endif
+
 " haskell {{{{
 " let g:haskell = 1
 if exists('g:haskell')
