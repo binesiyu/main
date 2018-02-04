@@ -22,14 +22,28 @@ fu! Generate_ignore(ignore,tool, ...) abort
             call add(ignore, "'" . ig . "'")
         endfor
     elseif a:tool ==# 'rg'
-        for ig in split(a:ignore,',')
-            call add(ignore, '-g')
-            if a:0 > 0
-                call add(ignore, "'!" . ig . "'")
-            else
-                call add(ignore, '!' . ig)
-            endif
-        endfor
+        if WINDOWS()
+            for ig in split(a:ignore,',')
+                call add(ignore, '-g')
+                if a:0 > 0
+                    call add(ignore, "\"" . ig . "\"")
+                else
+                    call add(ignore, "\"!" . ig . "\"")
+                    " call add(ignore, '!' . ig)
+                endif
+            endfor
+        else
+            for ig in split(a:ignore,',')
+                call add(ignore, '-g')
+                if a:0 > 0
+                    call add(ignore, "'" . ig . "'")
+                else
+                    call add(ignore, "'!" . ig . "'")
+                    " call add(ignore, '!' . ig)
+                endif
+            endfor
+
+        endif
     endif
     return ignore
 endf
@@ -408,7 +422,7 @@ if exists('g:plug_unite')
         endf
         noremap <silent> <leader>nv :VimFiler<CR>
     endfunction
-    Plugin 'Shougo/vimfiler.vim',{'merged' : 0,'on_cmd' : ['VimFiler', 'VimFilerBufferDir'],'hook_source' : function('Vimfiler_init'), 'on_path': '.*'}
+    Plugin 'Shougo/vimfiler.vim',{'on_cmd' : ['VimFiler', 'VimFilerBufferDir'],'hook_source' : function('Vimfiler_init'), 'on_path': '.*'}
 endif
 " }}}
 
@@ -687,8 +701,8 @@ else
           \ 'on_path' : '.*',
           \ }
     if !has('nvim')
-      Plugin 'roxma/nvim-yarp',  {'merged': 0}
-      Plugin 'roxma/vim-hug-neovim-rpc',  {'merged': 0}
+      Plugin 'roxma/nvim-yarp'
+      Plugin 'roxma/vim-hug-neovim-rpc'
     endif
 endif
 
@@ -703,7 +717,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " completesource
 Plugin 'Shougo/neco-syntax',          { 'on_event' : 'InsertEnter'}
 Plugin 'Shougo/neopairs.vim',         { 'on_event' : 'InsertEnter'}
-Plugin 'Raimondi/delimitMate',        { 'merged' : 0}
+Plugin 'Raimondi/delimitMate'
 " Plugin 'tenfyzhong/CompleteParameter.vim',  {'merged': 0}
 " }}}
 
@@ -886,7 +900,7 @@ let lua_subversion = 1
 " git {{{
 " Plugin 'tpope/vim-abolish.git'
 Plugin 'junegunn/gv.vim',{ 'on_cmd' : ['GV']}
-Plugin 'airblade/vim-gitgutter',{ 'merged' : 0}
+Plugin 'airblade/vim-gitgutter'
 Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
 
 let g:gitgutter_realtime = 0

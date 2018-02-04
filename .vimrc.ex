@@ -8,7 +8,7 @@ Plugin 'binesiyu/ex-config'
 " ---------------------------------------------------
 Plugin 'binesiyu/ex-utility'
 
-nnoremap <unique> <silent> <Leader>bd :EXbd<CR>
+" nnoremap <unique> <silent> <Leader>bd :EXbd<CR>
 " nnoremap <unique> <silent> <Leader>l :EXbn<CR>
 " nnoremap <unique> <silent> <Leader>h :EXbp<CR>
 " nnoremap <unique> <silent> <C-Tab> :EXbalt<CR>
