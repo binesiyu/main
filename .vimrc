@@ -146,7 +146,8 @@ endif
 if WINDOWS()
     colorscheme gruvbox
 else
-    colorscheme solarized
+    colorscheme gruvbox
+    " colorscheme solarized
 endif
 " }
 
