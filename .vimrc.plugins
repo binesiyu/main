@@ -871,6 +871,20 @@ highlight clear  ShowMarksHLu " This group is used to highlight all the uppercas
 highlight clear  ShowMarksHLo " This group is used to highlight all other marks.
 highlight clear  ShowMarksHLm " This group is used when multiple marks are on the same line.
 
+" Plugin 'MattesGroeger/vim-bookmarks',     { 'on_map' : '<Plug>Bookmark','on_cmd' : 'BookmarkShowAll',}
+" nmap <Leader>mm <Plug>BookmarkToggle
+" nmap <Leader>mi <Plug>BookmarkAnnotate
+" nmap <Leader>ma <Plug>BookmarkShowAll
+" nmap <Leader>mj <Plug>BookmarkNext
+" nmap <Leader>mk <Plug>BookmarkPrev 
+" nmap <Leader>mc <Plug>BookmarkClear 
+" nmap <Leader>mx <Plug>BookmarkClearAll
+" nmap mm <Plug>BookmarkToggle
+" nmap mi <Plug>BookmarkAnnotate
+" nmap ma <Plug>BookmarkShowAll
+" nmap mn <Plug>BookmarkNext
+" nmap mp <Plug>BookmarkPrev
+
 " ex-visincr: invoke when select text and type ':II'
 " ---------------------------------------------------
 Plugin 'exvim/ex-visincr'
@@ -883,6 +897,7 @@ Plugin 'exvim/ex-searchcompl'
 " ---------------------------------------------------
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'morhetz/gruvbox'
+let g:gruvbox_italic = get(g:, 'gruvbox_italic', 0)
 " }}}
 
 " lua {{{
