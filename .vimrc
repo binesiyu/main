@@ -100,7 +100,7 @@ com! -nargs=* -bang -complete=custom,vundle#scripts#complete PluginUpdate
 " if dein#load_state(g:ex_dein_path)
     call dein#begin(g:ex_dein_path)
     " call dein#add('Shougo/dein.vim')
-    Plugin 'Shougo/dein.vim'
+    " Plugin 'Shougo/dein.vim'
 
     " load .vimrc.plugins & .vimrc.plugins.local
     if exists('g:exvim_custom_path')
@@ -504,6 +504,9 @@ nnoremap <leader>wj <C-W><Down>
 nnoremap <leader>wh <C-W><Left>
 nnoremap <leader>wl <C-W><Right>
 nnoremap <leader>wm <C-W>_
+
+"When pressing <leader>cd switch to the directory of the open buffer
+map <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " easy buffer navigation
 " NOTE: if we already map to EXbn,EXbp. skip setting this
