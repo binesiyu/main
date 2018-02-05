@@ -145,7 +145,7 @@ endif
 " colorscheme Monokai-binesiyu
 if WINDOWS()
     colorscheme gruvbox
-elseif
+else
     colorscheme solarized
 endif
 " }
