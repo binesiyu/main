@@ -224,7 +224,7 @@ if exists('g:plug_denite')
         let s:denite_options = {
                     \ 'default' : {
                     \ 'winheight' : 10,
-                    \ 'mode' : 'insert',
+                    \ 'mode' : 'normal',
                     \ 'quit' : 'true',
                     \ 'highlight_matched_char' : 'MoreMsg',
                     \ 'highlight_matched_range' : 'MoreMsg',
@@ -323,7 +323,7 @@ if exists('g:plug_unite')
         call unite#filters#sorter_default#use(['sorter_rank'])
         call unite#custom#profile('default', 'context', {
                     \   'safe': 0,
-                    \   'start_insert': 1,
+                    \   'start_insert': 0,
                     \   'ignorecase' : 1,
                     \   'short_source_names': 1,
                     \   'update_time': 200,
@@ -673,7 +673,7 @@ else
         let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
         let g:deoplete#omni_patterns = get(g:, 'deoplete#omni_patterns', {})
         let g:deoplete#keyword_patterns = get(g:, 'deoplete#keyword_patterns', {})
-        let g:deoplete#auto_complete_delay = 150
+        " let g:deoplete#auto_complete_delay = 150
 
         " sh
         let g:deoplete#ignore_sources.sh = get(g:deoplete#ignore_sources, 'sh', ['around', 'member', 'tag', 'syntax'])
@@ -726,7 +726,7 @@ else
         " clojure
         let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
         " neosnippet
-        call deoplete#custom#set('neosnippet', 'rank', 99)
+        " call deoplete#custom#set('neosnippet', 'rank', 99)
 
         " public settings
         " call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
