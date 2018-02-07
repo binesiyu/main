@@ -516,6 +516,9 @@ nnoremap <leader>wm <C-W>_
 "When pressing <leader>cd switch to the directory of the open buffer
 map <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
+map <Leader>p ]p
+map <Leader>P ]P
+
 " easy buffer navigation
 " NOTE: if we already map to EXbn,EXbp. skip setting this
 if !hasmapto(':EXbn<CR>') && mapcheck('<C-l>','n') == ''
