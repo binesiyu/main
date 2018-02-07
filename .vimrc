@@ -221,7 +221,7 @@ augroup END
 " set default guifont {{
 if !LINUX()
 if has('gui_running')
-    if OSX()
+    if has("mac") || has("gui_macvim")
         set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
         set guifontwide=YaHei\ Consolas\ Hybrid:h12
     else
