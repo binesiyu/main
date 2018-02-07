@@ -153,6 +153,7 @@ let g:indent_guides_exclude_filetypes = ['nerdtree','help', 'man', 'startify', '
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-indent'
 Plugin 'kana/vim-textobj-entire'
+Plugin 'kana/vim-textobj-line'
 Plugin 'reedes/vim-textobj-sentence'
 augroup textobj_sentence
   autocmd!
