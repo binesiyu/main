@@ -969,6 +969,7 @@ let lua_subversion = 1
 " Plugin 'tpope/vim-abolish.git'
 Plugin 'junegunn/gv.vim',{ 'on_cmd' : ['GV']}
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
 Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
 
 let g:gitgutter_realtime = 0
