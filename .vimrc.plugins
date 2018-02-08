@@ -566,7 +566,7 @@ nnoremap <silent> <leader>eN :lNext<CR>
 " }}}
 
 " autocomplete {{{
-" let g:plug_neocomplete = 1
+let g:plug_neocomplete = 1
 if exists('g:plug_neocomplete')
     Plugin 'Shougo/neocomplete'
     "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
