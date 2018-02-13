@@ -29,13 +29,16 @@ nnoremap <expr> <Leader>b9 tweak#wtb_switch#key_leader_bufnum(9)
 
 " Plugin 'mtth/scratch.vim'
 " Window chooser
-Plugin 't9md/vim-choosewin'
+" Plugin 't9md/vim-choosewin'
 " invoke with '-'
-nnoremap <leader>ww :ChooseWin<CR>
+" nnoremap <leader>ww :ChooseWin<CR>
 " if you want to use overlay feature
-let g:choosewin_overlay_enable = 1
-let g:choosewin_statusline_replace = 0 " don't replace statusline
+" let g:choosewin_overlay_enable = 1
+" let g:choosewin_statusline_replace = 0 " don't replace statusline
 
+Plugin 'hsanson/vim-winmode'
+nmap <leader>ww <Plug>WinModeStart
+let g:win_mode_default ='resize'
 " Plugin 'adimit/prolog.vim'
 
 Plugin 'mileszs/ack.vim',{'on_cmd': 'Ack'}
