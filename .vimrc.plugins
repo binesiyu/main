@@ -1034,7 +1034,7 @@ endif
 " }}}
 
 " haskell {{{
-" let g:haskell = 1
+let g:haskell = 1
 if exists('g:haskell')
     if exists('g:exvim_custom_path')
         let vimrc_plugins_haskell = g:exvim_custom_path.'/.vimrc.haskell'
