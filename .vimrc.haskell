@@ -23,6 +23,10 @@ let g:ghc_symbolcache=1
 if OSX()
     let g:haddock_browser="Chrome.app"
     let g:haddock_docdir='~/.stack/programs/x86_64-osx/ghc-8.2.2/share/doc/ghc-8.2.2/html'
+elseif WINDOWS()
+    let g:haddock_browser="firefox.exe"
+    let g:haddock_docdir='C:/Users/Administrator/AppData/Local/Programs/stack/i386-windows/ghc-8.0.2/doc/html'
+    let g:ghc='C:/Users/Administrator/AppData/Local/Programs/stack/i386-windows/ghc-8.0.2/bin/ghc.exe'
 else
     let g:haddock_browser="firefox.exe"
     let g:haddock_docdir='~/.stack/programs/x86_64-linux/ghc-ncurses6-8.0.2/share/doc/ghc-8.0.0/html'
