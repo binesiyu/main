@@ -5,10 +5,10 @@ export ORIGINAL_PATH=`pwd`
 echo "Check and install dein."
 
 # if we don't have folder vimfiles, create it.
-if [ ! -d "./vimfiles/" ]; then
-    mkdir ./vimfiles/
+if [ ! -d "~/.vim/" ]; then
+    mkdir ~/.vim/
 fi
-cd ./vimfiles/
+cd ~/.vim
 
 # if we don't have dein, create it.
 if [ ! -d "./dein/" ]; then
@@ -26,7 +26,7 @@ fi
 # download and install bundles through Vundle in this repository
 echo "Update vim-plugins."
 cd ${ORIGINAL_PATH}
-vim -u .vimrc.mini --cmd "set rtp=./vimfiles,\$VIMRUNTIME,./vimfiles/after"  +PluginUpdate +qall
+vim -u .vimrc.mini --cmd "set rtp=~/.vim,\$VIMRUNTIME,~/.vim/after"  +PluginUpdate +qall
 
 # go back
 cd ${ORIGINAL_PATH}
