@@ -127,6 +127,7 @@ nnoremap tj  :tabnext<CR>
 nnoremap tk  :tabprev<CR>
 nnoremap tl  :tablast<CR>
 nnoremap tn  :tabnew<CR>
+nnoremap tp  :tabprevious<CR>
 nnoremap tc  :tabclose<CR>
 
 " Alternatively use
