@@ -154,6 +154,10 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-indent'
 Plugin 'kana/vim-textobj-entire'
 Plugin 'kana/vim-textobj-line'
+
+Plugin 'kana/vim-textobj-function'
+Plugin 'binesiyu/vim-textobj-function-syntax'
+
 Plugin 'reedes/vim-textobj-sentence'
 augroup textobj_sentence
   autocmd!
@@ -974,6 +978,7 @@ Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
 
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
+let g:gitgutter_max_signs = 10000
 
 " nnoremap <silent> <leader>gs :Gina status<CR>
 nnoremap <silent> <leader>gi :Gina status<CR>
