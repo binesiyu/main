@@ -176,7 +176,7 @@ augroup END
 
 Plugin 'gcmt/wildfire.vim'
 let g:wildfire_objects = {
-            \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
+            \ "*" : ["i'", 'i"', "i)", "if", "i]", "i}", "ip"],
             \ "html,xml" : ["at"],
             \ }
 " }}}
