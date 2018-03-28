@@ -11,7 +11,7 @@ Plugin 'Shougo/vimproc'
 
 let g:vim_wildignore
       \ = '*/tmp/*,*.so,*.swp,*.zip,*.class,tags,*.jpg,
-      \*.ttf,*.TTF,*.png,*/target/*,*/.exvim*/*,
+      \*.ttf,*.TTF,*.png,*/target/*,*.exvim*/*,
       \.git,.svn,.hg,.DS_Store,*.svg'
 
 fu! Generate_ignore(ignore,tool, ...) abort
@@ -37,7 +37,8 @@ fu! Generate_ignore(ignore,tool, ...) abort
                 if a:0 > 0
                     call add(ignore, "'" . ig . "'")
                 else
-                    call add(ignore, '!' . ig)
+                    call add(ignore, "'!" . ig . "'")
+                    " call add(ignore, '!' . ig)
                 endif
             endfor
 
@@ -193,7 +194,7 @@ if exists('g:plug_ctrlp')
     let g:ctrlp_follow_symlinks = 2
     let g:ctrlp_custom_ignore = {
                 \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-                \ 'file':  '\v(\.cpp|\.h|\.hh|\.cxx|\.lua|\.c)@<!$'}
+                \ 'file':  '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
     let g:ctrlp_reuse_window = 'exproject\|nerdtree\|netrw\|help\|quickfix'
     let g:ctrlp_by_filename = 1
     let g:ctrlp_switch_buffer = ''
@@ -201,9 +202,10 @@ if exists('g:plug_ctrlp')
     let g:ctrlp_extensions = ['funky']
     let g:ctrlp_use_caching = 1
     let g:ctrlp_clear_cache_on_exit = 0
-    if executable('rg') && !exists('g:ctrlp_user_command')
+    " if executable('rg') && !exists('g:ctrlp_user_command')
+    if !exists('g:ctrlp_user_command')
         let g:ctrlp_user_command = 'rg %s --no-ignore --hidden --files -g "" '
-                    \ . join(Generate_ignore(g:vim_wildignore,'rg', 1))
+                    \ . join(Generate_ignore(g:vim_wildignore,'rg'))
     endif
 
     " let g:ctrlp_cmd = 'CtrlPBuffer'
