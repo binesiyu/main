@@ -160,7 +160,12 @@ Plugin 'kana/vim-textobj-line'
 Plugin 'kana/vim-textobj-function'
 Plugin 'binesiyu/vim-textobj-function-syntax'
 
-Plugin 'spacewander/vim-textobj-lua'
+" Plugin 'spacewander/vim-textobj-lua'
+" omap <buffer> ab <Plug>(textobj-lua-block-a)
+" omap <buffer> ib <Plug>(textobj-lua-block-i)
+" xmap <buffer> ab <Plug>(textobj-lua-block-a)
+" xmap <buffer> ib <Plug>(textobj-lua-block-i)
+
 Plugin 'reedes/vim-textobj-sentence'
 augroup textobj_sentence
   autocmd!
