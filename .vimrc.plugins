@@ -160,6 +160,7 @@ Plugin 'kana/vim-textobj-line'
 Plugin 'kana/vim-textobj-function'
 Plugin 'binesiyu/vim-textobj-function-syntax'
 
+Plugin 'spacewander/vim-textobj-lua'
 Plugin 'reedes/vim-textobj-sentence'
 augroup textobj_sentence
   autocmd!
