@@ -978,6 +978,28 @@ let lua_version = 5
 let lua_subversion = 1
 " }}}
 
+" debugger {{{
+" Plugin 'binesiyu/vdebug',{'merged': 0}
+" let g:vdebug_options= {
+"             \    "port" : 9000,
+"             \    "timeout" : 60,
+"             \    "on_close" : "detach",
+"             \    "break_on_open" : 1,
+"             \    "path_maps" : {},
+"             \    "server" : "",
+"             \    "debug_window_level" : 0,
+"             \    "background_listener" : 1,
+"             \    "debug_file_level" : 8,
+"             \    "debug_file" : "~/vdebug.log",
+"             \    "continuous_mode" : 1,
+"             \    "watch_window_style" : "expanded",
+"             \    "marker_default" : "⬦",
+"             \    "marker_closed_tree" : "▸",
+"             \    "marker_open_tree" : "▾"
+"             \}
+
+" }}}
+
 " git {{{
 " Plugin 'tpope/vim-abolish.git'
 Plugin 'junegunn/gv.vim',{ 'on_cmd' : ['GV']}
