@@ -122,8 +122,8 @@ let g:indent_guides_exclude_filetypes = ['nerdtree','help', 'man', 'startify', '
 " incsearch {{{
   Plugin 'haya14busa/incsearch.vim'
   Plugin 'haya14busa/incsearch-fuzzy.vim'
-  Plugin 'haya14busa/vim-asterisk'
-  Plugin 'osyo-manga/vim-over'
+  " Plugin 'haya14busa/vim-asterisk'
+  " Plugin 'osyo-manga/vim-over'
   Plugin 'haya14busa/incsearch-easymotion.vim'
   let g:incsearch#auto_nohlsearch = 1
   map /  <Plug>(incsearch-forward)
@@ -224,7 +224,7 @@ if exists('g:plug_ctrlp')
     " nnoremap <leader>ff :CtrlP<CR>
     nnoremap <leader>fr :CtrlPMRU<CR>
     nnoremap <leader>fl :CtrlPMRUFiles<CR>
-    nnoremap <leader>fa :Ack<CR>
+    " nnoremap <leader>fa :Ack<CR>
 endif
 " }}}
 
@@ -321,6 +321,7 @@ if exists('g:plug_denite')
         nnoremap <leader>fd :Denite file_rec<CR>
         " nnoremap <leader>fb :Denite buffer<CR>
         nnoremap <leader>fg :Denite grep<CR>
+        nnoremap <leader>fa :Denite grep<CR>
         nnoremap <leader>fc :DeniteCursorWord grep<CR>
     endif
 endif
@@ -967,7 +968,7 @@ let g:gruvbox_italic = get(g:, 'gruvbox_italic', 0)
 " }}}
 
 " lua {{{
-Plugin 'xolox/vim-misc'  " required by lua.vim
+" Plugin 'xolox/vim-misc'  " required by lua.vim
 " Plugin 'xolox/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
 Plugin 'binesiyu/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
 Plugin 'tbastos/vim-lua'
