@@ -215,6 +215,13 @@ if exists('g:plug_ctrlp')
                     \ . join(Generate_ignore(g:vim_wildignore,'rg',1))
     endif
 
+  let g:ctrlp_prompt_mappings = {
+    \ 'ToggleRegex()':        ['<c-q>'],
+    \ 'PrtInsert("c")':       ['<c-c>'],
+    \ 'PrtInsert("r")':       ['<c-r>'],
+    \ 'PrtInsert("s")':       ['<c-s>'],
+    \ 'PrtInsert("w")':       ['<c-g>'],
+    \ }
     " let g:ctrlp_cmd = 'CtrlPBuffer'
     "funky
     nnoremap <Leader>fm :CtrlPModified<CR>
