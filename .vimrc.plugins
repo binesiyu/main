@@ -87,6 +87,7 @@ let g:startify_list_order = [
       \ ]
 let g:startify_bookmarks = [{'c' : '~/Documents/dev/kingdom-of-heaven-client/koh.exvim'},
             \ {'k': '~/Documents/dev/kingdom-of-heaven-client/koh-c.exvim'},
+            \ {'x': '~/Documents/dev/koh/koh.exvim'},
             \'~/.vimrc',
             \'~/.vimrc.plugins',
             \'~/.zshrc',
@@ -587,7 +588,10 @@ nnoremap <silent> <leader>eN :lNext<CR>
 " }}}
 
 " autocomplete {{{
+if !has('nvim')
 let g:plug_neocomplete = 1
+endif
+
 if exists('g:plug_neocomplete')
     Plugin 'Shougo/neocomplete'
     "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
@@ -702,8 +706,8 @@ else
 
         " go
         let g:deoplete#ignore_sources.go = get(g:deoplete#ignore_sources, 'go', ['omni'])
-        call deoplete#custom#set('go', 'mark', '')
-        call deoplete#custom#set('go', 'rank', 9999)
+        call deoplete#custom#source('go', 'mark', '')
+        call deoplete#custom#source('go', 'rank', 9999)
 
         " markdown
         let g:deoplete#ignore_sources.markdown = get(g:deoplete#ignore_sources, 'markdown', ['tag'])
@@ -718,12 +722,12 @@ else
         " javascript
         "let g:deoplete#omni#input_patterns.javascript = get(g:deoplete#omni#input_patterns, 'javascript', ['[^. \t0-9]\.\w*'])
         let g:deoplete#ignore_sources.javascript = get(g:deoplete#ignore_sources, 'javascript', ['omni'])
-        call deoplete#custom#set('ternjs', 'mark', 'tern')
-        call deoplete#custom#set('ternjs', 'rank', 9999)
+        call deoplete#custom#source('ternjs', 'mark', 'tern')
+        call deoplete#custom#source('ternjs', 'rank', 9999)
 
         " typescript
         let g:deoplete#ignore_sources.typescript = get(g:deoplete#ignore_sources, 'typescript', ['tag','omni', 'syntax'])
-        call deoplete#custom#set('typescript', 'rank', 9999)
+        call deoplete#custom#source('typescript', 'rank', 9999)
         " gitcommit
         let g:deoplete#omni#input_patterns.gitcommit = get(g:deoplete#omni#input_patterns, 'gitcommit', [
               \'[ ]#[ 0-9a-zA-Z]*',
@@ -735,12 +739,12 @@ else
         let g:deoplete#omni_patterns.lua = get(g:deoplete#omni_patterns, 'lua', '.')
 
         " c c++
-        call deoplete#custom#set('clang2', 'mark', '')
+        call deoplete#custom#source('clang2', 'mark', '')
         let g:deoplete#ignore_sources.c = get(g:deoplete#ignore_sources, 'c', ['omni'])
 
         " rust
         let g:deoplete#ignore_sources.rust = get(g:deoplete#ignore_sources, 'rust', ['omni'])
-        call deoplete#custom#set('racer', 'mark', '')
+        call deoplete#custom#source('racer', 'mark', '')
 
         " vim
         let g:deoplete#ignore_sources.vim = get(g:deoplete#ignore_sources, 'vim', ['tag'])
@@ -748,11 +752,11 @@ else
         " clojure
         let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
         " neosnippet
-        " call deoplete#custom#set('neosnippet', 'rank', 99)
+        " call deoplete#custom#source('neosnippet', 'rank', 99)
 
         " public settings
-        " call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
-        call deoplete#custom#set('_', 'matchers', ['matcher_head'])
+        " call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+        call deoplete#custom#source('_', 'matchers', ['matcher_head'])
         let g:deoplete#ignore_sources._ = get(g:deoplete#ignore_sources, '_', ['around', 'LanguageClient'])
         for key in keys(g:deoplete#ignore_sources)
           if key != '_' && index(keys(get(g:, 'LanguageClient_serverCommands', {})), key) == -1
