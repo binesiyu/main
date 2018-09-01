@@ -3,8 +3,8 @@ scriptencoding utf-8
 " man.vim: invoked by :Man {name}
 " source $VIMRUNTIME/ftplugin/man.vim
 " matchit
-" source $VIMRUNTIME/macros/matchit.vim
-Plugin 'andymass/vim-matchup', {'merged' : 0}
+source $VIMRUNTIME/macros/matchit.vim
+" Plugin 'andymass/vim-matchup', {'merged' : 0}
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -878,12 +878,12 @@ Plugin 'rhysd/clever-f.vim'
 
 " editor {{{
 " yanked text by highlighting.
-Plugin 'kana/vim-operator-user'
-Plugin 'haya14busa/vim-operator-flashy'
-map y <Plug>(operator-flashy)
-nmap Y <Plug>(operator-flashy)$
-let g:operator#flashy#flash_time =  1000
-let g:operator#flashy#group = IncSearch
+" Plugin 'kana/vim-operator-user'
+" Plugin 'haya14busa/vim-operator-flashy'
+" map y <Plug>(operator-flashy)
+" nmap Y <Plug>(operator-flashy)$
+" let g:operator#flashy#flash_time =  1000
+
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
 Plugin 'godlygeek/tabular'
