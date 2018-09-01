@@ -128,18 +128,18 @@ let g:indent_guides_exclude_filetypes = ['nerdtree','help', 'man', 'startify', '
   " Plugin 'osyo-manga/vim-over'
   Plugin 'haya14busa/incsearch-easymotion.vim'
   let g:incsearch#auto_nohlsearch = 1
-  map /  <Plug>(incsearch-forward)
-  map ?  <Plug>(incsearch-backward)
-  map g/ <Plug>(incsearch-stay)
+  " map /  <Plug>(incsearch-forward)
+  " map ?  <Plug>(incsearch-backward)
+  " map g/ <Plug>(incsearch-stay)
   " map n  <Plug>(incsearch-nohl-n)
   " map N  <Plug>(incsearch-nohl-N)
-  map *  <Plug>(incsearch-nohl-*)
-  map #  <Plug>(incsearch-nohl-#)
-  map g* <Plug>(incsearch-nohl-g*)
-  map g# <Plug>(incsearch-nohl-g#)
-  map z/ <Plug>(incsearch-easymotion-/)
-  map z? <Plug>(incsearch-easymotion-?)
-  map zg/ <Plug>(incsearch-easymotion-stay)
+  " map *  <Plug>(incsearch-nohl-*)
+  " map #  <Plug>(incsearch-nohl-#)
+  " map g* <Plug>(incsearch-nohl-g*)
+  " map g# <Plug>(incsearch-nohl-g#)
+  " map z/ <Plug>(incsearch-easymotion-/)
+  " map z? <Plug>(incsearch-easymotion-?)
+  " map zg/ <Plug>(incsearch-easymotion-stay)
   function! s:config_easyfuzzymotion(...) abort
       return extend(copy({
                   \   'converters': [incsearch#config#fuzzy#converter()],
