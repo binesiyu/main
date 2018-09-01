@@ -3,8 +3,8 @@ scriptencoding utf-8
 " man.vim: invoked by :Man {name}
 " source $VIMRUNTIME/ftplugin/man.vim
 " matchit
-source $VIMRUNTIME/macros/matchit.vim
-" Plugin 'andymass/vim-matchup', {'merged' : 0}
+" source $VIMRUNTIME/macros/matchit.vim
+Plugin 'andymass/vim-matchup', {'merged' : 0}
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
