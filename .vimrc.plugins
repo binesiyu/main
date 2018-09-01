@@ -850,27 +850,36 @@ smap <expr><TAB> SuperTab()
 " vim-easymotion {{{
 " vim-easymotion: invoke by <leader><leader> w,b,e,ge,f,F,h,i,j,k,/
 Plugin 'binesiyu/vim-easymotion'
-nmap f <Plug>(easymotion-prefix)
-nmap ff <Plug>(easymotion-sn)
-nmap fj <Plug>(easymotion-j)
-nmap fk <Plug>(easymotion-k)
-nmap fl <Plug>(easymotion-lineforward)
-nmap fh <Plug>(easymotion-linebackward)
-nmap f. <Plug>(easymotion-repeat)
-nmap fg <Plug>(easymotion-jumptoanywhere)
-vmap f <Plug>(easymotion-prefix)
-vmap ff <Plug>(easymotion-sn)
-vmap fj <Plug>(easymotion-j)
-vmap fk <Plug>(easymotion-k)
-vmap fl <Plug>(easymotion-lineforward)
-vmap fh <Plug>(easymotion-linebackward)
-vmap f. <Plug>(easymotion-repeat)
-vmap fg <Plug>(easymotion-jumptoanywhere)
+nmap <leader><leader> <Plug>(easymotion-prefix)
+nmap <leader><leader>f <Plug>(easymotion-sn)
+nmap <leader><leader>j <Plug>(easymotion-j)
+nmap <leader><leader>k <Plug>(easymotion-k)
+nmap <leader><leader>l <Plug>(easymotion-lineforward)
+nmap <leader><leader>h <Plug>(easymotion-linebackward)
+nmap <leader><leader>. <Plug>(easymotion-repeat)
+nmap <leader><leader>g <Plug>(easymotion-jumptoanywhere)
+" vmap f <Plug>(easymotion-prefix)
+" vmap ff <Plug>(easymotion-sn)
+" vmap fj <Plug>(easymotion-j)
+" vmap fk <Plug>(easymotion-k)
+" vmap fl <Plug>(easymotion-lineforward)
+" vmap fh <Plug>(easymotion-linebackward)
+" vmap f. <Plug>(easymotion-repeat)
+" vmap fg <Plug>(easymotion-jumptoanywhere)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+
+
+Plugin 'rhysd/clever-f.vim'
 " }}}
 
 " editor {{{
-
+" yanked text by highlighting.
+Plugin 'kana/vim-operator-user'
+Plugin 'haya14busa/vim-operator-flashy'
+map y <Plug>(operator-flashy)
+nmap Y <Plug>(operator-flashy)$
+let g:operator#flashy#flash_time =  2000
+let g:operator#flashy#group = IncSearch
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
 Plugin 'godlygeek/tabular'
@@ -970,7 +979,7 @@ Plugin 'exvim/ex-visincr'
 
 " searchcompl: invoke by /
 " ---------------------------------------------------
-Plugin 'exvim/ex-searchcompl'
+Plugin 'exvim/exsearchcompl'
 
 " vim-color-solarized
 " ---------------------------------------------------
