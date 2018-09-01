@@ -878,7 +878,7 @@ Plugin 'kana/vim-operator-user'
 Plugin 'haya14busa/vim-operator-flashy'
 map y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
-let g:operator#flashy#flash_time =  2000
+let g:operator#flashy#flash_time =  1000
 let g:operator#flashy#group = IncSearch
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
