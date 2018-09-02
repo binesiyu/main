@@ -257,29 +257,103 @@ nnoremap <leader>fr :CtrlPMRU<CR>
 nnoremap <leader>fl :CtrlPMRUFiles<CR>
 " }
 
-" ack {
-"ack
-"<Leader>c进行搜索，同时不自动打开第一个匹配的文件"
-Plugin 'mileszs/ack.vim'
-map <Leader>fc :Ack!<Space> 
-map <Leader>fg :Ack!<CR> 
-"调用rg进行搜索
-let g:ackprg = 'rg --vimgrep --hidden --no-heading'
-"调用ag进行搜索
-" if executable('ag')
-"   let g:ackprg = 'ag --vimgrep'
-" endif
-"高亮搜索关键词
-let g:ackhighlight = 0
-"修改快速预览窗口高度为15
-let g:ack_qhandler = "botright copen 15"
-"在QuickFix窗口使用快捷键以后，自动关闭QuickFix窗口
-let g:ack_autoclose = 1
-"使用ack的空白搜索，即不添加任何参数时对光标下的单词进行搜索，默认值为1，表示开启，置0以后使用空白搜索将返回错误信息
-let g:ack_use_cword_for_empty_search = 1
-"部分功能受限，但对于大项目搜索速度较慢时可以尝试开启
-"let g:ack_use_dispatch = 1
+" denite {
+let g:plug_denite = 1
+if exists('g:plug_denite')
+    " Plugin 'Shougo/denite.nvim',{ 'merged' : 0,'lazy' : 0}
+    Plugin 'Shougo/denite.nvim'
+    if !dein#check_install('denite.nvim')
+        " denite option
+        let s:denite_options = {
+                    \ 'default' : {
+                    \ 'winheight' : 10,
+                    \ 'mode' : 'normal',
+                    \ 'quit' : 'true',
+                    \ 'highlight_matched_char' : 'MoreMsg',
+                    \ 'highlight_matched_range' : 'MoreMsg',
+                    \ 'direction': 'rightbelow',
+                    \ 'statusline' : has('patch-7.4.1154') ? v:false : 0,
+                    \ 'prompt' : '➭',
+                    \ 'cursor_pos' : '$',
+                    \ }}
 
+        function! s:profile(opts) abort
+            for fname in keys(a:opts)
+                for dopt in keys(a:opts[fname])
+                    call denite#custom#option(fname, dopt, a:opts[fname][dopt])
+                endfor
+            endfor
+        endfunction
+
+        call s:profile(s:denite_options)
+
+        " buffer source
+        call denite#custom#var(
+                    \ 'buffer',
+                    \ 'date_format', '%m-%d-%Y %H:%M:%S')
+
+        " denite command
+        " For ripgrep
+        call denite#custom#var('file_rec', 'command',
+                    \ ['rg', '--hidden', '--files', '--glob', '!.git', '--glob', '']
+                    \ + Generate_ignore(g:vim_wildignore, 'rg')
+                    \ )
+
+        call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+        call denite#custom#var('file_rec/git', 'command',
+                    \ ['git', 'ls-files', '-co', '--exclude-standard'])
+        " Ripgrep command on grep source
+        call denite#custom#var('grep', 'command', ['rg'])
+        call denite#custom#var('grep', 'default_opts',
+                    \ ['--vimgrep', '--no-heading'])
+        call denite#custom#var('grep', 'recursive_opts', [])
+        call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+        call denite#custom#var('grep', 'separator', ['--'])
+        call denite#custom#var('grep', 'final_opts', [])
+        " KEY MAPPINGS
+        let s:insert_mode_mappings = [
+                    \  ['<C-J>', '<denite:move_to_next_line>', 'noremap'],
+                    \  ['<C-K>', '<denite:move_to_previous_line>', 'noremap'],
+                    \  ['<C-N>', '<denite:assign_next_matched_text>', 'noremap'],
+                    \  ['<C-P>', '<denite:assign_previous_matched_text>', 'noremap'],
+                    \  ['<Esc>', '<denite:enter_mode:normal>', 'noremap'],
+                    \  ['<Up>', '<denite:assign_previous_text>', 'noremap'],
+                    \  ['<Down>', '<denite:assign_next_text>', 'noremap'],
+                    \  ['<C-Y>', '<denite:redraw>', 'noremap'],
+                    \ ]
+
+        " \ ['<Tab>', '<denite:move_to_next_line>', 'noremap'],
+        " \ ['<S-tab>', '<denite:move_to_previous_line>', 'noremap'],
+        let s:normal_mode_mappings = [
+                    \   ["'", '<denite:toggle_select_down>', 'noremap'],
+                    \   ['<C-n>', '<denite:jump_to_next_source>', 'noremap'],
+                    \   ['<C-p>', '<denite:jump_to_previous_source>', 'noremap'],
+                    \   ['gg', '<denite:move_to_first_line>', 'noremap'],
+                    \   ['st', '<denite:do_action:tabopen>', 'noremap'],
+                    \   ['sg', '<denite:do_action:vsplit>', 'noremap'],
+                    \   ['sv', '<denite:do_action:split>', 'noremap'],
+                    \   ['q', '<denite:quit>', 'noremap'],
+                    \   ['r', '<denite:redraw>', 'noremap'],
+                    \   ['<Esc>', '<denite:quit>', 'noremap'],
+                    \ ]
+
+        for s:m in s:insert_mode_mappings
+            call denite#custom#map('insert', s:m[0], s:m[1], s:m[2])
+        endfor
+        for s:m in s:normal_mode_mappings
+            call denite#custom#map('normal', s:m[0], s:m[1], s:m[2])
+        endfor
+
+        unlet s:m s:insert_mode_mappings s:normal_mode_mappings
+
+
+        nnoremap <leader>fd :Denite file_rec<CR>
+        " nnoremap <leader>fb :Denite buffer<CR>
+        nnoremap <leader>fg :Denite grep<CR>
+        nnoremap <leader>fa :Denite grep<CR>
+        nnoremap <leader>fc :DeniteCursorWord grep<CR>
+    endif
+endif
 " }
 
 " nerdtree {

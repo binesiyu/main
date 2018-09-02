@@ -344,6 +344,30 @@ if exists('g:plug_ctrlp')
 endif
 " }
 
+" ack {
+"ack
+"<Leader>c进行搜索，同时不自动打开第一个匹配的文件"
+Plugin 'mileszs/ack.vim'
+map <Leader>fc :Ack!<Space> 
+map <Leader>fg :Ack!<CR> 
+"调用rg进行搜索
+let g:ackprg = 'rg --vimgrep --hidden --no-heading'
+"调用ag进行搜索
+" if executable('ag')
+"   let g:ackprg = 'ag --vimgrep'
+" endif
+"高亮搜索关键词
+let g:ackhighlight = 0
+"修改快速预览窗口高度为15
+let g:ack_qhandler = "botright copen 15"
+"在QuickFix窗口使用快捷键以后，自动关闭QuickFix窗口
+let g:ack_autoclose = 1
+"使用ack的空白搜索，即不添加任何参数时对光标下的单词进行搜索，默认值为1，表示开启，置0以后使用空白搜索将返回错误信息
+let g:ack_use_cword_for_empty_search = 1
+"部分功能受限，但对于大项目搜索速度较慢时可以尝试开启
+"let g:ack_use_dispatch = 1
+
+" }
 " denite {
 let g:plug_denite = 1
 if exists('g:plug_denite')
