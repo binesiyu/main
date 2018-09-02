@@ -73,7 +73,6 @@ let maplocalleader=mapleader
 
 " Bundle steup {
 
-" vundle#begin {{
 filetype off " required
 
 " set the runtime path to include Vundle
@@ -153,9 +152,9 @@ fu! Generate_ignore(ignore,tool, ...) abort
     endif
     return ignore
 endf
-"}}}
+"}
 
-" ui {{{
+" ui {
 Plugin 'mhinz/vim-startify'
 let g:startify_custom_header = [
         \ '',
@@ -224,9 +223,9 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['nerdtree','help', 'man', 'startify', 'vimfiler']
-" }}}
+" }
 
-" incsearch {{{
+" incsearch {
 " let g:plug_incsearch = 1
 if exists('g:plug_incsearch')
     Plugin 'haya14busa/incsearch.vim'
@@ -260,9 +259,9 @@ if exists('g:plug_incsearch')
     noremap <silent><expr> <leader>/ incsearch#go(<SID>config_easyfuzzymotion())
 endif
 
-" }}}
+" }
 
-" textobj {{{
+" textobj {
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-indent'
 Plugin 'kana/vim-textobj-entire'
@@ -296,11 +295,10 @@ augroup END
 Plugin 'gcmt/wildfire.vim'
 let g:wildfire_objects = {
             \ "*" : ["i'", 'i"', "i)", "if", "i]", "i}", "ip"],
-            \ "html,xml" : ["at"],
-            \ }
-" }}}
+            \ "html,xml" : ["at"]}
+" }
 
-" ctrlp {{{
+" ctrlp {
 let g:plug_ctrlp = 1
 if exists('g:plug_ctrlp')
     " ctrlp: invoke by <ctrl-p>
@@ -344,9 +342,9 @@ if exists('g:plug_ctrlp')
     nnoremap <leader>fl :CtrlPMRUFiles<CR>
     " nnoremap <leader>fa :Ack<CR>
 endif
-" }}}
+" }
 
-" denite {{{
+" denite {
 let g:plug_denite = 1
 if exists('g:plug_denite')
     " Plugin 'Shougo/denite.nvim',{ 'merged' : 0,'lazy' : 0}
@@ -443,9 +441,9 @@ if exists('g:plug_denite')
         nnoremap <leader>fc :DeniteCursorWord grep<CR>
     endif
 endif
-" }}}
+" }
 
-" unite {{{
+" unite {
 let g:plug_unite = 1
 if exists('g:plug_unite')
     " Plugin  'Shougo/unite.vim',{ 'merged' : 0 }
@@ -612,9 +610,9 @@ if exists('g:plug_unite')
     endfunction
     Plugin 'Shougo/vimfiler.vim',{'on_cmd' : ['VimFiler', 'VimFilerBufferDir'],'hook_source' : function('Vimfiler_init'), 'on_path': '.*'}
 endif
-" }}}
+" }
 
-" nerdtree {{{
+" nerdtree {
 " ---------------------------------------------------
 let g:plug_nerdtree = 1
 if exists('g:plug_nerdtree')
@@ -630,9 +628,9 @@ if exists('g:plug_nerdtree')
     map <leader>nn <plug>NERDTreeTabsToggle<CR>
     " map <F2> <plug>NERDTreeTabsToggle<CR>
 endif
-" }}}
+" }
 
-" vim-markdown {{{
+" vim-markdown {
 Plugin 'plasticboy/vim-markdown'
 Plugin 'iamcco/markdown-preview.vim'
 if OSX()
@@ -641,9 +639,9 @@ endif
 let g:mkdp_auto_close=1
 " nmap <F7> <Plug>MarkdownPreview
 " nmap <F8> <Plug>StopMarkdownPreview
-" }}}
+" }
 
-" lint {{{
+" lint {
 " syntastic: invoke when you save file and have syntac-checker
 " ---------------------------------------------------
 " let g:syntastic = 1
@@ -695,9 +693,9 @@ nnoremap <silent> <leader>ee :lnext<CR>
 nnoremap <silent> <leader>en :lnext<CR>
 nnoremap <silent> <leader>ep :lprevious<CR>
 nnoremap <silent> <leader>eN :lNext<CR>
-" }}}
+" }
 
-" autocomplete {{{
+" autocomplete {
 if !has('nvim')
 let g:plug_neocomplete = 1
 endif
@@ -911,9 +909,9 @@ Plugin 'Shougo/neco-syntax',          { 'on_event' : 'InsertEnter'}
 Plugin 'Shougo/neopairs.vim',         { 'on_event' : 'InsertEnter'}
 Plugin 'Raimondi/delimitMate'
 " Plugin 'tenfyzhong/CompleteParameter.vim',  {'merged': 0}
-" }}}
+" }
 
-" snippet {{{
+" snippet {
 " choose a snippet plugin
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
@@ -946,17 +944,24 @@ function! SuperTab() abort
         return "\<tab>"
     endif
 endfunction
-imap <expr><TAB> SuperTab()
-smap <expr><TAB> SuperTab()
+imap <silent><expr><TAB> SuperTab()
+smap <silent><expr><TAB> SuperTab()
+
+function! SuperTab_Shift() abort
+    return pumvisible() ? "\<C-p>" : "\<Plug>delimitMateS-Tab"
+endfunction
+imap <silent><expr><S-TAB> SuperTab_Shift()
+smap <silent><expr><S-TAB> SuperTab_Shift()
+
 " imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " \ "\<Plug>(neosnippet_expand_or_jump)"
 " \: pumvisible() ? "\<C-n>" : "\<TAB>"
 " smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " \ "\<Plug>(neosnippet_expand_or_jump)"
 " \: "\<TAB>"
-" }}}
+" }
 
-" vim-easymotion {{{
+" vim-easymotion {
 " vim-easymotion: invoke by <leader><leader> w,b,e,ge,f,F,h,i,j,k,/
 Plugin 'binesiyu/vim-easymotion'
 nmap <leader><leader> <Plug>(easymotion-prefix)
@@ -977,11 +982,10 @@ nmap <leader><leader>g <Plug>(easymotion-jumptoanywhere)
 " vmap fg <Plug>(easymotion-jumptoanywhere)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
-
 Plugin 'rhysd/clever-f.vim'
-" }}}
+" }
 
-" editor {{{
+" editor {
 " yanked text by highlighting.
 " Plugin 'kana/vim-operator-user'
 " Plugin 'haya14busa/vim-operator-flashy'
@@ -1095,9 +1099,9 @@ Plugin 'exvim/exsearchcompl'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'morhetz/gruvbox'
 let g:gruvbox_italic = get(g:, 'gruvbox_italic', 0)
-" }}}
+" }
 
-" lua {{{
+" lua {
 " Plugin 'xolox/vim-misc'  " required by lua.vim
 " Plugin 'xolox/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
 Plugin 'binesiyu/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
@@ -1107,9 +1111,9 @@ let g:lua_define_omnifunc = 0
 let g:lua_define_completion_mappings = 0
 let lua_version = 5
 let lua_subversion = 1
-" }}}
+" }
 
-" debugger {{{
+" debugger {
 " Plugin 'binesiyu/vdebug',{'merged': 0}
 " let g:vdebug_options= {
 "             \    "port" : 9000,
@@ -1129,9 +1133,9 @@ let lua_subversion = 1
 "             \    "marker_open_tree" : "▾"
 "             \}
 
-" }}}
+" }
 
-" git {{{
+" git {
 " Plugin 'tpope/vim-abolish.git'
 Plugin 'junegunn/gv.vim',{ 'on_cmd' : ['GV']}
 Plugin 'airblade/vim-gitgutter'
@@ -1153,9 +1157,9 @@ nnoremap <silent> <leader>gA :Gina add .<CR>
 nnoremap <silent> <leader>gb :Gina blame<CR>
 nnoremap <silent> <leader>gV :GV!<CR>
 nnoremap <silent> <leader>gv :GV<CR>
-" }}}
+" }
 
-" vim-airline {{{
+" vim-airline {
 " ---------------------------------------------------
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -1179,29 +1183,10 @@ if exists('g:syntastic')
 else
     let g:airline_section_warning = airline#section#create(['neomake'])
 endif
-" }}}
+" }
 
-" buffer {{{
-Plugin 'moll/vim-bbye'
-Plugin 'vim-scripts/BufOnly.vim'
-nnoremap <Leader>bd :Bdelete<CR>
-" nnoremap <F4> :Bdelete<CR>
-" nnoremap <F5> :edit ++ff=dos<CR>
 
-Plugin 'binesiyu/vim-tweak'
-
-nnoremap <expr> <Leader>b1 tweak#wtb_switch#key_leader_bufnum(1)
-nnoremap <expr> <Leader>b2 tweak#wtb_switch#key_leader_bufnum(2)
-nnoremap <expr> <Leader>b3 tweak#wtb_switch#key_leader_bufnum(3)
-nnoremap <expr> <Leader>b4 tweak#wtb_switch#key_leader_bufnum(4)
-nnoremap <expr> <Leader>b5 tweak#wtb_switch#key_leader_bufnum(5)
-nnoremap <expr> <Leader>b6 tweak#wtb_switch#key_leader_bufnum(6)
-nnoremap <expr> <Leader>b7 tweak#wtb_switch#key_leader_bufnum(7)
-nnoremap <expr> <Leader>b8 tweak#wtb_switch#key_leader_bufnum(8)
-nnoremap <expr> <Leader>b9 tweak#wtb_switch#key_leader_bufnum(9)
-" }}}
-
-" exvim {{{
+" exvim {
 Plugin 'binesiyu/exvim'
 
 " ex-config:
@@ -1260,9 +1245,9 @@ let g:ex_symbol_select_cmd = 'TS'
 " ---------------------------------------------------
 " call exqfix#register_hotkey( 100, 0, '<leader>qf', ":EXQFixToggle<CR>", 'Toggle quickfix window.' )
 " call exqfix#register_hotkey( 101, 0, '<leader>qq', ":EXQFixPaste<CR>", 'Open quickfix window and paste error list from register *.' )
-" }}}
+" }
 
-" haskell {{{
+" haskell {
 Plugin 'dag/vim2hs'
 let g:haskell_conceal = 0
 let g:haskell_conceal_enumerations = 0
@@ -1344,9 +1329,9 @@ nnoremap <silent> <leader>nc :HoogleClose<CR>
 " endif
 " let g:lua_define_omnifunc = 0
 
-" }}}
+" }
 
-" util {{{
+" util {
 Plugin 'hsanson/vim-winmode'
 nmap <leader>ww <Plug>WinModeStart
 let g:win_mode_default ='resize'
@@ -1354,7 +1339,27 @@ let g:win_mode_default ='resize'
 Plugin 'binesiyu/vim-quick-community'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
-" }}}
+" }
+
+" buffer {
+Plugin 'moll/vim-bbye'
+Plugin 'vim-scripts/BufOnly.vim'
+nnoremap <Leader>bd :Bdelete<CR>
+" nnoremap <F4> :Bdelete<CR>
+" nnoremap <F5> :edit ++ff=dos<CR>
+
+Plugin 'binesiyu/vim-tweak'
+
+nnoremap <expr> <Leader>b1 tweak#wtb_switch#key_leader_bufnum(1)
+nnoremap <expr> <Leader>b2 tweak#wtb_switch#key_leader_bufnum(2)
+nnoremap <expr> <Leader>b3 tweak#wtb_switch#key_leader_bufnum(3)
+nnoremap <expr> <Leader>b4 tweak#wtb_switch#key_leader_bufnum(4)
+nnoremap <expr> <Leader>b5 tweak#wtb_switch#key_leader_bufnum(5)
+nnoremap <expr> <Leader>b6 tweak#wtb_switch#key_leader_bufnum(6)
+nnoremap <expr> <Leader>b7 tweak#wtb_switch#key_leader_bufnum(7)
+nnoremap <expr> <Leader>b8 tweak#wtb_switch#key_leader_bufnum(8)
+nnoremap <expr> <Leader>b9 tweak#wtb_switch#key_leader_bufnum(9)
+" }
 
 call dein#end()
 " call dein#save_state()
@@ -1878,17 +1883,12 @@ nnoremap <leader>ws :call StripTrailingWhitespace()<CR>
 function! ExpandFilenameAndExecute(command, file)
     execute a:command . " " . expand(a:file, ":p")
 endfunction
- 
+
 function! EditVimrc13Config()
     call ExpandFilenameAndExecute("tabedit", "$HOME/.vimrc")
-    call ExpandFilenameAndExecute("vsplit", "$HOME/.vimrc.local")
-    call ExpandFilenameAndExecute("split", "$HOME/.vimrc.plugins")
-    wincmd l
-    call ExpandFilenameAndExecute("split", "$HOME/.vimrc.plugins.local")
- 
     execute bufwinnr(".vimrc") . "wincmd w"
 endfunction
- 
+
 let g:edit_config_mapping='<leader>ve'
 let g:apply_config_mapping='<leader>vr'
 execute "noremap " . g:edit_config_mapping " :call EditVimrc13Config()<CR>"
