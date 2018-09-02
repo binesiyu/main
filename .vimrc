@@ -276,7 +276,7 @@ let g:ctrlsf_case_sensitive = 'yes'
 " 默认搜索路径, 设置为project则从本文件的工程目录搜索
 let g:ctrlsf_default_root = 'project+wf'
 " 工程目录的顶级文件夹
-" let g:ctrlsf_ignore_dir = ['.exvim', '.git', '.hg', '.svn', '.bzr', '_darcs']
+let g:ctrlsf_ignore_dir = ['.exvim', '.git', '.hg', '.svn', '.bzr', '_darcs']
 " let g:ctrlsf_vcs_folder = ['.exvim', '.git', '.hg', '.svn', '.bzr', '_darcs']
 " make result windows compact
 let g:ctrlsf_indent = 2
@@ -289,7 +289,7 @@ let g:ctrlsf_auto_focus = {
             \ "duration_less_than": 1000
             \ }
 " 高亮匹配行: o->打开的目标文件;p->预览文件
-let g:ctrlsf_selected_line_hl = 'op'
+" let g:ctrlsf_selected_line_hl = 'op'
 let g:ctrlsf_mapping = {
             \ "next": "n",
             \ "prev": "N",
