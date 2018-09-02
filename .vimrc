@@ -217,7 +217,8 @@ let g:wildfire_objects = {
 
 " ctrlp {
 " ctrlp: invoke by <ctrl-p>
-Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'jasoncodes/ctrlp-modified.vim'
 let g:ctrlp_working_path_mode = ''
@@ -257,103 +258,51 @@ nnoremap <leader>fr :CtrlPMRU<CR>
 nnoremap <leader>fl :CtrlPMRUFiles<CR>
 " }
 
-" denite {
-let g:plug_denite = 1
-if exists('g:plug_denite')
-    " Plugin 'Shougo/denite.nvim',{ 'merged' : 0,'lazy' : 0}
-    Plugin 'Shougo/denite.nvim'
-    if !dein#check_install('denite.nvim')
-        " denite option
-        let s:denite_options = {
-                    \ 'default' : {
-                    \ 'winheight' : 10,
-                    \ 'mode' : 'normal',
-                    \ 'quit' : 'true',
-                    \ 'highlight_matched_char' : 'MoreMsg',
-                    \ 'highlight_matched_range' : 'MoreMsg',
-                    \ 'direction': 'rightbelow',
-                    \ 'statusline' : has('patch-7.4.1154') ? v:false : 0,
-                    \ 'prompt' : '➭',
-                    \ 'cursor_pos' : '$',
-                    \ }}
-
-        function! s:profile(opts) abort
-            for fname in keys(a:opts)
-                for dopt in keys(a:opts[fname])
-                    call denite#custom#option(fname, dopt, a:opts[fname][dopt])
-                endfor
-            endfor
-        endfunction
-
-        call s:profile(s:denite_options)
-
-        " buffer source
-        call denite#custom#var(
-                    \ 'buffer',
-                    \ 'date_format', '%m-%d-%Y %H:%M:%S')
-
-        " denite command
-        " For ripgrep
-        call denite#custom#var('file_rec', 'command',
-                    \ ['rg', '--hidden', '--files', '--glob', '!.git', '--glob', '']
-                    \ + Generate_ignore(g:vim_wildignore, 'rg')
-                    \ )
-
-        call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-        call denite#custom#var('file_rec/git', 'command',
-                    \ ['git', 'ls-files', '-co', '--exclude-standard'])
-        " Ripgrep command on grep source
-        call denite#custom#var('grep', 'command', ['rg'])
-        call denite#custom#var('grep', 'default_opts',
-                    \ ['--vimgrep', '--no-heading'])
-        call denite#custom#var('grep', 'recursive_opts', [])
-        call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-        call denite#custom#var('grep', 'separator', ['--'])
-        call denite#custom#var('grep', 'final_opts', [])
-        " KEY MAPPINGS
-        let s:insert_mode_mappings = [
-                    \  ['<C-J>', '<denite:move_to_next_line>', 'noremap'],
-                    \  ['<C-K>', '<denite:move_to_previous_line>', 'noremap'],
-                    \  ['<C-N>', '<denite:assign_next_matched_text>', 'noremap'],
-                    \  ['<C-P>', '<denite:assign_previous_matched_text>', 'noremap'],
-                    \  ['<Esc>', '<denite:enter_mode:normal>', 'noremap'],
-                    \  ['<Up>', '<denite:assign_previous_text>', 'noremap'],
-                    \  ['<Down>', '<denite:assign_next_text>', 'noremap'],
-                    \  ['<C-Y>', '<denite:redraw>', 'noremap'],
-                    \ ]
-
-        " \ ['<Tab>', '<denite:move_to_next_line>', 'noremap'],
-        " \ ['<S-tab>', '<denite:move_to_previous_line>', 'noremap'],
-        let s:normal_mode_mappings = [
-                    \   ["'", '<denite:toggle_select_down>', 'noremap'],
-                    \   ['<C-n>', '<denite:jump_to_next_source>', 'noremap'],
-                    \   ['<C-p>', '<denite:jump_to_previous_source>', 'noremap'],
-                    \   ['gg', '<denite:move_to_first_line>', 'noremap'],
-                    \   ['st', '<denite:do_action:tabopen>', 'noremap'],
-                    \   ['sg', '<denite:do_action:vsplit>', 'noremap'],
-                    \   ['sv', '<denite:do_action:split>', 'noremap'],
-                    \   ['q', '<denite:quit>', 'noremap'],
-                    \   ['r', '<denite:redraw>', 'noremap'],
-                    \   ['<Esc>', '<denite:quit>', 'noremap'],
-                    \ ]
-
-        for s:m in s:insert_mode_mappings
-            call denite#custom#map('insert', s:m[0], s:m[1], s:m[2])
-        endfor
-        for s:m in s:normal_mode_mappings
-            call denite#custom#map('normal', s:m[0], s:m[1], s:m[2])
-        endfor
-
-        unlet s:m s:insert_mode_mappings s:normal_mode_mappings
-
-
-        nnoremap <leader>fd :Denite file_rec<CR>
-        " nnoremap <leader>fb :Denite buffer<CR>
-        nnoremap <leader>fg :Denite grep<CR>
-        nnoremap <leader>fa :Denite grep<CR>
-        nnoremap <leader>fc :DeniteCursorWord grep<CR>
-    endif
-endif
+"ctrlsf {
+Plugin 'dyng/ctrlsf.vim',{'on': 'CtrlSF'}
+"---------------------------------------------------------------------
+" 设置CtrlSF使用的搜索工具,默认使用ag,如果没有ag,则考虑使用ack
+let g:ctrlsf_ackprg = 'rg'
+" if !executable(g:ctrlsf_ackprg)
+"     let g:ctrlsf_ackprg = 'ag'
+" endif
+" 窗口大小
+let g:ctrlsf_winsize='30%'
+" 是否在ctrlsf搜索结果打开其他窗口时,关闭搜索结果窗口
+let g:ctrlsf_auto_close = 0
+let g:ctrlsf_position = 'bottom'
+" 大小写敏感
+let g:ctrlsf_case_sensitive = 'yes'
+" 默认搜索路径, 设置为project则从本文件的工程目录搜索
+let g:ctrlsf_default_root = 'project+wf'
+" 工程目录的顶级文件夹
+" let g:ctrlsf_ignore_dir = ['.exvim', '.git', '.hg', '.svn', '.bzr', '_darcs']
+" let g:ctrlsf_vcs_folder = ['.exvim', '.git', '.hg', '.svn', '.bzr', '_darcs']
+" make result windows compact
+let g:ctrlsf_indent = 2
+" width or height
+" 显示的上下文函数
+let g:ctrlsf_context = '-B 0 -A 0'
+let g:ctrlsf_search_mode = 'async'
+let g:ctrlsf_auto_focus = {
+            \ "at" : "start",
+            \ "duration_less_than": 1000
+            \ }
+" 高亮匹配行: o->打开的目标文件;p->预览文件
+let g:ctrlsf_selected_line_hl = 'op'
+let g:ctrlsf_mapping = {
+            \ "next": "n",
+            \ "prev": "N",
+            \ "quit": "<Esc>",
+            \ }
+nmap <Leader>st :CtrlSFToggle<CR>
+nmap <Leader>ss :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>sg :CtrlSF<Space>
+nmap <Leader>si :CtrlSF -I <Space>
+nmap <Leader>sr :CtrlSF -R <Space>
+nmap <Leader>sn <Plug>CtrlSFCwordPath
+nmap <Leader>sc <Plug>CtrlSFCwordExec
+nmap <Leader>sp <Plug>CtrlSFPwordExec
 " }
 
 " nerdtree {
@@ -604,7 +553,7 @@ let g:showmarks_hlline_upper = 0
 
 " searchcompl: invoke by /
 " ---------------------------------------------------
-Plugin 'exvim/exsearchcompl'
+Plugin 'exvim/searchcompl'
 
 " vim-color-solarized
 " ---------------------------------------------------
