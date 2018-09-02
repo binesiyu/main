@@ -741,7 +741,6 @@ call dein#end()
 " call dein#save_state()
 " endif
 
-" vundle#end }}
 filetype plugin indent on " required
 syntax on " required
 " }
