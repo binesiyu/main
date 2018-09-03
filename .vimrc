@@ -129,6 +129,10 @@ Plugin 'binesiyu/vim-textobj-function-syntax'
 
 Plugin 'gcmt/wildfire.vim'
 
+" incsearch
+Plugin 'vim-scripts/ingo-library'
+Plugin 'vim-scripts/SearchHighlighting'
+
 " ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
@@ -880,6 +884,12 @@ smap <silent><expr><S-TAB> SuperTab_Shift()
 " }
 
 " editor {
+
+let g:SearchHighlighting_NoJump = 0
+let g:SearchHighlighting_ExtendStandardCommands = 1
+nmap <Leader>*  <Plug>SearchHighlightingGStar
+nmap <Leader>g* <Plug>SearchHighlightingStar
+vmap <Leader>*  <Plug>SearchHighlightingGStar
 
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
