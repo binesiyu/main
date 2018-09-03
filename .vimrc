@@ -676,7 +676,7 @@ let g:ctrlsf_ackprg = 'rg'
 "     let g:ctrlsf_ackprg = 'ag'
 " endif
 " 窗口大小
-let g:ctrlsf_winsize='30%'
+let g:ctrlsf_winsize='15'
 " 是否在ctrlsf搜索结果打开其他窗口时,关闭搜索结果窗口
 let g:ctrlsf_auto_close = 0
 let g:ctrlsf_position = 'bottom'
@@ -696,6 +696,9 @@ let g:ctrlsf_search_mode = 'async'
 let g:ctrlsf_auto_focus = {
             \ "at" : "start",
             \ "duration_less_than": 1000
+            \ }
+let g:ctrlsf_extra_backend_args = {
+            \ 'rg': '--vimgrep --hidden'
             \ }
 " 高亮匹配行: o->打开的目标文件;p->预览文件
 " let g:ctrlsf_selected_line_hl = 'op'
