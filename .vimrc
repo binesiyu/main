@@ -644,6 +644,7 @@ let g:ctrlp_custom_ignore = {
             \ 'file':  '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 let g:ctrlp_reuse_window = 'exproject\|nerdtree\|netrw\|help\|quickfix'
 let g:ctrlp_by_filename = 1
+let g:user_command_async = 1
 let g:ctrlp_switch_buffer = ''
 " CtrlP extensions
 let g:ctrlp_extensions = ['funky']
@@ -683,6 +684,7 @@ let g:ctrlsf_ackprg = 'rg'
 "     let g:ctrlsf_ackprg = 'ag'
 " endif
 " 窗口大小
+" let g:ctrlsf_debug_mode = 1
 let g:ctrlsf_winsize='15'
 " 是否在ctrlsf搜索结果打开其他窗口时,关闭搜索结果窗口
 let g:ctrlsf_auto_close = 0
