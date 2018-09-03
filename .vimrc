@@ -137,6 +137,7 @@ Plugin 'vim-scripts/SearchHighlighting'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'jasoncodes/ctrlp-modified.vim'
+Plugin 'FelikZ/ctrlp-py-matcher'
 
 "ctrlsf
 Plugin 'dyng/ctrlsf.vim',{'on': 'CtrlSF'}
@@ -653,6 +654,8 @@ if !exists('g:ctrlp_user_command')
     let g:ctrlp_user_command = 'rg %s --no-ignore --hidden --files -g "" '
                 \ . join(Generate_ignore(g:vim_wildignore,'rg',1))
 endif
+
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 let g:ctrlp_prompt_mappings = {
 \ 'ToggleRegex()':        ['<c-q>'],
