@@ -212,7 +212,7 @@ Plugin 'eagletmt/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'nbouscal/vim-stylish-haskell'
 
-Plugin 'hsanson/vim-winmode'
+Plugin 'binesiyu/vim-winmode'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 Plugin 'moll/vim-bbye'
@@ -685,7 +685,11 @@ let g:ctrlsf_ackprg = 'rg'
 " endif
 " 窗口大小
 " let g:ctrlsf_debug_mode = 1
-let g:ctrlsf_winsize='15'
+if OSX()
+    let g:ctrlsf_winsize='20%'
+else
+    let g:ctrlsf_winsize='10'
+endif
 " 是否在ctrlsf搜索结果打开其他窗口时,关闭搜索结果窗口
 let g:ctrlsf_auto_close = 0
 let g:ctrlsf_position = 'bottom'
@@ -703,8 +707,8 @@ let g:ctrlsf_indent = 2
 let g:ctrlsf_context = '-B 0 -A 0'
 let g:ctrlsf_search_mode = 'async'
 let g:ctrlsf_auto_focus = {
-            \ "at" : "start",
-            \ "duration_less_than": 1000
+            \ "at" : "done",
+            \ "duration_less_than": 2000
             \ }
 let g:ctrlsf_extra_backend_args = {
             \ 'rg': '--vimgrep --hidden'
@@ -712,9 +716,10 @@ let g:ctrlsf_extra_backend_args = {
 " 高亮匹配行: o->打开的目标文件;p->预览文件
 " let g:ctrlsf_selected_line_hl = 'op'
 let g:ctrlsf_mapping = {
+            \ "open": { "key": "<CR>", "suffix": "<C-w>p" },
             \ "next": "<C-n>",
             \ "prev": "<C-p>",
-            \ "quit": "<Esc>",
+            \ "quit": ["q","<Esc>"],
             \ }
 nmap <Leader>st :CtrlSFToggle<CR>
 nmap <Leader>ss :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
