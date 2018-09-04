@@ -348,8 +348,8 @@ endif
 "ack
 "<Leader>c进行搜索，同时不自动打开第一个匹配的文件"
 Plugin 'mileszs/ack.vim'
-map <Leader>fc :Ack!<Space> 
-map <Leader>fg :Ack!<CR> 
+map <Leader>fc :Ack!<Space>
+map <Leader>fg :Ack!<CR>
 "调用rg进行搜索
 let g:ackprg = 'rg --vimgrep --hidden --no-heading'
 "调用ag进行搜索
@@ -946,6 +946,22 @@ let g:neosnippet#snippets_directory='~/.vim/snippets'
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+function! CleverEnter() abort
+    if pumvisible()
+        if neosnippet#expandable()
+            return "\<plug>(neosnippet_expand)"
+        else
+            return "\<c-y>"
+        endif
+    elseif getline('.')[col('.') - 2]==#'{'&&getline('.')[col('.')-1]==#'}'
+        return "\<Enter>\<esc>ko"
+    else
+        return "\<Enter>"
+    endif
+endfunction
+imap <expr> <CR> CleverEnter()
+smap <expr> <CR> CleverEnter()
 
 " SuperTab like snippets behavior.
 function! SuperTab() abort

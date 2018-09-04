@@ -99,6 +99,8 @@ com! -nargs=* -bang -complete=custom,vundle#scripts#complete PluginUpdate
 com! -nargs=* -bang -complete=custom,vundle#scripts#complete PluginReCache
 \ call dein#recache_runtimepath()
 
+source $VIMRUNTIME/macros/matchit.vim
+
 if dein#load_state(g:ex_dein_path)
 call dein#begin(g:ex_dein_path)
 " call dein#add('Shougo/dein.vim')
@@ -107,8 +109,7 @@ Plugin 'Shougo/dein.vim'
 " man.vim: invoked by :Man {name}
 " source $VIMRUNTIME/ftplugin/man.vim
 " matchit
-" source $VIMRUNTIME/macros/matchit.vim
-Plugin 'andymass/vim-matchup'
+" Plugin 'andymass/vim-matchup'
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -659,7 +660,9 @@ if !exists('g:ctrlp_user_command')
                 \ . join(Generate_ignore(g:vim_wildignore,'rg',1))
 endif
 
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+if !exists('g:ctrlp_match_func') && (has('python') || has('python3'))
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch'  }
+endif
 
 let g:ctrlp_prompt_mappings = {
 \ 'ToggleRegex()':        ['<c-q>'],
@@ -867,27 +870,18 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/snippets'
 
-" SuperTab like snippets behavior.
-function! SuperTab() abort
-    if getline('.')[col('.')-2] ==# '{'&& pumvisible()
-        return "\<C-n>"
-    endif
-    if neosnippet#expandable() && getline('.')[col('.')-2] ==# '(' && !pumvisible()
-        return "\<Plug>(neosnippet_expand)"
-    elseif neosnippet#jumpable()
-                \ && getline('.')[col('.')-2] ==# '(' && !pumvisible()
-                \ && !neosnippet#expandable()
-        return "\<plug>(neosnippet_jump)"
-    elseif neosnippet#expandable_or_jumpable() && getline('.')[col('.')-2] !=#'('
-        return "\<plug>(neosnippet_expand_or_jump)"
+function! CleverTab()
+    if neosnippet#expandable_or_jumpable()
+        return "\<Plug>(neosnippet_expand_or_jump)"
     elseif pumvisible()
         return "\<C-n>"
     else
-        return "\<tab>"
+        return neocomplete#start_manual_complete()
     endif
 endfunction
-imap <silent><expr><TAB> SuperTab()
-smap <silent><expr><TAB> SuperTab()
+
+imap <expr> <Tab> CleverTab()
+smap <expr> <Tab> CleverTab()
 
 function! SuperTab_Shift() abort
     return pumvisible() ? "\<C-p>" : "\<Plug>delimitMateS-Tab"
