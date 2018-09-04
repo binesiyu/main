@@ -531,6 +531,7 @@ noremap <Down> gj
 nmap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 nmap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
 nnoremap <leader>ff :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+nnoremap <leader>fc :GSW <C-R>*<CR>
 
 map <F1> :echo<CR>
 imap <F1> <C-o>:echo<CR>
@@ -1114,7 +1115,7 @@ let g:ex_gsearch_ignore_case = 0
 call exgsearch#register_hotkey( 100, 0, '<leader>gs', ":EXGSearchToggle<CR>", 'Toggle global search window.' )
 call exgsearch#register_hotkey( 101, 0, '<leader>gg', ":EXGSearchCWord<CR>", 'Search current word.' )
 call exgsearch#register_hotkey( 102, 0, '<leader><S-f>', ":GSW ", 'Shortcut for :GSW' )
-call exgsearch#register_hotkey( 102, 0, '<leader>gf', ":GSW <C-R>*<CR> ", 'Shortcut for :GSW' )
+call exgsearch#register_hotkey( 102, 0, '<leader>gf', ":GSW <C-R>*<CR>", 'Shortcut for :GSW' )
 
 " ex-tagselect
 " ---------------------------------------------------
