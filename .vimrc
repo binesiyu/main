@@ -646,7 +646,8 @@ let g:ctrlp_custom_ignore = {
             \ 'file':  '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 let g:ctrlp_reuse_window = 'exproject\|nerdtree\|netrw\|help\|quickfix'
 let g:ctrlp_by_filename = 1
-let g:user_command_async = 1
+let g:ctrlp_match_current_file = 1
+" let g:ctrlp_user_command_async = 1
 let g:ctrlp_switch_buffer = ''
 " CtrlP extensions
 let g:ctrlp_extensions = ['funky']
