@@ -164,6 +164,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
 
+" vim-easymotion
+Plugin 'binesiyu/vim-easymotion'
 Plugin 'rhysd/clever-f.vim'
 
 " tabular: invoke by <leader>= alignment-character
@@ -894,6 +896,23 @@ smap <silent><expr><S-TAB> SuperTab_Shift()
 " }
 
 " editor {
+nmap <leader><leader> <Plug>(easymotion-prefix)
+nmap <leader><leader>f <Plug>(easymotion-sn)
+nmap <leader><leader>j <Plug>(easymotion-j)
+nmap <leader><leader>k <Plug>(easymotion-k)
+nmap <leader><leader>l <Plug>(easymotion-lineforward)
+nmap <leader><leader>h <Plug>(easymotion-linebackward)
+nmap <leader><leader>. <Plug>(easymotion-repeat)
+nmap <leader><leader>g <Plug>(easymotion-jumptoanywhere)
+vmap <leader><leader> <Plug>(easymotion-prefix)
+vmap <leader><leader>f <Plug>(easymotion-sn)
+vmap <leader><leader>j <Plug>(easymotion-j)
+vmap <leader><leader>k <Plug>(easymotion-k)
+vmap <leader><leader>l <Plug>(easymotion-lineforward)
+vmap <leader><leader>h <Plug>(easymotion-linebackward)
+vmap <leader><leader>. <Plug>(easymotion-repeat)
+vmap <leader><leader>g <Plug>(easymotion-jumptoanywhere)
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 let g:SearchHighlighting_NoJump = 0
 let g:SearchHighlighting_ExtendStandardCommands = 1
