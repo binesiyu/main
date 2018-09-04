@@ -1204,10 +1204,9 @@ function! EditVimrc13Config()
     execute bufwinnr(".vimrc") . "wincmd w"
 endfunction
 
-let g:edit_config_mapping='<leader>ve'
-let g:apply_config_mapping='<leader>vr'
-execute "noremap " . g:edit_config_mapping " :call EditVimrc13Config()<CR>"
-execute "noremap " . g:apply_config_mapping . " :source $HOME/.vimrc<CR>"
+noremap <Leader>ve :call EditVimrc13Config()<CR>
+noremap <Leader>vr :source $HOME/.vimrc<CR>
+noremap <Leader>vn :NeoSnippetEdit<CR>
 " }
 
 " Code folding options {
