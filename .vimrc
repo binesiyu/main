@@ -304,59 +304,6 @@ augroup CursorLine
 augroup END
 " }}
 
-" set default guifont {{
-if !LINUX()
-if has('gui_running')
-    if has("mac") || has("gui_macvim")
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
-        set guifontwide=YaHei\ Consolas\ Hybrid:h12
-    else
-        augroup ex_gui_font
-            " check and determine the gui font after GUIEnter.
-            " NOTE: getfontname function only works after GUIEnter.
-            au!
-            au GUIEnter * call s:set_gui_font()
-        augroup END
-
-        " set guifont
-        function! s:set_gui_font()
-            if has('gui_gtk2')
-                if getfontname( 'DejaVu Sans Mono for Powerline' ) != ''
-                    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
-                elseif getfontname( 'DejaVu Sans Mono' ) != ''
-                    set guifont=DejaVu\ Sans\ Mono\ 12
-                else
-                    set guifont=Luxi\ Mono\ 12
-                endif
-            elseif has('x11')
-                " Also for GTK 1
-                set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
-            elseif OSX()
-                if getfontname( 'DejaVu Sans Mono for Powerline' ) != ''
-                    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
-                elseif getfontname( 'DejaVu Sans Mono' ) != ''
-                    set guifont=DejaVu\ Sans\ Mono:h12
-                endif
-                if getfontname( 'YaHei Consolas Hybrid' ) != ''
-                    set guifontwide=YaHei\ Consolas\ Hybrid:h12
-                endif
-            elseif WINDOWS()
-                if getfontname( 'DejaVu Sans Mono for Powerline' ) != ''
-                    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI:qDRAFT
-                elseif getfontname( 'DejaVu Sans Mono' ) != ''
-                    set guifont=DejaVu\ Sans\ Mono:h11:cANSI
-                elseif getfontname( 'Consolas' ) != ''
-                    set guifont=Consolas:h11:cANSI " this is the default visual studio font
-                else
-                    set guifont=Lucida_Console:h11:cANSI
-                endif
-            endif
-        endfunction
-    end
-endif
-endif
-" }}
-
 " Vim UI {{
 
 set wildmenu " turn on wild menu, try typing :h and press <Tab>
@@ -388,6 +335,15 @@ if has('gui_running')
     set guioptions-=b           " Remove the
     set guioptions-=r           " Remove the
     set gcr=a:block-blinkon0    "noblock"
+
+    " set guifont
+    if OSX()
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
+    elseif WINDOWS()
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI:qDRAFT
+    else
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+    endif
 endif
 " }}
 
@@ -411,7 +367,6 @@ set ve=block " in visual block mode, cursor can be positioned where there is no 
 
 " set Number format to null(default is octal) , when press CTRL-A on number
 " like 007, it would not become 010
-set nf=
 " }}
 
 " Fold text {{
@@ -436,8 +391,10 @@ set grepformat=%f:%l:%m
 " window op {{
 set splitbelow
 set splitright
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+set listchars=tab:›\ ,trail:•,extends:↷,precedes:↶,nbsp:. " Highlight problematic whitespace
 set noerrorbells visualbell t_vb=
+set fillchars=vert:│,fold:·
+set nrformats-=octal
 "}}
 " }
 
@@ -518,9 +475,28 @@ map <Leader>cd :cd %:p:h<CR>:pwd<CR>
 map <Leader>p ]p
 map <Leader>P ]P
 
+" Select blocks after indenting
+xnoremap < <gv
+xnoremap > >gv|
+
+" Use tab for indenting in visual mode
+xnoremap <Tab> >gv|
+xnoremap <S-Tab> <gv
+nnoremap > >>_
+nnoremap < <<_
 " enhance '<' '>' , do not need to reselect the block after shift it.
 vnoremap < <gv
 vnoremap > >gv
+
+" Improve scroll, credits: https://github.com/Shougo
+nnoremap <expr> zz (winline() == (winheight(0)+1) / 2) ?
+            \ 'zt' : (winline() == &scrolloff + 1) ? 'zb' : 'zz'
+noremap <expr> <C-f> max([winheight(0) - 2, 1])
+            \ ."\<C-d>".(line('w$') >= line('$') ? "L" : "H")
+noremap <expr> <C-b> max([winheight(0) - 2, 1])
+            \ ."\<C-u>".(line('w0') <= 1 ? "H" : "L")
+noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
+noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
 
 " map Up & Down to gj & gk, helpful for wrap text edit
 noremap <Up> gk
@@ -545,6 +521,16 @@ nmap <F11> :set cursorline!<BAR>set nocursorline?<CR>
 nmap <F12> :set cursorcolumn!<BAR>set nocursorcolumn?<CR>
 nmap <Space> 4<C-e>
 nmap <S-Space> 4<C-y>
+
+" Navigation in command line
+cnoremap <C-a> <Home>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+
+" Fast saving
+nnoremap <C-s> :<C-u>w<CR>
+vnoremap <C-s> :<C-u>w<CR>
+cnoremap <C-s> <C-u>w<CR>
 "}
 
 " plug-config  {
@@ -1137,7 +1123,6 @@ highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
 "highlight clear CursorLineNr    " Remove highlight color from current line number
 hi VertSplit ctermbg=NONE guibg=NONE
-set fillchars+=vert:│
 " }
 
 " register / {
