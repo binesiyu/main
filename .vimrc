@@ -495,8 +495,8 @@ noremap <expr> <C-f> max([winheight(0) - 2, 1])
             \ ."\<C-d>".(line('w$') >= line('$') ? "L" : "H")
 noremap <expr> <C-b> max([winheight(0) - 2, 1])
             \ ."\<C-u>".(line('w0') <= 1 ? "H" : "L")
-noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "3\<C-e>")
-noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "3\<C-y>")
+noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "4\<C-e>")
+noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "4\<C-y>")
 
 " map Up & Down to gj & gk, helpful for wrap text edit
 noremap <Up> gk
@@ -519,8 +519,8 @@ nmap <F4> :set relativenumber!<BAR>set relativenumber?<CR>
 nnoremap <F8> :let @/=""<CR>
 nmap <F11> :set cursorline!<BAR>set nocursorline?<CR>
 nmap <F12> :set cursorcolumn!<BAR>set nocursorcolumn?<CR>
-nmap <Space> 4<C-e>
-nmap <S-Space> 4<C-y>
+nmap <Space> <C-e>
+nmap <S-Space> <C-y>
 
 " Navigation in command line
 cnoremap <C-a> <Home>
