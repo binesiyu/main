@@ -508,7 +508,7 @@ nmap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<C
 nmap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
 nnoremap <leader>ff :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
-map <F1> :echo<CR>
+noremap! <F1> <Esc>
 imap <F1> <C-o>:echo<CR>
 nmap <F2> :set wrap!<BAR>set wrap?<CR>
 nnoremap <F3> :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
@@ -530,6 +530,22 @@ cnoremap <C-f> <Right>
 nnoremap <C-s> :<C-u>w<CR>
 vnoremap <C-s> :<C-u>w<CR>
 cnoremap <C-s> <C-u>w<CR>
+" Move a line of text using ALT+[jk] or Command+[jk] on mac
+nnoremap <silent><M-j> :m .+1<CR>==
+nnoremap <silent><M-k> :m .-2<CR>==
+inoremap <silent><M-j> <Esc>:m .+1<CR>==gi
+inoremap <silent><M-k> <Esc>:m .-2<CR>==gi
+vnoremap <silent><M-j> :m '>+1<CR>gv=gv
+vnoremap <silent><M-k> :m '<-2<CR>gv=gv
+
+if has("mac") || has("macunix")
+  nmap <D-j> <M-j>
+  nmap <D-k> <M-k>
+  imap <D-j> <M-j>
+  imap <D-k> <M-k>
+  vmap <D-j> <M-j>
+  vmap <D-k> <M-k>
+endi
 "}
 
 " plug-config  {
