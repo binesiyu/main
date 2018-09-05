@@ -507,7 +507,6 @@ noremap <Down> gj
 nmap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 nmap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
 nnoremap <leader>ff :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-nnoremap <leader>fc :GSW <C-R>*<CR>
 
 map <F1> :echo<CR>
 imap <F1> <C-o>:echo<CR>
@@ -661,7 +660,7 @@ let g:ctrlp_prompt_mappings = {
 " let g:ctrlp_cmd = 'CtrlPBuffer'
 "funky
 nnoremap <Leader>fm :CtrlPModified<CR>
-nnoremap <Leader>fg :CtrlPBranch<CR>
+" nnoremap <Leader>fg :CtrlPBranch<CR>
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <leader>fb :CtrlPBuffer<CR>
 " nnoremap <leader>ff :CtrlP<CR>
@@ -670,6 +669,9 @@ nnoremap <leader>fl :CtrlPMRUFiles<CR>
 
 nnoremap <Leader>fc :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
+nnoremap <Leader>fg :let g:ctrlp_default_input = "<C-R>*" \|
+    \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
+
 " }
 
 "ctrlsf {
@@ -719,7 +721,8 @@ let g:ctrlsf_mapping = {
             \ }
 nmap <Leader>st :CtrlSFToggle<CR>
 nmap <Leader>ss :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader>sg :CtrlSF<Space>
+nmap <Leader>sf :CtrlSF<Space>
+nmap <Leader>sg :CtrlSF <C-R>* <Space>
 nmap <Leader>si :CtrlSF -I <Space>
 nmap <Leader>sr :CtrlSF -R <Space>
 nmap <Leader>sn <Plug>CtrlSFCwordPath
