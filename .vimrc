@@ -545,7 +545,12 @@ if has("mac") || has("macunix")
   imap <D-k> <M-k>
   vmap <D-j> <M-j>
   vmap <D-k> <M-k>
-endi
+endif
+" Swap implementations of ` and ' jump to markers
+" By default, ' jumps to the marked line, ` jumps to the marked line and
+" column, so swap them
+nnoremap ' `
+nnoremap ` '
 "}
 
 " plug-config  {
