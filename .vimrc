@@ -869,7 +869,8 @@ function! CleverTab()
     elseif pumvisible()
         return "\<C-n>"
     else
-        return neocomplete#start_manual_complete()
+        " return neocomplete#start_manual_complete()
+        return "\<Tab>"
     endif
 endfunction
 
