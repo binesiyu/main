@@ -667,6 +667,9 @@ nnoremap <leader>fb :CtrlPBuffer<CR>
 " nnoremap <leader>ff :CtrlP<CR>
 nnoremap <leader>fr :CtrlPMRU<CR>
 nnoremap <leader>fl :CtrlPMRUFiles<CR>
+
+nnoremap <Leader>fc :let g:ctrlp_default_input = expand('<cword>') \|
+    \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 " }
 
 "ctrlsf {
