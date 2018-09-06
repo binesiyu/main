@@ -87,30 +87,21 @@ else
 endif
 
 " Plugin Commands
-com! -nargs=+  -bar   Plugin
-\ call dein#add(<args>)
+com! -nargs=+  -bar   Plugin call dein#add(<args>)
 " PluginInstall
-com! -nargs=* -bang -complete=custom,vundle#scripts#complete PluginInstall
-\ call dein#install()
+com! -nargs=* -bang  PluginInstall call dein#install()
 " PluginUpdate
-com! -nargs=* -bang -complete=custom,vundle#scripts#complete PluginUpdate
-\ call dein#update()
+com! -nargs=* -bang  PluginUpdate call dein#update()
 " PluginReCache
-com! -nargs=* -bang -complete=custom,vundle#scripts#complete PluginReCache
-\ call dein#recache_runtimepath()
+com! -nargs=* -bang  PluginReCache call dein#recache_runtimepath()
 
+" matchit
 source $VIMRUNTIME/macros/matchit.vim
 
 if dein#load_state(g:ex_dein_path)
 call dein#begin(g:ex_dein_path)
 " call dein#add('Shougo/dein.vim')
 Plugin 'Shougo/dein.vim'
-
-" man.vim: invoked by :Man {name}
-" source $VIMRUNTIME/ftplugin/man.vim
-" matchit
-" Plugin 'andymass/vim-matchup'
-
 Plugin 'Shougo/vimproc'
 
 " ui
@@ -455,7 +446,8 @@ noremap <Down> gj
 " and ask which one to jump to
 nmap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 nmap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
-nnoremap <leader>ff :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+nnoremap <leader>j :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+nnoremap <leader>n *
 
 noremap! <F1> <Esc>
 imap <F1> <C-o>:echo<CR>
@@ -576,6 +568,7 @@ let g:startify_skiplist = [
       \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
       \ ]
 
+let g:indent_guides_default_mapping = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
@@ -626,13 +619,13 @@ let g:ctrlp_prompt_mappings = {
 "funky
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <leader>fb :CtrlPBuffer<CR>
-" nnoremap <leader>ff :CtrlP<CR>
-nnoremap <leader>fr :CtrlPMRU<CR>
+nnoremap <leader>fm :CtrlPMRU<CR>
 nnoremap <leader>fl :CtrlPMRUFiles<CR>
-
-nnoremap <Leader>fc :let g:ctrlp_default_input = expand('<cword>') \|
+nnoremap <Leader>o :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
-nnoremap <Leader>fg :let g:ctrlp_default_input = "<C-R>*" \|
+nnoremap <Leader>ff :let g:ctrlp_default_input = expand('<cword>') \|
+    \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
+nnoremap <Leader>fr :let g:ctrlp_default_input = "<C-R>*" \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 
 " }
@@ -680,6 +673,7 @@ let g:ctrlsf_mapping = {
             \ }
 nmap <Leader>st :CtrlSFToggle<CR>
 nmap <Leader>ss :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>k :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
 nmap <Leader>sf :CtrlSF<Space>
 nmap <Leader>sg :CtrlSF <C-R>* <Space>
 nmap <Leader>si :CtrlSF -I <Space>
@@ -703,7 +697,7 @@ let g:NERDRemoveExtraSpaces = 1
 let g:NERDCustomDelimiters = {
             \ 'vimentry': { 'left': '--' },
             \ }
-map <leader>nn <plug>NERDTreeTabsToggle<CR>
+map <leader>x <plug>NERDTreeTabsToggle<CR>
 " }
 
 " vim-markdown {
@@ -941,6 +935,7 @@ let lua_subversion = 1
 " }
 " git {
 
+let g:gitgutter_map_keys = 0
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 let g:gitgutter_max_signs = 10000
@@ -1004,24 +999,24 @@ autocmd FileType haskell setlocal commentstring=--\ %s
 autocmd FileType haskell setlocal nospell
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " Type of expression under cursor
-nmap <silent> <leader>nt :GhcModType<CR>
-nmap <silent> <leader>nr :GhcModTypeClear<CR>
+nmap <silent> <leader>ht :GhcModType<CR>
+nmap <silent> <leader>hr :GhcModTypeClear<CR>
 " Insert type of expression under cursor
-nmap <silent> <leader>nT :GhcModTypeInsert<CR>
+nmap <silent> <leader>hT :GhcModTypeInsert<CR>
 " Hoogle the word under the cursor
-nnoremap <silent> <leader>nh :Hoogle<CR>
+nnoremap <silent> <leader>hh :Hoogle<CR>
 
 " Hoogle and prompt for input
-nnoremap <leader>nH :Hoogle
+nnoremap <leader>hH :Hoogle
 
 " Hoogle for detailed documentation (e.g. "Functor")
-nnoremap <silent> <leader>ni :HoogleInfo<CR>
+nnoremap <silent> <leader>hi :HoogleInfo<CR>
 
 " Hoogle for detailed documentation and prompt for input
-nnoremap <leader>nI :HoogleInfo
+nnoremap <leader>hI :HoogleInfo
 
 " Hoogle, close the Hoogle window
-nnoremap <silent> <leader>nc :HoogleClose<CR>
+nnoremap <silent> <leader>hc :HoogleClose<CR>
 " if !executable("ghcmod")
     " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
 " endif
@@ -1046,8 +1041,9 @@ nnoremap <Leader>bd :Bdelete<CR>
 let g:ex_gsearch_ignore_case = 0
 call exgsearch#register_hotkey( 100, 0, '<leader>gs', ":EXGSearchToggle<CR>", 'Toggle global search window.' )
 call exgsearch#register_hotkey( 101, 0, '<leader>gg', ":EXGSearchCWord<CR>", 'Search current word.' )
-call exgsearch#register_hotkey( 102, 0, '<leader><S-f>', ":GSW ", 'Shortcut for :GSW' )
-call exgsearch#register_hotkey( 102, 0, '<leader>gf', ":GSW <C-R>*<CR>", 'Shortcut for :GSW' )
+call exgsearch#register_hotkey( 102, 0, '<leader>l', ":EXGSearchCWord<CR>", 'Search current word.' )
+call exgsearch#register_hotkey( 103, 0, '<leader><S-f>', ":GSW ", 'Shortcut for :GSW' )
+call exgsearch#register_hotkey( 104, 0, '<leader>gf', ":GSW <C-R>*<CR>", 'Shortcut for :GSW' )
 
 " ex-tagselect
 " ---------------------------------------------------
