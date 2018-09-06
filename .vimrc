@@ -163,15 +163,6 @@ Plugin 'iamcco/markdown-preview.vim'
 Plugin 'binesiyu/vim-quick-community'
 Plugin 'binesiyu/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
 Plugin 'tbastos/vim-lua'
-" haskell
-Plugin 'dag/vim2hs'
-" Plugin 'Twinside/vim-haskellConceal'
-Plugin 'Twinside/vim-haskellFold'
-Plugin 'Twinside/vim-hoogle'
-Plugin 'lukerandall/haskellmode-vim'
-Plugin 'eagletmt/neco-ghc'
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'nbouscal/vim-stylish-haskell'
 
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
@@ -184,7 +175,6 @@ Plugin 'mbbill/undotree'
 " incsearch
 Plugin 'vim-scripts/ingo-library'
 Plugin 'vim-scripts/SearchHighlighting'
-Plugin 'exvim/searchcompl'
 
 Plugin 'binesiyu/vim-winmode'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -446,7 +436,7 @@ noremap <Down> gj
 " and ask which one to jump to
 nmap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 nmap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
-nnoremap <leader>j :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+nnoremap <leader>h :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 nnoremap <leader>n *
 
 noremap! <F1> <Esc>
@@ -621,8 +611,10 @@ nnoremap <leader>fb :CtrlPBuffer<CR>
 nnoremap <leader>fm :CtrlPMRU<CR>
 nnoremap <leader>fl :CtrlPMRUFiles<CR>
 nnoremap <Leader>v :CtrlPFunky<Cr>
+nnoremap <leader>i :CtrlPBuffer<CR>
 nnoremap <leader>d :CtrlPBuffer<CR>
-nnoremap <Leader>o :let g:ctrlp_default_input = expand('<cword>') \|
+nnoremap <leader>o :CtrlP<CR>
+nnoremap <Leader>j :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 nnoremap <Leader>ff :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
@@ -960,69 +952,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_section_c = '%t'
 let g:airline_section_y = 'B:%{bufnr("%")} W:%{winnr()}'
 let g:airline_section_warning = airline#section#create(['neomake'])
-" }
-
-" haskell {
-let g:haskell_conceal = 0
-let g:haskell_conceal_enumerations = 0
-let g:haskell_tabular = 0
-
-" unicode display
-
-" hoogle
-let g:haskellmode_completion_ghc=0
-let g:haskellmode_completion_haddock=0
-let g:ghc_symbolcache=1
-if OSX()
-    let g:haddock_browser="Chrome.app"
-    let g:haddock_docdir='~/.stack/programs/x86_64-osx/ghc-8.2.2/share/doc/ghc-8.2.2/html'
-elseif WINDOWS()
-    let g:haddock_browser="firefox.exe"
-    let g:haddock_docdir='C:/Users/Administrator/AppData/Local/Programs/stack/i386-windows/ghc-8.0.2/doc/html'
-    let g:ghc='C:/Users/Administrator/AppData/Local/Programs/stack/i386-windows/ghc-8.0.2/bin/ghc.exe'
-else
-    let g:haddock_browser="firefox.exe"
-    let g:haddock_docdir='~/.stack/programs/x86_64-linux/ghc-ncurses6-8.0.2/share/doc/ghc-8.0.0/html'
-endif
-
-" ghc-mode
-
-" stylish
-" Use stylish haskell instead of par for haskell buffers
-autocmd FileType haskell let &formatprg="stylish-haskell"
-autocmd FileType haskell compiler ghc
-
-" haskell repl
-
-" Workaround vim-commentary for Haskell
-autocmd FileType haskell setlocal commentstring=--\ %s
-" Workaround broken colour highlighting in Haskell
-autocmd FileType haskell setlocal nospell
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-" Type of expression under cursor
-nmap <silent> <leader>ht :GhcModType<CR>
-nmap <silent> <leader>hr :GhcModTypeClear<CR>
-" Insert type of expression under cursor
-nmap <silent> <leader>hT :GhcModTypeInsert<CR>
-" Hoogle the word under the cursor
-nnoremap <silent> <leader>hh :Hoogle<CR>
-
-" Hoogle and prompt for input
-nnoremap <leader>hH :Hoogle
-
-" Hoogle for detailed documentation (e.g. "Functor")
-nnoremap <silent> <leader>hi :HoogleInfo<CR>
-
-" Hoogle for detailed documentation and prompt for input
-nnoremap <leader>hI :HoogleInfo
-
-" Hoogle, close the Hoogle window
-nnoremap <silent> <leader>hc :HoogleClose<CR>
-" if !executable("ghcmod")
-    " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
-" endif
-" let g:lua_define_omnifunc = 0
-
 " }
 
 " util {
