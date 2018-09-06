@@ -111,8 +111,6 @@ Plugin 'Shougo/dein.vim'
 " matchit
 " Plugin 'andymass/vim-matchup'
 
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
 Plugin 'Shougo/vimproc'
 
 " ui
@@ -136,7 +134,6 @@ Plugin 'scrooloose/nerdcommenter'
 " ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'jasoncodes/ctrlp-modified.vim'
 Plugin 'binesiyu/ctrlp-py-matcher'
 "ctrlsf
 Plugin 'dyng/ctrlsf.vim',{'on': 'CtrlSF'}
@@ -167,7 +164,6 @@ Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
 
 " vim-airline
 Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 
 " vim-markdown
 Plugin 'plasticboy/vim-markdown'
@@ -217,28 +213,10 @@ syntax on " required
 " }
 
 " Default colorscheme setup {
-
-if has('gui_running')
-    set background=dark
-else
-    set background=dark
-    " set t_Co=256 " make sure our terminal use 256 color
-    if OSX()
-        let g:solarized_termcolors = 16
-    else
-
-        let g:solarized_termcolors = 16
-        " let g:solarized_termcolors = 256
-    endif
-    " let g:solarized_termtrans=1
-endif
+set background=dark
 " colorscheme Monokai-binesiyu
-if WINDOWS()
-    colorscheme gruvbox
-else
-    colorscheme gruvbox
-    " colorscheme solarized
-endif
+colorscheme gruvbox
+" colorscheme solarized
 " }
 
 " General {
@@ -261,7 +239,6 @@ set maxmempattern=1000 " enlarge maxmempattern from 1000 to ... (2000000 will gi
 " }}
 
 " xterm settings {{
-
 behave xterm  " set mouse behavior as xterm
 if &term =~ 'xterm'
     set mouse=a
@@ -269,11 +246,6 @@ endif
 " }}
 
 " Variable settings ( set all ) {{
-
-" ------------------------------------------------------------------
-" Desc: Visual
-" ------------------------------------------------------------------
-
 set matchtime=0 " 0 second to show the matching paren ( much faster )
 set nu " show line number
 set rnu " show line number
@@ -289,7 +261,6 @@ augroup END
 " }}
 
 " Vim UI {{
-
 set wildmenu " turn on wild menu, try typing :h and press <Tab>
 set showcmd " display incomplete commands
 set cmdheight=1 " 1 screen lines to use for the command-line
@@ -331,9 +302,7 @@ if has('gui_running')
 endif
 " }}
 
-
 " Text edit {{
-
 set showfulltag " show tag with function protype.
 set ai " autoindent
 set si " smartindent
@@ -354,13 +323,11 @@ set ve=block " in visual block mode, cursor can be positioned where there is no 
 " }}
 
 " Fold text {{
-
 set foldmethod=marker foldmarker={,} foldlevel=9999
 set diffopt=filler,context:9999
 " }}
 
 " Search {{
-
 set showmatch " show matching paren
 set incsearch " do incremental searching
 set hlsearch " highlight search terms
@@ -380,14 +347,21 @@ set noerrorbells visualbell t_vb=
 set fillchars=vert:│,fold:·
 set nrformats-=octal
 "}}
+
+" clipboard {{
+set splitbelow
+" define the copy/paste judged by clipboard
+if has('clipboard')
+    if has('unnamedplus')  " When possible use + register for copy-paste
+        set clipboard=unnamedplus
+    else         " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+    endif
+endif
+"}}
 " }
 
 " Auto Command {
-
-" ------------------------------------------------------------------
-" Desc: Only do this part when compiled with support for autocommands.
-" ------------------------------------------------------------------
-
 if has('autocmd')
     augroup ex
         au!
@@ -405,12 +379,11 @@ if has('autocmd')
         " Desc: file types
         " ------------------------------------------------------------------
 
-        au FileType text setlocal textwidth=78 " for all text files set 'textwidth' to 78 characters.
+        au FileType text setlocal textwidth=80 " for all text files set 'textwidth' to 78 characters.
         au FileType c,cpp,cs,swig set nomodeline " this will avoid bug in my project with namespace ex, the vim will tree ex:: as modeline.
 
         " disable auto-comment for c/cpp, lua, javascript, c# and vim-script
         au FileType c,cpp,java,javascript set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f://
-        au FileType cs set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f:///,f://
         au FileType vim set comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",f:\"
     augroup END
 endif
@@ -422,21 +395,13 @@ endif
 " map Q gq
 map Q =
 
-" define the copy/paste judged by clipboard
-if has('clipboard')
-    if has('unnamedplus')  " When possible use + register for copy-paste
-        set clipboard=unnamedplus
-    else         " On mac and Windows, use * register for copy-paste
-        set clipboard=unnamed
-    endif
-endif
-
-
 " change ; to :
 noremap ; :
 vnoremap ; :
+" Swap implementations of ` and ' jump to markers
+nnoremap ' `
+nnoremap ` '
 
-cnoremap w!! %!sudo tee > /dev/null %
 " copy folder path to clipboard, foo/bar/foobar.c => foo/bar/
 nnoremap <silent> <leader>y1 :let @*=fnamemodify(bufname('%'),":p:h")<CR>
 
@@ -495,7 +460,7 @@ nnoremap <leader>ff :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 noremap! <F1> <Esc>
 imap <F1> <C-o>:echo<CR>
 nmap <F2> :set wrap!<BAR>set wrap?<CR>
-nnoremap <F3> :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+" nnoremap <F3> :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 " nmap <F4> :set ignorecase!<BAR>set ignorecase?<CR>
 nmap <F4> :set relativenumber!<BAR>set relativenumber?<CR>
 " F8 or <leader>/:  Set Search pattern highlight on/off
@@ -509,32 +474,28 @@ nmap <S-Space> <C-y>
 cnoremap <C-a> <Home>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
+cnoremap w!! %!sudo tee > /dev/null %
 
 " Fast saving
 nnoremap <C-s> :<C-u>w<CR>
 vnoremap <C-s> :<C-u>w<CR>
 cnoremap <C-s> <C-u>w<CR>
-" Move a line of text using ALT+[jk] or Command+[jk] on mac
-nnoremap <silent><M-j> :m .+1<CR>==
-nnoremap <silent><M-k> :m .-2<CR>==
-inoremap <silent><M-j> <Esc>:m .+1<CR>==gi
-inoremap <silent><M-k> <Esc>:m .-2<CR>==gi
-vnoremap <silent><M-j> :m '>+1<CR>gv=gv
-vnoremap <silent><M-k> :m '<-2<CR>gv=gv
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  imap <D-j> <M-j>
-  imap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
+if OSX()
+    " Move a line of text using ALT+[jk] or Command+[jk] on mac
+    nnoremap <silent><M-j> :m .+1<CR>==
+    nnoremap <silent><M-k> :m .-2<CR>==
+    inoremap <silent><M-j> <Esc>:m .+1<CR>==gi
+    inoremap <silent><M-k> <Esc>:m .-2<CR>==gi
+    vnoremap <silent><M-j> :m '>+1<CR>gv=gv
+    vnoremap <silent><M-k> :m '<-2<CR>gv=gv
+else
+    nnoremap <silent><D-j> :m .+1<CR>==
+    nnoremap <silent><D-k> :m .-2<CR>==
+    inoremap <silent><D-j> <Esc>:m .+1<CR>==gi
+    inoremap <silent><D-k> <Esc>:m .-2<CR>==gi
+    vnoremap <silent><D-j> :m '>+1<CR>gv=gv
+    vnoremap <silent><D-k> :m '<-2<CR>gv=gv
 endif
-" Swap implementations of ` and ' jump to markers
-" By default, ' jumps to the marked line, ` jumps to the marked line and
-" column, so swap them
-nnoremap ' `
-nnoremap ` '
 "}
 
 " plug-config  {
@@ -613,7 +574,6 @@ let g:startify_change_to_dir = 0
 let g:startify_skiplist = [
       \ 'COMMIT_EDITMSG',
       \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
-      \ 'bundle/.*/doc',
       \ ]
 
 let g:indent_guides_start_level = 2
@@ -664,8 +624,6 @@ let g:ctrlp_prompt_mappings = {
 \ }
 " let g:ctrlp_cmd = 'CtrlPBuffer'
 "funky
-nnoremap <Leader>fm :CtrlPModified<CR>
-" nnoremap <Leader>fg :CtrlPBranch<CR>
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <leader>fb :CtrlPBuffer<CR>
 " nnoremap <leader>ff :CtrlP<CR>
@@ -683,11 +641,8 @@ nnoremap <Leader>fg :let g:ctrlp_default_input = "<C-R>*" \|
 "---------------------------------------------------------------------
 " 设置CtrlSF使用的搜索工具,默认使用ag,如果没有ag,则考虑使用ack
 let g:ctrlsf_ackprg = 'rg'
-" if !executable(g:ctrlsf_ackprg)
-"     let g:ctrlsf_ackprg = 'ag'
-" endif
-" 窗口大小
 " let g:ctrlsf_debug_mode = 1
+" 窗口大小
 if OSX()
     let g:ctrlsf_winsize='20%'
 else
@@ -702,7 +657,6 @@ let g:ctrlsf_case_sensitive = 'yes'
 let g:ctrlsf_default_root = 'project+wf'
 " 工程目录的顶级文件夹
 let g:ctrlsf_ignore_dir = ['.exvim', '.git', '.hg', '.svn', '.bzr', '_darcs']
-" let g:ctrlsf_vcs_folder = ['.exvim', '.git', '.hg', '.svn', '.bzr', '_darcs']
 " make result windows compact
 let g:ctrlsf_indent = 2
 " width or height
@@ -750,9 +704,6 @@ let g:NERDCustomDelimiters = {
             \ 'vimentry': { 'left': '--' },
             \ }
 map <leader>nn <plug>NERDTreeTabsToggle<CR>
-" map <F2> <plug>NERDTreeTabsToggle<CR>
-map <F11> <Plug>NERDCommenterAlignBoth
-map <C-F11> <Plug>NERDCommenterUncomment
 " }
 
 " vim-markdown {
@@ -782,7 +733,6 @@ let g:neomake_info_sign = get(g:, 'neomake_info_sign', {
             \ 'text': '🛈',
             \ })
 nnoremap <silent> <leader>el :lopen<CR>
-
 nnoremap <silent> <leader>ec :lclose<CR>
 nnoremap <silent> <leader>ee :lnext<CR>
 nnoremap <silent> <leader>en :lnext<CR>
@@ -805,8 +755,6 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions',
     \ 'lua' : $HOME.'/.vim/bundle/vim-quick-community/key-dict'
         \ }
 " Define keyword.
@@ -836,9 +784,6 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
@@ -869,13 +814,19 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 let g:neosnippet#snippets_directory='~/.vim/snippets'
 
 function! CleverTab()
-    if neosnippet#expandable_or_jumpable()
-        return "\<Plug>(neosnippet_expand_or_jump)"
-    elseif pumvisible()
-        return "\<C-n>"
-    else
-        " return neocomplete#start_manual_complete()
+    let substr = strpart(getline('.'), 0, col('.') - 1)
+    let substr = matchstr(substr, '[^ \t]*$')
+    if strlen(substr) == 0
+        " nothing to match on empty string
         return "\<Tab>"
+    else
+        if neosnippet#expandable_or_jumpable()
+            return "\<Plug>(neosnippet_expand_or_jump)"
+        elseif pumvisible()
+            return "\<C-n>"
+        else
+            return neocomplete#start_manual_complete()
+        endif
     endif
 endfunction
 
@@ -1003,25 +954,16 @@ nnoremap <silent> <leader>gv :GV<CR>
 " vim-airline {
 " ---------------------------------------------------
 
-if has('gui_running')
-    let g:airline_powerline_fonts = 1
-else
-    let g:airline_powerline_fonts = 1
-endif
-
+let g:airline_powerline_fonts = 1
 " let g:airline_theme = 'powerlineish'
-let g:airline#extensions#tabline#enabled = 1 " NOTE: When you open lots of buffers and typing text, it is so slow.
+let g:airline#extensions#tabline#enabled = 1 " When you open lots of buffers and typing text, it is so slow.
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_section_b = "%{fnamemodify(bufname('%'),':p:.:h').'/'}"
 " let g:airline_section_c = '%t'
 let g:airline_section_y = 'B:%{bufnr("%")} W:%{winnr()}'
-if exists('g:syntastic')
-    let g:airline_section_warning = airline#section#create(['syntastic'])
-else
-    let g:airline_section_warning = airline#section#create(['neomake'])
-endif
+let g:airline_section_warning = airline#section#create(['neomake'])
 " }
 
 " haskell {
@@ -1095,18 +1037,6 @@ let g:win_mode_default ='resize'
 
 " buffer {
 nnoremap <Leader>bd :Bdelete<CR>
-" nnoremap <F4> :Bdelete<CR>
-" nnoremap <F5> :edit ++ff=dos<CR>
-
-nnoremap <expr> <Leader>b1 tweak#wtb_switch#key_leader_bufnum(1)
-nnoremap <expr> <Leader>b2 tweak#wtb_switch#key_leader_bufnum(2)
-nnoremap <expr> <Leader>b3 tweak#wtb_switch#key_leader_bufnum(3)
-nnoremap <expr> <Leader>b4 tweak#wtb_switch#key_leader_bufnum(4)
-nnoremap <expr> <Leader>b5 tweak#wtb_switch#key_leader_bufnum(5)
-nnoremap <expr> <Leader>b6 tweak#wtb_switch#key_leader_bufnum(6)
-nnoremap <expr> <Leader>b7 tweak#wtb_switch#key_leader_bufnum(7)
-nnoremap <expr> <Leader>b8 tweak#wtb_switch#key_leader_bufnum(8)
-nnoremap <expr> <Leader>b9 tweak#wtb_switch#key_leader_bufnum(9)
 " }
 
 " exvim {
@@ -1208,15 +1138,6 @@ noremap <Leader>vn :NeoSnippetEdit<CR>
 
 " Code folding options {
 nmap <leader>f0 :set foldlevel=0<CR>
-nmap <leader>f1 :set foldlevel=1<CR>
-nmap <leader>f2 :set foldlevel=2<CR>
-nmap <leader>f3 :set foldlevel=3<CR>
-nmap <leader>f4 :set foldlevel=4<CR>
-nmap <leader>f5 :set foldlevel=5<CR>
-nmap <leader>f6 :set foldlevel=6<CR>
-nmap <leader>f7 :set foldlevel=7<CR>
-nmap <leader>f8 :set foldlevel=8<CR>
-nmap <leader>f9 :set foldlevel=9<CR>
 " }
 
 " nav {
@@ -1230,30 +1151,19 @@ nnoremap <leader>tn  :tabnew<CR>
 nnoremap <leader>tc  :tabclose<CR>
 nnoremap <leader>tm  :tabm<Space>
 nnoremap <leader>td  :tabclose<CR>
-nnoremap <leader>t1  1gt
-nnoremap <leader>t2  2gt
-nnoremap <leader>t3  3gt
-nnoremap <leader>t4  4gt
-nnoremap <leader>t5  5gt
-nnoremap <leader>t6  6gt
-nnoremap <leader>t7  7gt
-nnoremap <leader>t8  8gt
-nnoremap <leader>t9  9gt
-
 " Alternatively use
 "nnoremap <leader>th :tabnext<CR>
 "nnoremap <leader>tl :tabprev<CR>
 "nnoremap <leader>tn :tabnew<CR>
 
-nnoremap <leader>1  1<C-W>W
-nnoremap <leader>2  2<C-W>W
-nnoremap <leader>3  3<C-W>W
-nnoremap <leader>4  4<C-W>W
-nnoremap <leader>5  5<C-W>W
-nnoremap <leader>6  6<C-W>W
-nnoremap <leader>7  7<C-W>W
-nnoremap <leader>8  8<C-W>W
-nnoremap <leader>9  9<C-W>W
+for i in range(1,9)
+    let s:str = i . ' ' . i
+    exec 'nnoremap <leader>t'. s:str .'gt'
+    exec 'nnoremap <leader>'. s:str .' <C-W>W'
+    exec 'nnoremap <expr> <Leader>b'. i . ' tweak#wtb_switch#key_leader_bufnum(' . i . ')'
+    exec 'nmap <leader>f' . i  . ' :set foldlevel=' . i . '<CR>'
+endfor
+
 " }
 
 " vim:ts=4:sw=4:sts=4 et fdm=marker:
