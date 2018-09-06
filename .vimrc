@@ -156,9 +156,6 @@ Plugin 'neomake/neomake'
 
 " autocomplete
 Plugin 'Shougo/neocomplete'
-" completesource
-Plugin 'Shougo/neco-syntax',          { 'on_event' : 'InsertEnter'}
-Plugin 'Shougo/neopairs.vim',         { 'on_event' : 'InsertEnter'}
 Plugin 'Raimondi/delimitMate'
 
 " snippet
@@ -180,9 +177,6 @@ Plugin 'exvim/ex-showmarks'
 Plugin 'exvim/searchcompl'
 Plugin 'scrooloose/nerdcommenter'
 " Plugin 'tpope/vim-commentary'
-
-Plugin 'Konfekt/FastFold'
-Plugin 'Konfekt/FoldText'
 
 " undotree: invoke by <Leader>u
 Plugin 'mbbill/undotree'
