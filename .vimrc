@@ -129,27 +129,23 @@ Plugin 'kana/vim-textobj-function'
 Plugin 'binesiyu/vim-textobj-function-syntax'
 
 Plugin 'gcmt/wildfire.vim'
-
-" incsearch
-Plugin 'vim-scripts/ingo-library'
-Plugin 'vim-scripts/SearchHighlighting'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'scrooloose/nerdcommenter'
 
 " ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'jasoncodes/ctrlp-modified.vim'
 Plugin 'binesiyu/ctrlp-py-matcher'
-
 "ctrlsf
 Plugin 'dyng/ctrlsf.vim',{'on': 'CtrlSF'}
-
 " nerdtree
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
-
-" vim-markdown
-Plugin 'plasticboy/vim-markdown'
-Plugin 'iamcco/markdown-preview.vim'
+" vim-easymotion
+Plugin 'binesiyu/vim-easymotion'
+Plugin 'rhysd/clever-f.vim'
 
 " lint
 Plugin 'neomake/neomake'
@@ -157,38 +153,12 @@ Plugin 'neomake/neomake'
 " autocomplete
 Plugin 'Shougo/neocomplete'
 Plugin 'Raimondi/delimitMate'
-
 " snippet
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
 
-" vim-easymotion
-Plugin 'binesiyu/vim-easymotion'
-Plugin 'rhysd/clever-f.vim'
-
-" tabular: invoke by <leader>= alignment-character
-" ---------------------------------------------------
-Plugin 'godlygeek/tabular'
-
-" ex-showmarks: invoke by m... or <leader>mm, <leader>ma
-Plugin 'exvim/ex-showmarks'
-
-" searchcompl: invoke by /
-Plugin 'exvim/searchcompl'
-Plugin 'scrooloose/nerdcommenter'
-" Plugin 'tpope/vim-commentary'
-
-" undotree: invoke by <Leader>u
-Plugin 'mbbill/undotree'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-
+" colorscheme
 Plugin 'morhetz/gruvbox'
-
-" lua
-Plugin 'binesiyu/vim-quick-community'
-Plugin 'binesiyu/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
-Plugin 'tbastos/vim-lua'
 " git
 Plugin 'junegunn/gv.vim',{ 'on_cmd' : ['GV']}
 Plugin 'airblade/vim-gitgutter'
@@ -199,6 +169,13 @@ Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
+" vim-markdown
+Plugin 'plasticboy/vim-markdown'
+Plugin 'iamcco/markdown-preview.vim'
+" lua
+Plugin 'binesiyu/vim-quick-community'
+Plugin 'binesiyu/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
+Plugin 'tbastos/vim-lua'
 " haskell
 Plugin 'dag/vim2hs'
 " Plugin 'Twinside/vim-haskellConceal'
@@ -209,13 +186,26 @@ Plugin 'eagletmt/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'nbouscal/vim-stylish-haskell'
 
+" tabular: invoke by <leader>= alignment-character
+" ---------------------------------------------------
+Plugin 'godlygeek/tabular'
+" ex-showmarks: invoke by m... or <leader>mm, <leader>ma
+Plugin 'exvim/ex-showmarks'
+" undotree: invoke by <Leader>u
+Plugin 'mbbill/undotree'
+" searchcompl: invoke by /
+" incsearch
+Plugin 'vim-scripts/ingo-library'
+Plugin 'vim-scripts/SearchHighlighting'
+Plugin 'exvim/searchcompl'
+
 Plugin 'binesiyu/vim-winmode'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 Plugin 'moll/vim-bbye'
 Plugin 'vim-scripts/BufOnly.vim'
-
 Plugin 'binesiyu/vim-tweak'
+
 Plugin 'binesiyu/exvim'
 
 call dein#end()
