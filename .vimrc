@@ -138,7 +138,7 @@ Plugin 'vim-scripts/SearchHighlighting'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'jasoncodes/ctrlp-modified.vim'
-Plugin 'FelikZ/ctrlp-py-matcher'
+Plugin 'binesiyu/ctrlp-py-matcher'
 
 "ctrlsf
 Plugin 'dyng/ctrlsf.vim',{'on': 'CtrlSF'}
