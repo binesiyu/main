@@ -452,7 +452,6 @@ nnoremap <leader>n *
 noremap! <F1> <Esc>
 imap <F1> <C-o>:echo<CR>
 nmap <F2> :set wrap!<BAR>set wrap?<CR>
-" nnoremap <F3> :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 " nmap <F4> :set ignorecase!<BAR>set ignorecase?<CR>
 nmap <F4> :set relativenumber!<BAR>set relativenumber?<CR>
 " F8 or <leader>/:  Set Search pattern highlight on/off
@@ -621,6 +620,8 @@ nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <leader>fb :CtrlPBuffer<CR>
 nnoremap <leader>fm :CtrlPMRU<CR>
 nnoremap <leader>fl :CtrlPMRUFiles<CR>
+nnoremap <Leader>v :CtrlPFunky<Cr>
+nnoremap <leader>d :CtrlPBuffer<CR>
 nnoremap <Leader>o :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 nnoremap <Leader>ff :let g:ctrlp_default_input = expand('<cword>') \|
@@ -1072,6 +1073,7 @@ function! MakePattern(text)
   return '\\V' . escape(pat, '\"')
 endfunction
 vnoremap <silent> <F3> :<C-U>let @/="<C-R>=MakePattern(@*)<CR>"<CR>:set hls<CR>
+nnoremap <F3> :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 function! Del_word_delims()
    let reg = getreg('/')
@@ -1127,9 +1129,9 @@ function! EditVimrc13Config()
     execute bufwinnr(".vimrc") . "wincmd w"
 endfunction
 
-noremap <Leader>ve :call EditVimrc13Config()<CR>
-noremap <Leader>vr :source $HOME/.vimrc<CR>
-noremap <Leader>vn :NeoSnippetEdit<CR>
+noremap <Leader>ev :call EditVimrc13Config()<CR>
+noremap <Leader>er :source $HOME/.vimrc<CR>
+noremap <Leader>es :NeoSnippetEdit<CR>
 " }
 
 " Code folding options {
