@@ -128,6 +128,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 " vim-easymotion
 Plugin 'binesiyu/vim-easymotion'
 Plugin 'rhysd/clever-f.vim'
+" Plugin 'unblevable/quick-scope'
 
 " lint
 Plugin 'neomake/neomake'
@@ -419,7 +420,7 @@ noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "4\<C-y>")
 
 " map Up & Down to gj & gk, helpful for wrap text edit
 noremap <Up> gk
-oremap <Down> gj
+noremap <Down> gj
 " Go to home and end using capitalized directions
 noremap J L
 noremap K H
@@ -432,6 +433,9 @@ nmap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<C
 nmap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
 nnoremap <leader>h :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 nnoremap <leader>n *
+" Pull word under cursor into LHS of a substitute (for quick search and
+" replace)
+nnoremap <leader>r :%s#\<<C-r>=expand("<cword>")<CR>\>#
 
 noremap! <F1> <Esc>
 imap <F1> <C-o>:echo<CR>
