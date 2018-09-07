@@ -435,6 +435,7 @@ nmap <F2> :set wrap!<BAR>set wrap?<CR>
 nmap <F4> :set relativenumber!<BAR>set relativenumber?<CR>
 " F8 or <leader>/:  Set Search pattern highlight on/off
 nnoremap <F8> :let @/=""<CR>
+nnoremap <leader>/ :let @/=""<CR>
 nmap <F11> :set cursorline!<BAR>set nocursorline?<CR>
 nmap <F12> :set cursorcolumn!<BAR>set nocursorcolumn?<CR>
 nmap <Space> <C-e>
@@ -617,6 +618,7 @@ nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <leader>fb :CtrlPBuffer<CR>
 nnoremap <leader>fm :CtrlPMRU<CR>
 nnoremap <leader>fl :CtrlPMRUFiles<CR>
+nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <Leader>v :CtrlPFunky<Cr>
 nnoremap <leader>i :CtrlPBuffer<CR>
 nnoremap <leader>d :CtrlPBuffer<CR>
