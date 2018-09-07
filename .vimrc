@@ -1079,7 +1079,7 @@ nnoremap <leader>td  :tabclose<CR>
 for i in range(1,9)
     let s:str = i . ' ' . i
     exec 'nnoremap <leader>t'. s:str .'gt'
-    exec 'nnoremap <leader>'. s:str .' <C-W>W'
+    exec 'nnoremap <leader>'. s:str .'<C-W>W'
     exec 'nnoremap <expr> <Leader>b'. i . ' tweak#wtb_switch#key_leader_bufnum(' . i . ')'
     exec 'nmap <leader>f' . i  . ' :set foldlevel=' . i . '<CR>'
 endfor
