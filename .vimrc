@@ -11,13 +11,6 @@ function! WINDOWS()
     return  (has('win16') || has('win32') || has('win64'))
 endfunction
 
-" On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
-" across (heterogeneous) systems easier.
-if !exists('g:exvim_custom_path')
-    if WINDOWS()
-        set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-    endif
-endif
 " }
 
 " language and encoding setup {
@@ -42,7 +35,8 @@ else
     endif
 endif
 
-" try to set encoding to utf-8
+" On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
+" across (heterogeneous) systems easier.
 if WINDOWS()
     " Be nice and check for multi_byte even if the config requires
     " multi_byte support most of the time
@@ -59,12 +53,23 @@ if WINDOWS()
         " want to try them first.
         set fileencodings=ucs-bom,utf-8,gbk,gb2312,big5,iso-8859-15,utf-16le
     endif
-
+    if !exists('g:exvim_custom_path')
+        set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+    else
+        let g:ex_tools_path = g:exvim_custom_path.'/vimfiles/tools/'
+        let g:ex_dein_path = g:exvim_custom_path.'/vimfiles/dein'
+        exec 'set rtp+=' . fnameescape ( g:exvim_custom_path.'/vimfiles/dein/repos/github.com/Shougo/dein.vim/' )
+    endif
 else
     " set default encoding to utf-8
     set encoding=utf-8
     set termencoding=utf-8
+
+    let g:ex_tools_path = '~/.vim/tools/'
+    let g:ex_dein_path = '~/.vim/dein/'
+    set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 endif
+
 scriptencoding utf-8
 
 let mapleader = ','
@@ -74,17 +79,6 @@ let maplocalleader=mapleader
 " Bundle steup {
 
 filetype off " required
-
-" set the runtime path to include Vundle
-if exists('g:exvim_custom_path')
-    let g:ex_tools_path = g:exvim_custom_path.'/vimfiles/tools/'
-    let g:ex_dein_path = g:exvim_custom_path.'/vimfiles/dein'
-    exec 'set rtp+=' . fnameescape ( g:exvim_custom_path.'/vimfiles/dein/repos/github.com/Shougo/dein.vim/' )
-else
-    let g:ex_tools_path = '~/.vim/tools/'
-    let g:ex_dein_path = '~/.vim/dein/'
-    set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim
-endif
 
 " Plugin Commands
 com! -nargs=+  -bar   Plugin call dein#add(<args>)
@@ -171,10 +165,6 @@ Plugin 'godlygeek/tabular'
 Plugin 'exvim/ex-showmarks'
 " undotree: invoke by <Leader>u
 Plugin 'mbbill/undotree'
-" searchcompl: invoke by /
-" incsearch
-Plugin 'vim-scripts/ingo-library'
-Plugin 'vim-scripts/SearchHighlighting'
 
 Plugin 'binesiyu/vim-winmode'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -450,6 +440,24 @@ nmap <F11> :set cursorline!<BAR>set nocursorline?<CR>
 nmap <F12> :set cursorcolumn!<BAR>set nocursorcolumn?<CR>
 nmap <Space> <C-e>
 nmap <S-Space> <C-y>
+
+function! VisualSelection() range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", "\\/.*'$^~[]")
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+""""""""""""""""""""""""""""""
+" => Visual mode related
+""""""""""""""""""""""""""""""
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :<C-u>call VisualSelection()<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call VisualSelection()<CR>?<C-R>=@/<CR><CR>
 
 " Navigation in command line
 cnoremap <C-a> <Home>
@@ -849,12 +857,6 @@ vmap <leader><leader>h <Plug>(easymotion-linebackward)
 vmap <leader><leader>. <Plug>(easymotion-repeat)
 vmap <leader><leader>g <Plug>(easymotion-jumptoanywhere)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-
-let g:SearchHighlighting_NoJump = 0
-let g:SearchHighlighting_ExtendStandardCommands = 1
-nmap <Leader>*  <Plug>SearchHighlightingGStar
-nmap <Leader>g* <Plug>SearchHighlightingStar
-vmap <Leader>*  <Plug>SearchHighlightingGStar
 
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
