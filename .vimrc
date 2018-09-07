@@ -857,6 +857,8 @@ vmap <leader><leader>. <Plug>(easymotion-repeat)
 vmap <leader><leader>g <Plug>(easymotion-jumptoanywhere)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
+"signature
+g:SignatureMarkOrder="\m"
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
 
