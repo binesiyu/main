@@ -161,8 +161,7 @@ Plugin 'tbastos/vim-lua'
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
 Plugin 'godlygeek/tabular'
-" ex-showmarks: invoke by m... or <leader>mm, <leader>ma
-Plugin 'exvim/ex-showmarks'
+Plugin 'kshenoy/vim-signature'
 " undotree: invoke by <Leader>u
 Plugin 'mbbill/undotree'
 
@@ -903,18 +902,6 @@ endif
 nnoremap <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle=1
 let g:undotree_WindowLayout = 4
-
-" ex-showmarks: invoke by m... or <leader>mm, <leader>ma
-" ---------------------------------------------------
-
-" TODO: bootleq/ShowMarks on github is well organized in code, but have lots
-" bugs, consider merge his code and fixes the bugs
-let g:showmarks_enable = 1
-let g:showmarks_include = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-let g:showmarks_ignore_type = 'hqm' " Ignore help, quickfix, non-modifiable buffers
-" Hilight lower & upper marks
-let g:showmarks_hlline_lower = 1
-let g:showmarks_hlline_upper = 0
 
 " vim-color-solarized
 " ---------------------------------------------------
