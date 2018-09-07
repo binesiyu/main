@@ -419,7 +419,12 @@ noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "4\<C-y>")
 
 " map Up & Down to gj & gk, helpful for wrap text edit
 noremap <Up> gk
-noremap <Down> gj
+oremap <Down> gj
+" Go to home and end using capitalized directions
+noremap J L
+noremap K H
+noremap H ^
+noremap L $
 
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
