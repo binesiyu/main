@@ -110,6 +110,7 @@ Plugin 'kana/vim-textobj-entire'
 Plugin 'kana/vim-textobj-line'
 Plugin 'kana/vim-textobj-function'
 Plugin 'sgur/vim-textobj-parameter'
+Plugin 'Julian/vim-textobj-variable-segment'
 Plugin 'binesiyu/vim-textobj-function-syntax'
 
 Plugin 'gcmt/wildfire.vim'
