@@ -127,6 +127,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 " vim-easymotion
 Plugin 'binesiyu/vim-easymotion'
+Plugin 'justinmk/vim-sneak'
+Plugin 'rhysd/clever-f.vim'
 
 " lint
 Plugin 'neomake/neomake'
@@ -854,7 +856,7 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " }
 
 " editor {
-let g:EasyMotion_do_shade = 0
+" let g:EasyMotion_do_shade = 0
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 nmap <leader><leader> <Plug>(easymotion-prefix)
 nmap <leader><leader>f <Plug>(easymotion-sn)
@@ -873,14 +875,10 @@ vmap <leader><leader>h <Plug>(easymotion-linebackward)
 vmap <leader><leader>. <Plug>(easymotion-repeat)
 vmap <leader><leader>g <Plug>(easymotion-jumptoanywhere)
 
-nmap f <Plug>(easymotion-fl2)
-nmap F <Plug>(easymotion-Fl2)
-nmap t <Plug>(easymotion-tl2)
-nmap T <Plug>(easymotion-Tl2)
-vmap f <Plug>(easymotion-fl2)
-vmap F <Plug>(easymotion-Fl2)
-vmap t <Plug>(easymotion-tl2)
-vmap T <Plug>(easymotion-Tl2)
+"sneak
+" let g:sneak#label = 1
+" clever_f
+let g:clever_f_across_no_line = 1
 
 "signature
 let g:SignatureMarkOrder="\m"
