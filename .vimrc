@@ -424,6 +424,9 @@ noremap <Down> gj
 " noremap K H
 " noremap H ^
 " noremap L $
+"j/k to jumplist
+nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
