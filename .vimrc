@@ -420,10 +420,10 @@ noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "4\<C-y>")
 noremap <Up> gk
 noremap <Down> gj
 " Go to home and end using capitalized directions
-noremap J L
-noremap K H
-noremap H ^
-noremap L $
+" noremap J L
+" noremap K H
+" noremap H ^
+" noremap L $
 
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
@@ -685,6 +685,7 @@ let g:ctrlsf_mapping = {
 nmap <Leader>st :CtrlSFToggle<CR>
 nmap <Leader>ss :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
 nmap <Leader>k :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
+nmap K :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
 nmap <Leader>sf :CtrlSF<Space>
 nmap <Leader>sg :CtrlSF <C-R>* <Space>
 nmap <Leader>si :CtrlSF -I <Space>
