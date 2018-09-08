@@ -109,9 +109,24 @@ Plugin 'kana/vim-textobj-indent'
 Plugin 'kana/vim-textobj-entire'
 Plugin 'kana/vim-textobj-line'
 Plugin 'kana/vim-textobj-function'
+"a,/i,
 Plugin 'sgur/vim-textobj-parameter'
+"av/iv
 Plugin 'Julian/vim-textobj-variable-segment'
+"ar/ir
+Plugin 'Julian/vim-textobj-assignment'
+"ac/ic/aC/iC
+Plugin 'coderifous/textobj-word-column.vim'
+"ab/ib
+Plugin 'rhysd/vim-textobj-anyblock'
+"am/im
+Plugin 'adriaanzon/vim-textobj-matchit'
+"an/in
+Plugin 'haya14busa/vim-textobj-number'
+"al/il ac/ic af/if
+Plugin 'binesiyu/vim-textobj-lua'
 Plugin 'binesiyu/vim-textobj-function-syntax'
+
 
 Plugin 'gcmt/wildfire.vim'
 Plugin 'tpope/vim-surround'
