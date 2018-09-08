@@ -492,6 +492,8 @@ else
     vnoremap <silent><D-j> :m '>+1<CR>gv=gv
     vnoremap <silent><D-k> :m '<-2<CR>gv=gv
 endif
+" Visually select the text that was last edited/pasted
+nmap gV `[v`]
 "}
 
 " plug-config  {
