@@ -109,6 +109,7 @@ Plugin 'kana/vim-textobj-indent'
 Plugin 'kana/vim-textobj-entire'
 Plugin 'kana/vim-textobj-line'
 Plugin 'kana/vim-textobj-function'
+Plugin 'sgur/vim-textobj-parameter'
 Plugin 'binesiyu/vim-textobj-function-syntax'
 
 Plugin 'gcmt/wildfire.vim'
@@ -438,7 +439,15 @@ nnoremap <leader>h :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 nnoremap <leader>n *
 " Pull word under cursor into LHS of a substitute (for quick search and
 " replace)
+" Use regex for searches
+nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+
 nnoremap <leader>r :%s#\<<C-r>=expand("<cword>")<CR>\>#
+" Make Y consistent with D
+nnoremap Y y$
 
 noremap! <F1> <Esc>
 imap <F1> <C-o>:echo<CR>
