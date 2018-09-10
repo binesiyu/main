@@ -684,10 +684,10 @@ nnoremap <leader>fm :CtrlPMRU<CR>
 nnoremap <leader>fl :CtrlPMRUFiles<CR>
 nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <Leader>v :CtrlPFunky<Cr>
-nnoremap <leader>i :CtrlPBuffer<CR>
+nnoremap <leader>l :CtrlPBuffer<CR>
 nnoremap <leader>d :CtrlPBuffer<CR>
-nnoremap <leader>o :CtrlP<CR>
-nnoremap <Leader>j :let g:ctrlp_default_input = expand('<cword>') \|
+nnoremap <leader>i :CtrlP<CR>
+nnoremap <Leader>o :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 nnoremap <Leader>ff :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
@@ -1035,7 +1035,7 @@ nnoremap <Leader>bd :Bdelete<CR>
 let g:ex_gsearch_ignore_case = 0
 call exgsearch#register_hotkey( 100, 0, '<leader>gs', ":EXGSearchToggle<CR>", 'Toggle global search window.' )
 call exgsearch#register_hotkey( 101, 0, '<leader>gg', ":EXGSearchCWord<CR>", 'Search current word.' )
-call exgsearch#register_hotkey( 102, 0, '<leader>l', ":EXGSearchCWord<CR>", 'Search current word.' )
+call exgsearch#register_hotkey( 102, 0, '<leader>j', ":EXGSearchCWord<CR>", 'Search current word.' )
 call exgsearch#register_hotkey( 103, 0, '<leader><S-f>', ":GSW ", 'Shortcut for :GSW' )
 call exgsearch#register_hotkey( 104, 0, '<leader>gf', ":GSW <C-R>*<CR>", 'Shortcut for :GSW' )
 
