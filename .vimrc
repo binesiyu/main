@@ -113,17 +113,12 @@ Plugin 'kana/vim-textobj-function'
 Plugin 'sgur/vim-textobj-parameter'
 "av/iv
 Plugin 'Julian/vim-textobj-variable-segment'
-"ar/ir
-Plugin 'Julian/vim-textobj-assignment'
 "ac/ic/aC/iC
 Plugin 'coderifous/textobj-word-column.vim'
 "ab/ib
 Plugin 'rhysd/vim-textobj-anyblock'
-"am/im
-Plugin 'adriaanzon/vim-textobj-matchit'
-"an/in
-Plugin 'haya14busa/vim-textobj-number'
 Plugin 'binesiyu/vim-textobj-function-syntax'
+Plugin 'binesiyu/vim-textobj-lua'
 
 
 Plugin 'gcmt/wildfire.vim'
