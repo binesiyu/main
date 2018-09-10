@@ -123,8 +123,6 @@ Plugin 'rhysd/vim-textobj-anyblock'
 Plugin 'adriaanzon/vim-textobj-matchit'
 "an/in
 Plugin 'haya14busa/vim-textobj-number'
-"al/il ac/ic af/if
-Plugin 'binesiyu/vim-textobj-lua'
 Plugin 'binesiyu/vim-textobj-function-syntax'
 
 
@@ -176,6 +174,8 @@ Plugin 'binesiyu/vim-quick-community'
 Plugin 'binesiyu/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
 Plugin 'tbastos/vim-lua'
 
+" :I
+Plugin 'vim-scripts/VisIncr'
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
 Plugin 'godlygeek/tabular'
