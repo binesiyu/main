@@ -1993,6 +1993,14 @@ nnoremap <leader>6  6<C-W>W
 nnoremap <leader>7  7<C-W>W
 nnoremap <leader>8  8<C-W>W
 nnoremap <leader>9  9<C-W>W
+
+"sneak
+" let g:sneak#label = 1
+" clever_f
+let g:clever_f_across_no_line = 1
+
+Plugin 'justinmk/vim-sneak'
+Plugin 'rhysd/clever-f.vim'
 " }
 
 " vim:ts=4:sw=4:sts=4 et fdm=marker:

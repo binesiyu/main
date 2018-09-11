@@ -137,8 +137,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 " vim-easymotion
 Plugin 'binesiyu/vim-easymotion'
-Plugin 'justinmk/vim-sneak'
-Plugin 'rhysd/clever-f.vim'
 
 " lint
 Plugin 'neomake/neomake'
@@ -903,27 +901,27 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " editor {
 " let g:EasyMotion_do_shade = 0
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-nmap <leader><leader> <Plug>(easymotion-prefix)
-nmap <leader><leader>f <Plug>(easymotion-sn)
-nmap <leader><leader>j <Plug>(easymotion-j)
-nmap <leader><leader>k <Plug>(easymotion-k)
-nmap <leader><leader>l <Plug>(easymotion-lineforward)
-nmap <leader><leader>h <Plug>(easymotion-linebackward)
-nmap <leader><leader>. <Plug>(easymotion-repeat)
-nmap <leader><leader>g <Plug>(easymotion-jumptoanywhere)
-vmap <leader><leader> <Plug>(easymotion-prefix)
-vmap <leader><leader>f <Plug>(easymotion-sn)
-vmap <leader><leader>j <Plug>(easymotion-j)
-vmap <leader><leader>k <Plug>(easymotion-k)
-vmap <leader><leader>l <Plug>(easymotion-lineforward)
-vmap <leader><leader>h <Plug>(easymotion-linebackward)
-vmap <leader><leader>. <Plug>(easymotion-repeat)
-vmap <leader><leader>g <Plug>(easymotion-jumptoanywhere)
+nmap t <Plug>(easymotion-prefix)
+nmap tt <Plug>(easymotion-sn)
+nmap tj <Plug>(easymotion-j)
+nmap tk <Plug>(easymotion-k)
+nmap tl <Plug>(easymotion-lineforward)
+nmap th <Plug>(easymotion-linebackward)
+nmap t. <Plug>(easymotion-repeat)
+nmap tg <Plug>(easymotion-jumptoanywhere)
+vmap t <Plug>(easymotion-prefix)
+vmap tt <Plug>(easymotion-sn)
+vmap tj <Plug>(easymotion-j)
+vmap tk <Plug>(easymotion-k)
+vmap tl <Plug>(easymotion-lineforward)
+vmap th <Plug>(easymotion-linebackward)
+vmap t. <Plug>(easymotion-repeat)
+vmap tg <Plug>(easymotion-jumptoanywhere)
 
-"sneak
-" let g:sneak#label = 1
-" clever_f
-let g:clever_f_across_no_line = 1
+nmap f <Plug>(easymotion-lineforward)
+nmap F <Plug>(easymotion-linebackward)
+vmap f <Plug>(easymotion-lineforward)
+vmap F <Plug>(easymotion-linebackward)
 
 "signature
 let g:SignatureMarkOrder="\m"
