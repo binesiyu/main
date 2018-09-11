@@ -446,6 +446,7 @@ nmap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<C
 nmap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
 nnoremap <leader>h :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 nnoremap <leader>n *
+
 " Pull word under cursor into LHS of a substitute (for quick search and
 " replace)
 " Use regex for searches
@@ -982,6 +983,8 @@ let g:lua_define_omnifunc = 0
 let g:lua_define_completion_mappings = 0
 let lua_version = 5
 let lua_subversion = 1
+" quick indent in lua
+nmap <Leader>z m'=aj''
 " }
 " git {
 
