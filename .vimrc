@@ -450,10 +450,10 @@ nnoremap <leader>n *
 " Pull word under cursor into LHS of a substitute (for quick search and
 " replace)
 " Use regex for searches
-nnoremap / /\v
-vnoremap / /\v
-nnoremap ? ?\v
-vnoremap ? ?\v
+" nnoremap / /\v
+" vnoremap / /\v
+" nnoremap ? ?\v
+" vnoremap ? ?\v
 " 替换函数。参数说明：
 " confirm：是否替换前逐一确认
 " wholeword：是否整词匹配
