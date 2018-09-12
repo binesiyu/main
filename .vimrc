@@ -165,7 +165,6 @@ Plugin 'iamcco/markdown-preview.vim'
 " lua
 Plugin 'binesiyu/vim-quick-community'
 Plugin 'binesiyu/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
-Plugin 'tbastos/vim-lua'
 
 " :I
 Plugin 'vim-scripts/VisIncr'
@@ -720,9 +719,9 @@ let g:ctrlsf_auto_focus = {
             \ "at" : "done",
             \ "duration_less_than": 2000
             \ }
-let g:ctrlsf_extra_backend_args = {
-            \ 'rg': '--vimgrep --hidden'
-            \ }
+" let g:ctrlsf_extra_backend_args = {
+"             \ 'rg': '--vimgrep --hidden'
+"             \ }
 " 高亮匹配行: o->打开的目标文件;p->预览文件
 " let g:ctrlsf_selected_line_hl = 'op'
 let g:ctrlsf_mapping = {
@@ -984,7 +983,7 @@ let g:lua_define_completion_mappings = 0
 let lua_version = 5
 let lua_subversion = 1
 " quick indent in lua
-nmap <Leader>z m'=aj''
+nmap <Leader>z m`=aj'`
 " }
 " git {
 
