@@ -427,6 +427,12 @@ noremap <expr> <C-b> max([winheight(0) - 2, 1])
 noremap <expr> <C-e> (line("w$") >= line('$') ? "j" : "4\<C-e>")
 noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "4\<C-y>")
 
+nmap <Space> <C-e>
+nmap <S-Space> <C-y>
+
+" Visual-mode swapping
+vnoremap <C-X> <Esc>`.``gvP``P
+
 " map Up & Down to gj & gk, helpful for wrap text edit
 noremap <Up> gk
 noremap <Down> gj
@@ -493,8 +499,6 @@ nnoremap <F8> :let @/=""<CR>
 nnoremap <leader>/ :let @/=""<CR>
 nmap <F11> :set cursorline!<BAR>set nocursorline?<CR>
 nmap <F12> :set cursorcolumn!<BAR>set nocursorcolumn?<CR>
-nmap <Space> <C-e>
-nmap <S-Space> <C-y>
 
 function! VisualSelection() range
     let l:saved_reg = @"
