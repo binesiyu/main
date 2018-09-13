@@ -735,11 +735,14 @@ nmap <Leader>ss :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
 nmap <Leader>k :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
 nmap K :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
 nmap <Leader>sf :CtrlSF<Space>
-nmap <Leader>sg :CtrlSF <C-R>* <Space>
-nmap <Leader>si :CtrlSF -I <Space>
-nmap <Leader>sr :CtrlSF -R <Space>
-nmap <Leader>sn <Plug>CtrlSFCwordPath
-nmap <Leader>sc <Plug>CtrlSFCwordExec
+nmap <Leader>se :CtrlSF -W <C-R>* <Space>
+nmap <Leader>se :CtrlSF <C-R>* <Space>
+nmap <Leader>si :CtrlSF -I -W <Space>
+nmap <Leader>sI :CtrlSF -I <Space>
+nmap <Leader>sr :CtrlSF -R -W <Space>
+nmap <Leader>sR :CtrlSF -R <Space>
+nmap <Leader>sw <Plug>CtrlSFCwordPath
+nmap <Leader>sW <Plug>CtrlSFCwordExec
 nmap <Leader>sp <Plug>CtrlSFPwordExec
 " }
 
@@ -1032,7 +1035,8 @@ call exgsearch#register_hotkey( 100, 0, '<leader>gs', ":EXGSearchToggle<CR>", 'T
 call exgsearch#register_hotkey( 101, 0, '<leader>gg', ":EXGSearchCWord<CR>", 'Search current word.' )
 call exgsearch#register_hotkey( 102, 0, '<leader>j', ":EXGSearchCWord<CR>", 'Search current word.' )
 call exgsearch#register_hotkey( 103, 0, '<leader><S-f>', ":GSW ", 'Shortcut for :GSW' )
-call exgsearch#register_hotkey( 104, 0, '<leader>gf', ":GSW <C-R>*<CR>", 'Shortcut for :GSW' )
+call exgsearch#register_hotkey( 103, 0, '<leader>gf', ":GSW ", 'Shortcut for :GSW' )
+call exgsearch#register_hotkey( 104, 0, '<leader>ge', ":GSW <C-R>*<CR>", 'Shortcut for :GSW' )
 
 " ex-tagselect
 " ---------------------------------------------------
