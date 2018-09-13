@@ -1033,6 +1033,9 @@ Plugin 'rhysd/clever-f.vim'
 " nmap Y <Plug>(operator-flashy)$
 " let g:operator#flashy#flash_time =  1000
 
+" Plugin 'osyo-manga/vim-operator-stay-cursor'
+" map y <Plug>(operator-stay-cursor-yank)
+
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
 Plugin 'godlygeek/tabular'

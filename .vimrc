@@ -900,7 +900,7 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " editor {
 " let g:EasyMotion_do_shade = 0
-let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+" let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 nmap t <Plug>(easymotion-prefix)
 nmap tt <Plug>(easymotion-sn)
 nmap tj <Plug>(easymotion-j)
