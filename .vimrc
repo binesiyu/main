@@ -723,9 +723,9 @@ let g:ctrlsf_auto_focus = {
             \ "at" : "done",
             \ "duration_less_than": 2000
             \ }
-" let g:ctrlsf_extra_backend_args = {
-"             \ 'rg': '--vimgrep --hidden'
-"             \ }
+let g:ctrlsf_extra_backend_args = {
+            \ 'rg': '--vimgrep --hidden'
+            \ }
 " 高亮匹配行: o->打开的目标文件;p->预览文件
 " let g:ctrlsf_selected_line_hl = 'op'
 let g:ctrlsf_mapping = {
