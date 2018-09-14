@@ -100,7 +100,6 @@ Plugin 'Shougo/vimproc'
 
 " ui
 Plugin 'mhinz/vim-startify'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'nathanaelkane/vim-indent-guides'
 
 " textobj
@@ -166,8 +165,6 @@ Plugin 'iamcco/markdown-preview.vim'
 Plugin 'binesiyu/vim-quick-community'
 Plugin 'binesiyu/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
 
-" :I
-Plugin 'vim-scripts/VisIncr'
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
 Plugin 'godlygeek/tabular'

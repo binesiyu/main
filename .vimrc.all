@@ -2004,6 +2004,8 @@ let g:clever_f_across_no_line = 1
 
 Plugin 'justinmk/vim-sneak'
 Plugin 'rhysd/clever-f.vim'
+" :I
+Plugin 'vim-scripts/VisIncr'
 " }
 
 " vim:ts=4:sw=4:sts=4 et fdm=marker:
