@@ -737,6 +737,7 @@ let g:ctrlsf_mapping = {
 nmap <Leader>st :CtrlSFToggle<CR>
 nmap <Leader>ss :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
 nmap <Leader>k :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader><Leader> :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
 nmap K :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
 nmap <Leader>sf :CtrlSF<Space>
 nmap <Leader>se :CtrlSF -W <C-R>* <Space>
