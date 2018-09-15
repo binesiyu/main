@@ -239,6 +239,7 @@ augroup END
 
 " Vim UI {{
 set wildmenu " turn on wild menu, try typing :h and press <Tab>
+set wildmode=list:longest,full
 set showcmd " display incomplete commands
 set cmdheight=1 " 1 screen lines to use for the command-line
 set ruler " show the cursor position all the time
@@ -317,8 +318,6 @@ set grepformat=%f:%l:%m
 " }}
 
 " window op {{
-set splitbelow
-set splitright
 set listchars=tab:›\ ,trail:•,extends:↷,precedes:↶,nbsp:. " Highlight problematic whitespace
 set noerrorbells visualbell t_vb=
 set fillchars=vert:│,fold:·
