@@ -594,6 +594,8 @@ let g:startify_files_number = 6
 let g:startify_list_order = [
       \ ['   These are my bookmarks:'],
       \ 'bookmarks',
+      \ ['   These are my sessions:'],
+      \ 'sessions',
       \ ['   My most recently used files in the current directory:'],
       \ 'dir',
       \ ['   My most recently used files:'],
