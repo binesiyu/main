@@ -448,6 +448,7 @@ nmap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<C
 nmap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
 nnoremap <leader>h :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 nnoremap <leader>n *
+nnoremap <leader>N #
 
 " Pull word under cursor into LHS of a substitute (for quick search and
 " replace)
