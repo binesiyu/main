@@ -682,6 +682,8 @@ nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <Leader>v :CtrlPFunky<Cr>
 nnoremap <leader>l :CtrlPBuffer<CR>
 nnoremap <leader>i :CtrlP<CR>
+nnoremap gf :let g:ctrlp_default_input = expand('<cword>') \|
+    \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 nnoremap <Leader>o :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 nnoremap <Leader>ff :let g:ctrlp_default_input = expand('<cword>') \|
