@@ -965,7 +965,7 @@ function! g:Tabular(ignore_range) range
     endif
 endfunction
 
-let g:NERDComMappings = 0
+let g:NERDCreateDefaultMappings = 0
 map <Leader>cl <Plug>NERDComAlignedComment
 map <Leader>ci <Plug>NERDComInvertComment
 map <Leader>c<Space> <Plug>NERDComToggleComment
