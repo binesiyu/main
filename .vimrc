@@ -964,8 +964,11 @@ function! g:Tabular(ignore_range) range
         exec printf('Tabularize /%s', c)
     endif
 endfunction
-" nerdcommenter: invoke by <leader>c<space>, <leader>cl, <leader>cu, <F11> or <C-F11>
-" ---------------------------------------------------
+
+let g:NERDComMappings = 0
+map <Leader>cl <Plug>NERDComAlignedComment
+map <Leader>ci <Plug>NERDComInvertComment
+map <Leader>c<Space> <Plug>NERDComToggleComment
 
 " For snippet_complete marker.
 if has('conceal')
@@ -1052,6 +1055,14 @@ call extags#register_hotkey( 101, 0, '<leader>tt', ":EXTagsCWord<CR>", 'Tag sele
 "nnoremap <unique> <leader>] :exec 'ts ' . expand('<cword>')<CR>
 
 let g:ex_symbol_select_cmd = 'TS'
+
+" ex-cscope
+" ---------------------------------------------------
+call excscope#register_hotkey( 100, 0, '<leader>cs', ":EXCSToggle<CR>", 'Toggle cscope window.' )
+call excscope#register_hotkey( 101, 0, '<leader>ca', ":CSDD<CR>", 'Find functions called by this function' )
+call excscope#register_hotkey( 102, 0, '<leader>cc', ":CSCD<CR>", 'Find functions calling by this function' )
+call excscope#register_hotkey( 103, 0, '<leader>cf', ":CSID<CR>", 'Find files #including this file' )
+call excscope#register_hotkey( 104, 0, '<leader>cg', ":CSGD<CR>", 'Find this definition' )
 "}
 
 " fix colorscheme {
