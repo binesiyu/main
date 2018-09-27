@@ -35,6 +35,11 @@ else
     endif
 endif
 
+if OSX()
+    set pythondll=''
+end
+
+
 " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
 " across (heterogeneous) systems easier.
 if WINDOWS()
