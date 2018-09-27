@@ -966,9 +966,9 @@ function! g:Tabular(ignore_range) range
 endfunction
 
 let g:NERDCreateDefaultMappings = 0
-map <Leader>cl <Plug>NERDComAlignedComment
-map <Leader>ci <Plug>NERDComInvertComment
-map <Leader>c<Space> <Plug>NERDComToggleComment
+map <Leader>cl <Plug>NERDCommenterAlignLeft
+map <Leader>ci <Plug>NERDCommenterInvert
+map <Leader>c<Space> <Plug>NERDCommenterToggle
 
 " For snippet_complete marker.
 if has('conceal')
