@@ -35,9 +35,11 @@ else
     endif
 endif
 
-if OSX()
-    set pythondll=''
-end
+if !has('nvim') 
+    if OSX()
+        set pythondll=''
+    endif
+endif
 
 
 " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
