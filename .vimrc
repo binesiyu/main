@@ -1056,16 +1056,16 @@ call exgsearch#register_hotkey( 102, 0, '<leader>j', ":EXGSearchCWord<CR>", 'Sea
 call exgsearch#register_hotkey( 103, 0, '<leader><S-f>', ":GSW ", 'Shortcut for :GSW' )
 call exgsearch#register_hotkey( 103, 0, '<leader>gf', ":GSW ", 'Shortcut for :GSW' )
 call exgsearch#register_hotkey( 104, 0, '<leader>ge', ":GSW <C-R>*<CR>", 'Shortcut for :GSW' )
-call exgsearch#register_hotkey( 105, 0, 'o', ":call exgsearch#confirm_select('')<CR>"      , 'Go to the search result.' )
-call exgsearch#register_hotkey( 106, 0, 'p', ":call exgsearch#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
+call exgsearch#register_hotkey( 105, 1, 'o', ":call exgsearch#confirm_select('')<CR>"      , 'Go to the search result.' )
+call exgsearch#register_hotkey( 106, 1, 'p', ":call exgsearch#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
 
 " ex-tagselect
 " ---------------------------------------------------
 
 call extags#register_hotkey( 100, 0, '<leader>ts', ":EXTagsToggle<CR>", 'Toggle tag select window.' )
 call extags#register_hotkey( 101, 0, '<leader>tt', ":EXTagsCWord<CR>", 'Tag select current word.' )
-call extags#register_hotkey( 102, 0, 'o', ":call extags#confirm_select('')<CR>"      , 'Go to the search result.' )
-call extags#register_hotkey( 103, 0, 'p', ":call extags#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
+call extags#register_hotkey( 102, 1, 'o', ":call extags#confirm_select('')<CR>"      , 'Go to the search result.' )
+call extags#register_hotkey( 103, 1, 'p', ":call extags#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
 "nnoremap <unique> <leader>] :exec 'ts ' . expand('<cword>')<CR>
 
 let g:ex_symbol_select_cmd = 'TS'
@@ -1077,8 +1077,8 @@ call excscope#register_hotkey( 101, 0, '<leader>ca', ":CSDD<CR>", 'Find function
 call excscope#register_hotkey( 102, 0, '<leader>cc', ":CSCD<CR>", 'Find functions calling by this function' )
 call excscope#register_hotkey( 103, 0, '<leader>cf', ":CSID<CR>", 'Find files #including this file' )
 call excscope#register_hotkey( 104, 0, '<leader>cg', ":CSGD<CR>", 'Find this definition' )
-call excscope#register_hotkey( 105, 0, 'o', ":call excscope#confirm_select('')<CR>"      , 'Go to the search result.' )
-call excscope#register_hotkey( 106, 0, 'p', ":call excscope#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
+call excscope#register_hotkey( 105, 1, 'o', ":call excscope#confirm_select('')<CR>"      , 'Go to the search result.' )
+call excscope#register_hotkey( 106, 1, 'p', ":call excscope#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
 "}
 
 " fix colorscheme {
