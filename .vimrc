@@ -180,6 +180,7 @@ Plugin 'kshenoy/vim-signature'
 Plugin 'mbbill/undotree'
 
 Plugin 'binesiyu/vim-winmode'
+Plugin 'andymass/vim-tradewinds'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 Plugin 'moll/vim-bbye'
