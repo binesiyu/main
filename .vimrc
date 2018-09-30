@@ -164,6 +164,8 @@ Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
 
 " vim-airline
 Plugin 'bling/vim-airline'
+" incsearch
+Plugin 'google/vim-searchindex'
 
 " vim-markdown
 Plugin 'plasticboy/vim-markdown'
@@ -455,8 +457,8 @@ nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 nmap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 nmap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
 nnoremap <leader>h :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-nnoremap <leader>n *
-nnoremap <leader>N #
+nmap <leader>n *
+nmap <leader>N #
 
 " Pull word under cursor into LHS of a substitute (for quick search and
 " replace)
