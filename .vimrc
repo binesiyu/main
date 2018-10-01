@@ -166,6 +166,7 @@ Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
 Plugin 'bling/vim-airline'
 " incsearch
 Plugin 'google/vim-searchindex'
+Plugin 'binesiyu/CmdlineComplete'
 
 " vim-markdown
 Plugin 'plasticboy/vim-markdown'
@@ -249,7 +250,7 @@ augroup END
 
 " Vim UI {{
 set wildmenu " turn on wild menu, try typing :h and press <Tab>
-set wildmode=list:longest,full
+" set wildmode=list:longest,full
 set showcmd " display incomplete commands
 set cmdheight=1 " 1 screen lines to use for the command-line
 set ruler " show the cursor position all the time
@@ -486,7 +487,7 @@ function! Replace(confirm, wholeword, replace)
         let search .= expand('<cword>')
     endif
     let replace = escape(a:replace, '/\&~')
-    execute 'argdo %s/' . search . '/' . replace . '/' . flag . '| update'
+    execute '%s/' . search . '/' . replace . '/' . flag . '| update'
 endfunction
 " 不确认、整词
 nnoremap <Leader>rw :call Replace(0, 1, input('Replace '.expand('<cword>').' with: '))<CR>
