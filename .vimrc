@@ -35,7 +35,7 @@ else
     endif
 endif
 
-if !has('nvim') 
+if !has('nvim')
     if OSX()
         set pythondll=''
     endif
@@ -190,7 +190,7 @@ Plugin 'moll/vim-bbye'
 Plugin 'vim-scripts/BufOnly.vim'
 Plugin 'binesiyu/vim-tweak'
 
-Plugin 'binesiyu/exvim'
+Plugin 'binesiyu/exvim',{'merged' : 0}
 
 call dein#end()
 call dein#save_state()
@@ -214,7 +214,7 @@ colorscheme gruvbox
 set notimeout
 set nobackup " make backup file and leave it around
 set noswf "
-set acd "autochchdir
+" set acd "autochchdir
 " }}
 
 " history {{
@@ -746,21 +746,21 @@ let g:ctrlsf_mapping = {
             \ "prev": "<C-p>",
             \ "quit": ["q","<Esc>"],
             \ }
-nmap <Leader>st :CtrlSFToggle<CR>
-nmap <Leader>ss :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader>k :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader><Leader> :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
-nmap K :CtrlSF -W <C-R>=expand("<cword>")<CR><CR>
-nmap <Leader>sf :CtrlSF<Space>
-nmap <Leader>se :CtrlSF -W <C-R>* <Space>
-nmap <Leader>se :CtrlSF <C-R>* <Space>
-nmap <Leader>si :CtrlSF -I -W <Space>
-nmap <Leader>sI :CtrlSF -I <Space>
-nmap <Leader>sr :CtrlSF -R -W <Space>
-nmap <Leader>sR :CtrlSF -R <Space>
-nmap <Leader>sw <Plug>CtrlSFCwordPath
-nmap <Leader>sW <Plug>CtrlSFCwordExec
-nmap <Leader>sp <Plug>CtrlSFPwordExec
+nnoremap <Leader>st :CtrlSFToggle<CR>
+nnoremap <Leader>ss :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
+nnoremap <Leader>k :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
+nnoremap <Leader><Leader> :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
+nnoremap K :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
+nnoremap <Leader>sf :CtrlSF<Space>
+nnoremap <Leader>se :CtrlSF -W <C-R>* <Space>
+nnoremap <Leader>se :CtrlSF <C-R>* <Space>
+nnoremap <Leader>si :CtrlSF -I -W <Space>
+nnoremap <Leader>sI :CtrlSF -I <Space>
+nnoremap <Leader>sr :CtrlSF -R -W <Space>
+nnoremap <Leader>sR :CtrlSF -R <Space>
+nnoremap <Leader>sw <Plug>CtrlSFCwordPath
+nnoremap <Leader>sW <Plug>CtrlSFCwordExec
+nnoremap <Leader>sp <Plug>CtrlSFPwordExec
 " }
 
 " nerdtree {
@@ -1044,6 +1044,59 @@ let g:win_mode_default ='resize'
 
 " buffer {
 nnoremap <Leader>bd :Bdelete<CR>
+" }
+
+function! Setup_gutentags(bn)
+    call gutentags#trace("Setup_gutentags: " . string(a:bn))
+    if (match(a:bn,'.exvim$') > -1)
+        call gutentags#trace("Setup_gutentags: match  " . string(a:bn))
+        return 0
+    endif
+    call gutentags#trace("Setup_gutentags: not match  " . string(a:bn))
+    return 1
+endfunction
+
+" tags {
+    let $GTAGSLABEL = 'native-pygments'
+    let $GTAGSCONF = expand('~/.globalrc')
+	" 设定项目目录标志：除了 .git/.svn 外，还有 .root 文件
+	let g:gutentags_project_root = ['.root']
+	" let g:gutentags_ctags_tagfile = '.tags'
+    let g:gutentags_generate_idutiles = 1
+
+	" 默认生成的数据文件集中到 ~/.cache/tags 避免污染项目目录，好清理
+    let g:gutentags_cache_dir = expand('~/.cache/tags')
+	let g:gutentags_gtags_dbpath = '.cache'
+    let g:gutentags_file_list_command = 'rg --files'
+    "" gutententags
+    let g:gutentags_init_user_func = "Setup_gutentags"
+
+	" 默认禁用自动生成
+	let g:gutentags_modules = []
+    let g:gutentags_define_advanced_commands = 1
+    let g:gutentags_trace = 1
+
+	" 如果有 ctags 可执行就允许动态生成 ctags 文件
+    if executable('ctags')
+        let g:gutentags_modules += ['ctags']
+    endif
+
+	" 如果有 gtags 可执行就允许动态生成 gtags 数据库
+	if executable('gtags') && executable('gtags-cscope')
+		let g:gutentags_modules += ['gtags_cscope']
+	endif
+
+	" 设置 ctags 的参数
+    let g:gutentags_ctags_extra_args = []
+    let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+    let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+    let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+	" 使用 universal-ctags 的话需要下面这行，请反注释
+    " let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+
+	" 禁止 gutentags 自动链接 gtags 数据库
+	" let g:gutentags_auto_add_gtags_cscope = 0
 " }
 
 " exvim {
