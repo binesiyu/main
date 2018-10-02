@@ -1046,13 +1046,25 @@ let g:win_mode_default ='resize'
 nnoremap <Leader>bd :Bdelete<CR>
 " }
 
+function! TabMessage(cmd)
+  redir => message
+  silent execute a:cmd
+  redir END
+  if empty(message)
+    echoerr "no output"
+  else
+    " use "new" instead of "tabnew" below if you prefer split windows instead of tabs
+    tabnew
+    setlocal buftype=nofile bufhidden=wipe noswapfile nobuflisted nomodified
+    silent put=message
+  endif
+endfunction
+command! -nargs=+ -complete=command TabMessage call TabMessage(<q-args>)
+
 function! Setup_gutentags(bn)
-    call gutentags#trace("Setup_gutentags: " . string(a:bn))
     if (match(a:bn,'.exvim$') > -1)
-        call gutentags#trace("Setup_gutentags: match  " . string(a:bn))
         return 0
     endif
-    call gutentags#trace("Setup_gutentags: not match  " . string(a:bn))
     return 1
 endfunction
 
@@ -1061,20 +1073,24 @@ endfunction
     let $GTAGSCONF = expand('~/.globalrc')
 	" 设定项目目录标志：除了 .git/.svn 外，还有 .root 文件
 	let g:gutentags_project_root = ['.root']
-	" let g:gutentags_ctags_tagfile = '.tags'
-    let g:gutentags_generate_idutiles = 1
+    let g:gutentags_ctags_tagfile = '.tags'
+    " let g:gutentags_generate_idutiles = 1
+    let g:gutentags_generate_auto = 0
 
 	" 默认生成的数据文件集中到 ~/.cache/tags 避免污染项目目录，好清理
     let g:gutentags_cache_dir = expand('~/.cache/tags')
-	let g:gutentags_gtags_dbpath = '.cache'
-    let g:gutentags_file_list_command = 'rg --files'
+    " let g:gutentags_file_list_command = 'rg --files'
+    let g:gutentags_file_list_command = {
+                \'default' : 'rg --files',
+                \'modules' : {'gsearch' : 'rg --files --null',},
+                \}
     "" gutententags
     let g:gutentags_init_user_func = "Setup_gutentags"
 
 	" 默认禁用自动生成
 	let g:gutentags_modules = []
-    let g:gutentags_define_advanced_commands = 1
-    let g:gutentags_trace = 1
+    " let g:gutentags_define_advanced_commands = 1
+    " let g:gutentags_trace = 1
 
 	" 如果有 ctags 可执行就允许动态生成 ctags 文件
     if executable('ctags')
@@ -1083,11 +1099,12 @@ endfunction
 
 	" 如果有 gtags 可执行就允许动态生成 gtags 数据库
 	if executable('gtags') && executable('gtags-cscope')
-		let g:gutentags_modules += ['gtags_cscope']
+        let g:gutentags_modules += ['gtags_cscope']
 	endif
 
+    let g:gutentags_modules += ['gsearch']
+
 	" 设置 ctags 的参数
-    let g:gutentags_ctags_extra_args = []
     let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
     let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
     let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
