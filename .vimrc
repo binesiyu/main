@@ -105,6 +105,8 @@ call dein#begin(g:ex_dein_path)
 Plugin 'Shougo/dein.vim'
 Plugin 'Shougo/vimproc'
 
+" doc
+Plugin 'yianwillis/vimcdoc'
 " ui
 Plugin 'mhinz/vim-startify'
 Plugin 'nathanaelkane/vim-indent-guides'
