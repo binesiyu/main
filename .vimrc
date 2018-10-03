@@ -181,6 +181,9 @@ Plugin 'godlygeek/tabular'
 Plugin 'kshenoy/vim-signature'
 " undotree: invoke by <Leader>u
 Plugin 'mbbill/undotree'
+" " ---------------------------------------------------
+Plugin 'Konfekt/FastFold'
+Plugin 'Konfekt/FoldText'
 
 Plugin 'binesiyu/vim-winmode'
 Plugin 'andymass/vim-tradewinds'
