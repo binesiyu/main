@@ -455,8 +455,8 @@ nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
-nmap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-nmap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
+noremap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+noremap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
 nnoremap <leader>h :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 nmap <leader>n *
 nmap <leader>N #
@@ -500,14 +500,14 @@ nnoremap Y y$
 
 noremap! <F1> <Esc>
 imap <F1> <C-o>:echo<CR>
-nmap <F2> :set wrap!<BAR>set wrap?<CR>
-" nmap <F4> :set ignorecase!<BAR>set ignorecase?<CR>
-nmap <F4> :set relativenumber!<BAR>set relativenumber?<CR>
+noremap <F2> :set wrap!<BAR>set wrap?<CR>
+" noremap <F4> :set ignorecase!<BAR>set ignorecase?<CR>
+noremap <F4> :set relativenumber!<BAR>set relativenumber?<CR>
 " F8 or <leader>/:  Set Search pattern highlight on/off
 nnoremap <F8> :let @/=""<CR>
 nnoremap <leader>/ :let @/=""<CR>
-nmap <F11> :set cursorline!<BAR>set nocursorline?<CR>
-nmap <F12> :set cursorcolumn!<BAR>set nocursorcolumn?<CR>
+noremap <F11> :set cursorline!<BAR>set nocursorline?<CR>
+noremap <F12> :set cursorcolumn!<BAR>set nocursorcolumn?<CR>
 
 function! VisualSelection() range
     let l:saved_reg = @"
@@ -554,7 +554,7 @@ else
     vnoremap <silent><D-k> :m '<-2<CR>gv=gv
 endif
 " Visually select the text that was last edited/pasted
-nmap gV `[v`]
+noremap gV `[v`]
 "}
 
 " plug-config  {
@@ -785,8 +785,8 @@ if OSX()
     let g:mkdp_path_to_chrome="open -a Google\\ Chrome"
 endif
 let g:mkdp_auto_close=1
-" nmap <F7> <Plug>MarkdownPreview
-" nmap <F8> <Plug>StopMarkdownPreview
+" noremap <F7> <Plug>MarkdownPreview
+" noremap <F8> <Plug>StopMarkdownPreview
 " }
 
 " lint {
@@ -921,49 +921,49 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
 " editor {
 " let g:EasyMotion_do_shade = 0
 " let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-nmap t <Plug>(easymotion-prefix)
-nmap tt <Plug>(easymotion-sn)
-nmap tj <Plug>(easymotion-j)
-nmap tk <Plug>(easymotion-k)
-nmap tl <Plug>(easymotion-lineforward)
-nmap th <Plug>(easymotion-linebackward)
-nmap t. <Plug>(easymotion-repeat)
-nmap tg <Plug>(easymotion-jumptoanywhere)
-vmap t <Plug>(easymotion-prefix)
-vmap tt <Plug>(easymotion-sn)
-vmap tj <Plug>(easymotion-j)
-vmap tk <Plug>(easymotion-k)
-vmap tl <Plug>(easymotion-lineforward)
-vmap th <Plug>(easymotion-linebackward)
-vmap t. <Plug>(easymotion-repeat)
-vmap tg <Plug>(easymotion-jumptoanywhere)
+noremap t <Plug>(easymotion-prefix)
+noremap tt <Plug>(easymotion-sn)
+noremap tj <Plug>(easymotion-j)
+noremap tk <Plug>(easymotion-k)
+noremap tl <Plug>(easymotion-lineforward)
+noremap th <Plug>(easymotion-linebackward)
+noremap t. <Plug>(easymotion-repeat)
+noremap tg <Plug>(easymotion-jumptoanywhere)
+vnoremap t <Plug>(easymotion-prefix)
+vnoremap tt <Plug>(easymotion-sn)
+vnoremap tj <Plug>(easymotion-j)
+vnoremap tk <Plug>(easymotion-k)
+vnoremap tl <Plug>(easymotion-lineforward)
+vnoremap th <Plug>(easymotion-linebackward)
+vnoremap t. <Plug>(easymotion-repeat)
+vnoremap tg <Plug>(easymotion-jumptoanywhere)
 
-nmap f <Plug>(easymotion-lineforward)
-nmap F <Plug>(easymotion-linebackward)
-vmap f <Plug>(easymotion-lineforward)
-vmap F <Plug>(easymotion-linebackward)
+noremap f <Plug>(easymotion-lineforward)
+noremap F <Plug>(easymotion-linebackward)
+vnoremap f <Plug>(easymotion-lineforward)
+vnoremap F <Plug>(easymotion-linebackward)
 
 "signature
 let g:SignatureMarkOrder="\m"
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
 
-nmap <Leader>a& :Tabularize /&<CR>
-vmap <Leader>a& :Tabularize /&<CR>
-nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-nmap <Leader>a=> :Tabularize /=><CR>
-vmap <Leader>a=> :Tabularize /=><CR>
-nmap <Leader>a: :Tabularize /:<CR>
-vmap <Leader>a: :Tabularize /:<CR>
-nmap <Leader>a:: :Tabularize /:\zs<CR>
-vmap <Leader>a:: :Tabularize /:\zs<CR>
-nmap <Leader>a, :Tabularize /,<CR>
-vmap <Leader>a, :Tabularize /,<CR>
-nmap <Leader>a,, :Tabularize /,\zs<CR>
-vmap <Leader>a,, :Tabularize /,\zs<CR>
-nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+noremap <Leader>a& :Tabularize /&<CR>
+vnoremap <Leader>a& :Tabularize /&<CR>
+noremap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+vnoremap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+noremap <Leader>a=> :Tabularize /=><CR>
+vnoremap <Leader>a=> :Tabularize /=><CR>
+noremap <Leader>a: :Tabularize /:<CR>
+vnoremap <Leader>a: :Tabularize /:<CR>
+noremap <Leader>a:: :Tabularize /:\zs<CR>
+vnoremap <Leader>a:: :Tabularize /:\zs<CR>
+noremap <Leader>a, :Tabularize /,<CR>
+vnoremap <Leader>a, :Tabularize /,<CR>
+noremap <Leader>a,, :Tabularize /,\zs<CR>
+vnoremap <Leader>a,, :Tabularize /,\zs<CR>
+noremap <Leader>a<Bar> :Tabularize /<Bar><CR>
+vnoremap <Leader>a<Bar> :Tabularize /<Bar><CR>
 nnoremap <silent> <leader>= :call g:Tabular(1)<CR>
 xnoremap <silent> <leader>= :call g:Tabular(0)<CR>
 function! g:Tabular(ignore_range) range
@@ -1037,7 +1037,7 @@ let g:airline_section_warning = airline#section#create(['neomake'])
 " }
 
 " util {
-nmap <leader>ww <Plug>WinModeStart
+noremap <leader>ww <Plug>WinModeStart
 let g:win_mode_default ='resize'
 
 " }
@@ -1231,7 +1231,7 @@ noremap <Leader>es :NeoSnippetEdit<CR>
 " }
 
 " Code folding options {
-nmap <leader>f0 :set foldlevel=0<CR>
+noremap <leader>f0 :set foldlevel=0<CR>
 " }
 
 " nav {
@@ -1255,7 +1255,7 @@ for i in range(1,9)
     exec 'nnoremap <leader>t'. s:str .'gt'
     exec 'nnoremap <leader>'. s:str .'<C-W>W'
     exec 'nnoremap <expr> <Leader>b'. i . ' tweak#wtb_switch#key_leader_bufnum(' . i . ')'
-    exec 'nmap <leader>f' . i  . ' :set foldlevel=' . i . '<CR>'
+    exec 'noremap <leader>f' . i  . ' :set foldlevel=' . i . '<CR>'
 endfor
 
 " }
