@@ -1040,7 +1040,7 @@ let g:airline_section_warning = airline#section#create(['neomake'])
 " }
 
 " util {
-noremap <leader>ww <Plug>WinModeStart
+nmap <leader>ww <Plug>WinModeStart
 let g:win_mode_default ='resize'
 
 " }
