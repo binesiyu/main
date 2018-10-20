@@ -148,6 +148,7 @@ Plugin 'binesiyu/vim-easymotion'
 
 " lint
 Plugin 'neomake/neomake'
+Plugin 'sbdchd/neoformat'
 
 " autocomplete
 Plugin 'Shougo/neocomplete'
@@ -821,6 +822,25 @@ nnoremap <silent> <leader>ee :lnext<CR>
 nnoremap <silent> <leader>en :lnext<CR>
 nnoremap <silent> <leader>ep :lprevious<CR>
 nnoremap <silent> <leader>eN :lNext<CR>
+" }
+
+" formatter {
+" let g:neoformat_verbose = 1
+let g:neoformat_lua_luaformatter = {
+            \ 'exe': 'luaformatter',
+            \ 'args': ['-s 4'],
+            \ }
+
+let g:neoformat_enabled_lua = ['luaformatter']
+" Enable alignment
+let g:neoformat_basic_format_align = 1
+
+" Enable tab to spaces conversion
+" let g:neoformat_basic_format_retab = 1
+
+" Enable trimmming of trailing whitespace
+let g:neoformat_basic_format_trim = 1
+nnoremap <F7> :Neoformat<CR>
 " }
 
 " autocomplete {
