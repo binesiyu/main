@@ -462,9 +462,6 @@ nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 " and ask which one to jump to
 noremap <Leader>fw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 noremap <Leader>bl :buffers<CR>:let nr = input("Which one: ")<Bar>exe "buffer " . nr<CR>
-nnoremap <leader>h :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-nmap <leader>n *
-nmap <leader>N #
 
 " Pull word under cursor into LHS of a substitute (for quick search and
 " replace)
@@ -509,8 +506,6 @@ noremap <F2> :set wrap!<BAR>set wrap?<CR>
 " noremap <F4> :set ignorecase!<BAR>set ignorecase?<CR>
 noremap <F4> :set relativenumber!<BAR>set relativenumber?<CR>
 " F8 or <leader>/:  Set Search pattern highlight on/off
-nnoremap <F8> :let @/=""<CR>
-nnoremap <leader>/ :let @/=""<CR>
 noremap <F11> :set cursorline!<BAR>set nocursorline?<CR>
 noremap <F12> :set cursorcolumn!<BAR>set nocursorcolumn?<CR>
 
@@ -530,7 +525,15 @@ endfunction
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call VisualSelection()<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> <leader>n :<C-u>call VisualSelection()<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> <leader>h :<C-u>call VisualSelection()<CR>:set hls<CR>
 vnoremap <silent> # :<C-u>call VisualSelection()<CR>?<C-R>=@/<CR><CR>
+vnoremap <silent> <leader>N :<C-u>call VisualSelection()<CR>?<C-R>=@/<CR><CR>
+nnoremap <leader>h :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+nmap <leader>n *
+nmap <leader>N #
+nnoremap <F8> :let @/=""<CR>
+nnoremap <leader>/ :let @/=""<CR>
 
 " Navigation in command line
 cnoremap <C-a> <Home>
