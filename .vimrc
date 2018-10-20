@@ -622,6 +622,7 @@ if OSX()
     let g:startify_bookmarks = [{'c' : '~/Documents/dev/kingdom-of-heaven-client/koh.exvim'},
                 \ {'k': '~/Documents/dev/kingdom-of-heaven-client/koh-c.exvim'},
                 \ {'x': '~/Documents/dev/koh/koh.exvim'},
+                \ {'d': '~/Documents/dev-doc/doc.exvim'},
                 \'~/.vimrc',
                 \'~/.zshrc',
                 \]
