@@ -1266,10 +1266,10 @@ noremap <leader>f0 :set foldlevel=0<CR>
 " }
 
 " nav {
-nnoremap <leader>th  :tabfirst<CR>
-nnoremap <leader>tj  :tabnext<CR>
-nnoremap <leader>tk  :tabprev<CR>
-nnoremap <leader>tl  :tablast<CR>
+nnoremap <leader>tj  :tabfirst<CR>
+nnoremap <leader>th  :tabnext<CR>
+nnoremap <leader>tl  :tabprev<CR>
+nnoremap <leader>tk  :tablast<CR>
 " nnoremap <leader>tt  :tabedit<Space>
 " nnoremap <leader>tn  :tabnext<Space>
 nnoremap <leader>tn  :tabnew<CR>
