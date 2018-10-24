@@ -167,6 +167,7 @@ Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
 
 " vim-airline
 Plugin 'bling/vim-airline'
+Plugin 'vim-ctrlspace/vim-ctrlspace',{'merged' : 0}
 " incsearch
 Plugin 'google/vim-searchindex'
 Plugin 'binesiyu/CmdlineComplete'
@@ -1064,7 +1065,12 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_section_c = '%t'
 let g:airline_section_y = 'B:%{bufnr("%")} W:%{winnr()}'
 let g:airline_section_warning = airline#section#create(['neomake'])
-let g:airline_extensions = ['branch', 'ctrlp', 'gutentags', 'tabline']
+let g:airline_extensions = ['branch', 'ctrlp', 'ctrlspace', 'gutentags', 'tabline']
+let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
+" let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
+let g:airline#extensions#ctrlspace#enabled = 1
+" Compatibility option for vim-ariline <-> vim-ctrlspace
+let g:airline_exclude_preview = 1
 " }
 
 " util {
