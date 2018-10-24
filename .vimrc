@@ -1064,6 +1064,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_section_c = '%t'
 let g:airline_section_y = 'B:%{bufnr("%")} W:%{winnr()}'
 let g:airline_section_warning = airline#section#create(['neomake'])
+let g:airline_extensions = ['branch', 'ctrlp', 'gutentags', 'tabline']
 " }
 
 " util {
