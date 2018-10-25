@@ -1276,10 +1276,20 @@ nnoremap <leader>tn  :tabnew<CR>
 nnoremap <leader>tc  :tabclose<CR>
 nnoremap <leader>tm  :tabm<Space>
 nnoremap <leader>td  :tabclose<CR>
+nnoremap H gT
+nnoremap L gt
 " Alternatively use
 "nnoremap <leader>th :tabnext<CR>
 "nnoremap <leader>tl :tabprev<CR>
 "nnoremap <leader>tn :tabnew<CR>
+" Switch to last-active tab
+if !exists('g:Lasttab')
+    let g:Lasttab = 1
+    let g:Lasttab_backup = 1
+endif
+autocmd! TabLeave * let g:Lasttab_backup = g:Lasttab | let g:Lasttab = tabpagenr()
+autocmd! TabClosed * let g:Lasttab = g:Lasttab_backup
+nmap <silent> <Leader>tp :exe "tabn " . g:Lasttab<cr>
 
 for i in range(1,9)
     let s:str = i . ' ' . i
