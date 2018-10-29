@@ -759,7 +759,7 @@ let g:ctrlsf_mapping = {
 nnoremap <Leader>st :CtrlSFToggle<CR>
 nnoremap <Leader>ss :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
 nnoremap <Leader>k :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
-nnoremap <Leader><Leader> :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
+" nnoremap <Leader><Leader> :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
 nnoremap K :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
 nnoremap <Leader>sf :CtrlSF<Space>
 nnoremap <Leader>se :CtrlSF -W <C-R>* <Space>
@@ -867,8 +867,8 @@ endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
+" inoremap <expr><C-g>     neocomplete#undo_completion()
+" inoremap <expr><C-l>     neocomplete#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
