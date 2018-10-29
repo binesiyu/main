@@ -503,6 +503,7 @@ nnoremap Y y$
 
 noremap! <F1> <Esc>
 imap <F1> <C-o>:echo<CR>
+inoremap <c-c> <c-[>
 noremap <F2> :set wrap!<BAR>set wrap?<CR>
 " noremap <F4> :set ignorecase!<BAR>set ignorecase?<CR>
 noremap <F4> :set relativenumber!<BAR>set relativenumber?<CR>
