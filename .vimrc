@@ -703,7 +703,6 @@ nnoremap <leader>fl :CtrlPMRUFiles<CR>
 nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <Leader>v :CtrlPFunky<Cr>
 nnoremap <leader>l :CtrlPBuffer<CR>
-nnoremap <leader>i :CtrlP<CR>
 nnoremap gf :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 nnoremap <Leader>o :let g:ctrlp_default_input = expand('<cword>') \|
@@ -1298,6 +1297,8 @@ for i in range(1,9)
     exec 'nnoremap <expr> <Leader>b'. i . ' tweak#wtb_switch#key_leader_bufnum(' . i . ')'
     exec 'noremap <leader>f' . i  . ' :set foldlevel=' . i . '<CR>'
 endfor
+
+nnoremap <leader>if :exec 'normal ,hciw' . expand('%:t:r:r:r') . "\e"<CR>
 
 " }
 
