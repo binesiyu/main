@@ -2047,4 +2047,8 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 let g:gutentags_auto_add_gtags_cscope = 0
 " }
 
+Plugin 'tpope/vim-commentary'
+map <Leader>cl <Plug>CommentaryLine
+map <Leader>ci <Plug>Commentary<Plug>Commentary
+map <Leader>c<Space> <Plug>Commentary<Plug>Commentary
 " vim:ts=4:sw=4:sts=4 et fdm=marker:

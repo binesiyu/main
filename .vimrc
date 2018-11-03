@@ -132,7 +132,7 @@ Plugin 'binesiyu/vim-textobj-lua'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-commentary'
+Plugin 'tomtom/tcomment_vim'
 
 " ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -1000,9 +1000,15 @@ function! g:Tabular(ignore_range) range
     endif
 endfunction
 
-map <Leader>cl <Plug>CommentaryLine
-map <Leader>ci <Plug>Commentary<Plug>Commentary
-map <Leader>c<Space> <Plug>Commentary<Plug>Commentary
+let g:tcomment_mapleader1=''
+let g:tcomment_mapleader2=''
+" the default (g<) is a bit awkward to type
+let g:tcomment_mapleader_uncomment_anyway='gu'
+let g:tcomment_mapleader_comment_anyway=''
+let g:tcomment_textobject_inlinecomment=''
+map <Leader>cl <Plug>TComment_gcc
+map <Leader>ci <Plug>TComment_gcc
+map <Leader>c<Space> <Plug>TComment_gcc
 
 " For snippet_complete marker.
 if has('conceal')
