@@ -132,7 +132,7 @@ Plugin 'binesiyu/vim-textobj-lua'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-commentary'
 
 " ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -782,11 +782,6 @@ let g:NERDTreeMapToggleZoom = '<Tab>'
 let g:nerdtree_tabs_open_on_gui_startup=0
 let g:nerdtree_tabs_open_on_new_tab=0
 let g:NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-let g:NERDSpaceDelims = 1
-let g:NERDRemoveExtraSpaces = 1
-let g:NERDCustomDelimiters = {
-            \ 'vimentry': { 'left': '--' },
-            \ }
 map <leader>x <plug>NERDTreeTabsToggle<CR>
 " }
 
@@ -1005,10 +1000,9 @@ function! g:Tabular(ignore_range) range
     endif
 endfunction
 
-let g:NERDCreateDefaultMappings = 0
-map <Leader>cl <Plug>NERDCommenterAlignLeft
-map <Leader>ci <Plug>NERDCommenterInvert
-map <Leader>c<Space> <Plug>NERDCommenterToggle
+map <Leader>cl <Plug>CommentaryLine
+map <Leader>ci <Plug>Commentary<Plug>Commentary
+map <Leader>c<Space> <Plug>Commentary<Plug>Commentary
 
 " For snippet_complete marker.
 if has('conceal')
