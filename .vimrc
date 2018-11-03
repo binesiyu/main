@@ -313,6 +313,8 @@ set tabstop=4 " set tabstop to 4 characters
 set expandtab " set expandtab on, the tab will be change to space automaticaly
 set ve=block " in visual block mode, cursor can be positioned where there is no actual character
 
+set sessionoptions -=folds
+
 " set Number format to null(default is octal) , when press CTRL-A on number
 " like 007, it would not become 010
 " }}
