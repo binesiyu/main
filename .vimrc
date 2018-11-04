@@ -1056,6 +1056,7 @@ nnoremap <silent> <leader>gv :GV<CR>
 " ---------------------------------------------------
 
 let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
 " let g:airline_theme = 'powerlineish'
 let g:airline#extensions#tabline#enabled = 1 " When you open lots of buffers and typing text, it is so slow.
 let g:airline#extensions#tabline#show_buffers = 1
@@ -1065,8 +1066,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_section_b = "%{fnamemodify(bufname('%'),':p:.:h').'/'}"
 " let g:airline_section_c = '%t'
 let g:airline_section_y = 'B:%{bufnr("%")} W:%{winnr()}'
-let g:airline_section_warning = airline#section#create(['neomake'])
-let g:airline_extensions = ['branch', 'ctrlp', 'gutentags', 'tabline']
+" let g:airline_section_warning = airline#section#create(['neomake'])
+let g:airline#extensions#whitespace#checks = ['trailing']
+let g:airline_extensions = ['branch', 'ctrlp', 'gutentags', 'whitespace', 'tabline', 'neomake']
 " }
 
 " util {
