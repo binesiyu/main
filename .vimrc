@@ -920,10 +920,18 @@ function! CleverTab()
         " nothing to match on empty string
         return "\<Tab>"
     else
-        if neosnippet#expandable_or_jumpable()
-            return "\<Plug>(neosnippet_expand_or_jump)"
+        if neosnippet#jumpable()
+            if pumvisible()
+                return "\<C-n>"
+            else
+                return "\<Plug>(neosnippet_jump)"
+            endif
         elseif pumvisible()
-            return "\<C-n>"
+            if neosnippet#expandable_or_jumpable()
+                return "\<Plug>(neosnippet_expand_or_jump)"
+            else
+                return "\<C-n>"
+            endif
         else
             return neocomplete#start_manual_complete()
         endif
