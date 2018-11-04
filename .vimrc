@@ -756,6 +756,9 @@ let g:ctrlsf_mapping = {
             \ "open": { "key": "<CR>", "suffix": "<C-w>p" },
             \ "next": "<C-n>",
             \ "prev": "<C-p>",
+            \ "tab": "<C-T>",
+            \ "split": "<C-S>",
+            \ "vsplit": "<C-V>",
             \ "quit": ["q","<Esc>"],
             \ }
 nnoremap <Leader>st :CtrlSFToggle<CR>
