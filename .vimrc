@@ -1016,7 +1016,7 @@ endfunction
 let g:tcomment_mapleader1=''
 let g:tcomment_mapleader2=''
 " the default (g<) is a bit awkward to type
-let g:tcomment_mapleader_uncomment_anyway='gu'
+let g:tcomment_mapleader_uncomment_anyway='gC'
 let g:tcomment_mapleader_comment_anyway=''
 let g:tcomment_textobject_inlinecomment=''
 map <Leader>cl <Plug>TComment_gcc
