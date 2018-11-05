@@ -193,6 +193,8 @@ Plugin 'Konfekt/FastFold'
 Plugin 'Konfekt/FoldText'
 
 Plugin 'binesiyu/vim-winmode'
+" Window chooser
+Plugin 't9md/vim-choosewin'
 Plugin 'andymass/vim-tradewinds'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
@@ -1088,8 +1090,14 @@ let g:airline_extensions = ['branch', 'ctrlp', 'gutentags', 'whitespace', 'tabli
 " }
 
 " util {
-nmap <leader>ww <Plug>WinModeStart
+nmap <leader>wr <Plug>WinModeStart
 let g:win_mode_default ='resize'
+
+" invoke with '-'
+nnoremap <leader>ww :ChooseWin<CR>
+" if you want to use overlay feature
+let g:choosewin_overlay_enable = 1
+let g:choosewin_statusline_replace = 0 " don't replace statusline
 
 " }
 
