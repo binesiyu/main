@@ -113,9 +113,13 @@ Plugin 'nathanaelkane/vim-indent-guides'
 
 " textobj
 Plugin 'kana/vim-textobj-user'
+"ai/ii
 Plugin 'kana/vim-textobj-indent'
+"ae/ie
 Plugin 'kana/vim-textobj-entire'
+"al/il
 Plugin 'kana/vim-textobj-line'
+"af/if/aF/iF
 Plugin 'kana/vim-textobj-function'
 "a,/i,
 Plugin 'sgur/vim-textobj-parameter'
