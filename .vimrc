@@ -760,6 +760,9 @@ let g:ctrlsf_mapping = {
             \ "open": { "key": "<CR>", "suffix": "<C-w>p" },
             \ "next": "<C-n>",
             \ "prev": "<C-p>",
+            \ "tab": "<C-T>",
+            \ "split": "<C-S>",
+            \ "vsplit": "<C-V>",
             \ "quit": ["q","<Esc>"],
             \ }
 nnoremap <Leader>st :CtrlSFToggle<CR>
@@ -924,10 +927,18 @@ function! CleverTab()
         " nothing to match on empty string
         return "\<Tab>"
     else
-        if neosnippet#expandable_or_jumpable()
-            return "\<Plug>(neosnippet_expand_or_jump)"
+        if neosnippet#jumpable()
+            if pumvisible()
+                return "\<C-n>"
+            else
+                return "\<Plug>(neosnippet_jump)"
+            endif
         elseif pumvisible()
-            return "\<C-n>"
+            if neosnippet#expandable_or_jumpable()
+                return "\<Plug>(neosnippet_expand_or_jump)"
+            else
+                return "\<C-n>"
+            endif
         else
             return neocomplete#start_manual_complete()
         endif
@@ -1009,7 +1020,7 @@ endfunction
 let g:tcomment_mapleader1=''
 let g:tcomment_mapleader2=''
 " the default (g<) is a bit awkward to type
-let g:tcomment_mapleader_uncomment_anyway='gu'
+let g:tcomment_mapleader_uncomment_anyway='gC'
 let g:tcomment_mapleader_comment_anyway=''
 let g:tcomment_textobject_inlinecomment=''
 map <Leader>cl <Plug>TComment_gcc
@@ -1060,6 +1071,7 @@ nnoremap <silent> <leader>gv :GV<CR>
 " ---------------------------------------------------
 
 let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
 " let g:airline_theme = 'powerlineish'
 let g:airline#extensions#tabline#enabled = 1 " When you open lots of buffers and typing text, it is so slow.
 let g:airline#extensions#tabline#show_buffers = 1
@@ -1069,8 +1081,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_section_b = "%{fnamemodify(bufname('%'),':p:.:h').'/'}"
 " let g:airline_section_c = '%t'
 let g:airline_section_y = 'B:%{bufnr("%")} W:%{winnr()}'
-let g:airline_section_warning = airline#section#create(['neomake'])
-let g:airline_extensions = ['branch', 'ctrlp', 'gutentags', 'tabline']
+" let g:airline_section_warning = airline#section#create(['neomake'])
+let g:airline#extensions#whitespace#checks = ['trailing']
+let g:airline_extensions = ['branch', 'ctrlp', 'gutentags', 'whitespace', 'tabline', 'neomake']
 " }
 
 " util {
