@@ -1020,8 +1020,8 @@ endfunction
 let g:tcomment_mapleader1=''
 let g:tcomment_mapleader2=''
 " the default (g<) is a bit awkward to type
-let g:tcomment_mapleader_uncomment_anyway='gC'
-let g:tcomment_mapleader_comment_anyway=''
+let g:tcomment_mapleader_uncomment_anyway=''
+let g:tcomment_mapleader_comment_anyway='gC'
 let g:tcomment_textobject_inlinecomment=''
 map <Leader>cl <Plug>TComment_gcc
 map <Leader>ci <Plug>TComment_gcc
@@ -1319,6 +1319,7 @@ for i in range(1,9)
 endfor
 
 nnoremap <leader>if :exec 'normal ,hciw' . expand('%:t:r:r:r') . "\e"<CR>
+nnoremap <leader>ip :normal "_cib*
 
 " }
 
