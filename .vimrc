@@ -423,6 +423,9 @@ map <Leader>cd :cd %:p:h<CR>:pwd<CR>
 map <Leader>p ]p
 map <Leader>P ]P
 
+nmap <S-Enter> O<Esc>j
+nmap <CR> o<Esc>k
+
 " Select blocks after indenting
 xnoremap < <gv
 xnoremap > >gv|
