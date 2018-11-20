@@ -155,7 +155,11 @@ Plugin 'neomake/neomake'
 Plugin 'sbdchd/neoformat'
 
 " autocomplete
-Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/deoplete.nvim'
+if !has('nvim')
+    Plugin 'roxma/nvim-yarp'
+    Plugin 'roxma/vim-hug-neovim-rpc'
+endif
 Plugin 'Raimondi/delimitMate'
 " snippet
 Plugin 'Shougo/neosnippet.vim'
@@ -850,71 +854,51 @@ nnoremap <F7> :Neoformat<CR>
 " }
 
 " autocomplete {
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-" let g:neocomplete#max_list = 10
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'lua' : $HOME.'/.vim/bundle/vim-quick-community/key-dict'
-        \ }
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+    " deoplete options
+    let g:deoplete#enable_at_startup = get(g:, 'deoplete#enable_at_startup', 1)
 
-" Plugin key-mappings.
-" inoremap <expr><C-g>     neocomplete#undo_completion()
-" inoremap <expr><C-l>     neocomplete#complete_common_string()
+    " deoplete options
+    call deoplete#custom#option({
+                \ 'auto_complete_delay' :  get(g:, 'deoplete#auto_complete_delay',50),
+                \ 'ignore_case'         :  get(g:, 'deoplete#enable_ignore_case', 1),
+                \ 'smart_case'          :  get(g:, 'deoplete#enable_smart_case', 1),
+                \ 'camel_case'          :  get(g:, 'deoplete#enable_camel_case', 1),
+                \ 'refresh_always'      :  get(g:, 'deoplete#enable_refresh_always', 1)
+                \ })
 
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+    " let g:deoplete#max_abbr_width = get(g:, 'deoplete#max_abbr_width', 0)
+    " let g:deoplete#max_menu_width = get(g:, 'deoplete#max_menu_width', 0)
+    " init deoplet option dict
+    let g:deoplete#ignore_sources = get(g:,'deoplete#ignore_sources',{})
+    let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
+    let g:deoplete#omni_patterns = get(g:, 'deoplete#omni_patterns', {})
+    let g:deoplete#keyword_patterns = get(g:, 'deoplete#keyword_patterns', {})
 
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
+    " sh
+    call deoplete#custom#option('ignore_sources', {'sh': ['around', 'member', 'tag', 'syntax']})
 
-" Called once right before you start selecting multiple cursors
-function! Multiple_cursors_before()
-    if exists(':NeoCompleteLock')==2
-        exe 'NeoCompleteLock'
-    endif
-endfunction
+    " markdown
+    call deoplete#custom#option('ignore_sources', {'markdown': ['tag']})
 
-" Called once only when the multiple selection is canceled (default <Esc>)
-function! Multiple_cursors_after()
-    if exists(':NeoCompleteUnlock')==2
-        exe 'NeoCompleteUnlock'
-    endif
-endfunction
-" " ---------------------------------------------------
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" " ---------------------------------------------------
+    " lua
+    let g:deoplete#omni_patterns.lua = get(g:deoplete#omni_patterns, 'lua', '.')
+
+    " c c++
+    " call deoplete#custom#source('clang2', 'mark', '')
+    " call deoplete#custom#option('ignore_sources', {'c': ['omni']})
+
+    " vim
+    call deoplete#custom#option('ignore_sources', {'vim': ['tag']})
+
+    " public settings
+    " call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+    call deoplete#custom#source('_', 'matchers', ['matcher_head'])
+    call deoplete#custom#source('file/include', 'matchers', ['matcher_head'])
+    call deoplete#enable_logging('DEBUG', 'deoplete.log')
+
+    inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+    set isfname-==
 " }
 
 " snippet {
@@ -923,27 +907,21 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 let g:neosnippet#snippets_directory='~/.vim/snippets'
 
 function! CleverTab()
-    let substr = strpart(getline('.'), 0, col('.') - 1)
-    let substr = matchstr(substr, '[^ \t]*$')
-    if strlen(substr) == 0
-        " nothing to match on empty string
-        return "\<Tab>"
+    if getline('.')[col('.')-2] ==# '{'&& pumvisible()
+      return "\<C-n>"
+    endif
+    if neosnippet#expandable() && getline('.')[col('.')-2] ==# '(' && !pumvisible()
+      return "\<Plug>(neosnippet_expand)"
+    elseif neosnippet#jumpable()
+          \ && getline('.')[col('.')-2] ==# '(' && !pumvisible() 
+          \ && !neosnippet#expandable()
+      return "\<plug>(neosnippet_jump)"
+    elseif neosnippet#expandable_or_jumpable() && getline('.')[col('.')-2] !=#'('
+      return "\<plug>(neosnippet_expand_or_jump)"
+    elseif pumvisible()
+      return "\<C-n>"
     else
-        if neosnippet#jumpable()
-            if pumvisible()
-                return "\<C-n>"
-            else
-                return "\<Plug>(neosnippet_jump)"
-            endif
-        elseif pumvisible()
-            if neosnippet#expandable_or_jumpable()
-                return "\<Plug>(neosnippet_expand_or_jump)"
-            else
-                return "\<C-n>"
-            endif
-        else
-            return neocomplete#start_manual_complete()
-        endif
+      return "\<tab>"
     endif
 endfunction
 
@@ -1108,6 +1086,7 @@ let g:choosewin_blink_on_land      = 0 " don't blink at land
 let g:choosewin_statusline_replace = 0 " don't replace statusline
 
 " }
+
 
 " buffer {
 nnoremap <Leader>bd :Bdelete<CR>
