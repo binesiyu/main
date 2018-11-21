@@ -87,6 +87,43 @@ let maplocalleader=mapleader
 
 filetype off " required
 
+" autocomplete {
+function! Deoplete_init() abort
+    " deoplete options
+    let g:deoplete#enable_at_startup = get(g:, 'deoplete#enable_at_startup', 1)
+
+    " deoplete options
+    call deoplete#custom#option({
+                \ 'auto_complete_delay' :  get(g:, 'deoplete#auto_complete_delay',50),
+                \ 'ignore_case'         :  get(g:, 'deoplete#enable_ignore_case', 1),
+                \ 'smart_case'          :  get(g:, 'deoplete#enable_smart_case', 1),
+                \ 'camel_case'          :  get(g:, 'deoplete#enable_camel_case', 1),
+                \ 'refresh_always'      :  get(g:, 'deoplete#enable_refresh_always', 1)
+                \ })
+    " sh
+    call deoplete#custom#option('ignore_sources', {'sh': ['around', 'member', 'tag', 'syntax']})
+
+    " markdown
+    call deoplete#custom#option('ignore_sources', {'markdown': ['tag']})
+
+    " c c++
+    call deoplete#custom#source('clang2', 'mark', '')
+    call deoplete#custom#option('ignore_sources', {'c': ['omni']})
+
+    " vim
+    call deoplete#custom#option('ignore_sources', {'vim': ['tag']})
+
+    " public settings
+    " call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+    call deoplete#custom#source('_', 'matchers', ['matcher_head'])
+    call deoplete#custom#source('file/include', 'matchers', ['matcher_head'])
+
+    inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+    set isfname-==
+endfunction
+" }
+
 " Plugin Commands
 com! -nargs=+  -bar   Plugin call dein#add(<args>)
 " PluginInstall
@@ -155,7 +192,11 @@ Plugin 'neomake/neomake'
 Plugin 'sbdchd/neoformat'
 
 " autocomplete
-Plugin 'Shougo/deoplete.nvim'
+Plugin 'Shougo/deoplete.nvim', {
+            \ 'on_event' : 'InsertEnter',
+            \ 'hook_source' : function('Deoplete_init'),
+            \ 'on_path' : '.*',
+            \ }
 if !has('nvim')
     Plugin 'roxma/nvim-yarp'
     Plugin 'roxma/vim-hug-neovim-rpc'
@@ -853,53 +894,6 @@ let g:neoformat_basic_format_trim = 1
 nnoremap <F7> :Neoformat<CR>
 " }
 
-" autocomplete {
-    " deoplete options
-    let g:deoplete#enable_at_startup = get(g:, 'deoplete#enable_at_startup', 1)
-
-    " deoplete options
-    call deoplete#custom#option({
-                \ 'auto_complete_delay' :  get(g:, 'deoplete#auto_complete_delay',50),
-                \ 'ignore_case'         :  get(g:, 'deoplete#enable_ignore_case', 1),
-                \ 'smart_case'          :  get(g:, 'deoplete#enable_smart_case', 1),
-                \ 'camel_case'          :  get(g:, 'deoplete#enable_camel_case', 1),
-                \ 'refresh_always'      :  get(g:, 'deoplete#enable_refresh_always', 1)
-                \ })
-
-    " let g:deoplete#max_abbr_width = get(g:, 'deoplete#max_abbr_width', 0)
-    " let g:deoplete#max_menu_width = get(g:, 'deoplete#max_menu_width', 0)
-    " init deoplet option dict
-    let g:deoplete#ignore_sources = get(g:,'deoplete#ignore_sources',{})
-    let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
-    let g:deoplete#omni_patterns = get(g:, 'deoplete#omni_patterns', {})
-    let g:deoplete#keyword_patterns = get(g:, 'deoplete#keyword_patterns', {})
-
-    " sh
-    call deoplete#custom#option('ignore_sources', {'sh': ['around', 'member', 'tag', 'syntax']})
-
-    " markdown
-    call deoplete#custom#option('ignore_sources', {'markdown': ['tag']})
-
-    " lua
-    let g:deoplete#omni_patterns.lua = get(g:deoplete#omni_patterns, 'lua', '.')
-
-    " c c++
-    " call deoplete#custom#source('clang2', 'mark', '')
-    " call deoplete#custom#option('ignore_sources', {'c': ['omni']})
-
-    " vim
-    call deoplete#custom#option('ignore_sources', {'vim': ['tag']})
-
-    " public settings
-    " call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-    call deoplete#custom#source('_', 'matchers', ['matcher_head'])
-    call deoplete#custom#source('file/include', 'matchers', ['matcher_head'])
-    call deoplete#enable_logging('DEBUG', 'deoplete.log')
-
-    inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
-    set isfname-==
-" }
 
 " snippet {
 " choose a snippet plugin
@@ -913,7 +907,7 @@ function! CleverTab()
     if neosnippet#expandable() && getline('.')[col('.')-2] ==# '(' && !pumvisible()
       return "\<Plug>(neosnippet_expand)"
     elseif neosnippet#jumpable()
-          \ && getline('.')[col('.')-2] ==# '(' && !pumvisible() 
+          \ && getline('.')[col('.')-2] ==# '(' && !pumvisible()
           \ && !neosnippet#expandable()
       return "\<plug>(neosnippet_jump)"
     elseif neosnippet#expandable_or_jumpable() && getline('.')[col('.')-2] !=#'('
