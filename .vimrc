@@ -1335,10 +1335,6 @@ for i in range(1,9)
     exec 'noremap <leader>f' . i  . ' :set foldlevel=' . i . '<CR>'
 endfor
 
-if has('gui_running')
-    let g:tmux_navigator_no_mappings = 1
-endif
-
 nnoremap <leader>if :exec 'normal ,hciw' . expand('%:t:r:r:r') . "\e"<CR>
 nnoremap <leader>ip :normal "_cib*
 nnoremap <leader>iS O<Esc>j
