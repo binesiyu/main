@@ -101,6 +101,31 @@ function! Deoplete_init() abort
                 \ 'refresh_always'      :   1,
                 \ 'max_list'            :   20,
                 \ })
+    call deoplete#custom#option('ship_chars', ['(', ')', '<', '>'])
+    " keywordk patterns
+    call deoplete#custom#option('keyword_patterns', {
+                \ '_': '[a-zA-Z_]\k*\(?',
+                \ 'tex': '[^\w|\s][a-zA-Z_]\w*',
+                \ })
+    " converters
+    call deoplete#custom#source('_', 'converters', [
+                \ 'converter_remove_paren',
+                \ 'converter_remove_overlap',
+                \ 'converter_truncate_abbr',
+                \ 'converter_truncate_menu',
+                \ 'converter_auto_delimiter',
+                \ ])
+    " Omni input_patterns and functions
+    call deoplete#custom#source('omni', 'input_patterns', {
+                \'xml': '<[^>]*',
+                \'md': '<[^>]*',
+                \})
+
+    call deoplete#custom#source('omni', 'functions', {
+                \'css': 'csscomplete#CompleteCSS',
+                \'html': 'htmlcomplete#CompleteTags',
+                \'markdown': 'htmlcomplete#CompleteTags',
+                \})
     " sh
     call deoplete#custom#option('ignore_sources', {'sh': ['around', 'member', 'tag', 'syntax']})
 
