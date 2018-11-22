@@ -94,11 +94,12 @@ function! Deoplete_init() abort
 
     " deoplete options
     call deoplete#custom#option({
-                \ 'auto_complete_delay' :  get(g:, 'deoplete#auto_complete_delay',50),
-                \ 'ignore_case'         :  get(g:, 'deoplete#enable_ignore_case', 1),
-                \ 'smart_case'          :  get(g:, 'deoplete#enable_smart_case', 1),
-                \ 'camel_case'          :  get(g:, 'deoplete#enable_camel_case', 1),
-                \ 'refresh_always'      :  get(g:, 'deoplete#enable_refresh_always', 1)
+                \ 'auto_complete_delay' :  50,
+                \ 'ignore_case'         :   1,
+                \ 'smart_case'          :   1,
+                \ 'camel_case'          :   1,
+                \ 'refresh_always'      :   1,
+                \ 'max_list'            :   20,
                 \ })
     " sh
     call deoplete#custom#option('ignore_sources', {'sh': ['around', 'member', 'tag', 'syntax']})
