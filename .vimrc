@@ -94,7 +94,7 @@ function! Deoplete_init() abort
 
     " deoplete options
     call deoplete#custom#option({
-                \ 'auto_complete_delay' :  50,
+                \ 'auto_complete_delay' :  20,
                 \ 'ignore_case'         :   1,
                 \ 'smart_case'          :   1,
                 \ 'camel_case'          :   1,
