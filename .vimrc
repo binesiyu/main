@@ -129,6 +129,9 @@ function! Deoplete_init() abort
     " sh
     call deoplete#custom#option('ignore_sources', {'sh': ['around', 'member', 'tag', 'syntax']})
 
+    " lua
+    call deoplete#custom#option('ignore_sources', {'lua': ['dictionary', 'file', 'omni']})
+
     " markdown
     call deoplete#custom#option('ignore_sources', {'markdown': ['tag']})
 
