@@ -101,6 +101,9 @@ function! Deoplete_init() abort
                 \ 'refresh_always'      :   1,
                 \ 'max_list'            :   20,
                 \ })
+    " Change the source rank
+    call deoplete#custom#source('buffer',      'rank',  200)
+
     call deoplete#custom#option('ship_chars', ['(', ')', '<', '>'])
     " keywordk patterns
     call deoplete#custom#option('keyword_patterns', {
