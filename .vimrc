@@ -87,73 +87,6 @@ let maplocalleader=mapleader
 
 filetype off " required
 
-" autocomplete {
-function! Deoplete_init() abort
-    " deoplete options
-    let g:deoplete#enable_at_startup = get(g:, 'deoplete#enable_at_startup', 1)
-
-    " deoplete options
-    call deoplete#custom#option({
-                \ 'auto_complete_delay' :  20,
-                \ 'ignore_case'         :   1,
-                \ 'smart_case'          :   1,
-                \ 'camel_case'          :   1,
-                \ 'refresh_always'      :   1,
-                \ 'max_list'            :   20,
-                \ })
-    " Change the source rank
-    call deoplete#custom#source('buffer',      'rank',  200)
-
-    call deoplete#custom#option('ship_chars', ['(', ')', '<', '>'])
-    " keywordk patterns
-    call deoplete#custom#option('keyword_patterns', {
-                \ '_': '[a-zA-Z_]\k*\(?',
-                \ 'tex': '[^\w|\s][a-zA-Z_]\w*',
-                \ })
-    " converters
-    call deoplete#custom#source('_', 'converters', [
-                \ 'converter_remove_paren',
-                \ 'converter_remove_overlap',
-                \ 'converter_truncate_abbr',
-                \ 'converter_truncate_menu',
-                \ 'converter_auto_delimiter',
-                \ ])
-    " Omni input_patterns and functions
-    call deoplete#custom#source('omni', 'input_patterns', {
-                \'xml': '<[^>]*',
-                \'md': '<[^>]*',
-                \})
-
-    call deoplete#custom#source('omni', 'functions', {
-                \'css': 'csscomplete#CompleteCSS',
-                \'html': 'htmlcomplete#CompleteTags',
-                \'markdown': 'htmlcomplete#CompleteTags',
-                \})
-    " sh
-    call deoplete#custom#option('ignore_sources', {'sh': ['around', 'member', 'tag', 'syntax']})
-
-    " lua
-    call deoplete#custom#option('ignore_sources', {'lua': ['dictionary', 'file', 'omni']})
-
-    " markdown
-    call deoplete#custom#option('ignore_sources', {'markdown': ['tag']})
-
-    " c c++
-    call deoplete#custom#source('clang2', 'mark', '')
-    call deoplete#custom#option('ignore_sources', {'c': ['omni']})
-
-    " vim
-    call deoplete#custom#option('ignore_sources', {'vim': ['tag']})
-
-    " public settings
-    " call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-    call deoplete#custom#source('_', 'matchers', ['matcher_head'])
-
-    inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
-    set isfname-==
-endfunction
-" }
 
 " Plugin Commands
 com! -nargs=+  -bar   Plugin call dein#add(<args>)
@@ -223,11 +156,7 @@ Plugin 'neomake/neomake'
 Plugin 'sbdchd/neoformat'
 
 " autocomplete
-Plugin 'Shougo/deoplete.nvim', {
-            \ 'on_event' : 'InsertEnter',
-            \ 'hook_source' : function('Deoplete_init'),
-            \ 'on_path' : '.*',
-            \ }
+Plugin 'Shougo/deoplete.nvim'
 if !has('nvim')
     Plugin 'roxma/nvim-yarp'
     Plugin 'roxma/vim-hug-neovim-rpc'
@@ -962,6 +891,70 @@ smap <silent><expr><S-TAB> SuperTab_Shift()
 imap <C-j>     <Plug>(neosnippet_expand_or_jump)
 smap <C-j>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-j>     <Plug>(neosnippet_expand_target)
+" }
+
+" autocomplete {
+    " deoplete options
+    let g:deoplete#enable_at_startup = 1
+
+    " deoplete options
+    call deoplete#custom#option({
+                \ 'auto_complete_delay' :  20,
+                \ 'ignore_case'         :   1,
+                \ 'smart_case'          :   1,
+                \ 'camel_case'          :   1,
+                \ 'refresh_always'      :   1,
+                \ 'max_list'            :   20,
+                \ })
+    " Change the source rank
+    call deoplete#custom#source('buffer',      'rank',  200)
+
+    call deoplete#custom#option('ship_chars', ['(', ')', '<', '>'])
+    " keywordk patterns
+    call deoplete#custom#option('keyword_patterns', {
+                \ '_': '[a-za-z_]\k*\(?',
+                \ 'tex': '[^\w|\s][a-za-z_]\w*',
+                \ })
+    " converters
+    call deoplete#custom#source('_', 'converters', [
+                \ 'converter_remove_paren',
+                \ 'converter_remove_overlap',
+                \ 'converter_truncate_abbr',
+                \ 'converter_truncate_menu',
+                \ 'converter_auto_delimiter',
+                \ ])
+    " Omni input_patterns and functions
+    call deoplete#custom#source('omni', 'input_patterns', {
+                \'xml': '<[^>]*',
+                \'md': '<[^>]*',
+                \})
+
+    call deoplete#custom#source('omni', 'functions', {
+                \'markdown': 'htmlcomplete#CompleteTags',
+                \})
+    " sh
+    call deoplete#custom#option('ignore_sources', {'sh': ['around', 'member', 'tag', 'syntax']})
+
+    " lua
+    call deoplete#custom#option('ignore_sources', {'lua': ['dictionary', 'file', 'omni']})
+
+    " markdown
+    call deoplete#custom#option('ignore_sources', {'markdown': ['tag']})
+
+    " c c++
+    call deoplete#custom#source('clang2', 'mark', '')
+    call deoplete#custom#option('ignore_sources', {'c': ['omni']})
+
+    " vim
+    call deoplete#custom#option('ignore_sources', {'vim': ['tag']})
+
+    " public settings
+    " call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+    call deoplete#custom#source('_', 'matchers', ['matcher_head'])
+
+    inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+    set isfname-==
 " }
 
 " editor {
