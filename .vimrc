@@ -896,6 +896,8 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
 " autocomplete {
     " deoplete options
     let g:deoplete#enable_at_startup = 1
+    " let g:deoplete#enable_at_startup = 0
+    " autocmd InsertEnter * call deoplete#enable()
 
     " deoplete options
     call deoplete#custom#option({
@@ -912,9 +914,10 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
     call deoplete#custom#option('ship_chars', ['(', ')', '<', '>'])
     " keywordk patterns
     call deoplete#custom#option('keyword_patterns', {
-                \ '_': '[a-za-z_]\k*\(?',
-                \ 'tex': '[^\w|\s][a-za-z_]\w*',
-                \ })
+                \ '_': '[a-zA-Z_]\k*',
+                \ 'tex': '\\?[a-zA-Z_]\w*',
+                \ 'ruby': '[a-zA-Z_]\w*[!?]?',
+                \})
     " converters
     call deoplete#custom#source('_', 'converters', [
                 \ 'converter_remove_paren',
