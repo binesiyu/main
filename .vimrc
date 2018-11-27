@@ -895,9 +895,19 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
 
 " autocomplete {
     " deoplete options
-    let g:deoplete#enable_at_startup = 1
-    " let g:deoplete#enable_at_startup = 0
-    " autocmd InsertEnter * call deoplete#enable()
+    " let g:deoplete#enable_at_startup = 1
+
+    " 启动后删除
+    function! DeopleteEnable() abort
+        augroup deoplete_init
+            autocmd!
+        augroup END
+        call deoplete#enable()
+    endfunction
+    let g:deoplete#enable_at_startup = 0
+    augroup deoplete_init
+        autocmd InsertEnter * call DeopleteEnable()
+    augroup END
 
     " deoplete options
     call deoplete#custom#option({
