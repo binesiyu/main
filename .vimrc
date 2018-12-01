@@ -133,9 +133,12 @@ Plugin 'rhysd/vim-textobj-anyblock'
 Plugin 'binesiyu/vim-textobj-function-syntax'
 Plugin 'binesiyu/vim-textobj-lua'
 
+" operator
+Plugin 'kana/vim-operator-user'
+Plugin 'kana/vim-operator-replace'
+Plugin 'syngan/vim-operator-furround'
+Plugin 'thinca/vim-operator-sequence'
 
-Plugin 'gcmt/wildfire.vim'
-Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tomtom/tcomment_vim'
 
@@ -185,6 +188,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'iamcco/markdown-preview.vim'
 " lua
 Plugin 'binesiyu/vim-quick-community'
+
 Plugin 'binesiyu/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
 
 " tabular: invoke by <leader>= alignment-character
@@ -669,9 +673,24 @@ let g:indent_guides_exclude_filetypes = ['nerdtree','help', 'man', 'startify', '
 " }
 
 " textobj {
-let g:wildfire_objects = {
-            \ "*" : ["i'", 'i"', "i)", "if", "i]", "i}", "ip"],
-            \ "html,xml" : ["at"]}
+map <silent>gsa <Plug>(operator-furround-append-input)
+map <silent>gss <Plug>(operator-furround-append-input)
+map <silent>gsd <Plug>(operator-furround-delete)
+map <silent>gsr <Plug>(operator-furround-replace-input)
+
+
+" delete or replace most inner furround
+" if you use vim-textobj-anyblock
+nmap <silent>gsdd <Plug>(operator-furround-delete)<Plug>(textobj-anyblock-a)
+nmap <silent>gsrr <Plug>(operator-furround-replace-input)<Plug>(textobj-anyblock-a)
+
+map <silent>gr <Plug>(operator-replace)
+nmap <expr> <Leader>gd operator#sequence#map('y', [',ge'])
+
+map <silent>gld <Plug>(operator-luadump)
+map <silent>glD <Plug>(operator-luadumpbefore)
+map <silent>glp <Plug>(operator-luaprint)
+map <silent>glP <Plug>(operator-luaprintbefore)
 " }
 
 " ctrlp {
@@ -717,8 +736,6 @@ nnoremap <leader>fl :CtrlPMRUFiles<CR>
 nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <Leader>v :CtrlPFunky<Cr>
 nnoremap <leader>l :CtrlPBuffer<CR>
-nnoremap gf :let g:ctrlp_default_input = expand('<cword>') \|
-    \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 nnoremap <Leader>o :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 nnoremap <Leader>ff :let g:ctrlp_default_input = expand('<cword>') \|
