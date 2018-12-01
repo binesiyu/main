@@ -687,10 +687,10 @@ nmap <silent>gsrr <Plug>(operator-furround-replace-input)<Plug>(textobj-anyblock
 map <silent>gr <Plug>(operator-replace)
 nmap <expr> <Leader>gd operator#sequence#map('y', [',ge'])
 
-map <silent>gld <Plug>(operator-luadump)
-map <silent>glD <Plug>(operator-luadumpbefore)
-map <silent>glp <Plug>(operator-luaprint)
-map <silent>glP <Plug>(operator-luaprintbefore)
+map <silent>gdd <Plug>(operator-luadump)
+map <silent>gdD <Plug>(operator-luadumpbefore)
+map <silent>gdp <Plug>(operator-luaprint)
+map <silent>gdP <Plug>(operator-luaprintbefore)
 " }
 
 " ctrlp {
