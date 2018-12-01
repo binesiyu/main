@@ -924,7 +924,7 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
     call deoplete#custom#option('ship_chars', ['(', ')', '<', '>'])
     " keywordk patterns
     call deoplete#custom#option('keyword_patterns', {
-                \ '_': '[a-zA-Z_]\k*',
+                \ '_': '[a-zA-Z_]\k*\(?',
                 \ 'tex': '\\?[a-zA-Z_]\w*',
                 \ 'ruby': '[a-zA-Z_]\w*[!?]?',
                 \})
