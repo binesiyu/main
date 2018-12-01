@@ -133,9 +133,11 @@ Plugin 'rhysd/vim-textobj-anyblock'
 Plugin 'binesiyu/vim-textobj-function-syntax'
 Plugin 'binesiyu/vim-textobj-lua'
 
+" operator
+Plugin 'kana/vim-operator-user'
+Plugin 'kana/vim-operator-replace'
+Plugin 'syngan/vim-operator-furround'
 
-Plugin 'gcmt/wildfire.vim'
-Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tomtom/tcomment_vim'
 
@@ -669,9 +671,18 @@ let g:indent_guides_exclude_filetypes = ['nerdtree','help', 'man', 'startify', '
 " }
 
 " textobj {
-let g:wildfire_objects = {
-            \ "*" : ["i'", 'i"', "i)", "if", "i]", "i}", "ip"],
-            \ "html,xml" : ["at"]}
+map <silent>gsa <Plug>(operator-furround-append-input)
+map <silent>gss <Plug>(operator-furround-append-input)
+map <silent>gsd <Plug>(operator-furround-delete)
+map <silent>gsr <Plug>(operator-furround-replace-input)
+
+
+" delete or replace most inner furround
+" if you use vim-textobj-anyblock
+nmap <silent>gsdd <Plug>(operator-furround-delete)<Plug>(textobj-anyblock-a)
+nmap <silent>gsrr <Plug>(operator-furround-replace-input)<Plug>(textobj-anyblock-a)
+
+map <silent>gr <Plug>(operator-replace)
 " }
 
 " ctrlp {
@@ -717,8 +728,6 @@ nnoremap <leader>fl :CtrlPMRUFiles<CR>
 nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <Leader>v :CtrlPFunky<Cr>
 nnoremap <leader>l :CtrlPBuffer<CR>
-nnoremap gf :let g:ctrlp_default_input = expand('<cword>') \|
-    \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 nnoremap <Leader>o :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 nnoremap <Leader>ff :let g:ctrlp_default_input = expand('<cword>') \|
