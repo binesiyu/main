@@ -137,6 +137,7 @@ Plugin 'binesiyu/vim-textobj-lua'
 Plugin 'kana/vim-operator-user'
 Plugin 'kana/vim-operator-replace'
 Plugin 'syngan/vim-operator-furround'
+Plugin 'thinca/vim-operator-sequence'
 
 Plugin 'tpope/vim-repeat'
 Plugin 'tomtom/tcomment_vim'
@@ -683,6 +684,7 @@ nmap <silent>gsdd <Plug>(operator-furround-delete)<Plug>(textobj-anyblock-a)
 nmap <silent>gsrr <Plug>(operator-furround-replace-input)<Plug>(textobj-anyblock-a)
 
 map <silent>gr <Plug>(operator-replace)
+nmap <expr> <Leader>gd operator#sequence#map('y', [',ge'])
 " }
 
 " ctrlp {
