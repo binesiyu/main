@@ -688,13 +688,13 @@ map <silent>gr <Plug>(operator-replace)
 nmap <expr> <Leader>gd operator#sequence#map('y', [',ge'])
 
 map <silent>gdd <Plug>(operator-luadump)
-nmap <expr>gddd 'viw<Plug>(operator-luadump)'
+nmap <expr>gddd '<Plug>(operator-luadump)iw'
 map <silent>gdD <Plug>(operator-luadumpbefore)
-nmap <expr>gdDD 'viw<Plug>(operator-luadumpbefore)'
+nmap <expr>gdDD '<Plug>(operator-luadumpbefore)iw'
 map <silent>gdp <Plug>(operator-luaprint)
-nmap <expr>gdpp 'viw<Plug>(operator-luaprint)'
+nmap <expr>gdpp '<Plug>(operator-luaprint)iw'
 map <silent>gdP <Plug>(operator-luaprintbefore)
-nmap <expr>gdPP 'viw<Plug>(operator-luaprintbefore)'
+nmap <expr>gdPP '<Plug>(operator-luaprintbefore)iw'
 " }
 
 " ctrlp {
