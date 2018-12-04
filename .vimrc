@@ -1368,8 +1368,8 @@ endfor
 
 nnoremap <leader>if :exec 'normal ,hciw' . expand('%:t:r:r:r') . "\e"<CR>
 nnoremap <leader>ip :normal "_cib*
-nnoremap <leader>iS O<Esc>j
-nnoremap <leader>is o<Esc>k
+nnoremap <S-CR> O<Esc>j
+nnoremap <CR> o<Esc>k
 
 " }
 
