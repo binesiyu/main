@@ -799,12 +799,12 @@ nnoremap <Leader>k :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
 " nnoremap <Leader><Leader> :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
 nnoremap K :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
 nnoremap <Leader>sf :CtrlSF<Space>
-nnoremap <Leader>se :CtrlSF -W <C-R>* <Space>
-nnoremap <Leader>se :CtrlSF <C-R>* <Space>
-nnoremap <Leader>si :CtrlSF -I -W <Space>
-nnoremap <Leader>sI :CtrlSF -I <Space>
-nnoremap <Leader>sr :CtrlSF -R -W <Space>
-nnoremap <Leader>sR :CtrlSF -R <Space>
+nnoremap <Leader>se :CtrlSF -W <C-R>=expand('<cword>')<CR><Space>
+nnoremap <Leader>se :CtrlSF <C-R>=expand('<cword>')<CR><Space>
+nnoremap <Leader>si :CtrlSF -I -W<Space>
+nnoremap <Leader>sI :CtrlSF -I<Space>
+nnoremap <Leader>sr :CtrlSF -R -W<Space>
+nnoremap <Leader>sR :CtrlSF -R<Space>
 nnoremap <Leader>sw <Plug>CtrlSFCwordPath
 nnoremap <Leader>sW <Plug>CtrlSFCwordExec
 nnoremap <Leader>sp <Plug>CtrlSFPwordExec
@@ -1224,7 +1224,7 @@ call exgsearch#register_hotkey( 101, 0, '<leader>gg', ":EXGSearchCWord<CR>", 'Se
 call exgsearch#register_hotkey( 102, 0, '<leader>j', ":EXGSearchCWord<CR>", 'Search current word.' )
 call exgsearch#register_hotkey( 103, 0, '<leader><S-f>', ":GSW ", 'Shortcut for :GSW' )
 call exgsearch#register_hotkey( 103, 0, '<leader>gf', ":GSW ", 'Shortcut for :GSW' )
-call exgsearch#register_hotkey( 104, 0, '<leader>ge', ":GSW <C-R>*<CR>", 'Shortcut for :GSW' )
+call exgsearch#register_hotkey( 104, 0, '<leader>ge', ":GSW <C-R>=expand('<cword>')<CR>", 'Shortcut for :GSW' )
 call exgsearch#register_hotkey( 105, 1, 'o', ":call exgsearch#confirm_select('')<CR>"      , 'Go to the search result.' )
 call exgsearch#register_hotkey( 106, 1, 'p', ":call exgsearch#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
 
