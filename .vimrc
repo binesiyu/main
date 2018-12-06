@@ -685,6 +685,7 @@ nmap <silent>gsdd <Plug>(operator-furround-delete)<Plug>(textobj-anyblock-a)
 nmap <silent>gsrr <Plug>(operator-furround-replace-input)<Plug>(textobj-anyblock-a)
 
 map <silent>gr <Plug>(operator-replace)
+nmap <expr>grr '<Plug>(operator-replace)iw'
 nmap <expr> <Leader>gd operator#sequence#map('y', [',ge'])
 
 map <silent>gdd <Plug>(operator-luadump)
