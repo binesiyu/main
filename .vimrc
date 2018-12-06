@@ -462,7 +462,7 @@ nmap <S-Space> <C-y>
 
 " Visual-mode swapping
 vnoremap <C-W> <Esc>`.``gvP``P
-nnoremap <leader>d "_
+" nnoremap <leader>d "_
 
 " map Up & Down to gj & gk, helpful for wrap text edit
 noremap <Up> gk
@@ -741,6 +741,7 @@ nnoremap <leader>fl :CtrlPMRUFiles<CR>
 nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <Leader>v :CtrlPFunky<Cr>
 nnoremap <leader>l :CtrlPBuffer<CR>
+nnoremap <leader>d :CtrlPBuffer<CR>
 nnoremap <Leader>o :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 nnoremap <Leader>ff :let g:ctrlp_default_input = expand('<cword>') \|
