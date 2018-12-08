@@ -145,7 +145,8 @@ Plugin 'tomtom/tcomment_vim'
 " ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'binesiyu/ctrlp-py-matcher'
+" Plugin 'binesiyu/ctrlp-py-matcher'
+Plugin 'nixprime/cpsm',{ 'merged' : 0 , 'build': './install.sh' }
 "ctrlsf
 Plugin 'dyng/ctrlsf.vim',{'on': 'CtrlSF'}
 " nerdtree
@@ -722,7 +723,8 @@ if !exists('g:ctrlp_user_command')
 endif
 
 if !exists('g:ctrlp_match_func') && (has('python') || has('python3'))
-  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch'  }
+  " let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch'  }
+  let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
 endif
 
 let g:ctrlp_prompt_mappings = {
