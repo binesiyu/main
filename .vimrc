@@ -146,7 +146,7 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 " Plugin 'binesiyu/ctrlp-py-matcher'
-Plugin 'nixprime/cpsm',{ 'merged' : 0 , 'build': './install.sh' }
+Plugin 'nixprime/cpsm',{ 'merged' : 0 , 'build': 'PY3=ON ./install.sh' }
 "ctrlsf
 Plugin 'dyng/ctrlsf.vim',{'on': 'CtrlSF'}
 " nerdtree
