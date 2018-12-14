@@ -172,6 +172,7 @@ Plugin 'Raimondi/delimitMate'
 " snippet
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
+Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 , 'build': './install.sh' }
 
 " colorscheme
 Plugin 'morhetz/gruvbox'
@@ -196,16 +197,8 @@ Plugin 'binesiyu/vim-quick-community'
 Plugin 'binesiyu/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text editor
 
 " haskell
-Plugin 'dag/vim2hs'
+Plugin 'neovimhaskell/haskell-vim'
 Plugin 'Twinside/vim-haskellFold'
-" hoogle
-" Plugin 'Twinside/vim-hoogle'
-" Plugin 'lukerandall/haskellmode-vim'
-" ghc-mode
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'eagletmt/neco-ghc'
-" stylish
-Plugin 'nbouscal/vim-stylish-haskell'
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
 Plugin 'godlygeek/tabular'
@@ -1107,65 +1100,22 @@ nmap <Leader>z m`=aj'`
 " }
 
 " haskell {
-let g:haskell_conceal = 0
-let g:haskell_conceal_enumerations = 0
-let g:haskell_tabular = 0
-let g:necoghc_use_stack = 1
-
-" Syntax Highlighting and Indentation for Haskell and Cabal
-" Plugin 'neovimhaskell/haskell-vim'
-
-
-" hoogle
-let g:haskellmode_completion_ghc=0
-let g:haskellmode_completion_haddock=0
-let g:ghc_symbolcache=1
-if OSX()
-    let g:haddock_browser="Chrome.app"
-    let g:haddock_docdir='~/.stack/programs/x86_64-osx/ghc-8.2.2/share/doc/ghc-8.2.2/html'
-elseif WINDOWS()
-    let g:haddock_browser="firefox.exe"
-    let g:haddock_docdir='C:/Users/Administrator/AppData/Local/Programs/stack/i386-windows/ghc-8.0.2/doc/html'
-    let g:ghc='C:/Users/Administrator/AppData/Local/Programs/stack/i386-windows/ghc-8.0.2/bin/ghc.exe'
-else
-    let g:haddock_browser="firefox.exe"
-    let g:haddock_docdir='~/.stack/programs/x86_64-linux/ghc-ncurses6-8.0.2/share/doc/ghc-8.0.0/html'
-    let g:ghc='stack exec -- ghc'
-endif
-
-" Use stylish haskell instead of par for haskell buffers
-autocmd FileType haskell let &formatprg="stylish-haskell"
-autocmd FileType haskell compiler ghc
-" Workaround vim-commentary for Haskell
-autocmd FileType haskell setlocal commentstring=--\ %s
-" Workaround broken colour highlighting in Haskell
-autocmd FileType haskell setlocal nospell
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-" Type of expression under cursor
-" nmap <silent> <leader>nt :GhcModType<CR>
-" nmap <silent> <leader>nr :GhcModTypeClear<CR>
-" Insert type of expression under cursor
-" nmap <silent> <leader>nT :GhcModTypeInsert<CR>
-" Hoogle the word under the cursor
-" nnoremap <silent> <leader>nh :Hoogle<CR>
-
-" Hoogle and prompt for input
-" nnoremap <leader>nH :Hoogle
-
-" Hoogle for detailed documentation (e.g. "Functor")
-" nnoremap <silent> <leader>ni :HoogleInfo<CR>
-
-" Hoogle for detailed documentation and prompt for input
-" nnoremap <leader>nI :HoogleInfo
-
-" Hoogle, close the Hoogle window
-" nnoremap <silent> <leader>nc :HoogleClose<CR>
-" if !executable("ghcmod")
-    " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
-" endif
-" let g:lua_define_omnifunc = 0
-
 " }
+
+" lsp {
+let g:LanguageClient_serverCommands = {
+    \ 'haskell': ['stack' ,"exec", "--", "hie-wrapper"],
+    \ }
+" let g:LanguageClient_devel = 1 " Use rust debug build
+
+let g:LanguageClient_loggingLevel = 'DEBUG' " Use highest logging level
+" let g:LanguageClient_loggingFile = 'nvim.log' " Use highest logging level
+" let g:LanguageClient_serverStderr = 'language-server.log' " Use highest logging level
+
+" Automatically start language servers.
+let g:LanguageClient_autoStart = 1
+" }
+
 " git {
 
 let g:gitgutter_map_keys = 0
