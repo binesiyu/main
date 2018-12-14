@@ -172,7 +172,7 @@ Plugin 'Raimondi/delimitMate'
 " snippet
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
-Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'build': './install.sh' }
+Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': ['haskell', 'lua'] , 'build': './install.sh' }
 
 " colorscheme
 Plugin 'morhetz/gruvbox'
@@ -1105,6 +1105,7 @@ nmap <Leader>z m`=aj'`
 " lsp {
 let g:LanguageClient_serverCommands = {
     \ 'haskell': ['stack' ,"exec", "--", "hie-wrapper"],
+    \ 'lua': ['java' ,"-cp", "/Users/yubin/.local/bin/EmmyLua-LS-all.jar", "com.tang.vscode.MainKt"],
     \ }
 " let g:LanguageClient_devel = 1 " Use rust debug build
 
