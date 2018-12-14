@@ -851,6 +851,7 @@ call neomake#configure#automake('w')
 " 1 open list and move cursor 2 open list without move cursor
 let g:neomake_open_list =  0
 let g:neomake_verbose =  0
+let g:neomake_haskell_enabled_makers = ['hlint']
 let g:neomake_lua_enabled_makers = ['luacheck']
 let g:neomake_lua_luacheck_exe = expand('~/.luarocks/bin/luacheck')
 let g:neomake_error_sign = get(g:, 'neomake_error_sign', {
@@ -1112,8 +1113,10 @@ let g:LanguageClient_loggingLevel = 'DEBUG' " Use highest logging level
 " let g:LanguageClient_loggingFile = 'nvim.log' " Use highest logging level
 " let g:LanguageClient_serverStderr = 'language-server.log' " Use highest logging level
 
+" let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_selectionUI = 'quickfix'
 let g:LanguageClient_diagnosticsList = v:null
+let g:LanguageClient_diagnosticsSignsMax = 0
 let g:LanguageClient_hoverPreview = 'Never'
 
 " Automatically start language servers.
@@ -1123,6 +1126,7 @@ nnoremap <leader>rs :LanguageClientStop<CR>
 noremap <leader>rd :call LanguageClient#textDocument_definition()<cr>
 noremap <leader>rr :call LanguageClient#textDocument_references()<cr>
 noremap <leader>rv :call LanguageClient#textDocument_hover()<cr>
+autocmd FileType haskell let &formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
 " }
 
 " git {
