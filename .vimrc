@@ -172,8 +172,8 @@ Plugin 'Raimondi/delimitMate'
 " snippet
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
-Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'build': './install.sh' }
-" Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'build': './install.sh' }
+" Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'build': './install.sh' }
+Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'build': './install.sh' }
 
 " colorscheme
 Plugin 'morhetz/gruvbox'
