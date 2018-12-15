@@ -982,6 +982,10 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
     call deoplete#custom#source('omni', 'functions', {
                 \'markdown': 'htmlcomplete#CompleteTags',
                 \})
+
+    call deoplete#custom#source('LanguageClient',
+                \ 'min_pattern_length',
+                \ 2)
     " sh
     call deoplete#custom#option('ignore_sources', {'sh': ['around', 'member', 'tag', 'syntax']})
 
@@ -1119,6 +1123,7 @@ let g:LanguageClient_selectionUI = 'quickfix'
 let g:LanguageClient_diagnosticsList = v:null
 let g:LanguageClient_diagnosticsSignsMax = 0
 let g:LanguageClient_hoverPreview = 'Never'
+let g:LanguageClient_hasSnippetSupport = 0
 
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
