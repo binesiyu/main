@@ -172,7 +172,8 @@ Plugin 'Raimondi/delimitMate'
 " snippet
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
-Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'build': './install.sh' }
+Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'build': './install.sh' }
+" Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'build': './install.sh' }
 
 " colorscheme
 Plugin 'morhetz/gruvbox'
@@ -813,8 +814,8 @@ nnoremap <Leader>k :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
 " nnoremap <Leader><Leader> :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
 nnoremap K :CtrlSF -W <C-R>=expand('<cword>')<CR><CR>
 nnoremap <Leader>sf :CtrlSF<Space>
-nnoremap <Leader>se :CtrlSF -W <C-R>=expand('<cword>')<CR><Space>
-nnoremap <Leader>se :CtrlSF <C-R>=expand('<cword>')<CR><Space>
+nnoremap <Leader>se :CtrlSF -W <C-R>*<CR>
+nnoremap <Leader>se :CtrlSF <C-R>*<CR>
 nnoremap <Leader>si :CtrlSF -I -W<Space>
 nnoremap <Leader>sI :CtrlSF -I<Space>
 nnoremap <Leader>sr :CtrlSF -R -W<Space>
@@ -1158,7 +1159,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_y = 'B:%{bufnr("%")} W:%{winnr()}'
 " let g:airline_section_warning = airline#section#create(['neomake'])
 let g:airline#extensions#whitespace#checks = ['trailing']
-let g:airline_extensions = ['branch', 'ctrlp', 'gutentags', 'whitespace', 'tabline', 'neomake']
+let g:airline_extensions = ['branch', 'ctrlp', 'gutentags', 'whitespace', 'tabline', 'neomake', 'languageclient']
 " }
 
 " util {
@@ -1413,8 +1414,8 @@ endfor
 
 nnoremap <leader>if :exec 'normal ,hciw' . expand('%:t:r:r:r') . "\e"<CR>
 nnoremap <leader>ip :normal "_cib*
-nnoremap <S-CR> O<Esc>j
-nnoremap <CR> o<Esc>k
+" nnoremap <S-CR> O<Esc>j
+" nnoremap <CR> o<Esc>k
 
 " }
 
