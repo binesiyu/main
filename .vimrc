@@ -1132,7 +1132,7 @@ nnoremap <leader>rs :LanguageClientStop<CR>
 noremap <leader>rd :call LanguageClient#textDocument_definition()<cr>
 noremap <leader>rr :call LanguageClient#textDocument_references()<cr>
 noremap <leader>rv :call LanguageClient#textDocument_hover()<cr>
-autocmd FileType haskell let &formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+autocmd FileType haskell setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
 " }
 
 " git {
