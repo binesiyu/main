@@ -172,6 +172,7 @@ Plugin 'Raimondi/delimitMate'
 " snippet
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
+Plugin 'Shougo/neco-syntax'
 Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'build': './install.sh' }
 
 " colorscheme
@@ -1275,7 +1276,7 @@ call exgsearch#register_hotkey( 101, 0, '<leader>gg', ":EXGSearchCWord<CR>", 'Se
 call exgsearch#register_hotkey( 102, 0, '<leader>j', ":EXGSearchCWord<CR>", 'Search current word.' )
 call exgsearch#register_hotkey( 103, 0, '<leader><S-f>', ":GSW ", 'Shortcut for :GSW' )
 call exgsearch#register_hotkey( 103, 0, '<leader>gf', ":GSW ", 'Shortcut for :GSW' )
-call exgsearch#register_hotkey( 104, 0, '<leader>ge', ":GSW <C-R>=expand('<cword>')<CR>", 'Shortcut for :GSW' )
+call exgsearch#register_hotkey( 104, 0, '<leader>ge', ":GSW <C-R>*<CR>", 'Shortcut for :GSW' )
 call exgsearch#register_hotkey( 105, 1, 'o', ":call exgsearch#confirm_select('')<CR>"      , 'Go to the search result.' )
 call exgsearch#register_hotkey( 106, 1, 'p', ":call exgsearch#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
 
