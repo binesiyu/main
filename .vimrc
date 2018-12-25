@@ -312,7 +312,9 @@ if has('gui_running')
 
     " set guifont
     if OSX()
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
+        " set guifontwide=YaHei\ Consolas\ Hybrid:h12
+        " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
+        set guifont=DejaVuSansMono\ YaHei\ NF:h12
     elseif WINDOWS()
         set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI:qDRAFT
     else
