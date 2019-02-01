@@ -742,7 +742,7 @@ endif
 
 let g:ctrlp_prompt_mappings = {
 \ 'ToggleRegex()':        ['<c-q>'],
-\ 'PrtInsert("c")':       ['<c-c>'],
+\ 'PrtInsert("c")':       ['<c-e>'],
 \ 'PrtInsert("r")':       ['<c-r>'],
 \ 'PrtInsert("s")':       ['<c-s>'],
 \ 'PrtInsert("w")':       ['<c-g>'],
@@ -784,6 +784,7 @@ let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_case_sensitive = 'yes'
 " 默认搜索路径, 设置为project则从本文件的工程目录搜索
 let g:ctrlsf_default_root = 'project+wf'
+let g:ctrlsf_extra_root_markers = ['.root']
 " 工程目录的顶级文件夹
 let g:ctrlsf_ignore_dir = ['.exvim', '.git', '.hg', '.svn', '.bzr', '_darcs']
 " make result windows compact
@@ -835,7 +836,7 @@ let g:NERDTreeMouseMode = 1
 let g:NERDTreeMapToggleZoom = '<Tab>'
 let g:nerdtree_tabs_open_on_gui_startup=0
 let g:nerdtree_tabs_open_on_new_tab=0
-let g:NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+let g:NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.meta$']
 map <leader>x <plug>NERDTreeTabsToggle<CR>
 " }
 
