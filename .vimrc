@@ -226,6 +226,9 @@ Plugin 'binesiyu/vim-tweak'
 
 Plugin 'binesiyu/exvim',{'merged' : 0}
 
+Plugin 'leoatchina/ywvim',{'merged' : 0}
+" Plugin 'yy-shi/vimim',{'merged' : 0}
+
 call dein#end()
 call dein#save_state()
 endif
@@ -1310,6 +1313,25 @@ call excscope#register_hotkey( 105, 1, 'o', ":call excscope#confirm_select('')<C
 call excscope#register_hotkey( 106, 1, 'p', ":call excscope#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
 "}
 
+let g:ywvim_ims=[
+        \ ['wb', '五笔', 'wubi.ywvim'],
+        \ ['py', '拼音', 'pinyin.ywvim'],
+    \]
+let g:ywvim_py               = { 'helpim':'wb', 'gb':0 }
+let g:ywvim_zhpunc           = 1
+let g:ywvim_listmax          = 8
+let g:ywvim_esc_autoff       = 1
+let g:ywvim_autoinput        = 2
+let g:ywvim_circlecandidates = 1
+let g:ywvim_helpim_on        = 0
+let g:ywvim_matchexact       = 0
+let g:ywvim_chinesecode      = 1
+let g:ywvim_gb               = 0
+let g:ywvim_lockb            = 1
+let g:ywvim_preconv          = 'g2b'
+let g:ywvim_conv             = ''
+imap <silent> <C-\> <C-R>=Ywvim_toggle()<CR>
+cmap <silent> <C-\> <C-R>=Ywvim_toggle()<CR>
 " fix colorscheme {
 
 highlight clear SignColumn      " SignColumn should match background
