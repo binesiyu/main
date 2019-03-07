@@ -190,8 +190,13 @@ Plugin 'google/vim-searchindex'
 Plugin 'binesiyu/CmdlineComplete'
 
 " vim-markdown
+" The 'tabular' plugin must come _before_ 'vim-markdown'.
+Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'iamcco/markdown-preview.vim'
+
+" todo-vim
+Plugin 'freitass/todo.txt-vim'
 " lua
 Plugin 'binesiyu/vim-quick-community'
 
@@ -202,7 +207,6 @@ Plugin 'neovimhaskell/haskell-vim'
 Plugin 'Twinside/vim-haskellFold'
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
-Plugin 'godlygeek/tabular'
 Plugin 'kshenoy/vim-signature'
 " undotree: invoke by <Leader>u
 Plugin 'mbbill/undotree'
@@ -656,6 +660,7 @@ if OSX()
                 \ {'k': '~/Documents/dev/kingdom-of-heaven-client/koh-c.exvim'},
                 \ {'x': '~/Documents/dev/koh/koh.exvim'},
                 \ {'d': '~/Documents/dev-doc/doc.exvim'},
+                \ {'n': '~/Documents/dev/note/note.exvim'},
                 \'~/.vimrc',
                 \'~/.zshrc',
                 \]
