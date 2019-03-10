@@ -855,6 +855,7 @@ endif
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_frontmatter = 1
 let g:mkdp_auto_close=1
+autocmd FileType markdown setlocal conceallevel=0
 " noremap <F7> <Plug>MarkdownPreview
 " noremap <F8> <Plug>StopMarkdownPreview
 " }
