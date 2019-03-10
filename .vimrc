@@ -853,6 +853,7 @@ if OSX()
     let g:mkdp_path_to_chrome="open -a Google\\ Chrome"
 endif
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_frontmatter = 1
 let g:mkdp_auto_close=1
 " noremap <F7> <Plug>MarkdownPreview
 " noremap <F8> <Plug>StopMarkdownPreview
