@@ -704,17 +704,18 @@ nmap <silent>gsdd <Plug>(operator-furround-delete)<Plug>(textobj-anyblock-a)
 nmap <silent>gsrr <Plug>(operator-furround-replace-input)<Plug>(textobj-anyblock-a)
 
 map <silent>gr <Plug>(operator-replace)
-nmap <expr>grr '<Plug>(operator-replace)ib'
+nmap <expr>grr '<Plug>(operator-replace)iw'
+nmap <expr>grb '<Plug>(operator-replace)ib'
 nmap <expr> <Leader>gd operator#sequence#map('y', [',ge'])
 
 map <silent>gdd <Plug>(operator-luadump)
-nmap <expr>gddd '<Plug>(operator-luadump)ib'
+nmap <expr>gddd '<Plug>(operator-luadump)iw'
 map <silent>gdD <Plug>(operator-luadumpbefore)
-nmap <expr>gdDD '<Plug>(operator-luadumpbefore)ib'
+nmap <expr>gdDD '<Plug>(operator-luadumpbefore)iw'
 map <silent>gdp <Plug>(operator-luaprint)
-nmap <expr>gdpp '<Plug>(operator-luaprint)ib'
+nmap <expr>gdpp '<Plug>(operator-luaprint)iw'
 map <silent>gdP <Plug>(operator-luaprintbefore)
-nmap <expr>gdPP '<Plug>(operator-luaprintbefore)ib'
+nmap <expr>gdPP '<Plug>(operator-luaprintbefore)iw'
 " }
 
 " ctrlp {
