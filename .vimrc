@@ -163,17 +163,12 @@ Plugin 'neomake/neomake'
 Plugin 'sbdchd/neoformat'
 
 " autocomplete
-Plugin 'Shougo/deoplete.nvim'
-if !has('nvim')
-    Plugin 'roxma/nvim-yarp'
-    Plugin 'roxma/vim-hug-neovim-rpc'
-endif
+Plugin 'neoclide/coc.nvim',  {'merged': 0, 'build': './install.sh'}
 Plugin 'Raimondi/delimitMate'
 " snippet
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
-Plugin 'Shougo/neco-syntax'
-Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'build': './install.sh' }
+" Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'build': './install.sh' }
 
 " colorscheme
 Plugin 'morhetz/gruvbox'
@@ -946,84 +941,6 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
 " }
 
 " autocomplete {
-    " deoplete options
-    " let g:deoplete#enable_at_startup = 1
-
-    " 启动后删除
-    function! DeopleteEnable() abort
-        augroup deoplete_init
-            autocmd!
-        augroup END
-        call deoplete#enable()
-    endfunction
-    let g:deoplete#enable_at_startup = 0
-    augroup deoplete_init
-        autocmd InsertEnter * call DeopleteEnable()
-    augroup END
-
-    " deoplete options
-    call deoplete#custom#option({
-                \ 'auto_complete_delay' :  20,
-                \ 'ignore_case'         :   1,
-                \ 'smart_case'          :   1,
-                \ 'camel_case'          :   1,
-                \ 'refresh_always'      :   1,
-                \ 'max_list'            :   20,
-                \ })
-    " Change the source rank
-    call deoplete#custom#source('buffer',      'rank',  200)
-
-    call deoplete#custom#option('ship_chars', ['(', ')', '<', '>'])
-    " keywordk patterns
-    call deoplete#custom#option('keyword_patterns', {
-                \ '_': '[a-zA-Z_]\k*\(?',
-                \ 'tex': '\\?[a-zA-Z_]\w*',
-                \ 'ruby': '[a-zA-Z_]\w*[!?]?',
-                \})
-    " converters
-    call deoplete#custom#source('_', 'converters', [
-                \ 'converter_remove_paren',
-                \ 'converter_remove_overlap',
-                \ 'converter_truncate_abbr',
-                \ 'converter_truncate_menu',
-                \ 'converter_auto_delimiter',
-                \ ])
-    " Omni input_patterns and functions
-    call deoplete#custom#source('omni', 'input_patterns', {
-                \'xml': '<[^>]*',
-                \'md': '<[^>]*',
-                \})
-
-    call deoplete#custom#source('omni', 'functions', {
-                \'markdown': 'htmlcomplete#CompleteTags',
-                \})
-
-    call deoplete#custom#source('LanguageClient',
-                \ 'min_pattern_length',
-                \ 2)
-    " sh
-    call deoplete#custom#option('ignore_sources', {'sh': ['around', 'member', 'tag', 'syntax']})
-
-    " lua
-    call deoplete#custom#option('ignore_sources', {'lua': ['dictionary', 'file', 'omni']})
-
-    " markdown
-    call deoplete#custom#option('ignore_sources', {'markdown': ['tag']})
-
-    " c c++
-    call deoplete#custom#source('clang2', 'mark', '')
-    call deoplete#custom#option('ignore_sources', {'c': ['omni']})
-
-    " vim
-    call deoplete#custom#option('ignore_sources', {'vim': ['tag']})
-
-    " public settings
-    " call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-    call deoplete#custom#source('_', 'matchers', ['matcher_head'])
-
-    inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
-    set isfname-==
 " }
 
 " editor {
@@ -1124,31 +1041,6 @@ nmap <Leader>z m`=aj'`
 " }
 
 " lsp {
-let g:LanguageClient_serverCommands = {
-    \ 'haskell': ['stack' ,"exec", "--", "hie-wrapper"],
-    \ }
-" let g:LanguageClient_devel = 1 " Use rust debug build
-
-let g:LanguageClient_loggingLevel = 'DEBUG' " Use highest logging level
-" let g:LanguageClient_loggingFile = 'nvim.log' " Use highest logging level
-" let g:LanguageClient_serverStderr = 'language-server.log' " Use highest logging level
-
-" let g:LanguageClient_diagnosticsEnable = 0
-let g:LanguageClient_selectionUI = 'quickfix'
-let g:LanguageClient_diagnosticsList = v:null
-let g:LanguageClient_diagnosticsSignsMax = 0
-let g:LanguageClient_hoverPreview = 'Never'
-let g:LanguageClient_hasSnippetSupport = 0
-
-" Automatically start language servers.
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_autoStop = 1
-nnoremap <leader>rb :LanguageClientStart<CR>
-nnoremap <leader>rs :LanguageClientStop<CR>
-noremap <leader>rd :call LanguageClient#textDocument_definition()<cr>
-noremap <leader>rr :call LanguageClient#textDocument_references()<cr>
-noremap <leader>rv :call LanguageClient#textDocument_hover()<cr>
-autocmd FileType haskell setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
 " }
 
 " git {
