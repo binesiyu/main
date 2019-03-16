@@ -1,6 +1,7 @@
 " basic {
 set nocompatible " be iMproved, required
 
+
 function! OSX()
     return has('macunix')
 endfunction
@@ -907,6 +908,14 @@ nnoremap <F7> :Neoformat<CR>
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/snippets'
 
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 function! CleverTab()
     if getline('.')[col('.')-2] ==# '{'&& pumvisible()
       return "\<C-n>"
@@ -922,7 +931,8 @@ function! CleverTab()
     elseif pumvisible()
       return "\<C-n>"
     else
-      return "\<tab>"
+      return <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+      " return "\<tab>"
     endif
 endfunction
 
@@ -934,6 +944,7 @@ function! SuperTab_Shift() abort
 endfunction
 imap <silent><expr><S-TAB> SuperTab_Shift()
 smap <silent><expr><S-TAB> SuperTab_Shift()
+
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-j>     <Plug>(neosnippet_expand_or_jump)
 smap <C-j>     <Plug>(neosnippet_expand_or_jump)
