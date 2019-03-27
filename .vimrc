@@ -75,7 +75,12 @@ else
     let g:ex_tools_path = '~/.vim/tools/'
     let g:ex_dein_path = '~/.vim/dein/'
     set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+
+    if has('multi_byte')
+        set fileencodings=ucs-bom,utf-8,gbk,gb2312,big5,iso-8859-15,utf-16le
+    endif
 endif
+
 
 scriptencoding utf-8
 
