@@ -175,9 +175,9 @@ if !has('nvim')
 endif
 Plugin 'Raimondi/delimitMate'
 " snippet
-Plugin 'Shougo/neosnippet.vim'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'Shougo/neco-syntax'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+" Plugin 'Shougo/neco-syntax'
 Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'build': './install.sh' }
 
 " colorscheme
@@ -924,39 +924,48 @@ nnoremap <F7> :Neoformat<CR>
 " snippet {
 " choose a snippet plugin
 " Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/snippets'
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
 
-function! CleverTab()
+function! MappingTab() abort
     if getline('.')[col('.')-2] ==# '{'&& pumvisible()
-      return "\<C-n>"
-    endif
-    if neosnippet#expandable() && getline('.')[col('.')-2] ==# '(' && !pumvisible()
-      return "\<Plug>(neosnippet_expand)"
-    elseif neosnippet#jumpable()
-          \ && getline('.')[col('.')-2] ==# '(' && !pumvisible()
-          \ && !neosnippet#expandable()
-      return "\<plug>(neosnippet_jump)"
-    elseif neosnippet#expandable_or_jumpable() && getline('.')[col('.')-2] !=#'('
-      return "\<plug>(neosnippet_expand_or_jump)"
+        return "\<C-n>"
     elseif pumvisible()
-      return "\<C-n>"
+        return "\<C-n>"
+    elseif <SID>check_back_space()
+        return "\<TAB>"
     else
-      return "\<tab>"
+		return deoplete#mappings#manual_complete()
     endif
 endfunction
 
-imap <expr> <Tab> CleverTab()
-smap <expr> <Tab> CleverTab()
+imap <expr> <Tab> MappingTab()
+smap <expr> <Tab> MappingTab()
 
 function! SuperTab_Shift() abort
-    return pumvisible() ? "\<C-p>" : "\<Plug>delimitMateS-Tab"
+    return pumvisible() ? "\<C-p>" : "\<C-R>=UltiSnips#JumpForwards()\<CR>"
 endfunction
 imap <silent><expr><S-TAB> SuperTab_Shift()
 smap <silent><expr><S-TAB> SuperTab_Shift()
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-j>     <Plug>(neosnippet_expand_or_jump)
-smap <C-j>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-j>     <Plug>(neosnippet_expand_target)
+
+function! MappingEnter() abort
+    if pumvisible()
+        return "\<c-y>"
+    elseif getline('.')[col('.') - 2]==#'{'&&getline('.')[col('.')-1]==#'}'
+        return "\<Enter>\<esc>ko"
+    else
+        return "\<Enter>"
+    endif
+endfunction
+imap <silent><expr><CR> MappingEnter()
+
+let g:UltiSnipsEditSplit = 'vertical'
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
 " }
 
 " autocomplete {
