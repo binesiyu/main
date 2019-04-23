@@ -599,10 +599,10 @@ cnoremap w!! %!sudo tee > /dev/null %
 " nnoremap V v
 " vnoremap V v
 
-nnoremap <c-]> g<c-]>
-vnoremap <c-]> g<c-]>
-nnoremap g<c-]> <c-]>
-vnoremap g<c-]> <c-]>
+" nnoremap <c-]> g<c-]>
+" vnoremap <c-]> g<c-]>
+" nnoremap g<c-]> <c-]>
+" vnoremap g<c-]> <c-]>
 
 " Fast saving
 nnoremap <C-s> :<C-u>w<CR>
