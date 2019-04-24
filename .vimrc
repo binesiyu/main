@@ -169,6 +169,8 @@ Plugin 'sbdchd/neoformat'
 
 " autocomplete
 Plugin 'Shougo/deoplete.nvim'
+Plugin 'deoplete-plugins/deoplete-tag'
+Plugin 'deoplete-plugins/deoplete-dictionary'
 if !has('nvim')
     Plugin 'roxma/nvim-yarp'
     Plugin 'roxma/vim-hug-neovim-rpc'
@@ -993,7 +995,7 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
                 \ 'ignore_case'         :   1,
                 \ 'smart_case'          :   1,
                 \ 'camel_case'          :   1,
-                \ 'refresh_always'      :   0,
+                \ 'refresh_always'      :   1,
                 \ 'max_list'            :   20,
                 \ })
     " Change the source rank
