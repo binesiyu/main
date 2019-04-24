@@ -1046,8 +1046,8 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
     call deoplete#custom#option('ignore_sources', {'vim': ['tag']})
 
     " public settings
-    " call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-    call deoplete#custom#source('_', 'matchers', ['matcher_head'])
+    call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+    " call deoplete#custom#source('_', 'matchers', ['matcher_head'])
 
     inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
     inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
