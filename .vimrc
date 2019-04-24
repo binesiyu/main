@@ -995,7 +995,7 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
                 \ 'ignore_case'         :   1,
                 \ 'smart_case'          :   1,
                 \ 'camel_case'          :   1,
-                \ 'refresh_always'      :   1,
+                \ 'refresh_always'      :   0,
                 \ 'max_list'            :   20,
                 \ })
     " Change the source rank
