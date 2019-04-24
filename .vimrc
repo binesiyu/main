@@ -989,7 +989,7 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
 
     " deoplete options
     call deoplete#custom#option({
-                \ 'auto_complete_delay' :  20,
+                \ 'auto_complete_delay' :  0,
                 \ 'ignore_case'         :   1,
                 \ 'smart_case'          :   1,
                 \ 'camel_case'          :   1,
