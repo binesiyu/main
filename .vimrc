@@ -989,11 +989,11 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
 
     " deoplete options
     call deoplete#custom#option({
-                \ 'auto_complete_delay' :  0,
+                \ 'auto_complete_delay' :  20,
                 \ 'ignore_case'         :   1,
                 \ 'smart_case'          :   1,
                 \ 'camel_case'          :   1,
-                \ 'refresh_always'      :   1,
+                \ 'refresh_always'      :   0,
                 \ 'max_list'            :   20,
                 \ })
     " Change the source rank
