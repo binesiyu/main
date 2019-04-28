@@ -23,7 +23,9 @@ set langmenu=none
 if WINDOWS()
     silent exec 'language english'
 elseif OSX()
-    silent exec 'language en_US'
+    if !has("gui_vimr")
+        silent exec 'language en_US'
+    end
 else
     let s:uname = system("uname -s")
     if s:uname == "Darwin\n"
@@ -992,7 +994,7 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
     " deoplete options
     call deoplete#custom#option({
                 \ 'auto_complete_delay' :  20,
-                \ 'ignore_case'         :   1,
+                \ 'ignore_case'         :   0,
                 \ 'smart_case'          :   1,
                 \ 'camel_case'          :   1,
                 \ 'refresh_always'      :   0,
