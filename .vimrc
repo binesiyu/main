@@ -231,7 +231,6 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 Plugin 'moll/vim-bbye'
 Plugin 'vim-scripts/BufOnly.vim'
-Plugin 'binesiyu/vim-tweak'
 
 Plugin 'binesiyu/exvim',{'merged' : 0}
 
@@ -1489,7 +1488,6 @@ for i in range(1,9)
     let s:str = i . ' ' . i
     exec 'nnoremap <leader>t'. s:str .'gt'
     exec 'nnoremap <leader>'. s:str .'<C-W>W'
-    exec 'nnoremap <expr> <Leader>b'. i . ' tweak#wtb_switch#key_leader_bufnum(' . i . ')'
     exec 'noremap <leader>f' . i  . ' :set foldlevel=' . i . '<CR>'
 endfor
 
