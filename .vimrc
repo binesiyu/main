@@ -1060,6 +1060,11 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
     inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
     inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
     set isfname-==
+
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function() abort
+        return deoplete#close_popup() . "\<CR>"
+    endfunction
 " }
 
 " editor {
