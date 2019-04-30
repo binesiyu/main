@@ -431,6 +431,10 @@ if has('autocmd')
         " disable auto-comment for c/cpp, lua, javascript, c# and vim-script
         au FileType c,cpp,java,javascript set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f://
         au FileType vim set comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",f:\"
+
+        if has("gui_vimr")
+            au FocusGained * checktime
+        end
     augroup END
 endif
 " }
@@ -999,6 +1003,8 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
                 \ 'camel_case'          :   1,
                 \ 'refresh_always'      :   0,
                 \ 'max_list'            :   20,
+                \ 'skip_multibyte'      :   0,
+                \ 'min_pattern_length'  :   1,
                 \ })
     " Change the source rank
     call deoplete#custom#source('buffer',      'rank',  200)
