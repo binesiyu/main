@@ -239,6 +239,8 @@ Plugin 'leoatchina/ywvim',{'merged' : 0}
 
 if OSX()
 Plugin 'ybian/smartim'
+elseif LINUX()
+Plugin 'lilydjwg/fcitx.vim'
 endif
 
 call dein#end()
