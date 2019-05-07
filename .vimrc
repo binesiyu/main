@@ -237,6 +237,10 @@ Plugin 'binesiyu/exvim',{'merged' : 0}
 Plugin 'leoatchina/ywvim',{'merged' : 0}
 " Plugin 'yy-shi/vimim',{'merged' : 0}
 
+if OSX()
+Plugin 'ybian/smartim'
+endif
+
 call dein#end()
 call dein#save_state()
 endif
@@ -1452,6 +1456,9 @@ endfunction
 noremap <Leader>ev :call EditVimrc13Config()<CR>
 noremap <Leader>er :source $HOME/.vimrc<CR>
 noremap <Leader>es :NeoSnippetEdit<CR>
+" }
+
+" edit {
 " }
 
 " Code folding options {
