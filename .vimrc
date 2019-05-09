@@ -238,7 +238,7 @@ Plugin 'leoatchina/ywvim',{'merged' : 0}
 " Plugin 'yy-shi/vimim',{'merged' : 0}
 
 if OSX()
-Plugin 'ybian/smartim'
+" Plugin 'binesiyu/smartim',{'merged' : 0}
 elseif LINUX()
 Plugin 'lilydjwg/fcitx.vim'
 endif
@@ -1461,6 +1461,15 @@ noremap <Leader>es :NeoSnippetEdit<CR>
 " }
 
 " edit {
+" Set the input method for Mac
+if has("gui_macvim")
+  " autocmd! InsertEnter * set noimdisable
+  " autocmd! InsertLeave * set imdisable
+  " autocmd! InsertEnter * silent !open -g "hammerspoon://viminsert"
+  " autocmd! InsertLeave * silent !open -g "hammerspoon://vimnormal"
+  " autocmd! InsertEnter * silent !squirrel_client -u ascii_mode
+  " autocmd! InsertLeave * silent !squirrel_client -s ascii_mode
+endif
 " }
 
 " Code folding options {
