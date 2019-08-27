@@ -234,8 +234,10 @@ Plugin 'vim-scripts/BufOnly.vim'
 
 Plugin 'binesiyu/exvim',{'merged' : 0}
 
-Plugin 'leoatchina/ywvim',{'merged' : 0}
+" Plugin 'leoatchina/ywvim',{'merged' : 0}
 " Plugin 'yy-shi/vimim',{'merged' : 0}
+
+Plugin 'zchee/vim-flatbuffers',{'merged' : 0}
 
 if OSX()
 " Plugin 'binesiyu/smartim',{'merged' : 0}
@@ -1008,7 +1010,7 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
                 \ 'camel_case'          :   1,
                 \ 'refresh_always'      :   0,
                 \ 'max_list'            :   20,
-                \ 'skip_multibyte'      :   0,
+                \ 'skip_multibyte'      :   1,
                 \ 'min_pattern_length'  :   1,
                 \ })
     " Change the source rank
@@ -1062,8 +1064,8 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
     call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
     " call deoplete#custom#source('_', 'matchers', ['matcher_head'])
 
-    inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+    inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
     set isfname-==
 
     inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
