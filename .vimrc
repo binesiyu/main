@@ -173,6 +173,7 @@ Plugin 'sbdchd/neoformat'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'deoplete-plugins/deoplete-tag'
 Plugin 'deoplete-plugins/deoplete-dictionary'
+Plugin 'tbodt/deoplete-tabnine', { 'build': './install.sh' }
 if !has('nvim')
     Plugin 'roxma/nvim-yarp'
     Plugin 'roxma/vim-hug-neovim-rpc'
