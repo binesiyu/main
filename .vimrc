@@ -173,7 +173,7 @@ Plugin 'sbdchd/neoformat'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'deoplete-plugins/deoplete-tag'
 Plugin 'deoplete-plugins/deoplete-dictionary'
-Plugin 'tbodt/deoplete-tabnine', { 'build': './install.sh' }
+" Plugin 'tbodt/deoplete-tabnine', { 'build': './install.sh' }
 if !has('nvim')
     Plugin 'roxma/nvim-yarp'
     Plugin 'roxma/vim-hug-neovim-rpc'
@@ -1473,6 +1473,13 @@ if has("gui_macvim")
   " autocmd! InsertEnter * silent !squirrel_client -u ascii_mode
   " autocmd! InsertLeave * silent !squirrel_client -s ascii_mode
 endif
+" }
+
+" Terminal Config {
+  if has('nvim') || exists(':tnoremap') == 2
+     tnoremap <Esc> <C-\><C-n>
+  endif
+  nnoremap <leader>to :below 20sp term://$SHELL<cr>i
 " }
 
 " Code folding options {
