@@ -476,7 +476,7 @@ nnoremap <leader>wh <C-W><Left>
 nnoremap <leader>wl <C-W><Right>
 nnoremap <leader>wm <C-W>_
 
-noremap <C-c> <Esc>
+" noremap <C-c> <Esc>
 
 "When pressing <leader>cd switch to the directory of the open buffer
 map <Leader>cd :cd %:p:h<CR>:pwd<CR>
