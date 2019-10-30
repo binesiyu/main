@@ -173,7 +173,7 @@ Plugin 'sbdchd/neoformat'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'deoplete-plugins/deoplete-tag'
 Plugin 'deoplete-plugins/deoplete-dictionary'
-" Plugin 'tbodt/deoplete-tabnine', { 'build': './install.sh' }
+Plugin 'tbodt/deoplete-tabnine', { 'build': './install.sh' }
 if !has('nvim')
     Plugin 'roxma/nvim-yarp'
     Plugin 'roxma/vim-hug-neovim-rpc'
@@ -1527,6 +1527,8 @@ endfor
 
 nnoremap <leader>if :exec 'normal ,hciw' . expand('%:t:r:r:r') . "\e"<CR>
 nnoremap <leader>ip :normal "_cib*
+
+command! OpenInVSCode exe "silent !code --goto '" . expand("%") . ":" . line(".") . ":" . col(".") . "'" | redraw!
 " nnoremap <S-CR> O<Esc>j
 " nnoremap <CR> o<Esc>k
 
