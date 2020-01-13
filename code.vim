@@ -137,6 +137,10 @@ Plugin 'kana/vim-operator-user'
 Plugin 'kana/vim-operator-replace'
 Plugin 'syngan/vim-operator-furround'
 Plugin 'thinca/vim-operator-sequence'
+" vim-easymotion
+Plugin 'asvetliakov/vim-easymotion'
+
+Plugin 'tomtom/tcomment_vim'
 
 Plugin 'tpope/vim-repeat'
 
@@ -274,11 +278,16 @@ nnoremap <silent> <leader>y2 :let @*=fnamemodify(bufname('%'),":p:t")<CR>
 nnoremap <silent> <leader>y3 :let @*=fnamemodify(bufname('%'),":p")<CR>
 
 " map Ctrl-Tab to switch window
-nnoremap <leader>wk <C-W><Up>
-nnoremap <leader>wj <C-W><Down>
-nnoremap <leader>wh <C-W><Left>
-nnoremap <leader>wl <C-W><Right>
-nnoremap <leader>wm <C-W>_
+nmap <leader>wk <C-W>k
+nmap <leader>wj <C-W>j
+nmap <leader>wh <C-W>h
+nmap <leader>wl <C-W>l
+nmap <leader>wm <C-W>_
+
+nmap <C-K> <C-W>k
+nmap <C-L> <C-W>l
+nmap <C-H> <C-W>h
+nmap <C-J> <C-W>j
 
 " noremap <C-c> <Esc>
 
@@ -427,6 +436,29 @@ nmap <expr>gdpp '<Plug>(operator-luaprint)iw'
 map <silent>gdP <Plug>(operator-luaprintbefore)
 nmap <expr>gdPP '<Plug>(operator-luaprintbefore)iw'
 " }
+
+" editor {
+" let g:EasyMotion_do_shade = 0
+" let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+nmap t <Plug>(easymotion-prefix)
+nmap tt <Plug>(easymotion-sn)
+nmap tj <Plug>(easymotion-j)
+nmap tk <Plug>(easymotion-k)
+nmap tl <Plug>(easymotion-lineforward)
+nmap th <Plug>(easymotion-linebackward)
+nmap t. <Plug>(easymotion-repeat)
+vmap t <Plug>(easymotion-prefix)
+vmap tt <Plug>(easymotion-sn)
+vmap tj <Plug>(easymotion-j)
+vmap tk <Plug>(easymotion-k)
+vmap tl <Plug>(easymotion-lineforward)
+vmap th <Plug>(easymotion-linebackward)
+vmap t. <Plug>(easymotion-repeat)
+
+nmap f <Plug>(easymotion-lineforward)
+nmap F <Plug>(easymotion-linebackward)
+vmap f <Plug>(easymotion-lineforward)
+vmap F <Plug>(easymotion-linebackward)
 
 
 noremap <Leader>a& :Tabularize /&<CR>
