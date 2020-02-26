@@ -318,32 +318,34 @@ set titlestring=%t\ (%{expand(\"%:p:.:h\")}/)
 " }}
 
 " set window size (if it's GUI) {{
-if has('gui_running')
-    " set window's width to 130 columns and height to 40 rows
-    if exists('+lines')
-        set lines=40                " 40 lines of text instead of 24
-    endif
-    if exists('+columns')
-        set columns=150
-    endif
+if !has('nvim')
+    if has('gui_running')
+        " set window's width to 130 columns and height to 40 rows
+        if exists('+lines')
+            set lines=40                " 40 lines of text instead of 24
+        endif
+        if exists('+columns')
+            set columns=150
+        endif
 
-    " disable menu & toolbar
-    set guioptions-=T           " Remove the toolbar
-    set guioptions-=m           " Remove the menu
-    set guioptions-=L           " Remove the
-    set guioptions-=b           " Remove the
-    set guioptions-=r           " Remove the
-    set gcr=a:block-blinkon0    "noblock"
+        " disable menu & toolbar
+        set guioptions-=T           " Remove the toolbar
+        set guioptions-=m           " Remove the menu
+        set guioptions-=L           " Remove the
+        set guioptions-=b           " Remove the
+        set guioptions-=r           " Remove the
+        set gcr=a:block-blinkon0    "noblock"
 
-    " set guifont
-    if OSX()
-        " set guifontwide=YaHei\ Consolas\ Hybrid:h12
-        " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
-        set guifont=DejaVuSansMono\ YaHei\ NF:h12
-    elseif WINDOWS()
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI:qDRAFT
-    else
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+        " set guifont
+        if OSX()
+            " set guifontwide=YaHei\ Consolas\ Hybrid:h12
+            " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
+            set guifont=DejaVuSansMono\ YaHei\ NF:h12
+        elseif WINDOWS()
+            set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11:cANSI:qDRAFT
+        else
+            set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+        endif
     endif
 endif
 " }}
