@@ -241,6 +241,8 @@ Plugin 'binesiyu/exvim',{'merged' : 0}
 
 Plugin 'zchee/vim-flatbuffers',{'merged' : 0}
 
+" Plugin 'puremourning/vimspector',{'merged' : 0}
+
 if OSX()
 " Plugin 'binesiyu/smartim',{'merged' : 0}
 elseif LINUX()
