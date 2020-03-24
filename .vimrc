@@ -961,14 +961,8 @@ function! CleverTab()
     if getline('.')[col('.')-2] ==# '{'&& pumvisible()
       return "\<C-n>"
     endif
-    if neosnippet#expandable() && getline('.')[col('.')-2] ==# '(' && !pumvisible()
-      return "\<Plug>(neosnippet_expand)"
-    elseif neosnippet#jumpable()
+    if neosnippet#jumpable()
           \ && getline('.')[col('.')-2] ==# '(' && !pumvisible()
-          \ && !neosnippet#expandable()
-      return "\<plug>(neosnippet_jump)"
-    elseif neosnippet#expandable_or_jumpable() && getline('.')[col('.')-2] !=#'('
-      return "\<plug>(neosnippet_expand_or_jump)"
     elseif pumvisible()
       return "\<C-n>"
     else
@@ -978,6 +972,25 @@ endfunction
 
 imap <expr> <Tab> CleverTab()
 smap <expr> <Tab> CleverTab()
+
+function! CleverEnter() abort
+    if pumvisible()
+        if neosnippet#expandable()
+            return "\<plug>(neosnippet_expand)"
+        else
+            return deoplete#close_popup() . "\<CR>"
+        endif
+    elseif getline('.')[col('.') - 2]==#'{'&&getline('.')[col('.')-1]==#'}'
+        return "\<Enter>\<esc>ko"
+    elseif getline('.')[col('.') - 2]==#'('&&getline('.')[col('.')-1]==#')'
+        return "\<Enter>\<esc>ko"
+    else
+        return "\<Enter>"
+    endif
+endfunction
+
+imap <expr> <CR> CleverEnter()
+smap <expr> <CR> CleverEnter()
 
 function! SuperTab_Shift() abort
     return pumvisible() ? "\<C-p>" : "\<Plug>delimitMateS-Tab"
@@ -1072,10 +1085,10 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
     inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
     set isfname-==
 
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function() abort
-        return deoplete#close_popup() . "\<CR>"
-    endfunction
+    " inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    " function! s:my_cr_function() abort
+    "     return deoplete#close_popup() . "\<CR>"
+    " endfunction
 " }
 
 " editor {
