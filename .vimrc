@@ -1184,7 +1184,8 @@ let g:lua_define_completion_mappings = 0
 let lua_version = 5
 let lua_subversion = 1
 " quick indent in lua
-nmap <Leader>z m`=aj'`
+" nmap <Leader>z m`=aj'`
+nmap <Leader>z zczO
 " }
 
 " haskell {
