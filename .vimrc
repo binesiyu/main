@@ -811,6 +811,7 @@ nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <Leader>v :CtrlPFunky<Cr>
 nnoremap <leader>l :CtrlPBuffer<CR>
 nnoremap <leader>d :CtrlPBuffer<CR>
+nnoremap <leader>fd :exe 'CtrlP ' . fnamemodify(bufname('%'),':h')<CR>
 nnoremap <Leader>o :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
 nnoremap <Leader>ff :let g:ctrlp_default_input = expand('<cword>') \|
@@ -892,6 +893,7 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 let g:nerdtree_tabs_open_on_new_tab=0
 let g:NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.meta$']
 map <leader>x <plug>NERDTreeTabsToggle<CR>
+map <leader>fx <plug>NERDTreeFind<CR>
 " }
 
 " vim-markdown {
