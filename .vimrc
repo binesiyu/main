@@ -514,6 +514,9 @@ noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "4\<C-y>")
 nmap <Space> <C-e>
 nmap <S-Space> <C-y>
 
+nnoremap <Tab> :wincmd w<CR>
+nnoremap <S-Tab> :wincmd p<CR>
+
 " Visual-mode swapping
 vnoremap <C-W> <Esc>`.``gvP``P
 " nnoremap <leader>d "_
@@ -889,7 +892,7 @@ nnoremap <Leader>sp <Plug>CtrlSFPwordExec
 
 let g:NERDTreeWinSize = 30
 let g:NERDTreeMouseMode = 1
-let g:NERDTreeMapToggleZoom = '<Tab>'
+let g:NERDTreeMapToggleZoom = '<Space>'
 let g:nerdtree_tabs_open_on_gui_startup=0
 let g:nerdtree_tabs_open_on_new_tab=0
 let g:NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.meta$']
