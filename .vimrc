@@ -161,7 +161,6 @@ endif
 Plugin 'dyng/ctrlsf.vim',{'on': 'CtrlSF'}
 " nerdtree
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
 " vim-easymotion
 Plugin 'binesiyu/vim-easymotion'
 
@@ -894,8 +893,8 @@ let g:NERDTreeMapToggleZoom = '<Tab>'
 let g:nerdtree_tabs_open_on_gui_startup=0
 let g:nerdtree_tabs_open_on_new_tab=0
 let g:NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.meta$']
-map <leader>x <plug>NERDTreeTabsToggle<CR>
-map <leader>fx <plug>NERDTreeFind<CR>
+map <leader>x :NERDTreeToggle<CR>
+map <leader>fx :NERDTreeFind<CR>
 " }
 
 " vim-markdown {
