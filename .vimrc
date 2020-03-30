@@ -812,7 +812,7 @@ nnoremap <leader>fl :CtrlPMRUFiles<CR>
 nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <Leader>v :CtrlPFunky<Cr>
 nnoremap <leader>l :CtrlPBuffer<CR>
-nnoremap <leader>d :CtrlPBuffer<CR>
+nnoremap <leader>d :exe 'CtrlP ' . fnamemodify(bufname('%'),':h')<CR>
 nnoremap <leader>fd :exe 'CtrlP ' . fnamemodify(bufname('%'),':h')<CR>
 nnoremap <Leader>o :let g:ctrlp_default_input = expand('<cword>') \|
     \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
