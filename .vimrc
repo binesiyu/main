@@ -1508,7 +1508,7 @@ endif
     exe 'tnoremap <silent><M-Right>  <C-\><C-n>:<C-u>bnext<CR>'
     exe 'tnoremap <silent><esc>     <C-\><C-n>'
   endif
-  nnoremap <leader>to :below 20sp term://$SHELL<cr>i
+  " nnoremap <leader>to :below 20sp term://$SHELL<cr>i
 " }
 
 " Code folding options {
@@ -1526,6 +1526,7 @@ nnoremap <leader>tn  :tabnew<CR>
 nnoremap <leader>tc  :tabclose<CR>
 nnoremap <leader>tm  :tabm<Space>
 nnoremap <leader>td  :tabclose<CR>
+nnoremap <leader>to :tabonly<CR>
 nnoremap H gT
 nnoremap L gt
 " Alternatively use
