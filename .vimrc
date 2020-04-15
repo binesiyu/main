@@ -173,8 +173,9 @@ Plugin 'sbdchd/neoformat'
 Plugin 'neoclide/coc.nvim',  {'merged': 0, 'build': './install.sh'}
 Plugin 'Raimondi/delimitMate'
 " snippet
-Plugin 'Shougo/neosnippet.vim'
-Plugin 'Shougo/neosnippet-snippets'
+Plugin 'honza/vim-snippets', {'merged': 0}
+" Plugin 'Shougo/neosnippet.vim'
+" Plugin 'Shougo/neosnippet-snippets'
 " Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'build': './install.sh' }
 
 " colorscheme
@@ -953,63 +954,105 @@ nnoremap <F7> :Neoformat<CR>
 " snippet {
 " choose a snippet plugin
 " Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/snippets'
+" let g:neosnippet#snippets_directory='~/.vim/snippets'
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+" vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-function! CleverTab()
-    if getline('.')[col('.')-2] ==# '{'&& pumvisible()
-      return "\<C-n>"
-    endif
-    if neosnippet#jumpable()
-          \ && getline('.')[col('.')-2] ==# '(' && !pumvisible()
-    elseif pumvisible()
-      return "\<C-n>"
-    else
-      return <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-      " return "\<tab>"
-    endif
-endfunction
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-imap <expr> <Tab> CleverTab()
-smap <expr> <Tab> CleverTab()
+" let g:coc_snippet_next = '<tab>'
 
-function! CleverEnter() abort
-    if pumvisible()
-        if neosnippet#expandable()
-            return "\<plug>(neosnippet_expand)"
-        else
-            return deoplete#close_popup() . "\<CR>"
-        endif
-    elseif getline('.')[col('.') - 2]==#'{'&&getline('.')[col('.')-1]==#'}'
-        return "\<Enter>\<esc>ko"
-    elseif getline('.')[col('.') - 2]==#'('&&getline('.')[col('.')-1]==#')'
-        return "\<Enter>\<esc>ko"
-    else
-        return "\<Enter>"
-    endif
-endfunction
-
-imap <expr> <CR> CleverEnter()
-smap <expr> <CR> CleverEnter()
-
-function! SuperTab_Shift() abort
-    return pumvisible() ? "\<C-p>" : "\<Plug>delimitMateS-Tab"
-endfunction
-imap <silent><expr><S-TAB> SuperTab_Shift()
-smap <silent><expr><S-TAB> SuperTab_Shift()
+" function! SuperTab_Shift() abort
+"     return pumvisible() ? "\<C-p>" : "\<Plug>delimitMateS-Tab"
+" endfunction
+" imap <silent><expr><S-TAB> SuperTab_Shift()
+" smap <silent><expr><S-TAB> SuperTab_Shift()
 
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-j>     <Plug>(neosnippet_expand_or_jump)
-smap <C-j>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-j>     <Plug>(neosnippet_expand_target)
-" }
+" imap <C-j>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-j>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-j>     <Plug>(neosnippet_expand_target)
+
+"" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+" Mappings using CoCList:
+
+" Show all diagnostics.
+nnoremap <silent> <leader>ca  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
 
 " autocomplete {
 " }
@@ -1272,13 +1315,13 @@ let g:ex_symbol_select_cmd = 'TS'
 
 " ex-cscope
 " ---------------------------------------------------
-call excscope#register_hotkey( 100, 0, '<leader>cs', ":EXCSToggle<CR>", 'Toggle cscope window.' )
-call excscope#register_hotkey( 101, 0, '<leader>ca', ":CSDD<CR>", 'Find functions called by this function' )
-call excscope#register_hotkey( 102, 0, '<leader>cc', ":CSCD<CR>", 'Find functions calling by this function' )
-call excscope#register_hotkey( 103, 0, '<leader>cf', ":CSID<CR>", 'Find files #including this file' )
-call excscope#register_hotkey( 104, 0, '<leader>cg', ":CSGD<CR>", 'Find this definition' )
-call excscope#register_hotkey( 105, 1, 'o', ":call excscope#confirm_select('')<CR>"      , 'Go to the search result.' )
-call excscope#register_hotkey( 106, 1, 'p', ":call excscope#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
+" call excscope#register_hotkey( 100, 0, '<leader>cs', ":EXCSToggle<CR>", 'Toggle cscope window.' )
+" call excscope#register_hotkey( 101, 0, '<leader>ca', ":CSDD<CR>", 'Find functions called by this function' )
+" call excscope#register_hotkey( 102, 0, '<leader>cc', ":CSCD<CR>", 'Find functions calling by this function' )
+" call excscope#register_hotkey( 103, 0, '<leader>cf', ":CSID<CR>", 'Find files #including this file' )
+" call excscope#register_hotkey( 104, 0, '<leader>cg', ":CSGD<CR>", 'Find this definition' )
+" call excscope#register_hotkey( 105, 1, 'o', ":call excscope#confirm_select('')<CR>"      , 'Go to the search result.' )
+" call excscope#register_hotkey( 106, 1, 'p', ":call excscope#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
 "}
 
 let g:ywvim_ims=[
@@ -1375,7 +1418,8 @@ endfunction
 
 noremap <Leader>ev :call EditVimrc13Config()<CR>
 noremap <Leader>er :source $HOME/.vimrc<CR>
-noremap <Leader>es :NeoSnippetEdit<CR>
+" noremap <Leader>es :NeoSnippetEdit<CR>
+noremap <Leader>es :CocCommand snippets.editSnippets<CR>
 " }
 
 " edit {
