@@ -188,7 +188,6 @@ Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'bu
 " colorscheme
 Plugin 'morhetz/gruvbox'
 " git
-Plugin 'junegunn/gv.vim',{ 'on_cmd' : ['GV']}
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
@@ -1232,8 +1231,8 @@ let g:gitgutter_max_signs = 10000
 
 " nnoremap <silent> <leader>gs :Gina status<CR>
 nnoremap <silent> <leader>gb :Gina blame<CR>
-nnoremap <silent> <leader>gV :GV!<CR>
-nnoremap <silent> <leader>gv :GV<CR>
+nnoremap <silent> <leader>gV :Gina log <C-R>=expand("%")<CR><CR>
+nnoremap <silent> <leader>gv :Gina log<CR>
 " }
 
 " vim-airline {
