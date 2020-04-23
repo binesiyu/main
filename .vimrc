@@ -189,7 +189,7 @@ Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'bu
 Plugin 'morhetz/gruvbox'
 " git
 Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
 
 " vim-airline
