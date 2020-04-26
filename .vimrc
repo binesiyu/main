@@ -182,7 +182,7 @@ Plugin 'Raimondi/delimitMate'
 " snippet
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
-Plugin 'Shougo/neco-syntax'
+" Plugin 'Shougo/neco-syntax'
 Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'build': './install.sh' }
 
 " colorscheme
@@ -234,10 +234,7 @@ Plugin 'vim-scripts/BufOnly.vim'
 
 Plugin 'binesiyu/exvim',{'merged' : 0}
 
-" Plugin 'leoatchina/ywvim',{'merged' : 0}
-" Plugin 'yy-shi/vimim',{'merged' : 0}
-
-Plugin 'zchee/vim-flatbuffers',{'merged' : 0}
+" Plugin 'zchee/vim-flatbuffers',{'merged' : 0}
 
 " Plugin 'puremourning/vimspector',{'merged' : 0}
 
@@ -394,10 +391,10 @@ set listchars=tab:›\ ,trail:•,extends:↷,precedes:↶,nbsp:. " Highlight pr
 set noerrorbells visualbell t_vb=
 set fillchars=vert:│,fold:·
 set nrformats-=octal
+set splitbelow
 "}}
 
 " clipboard {{
-set splitbelow
 " define the copy/paste judged by clipboard
 if has('clipboard')
     if has('unnamedplus')  " When possible use + register for copy-paste
@@ -1346,7 +1343,7 @@ endfunction
     let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 	" 使用 universal-ctags 的话需要下面这行，请反注释
-    " let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+    let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 
 	" 禁止 gutentags 自动链接 gtags 数据库
 	" let g:gutentags_auto_add_gtags_cscope = 0
@@ -1388,25 +1385,6 @@ call excscope#register_hotkey( 105, 1, 'o', ":call excscope#confirm_select('')<C
 call excscope#register_hotkey( 106, 1, 'p', ":call excscope#confirm_select('shift')<CR>" , 'Go to the search result in split window.' )
 "}
 
-let g:ywvim_ims=[
-        \ ['wb', '五笔', 'wubi.ywvim'],
-        \ ['py', '拼音', 'pinyin.ywvim'],
-    \]
-let g:ywvim_py               = { 'helpim':'wb', 'gb':0 }
-let g:ywvim_zhpunc           = 1
-let g:ywvim_listmax          = 8
-let g:ywvim_esc_autoff       = 0
-let g:ywvim_autoinput        = 2
-let g:ywvim_circlecandidates = 1
-let g:ywvim_helpim_on        = 0
-let g:ywvim_matchexact       = 0
-let g:ywvim_chinesecode      = 1
-let g:ywvim_gb               = 0
-let g:ywvim_lockb            = 1
-let g:ywvim_preconv          = 'g2b'
-let g:ywvim_conv             = ''
-imap <silent> <C-\> <C-R>=Ywvim_toggle()<CR>
-cmap <silent> <C-\> <C-R>=Ywvim_toggle()<CR>
 " fix colorscheme {
 
 highlight clear SignColumn      " SignColumn should match background
@@ -1483,18 +1461,6 @@ endfunction
 noremap <Leader>ev :call EditVimrc13Config()<CR>
 noremap <Leader>er :source $HOME/.vimrc<CR>
 noremap <Leader>es :NeoSnippetEdit<CR>
-" }
-
-" edit {
-" Set the input method for Mac
-if has("gui_macvim")
-  " autocmd! InsertEnter * set noimdisable
-  " autocmd! InsertLeave * set imdisable
-  " autocmd! InsertEnter * silent !open -g "hammerspoon://viminsert"
-  " autocmd! InsertLeave * silent !open -g "hammerspoon://vimnormal"
-  " autocmd! InsertEnter * silent !squirrel_client -u ascii_mode
-  " autocmd! InsertLeave * silent !squirrel_client -s ascii_mode
-endif
 " }
 
 " Terminal Config {
