@@ -140,6 +140,9 @@ Plugin 'rhysd/vim-textobj-anyblock'
 Plugin 'binesiyu/vim-textobj-function-syntax'
 Plugin 'binesiyu/vim-textobj-lua'
 
+"an(/in(
+Plugin 'wellle/targets.vim'
+
 " operator
 Plugin 'kana/vim-operator-user'
 Plugin 'kana/vim-operator-replace'
