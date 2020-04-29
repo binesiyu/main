@@ -190,6 +190,7 @@ Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'bu
 Plugin 'morhetz/gruvbox'
 " git
 Plugin 'airblade/vim-gitgutter'
+Plugin 'rhysd/git-messenger.vim' ,{ 'on_cmd' : 'GitMessenger','on_map' : '<Plug>(git-messenger',}
 " Plugin 'tpope/vim-fugitive'
 Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
 
@@ -1228,6 +1229,7 @@ let g:gitgutter_max_signs = 10000
 nnoremap <silent> <leader>gb :Gina blame<CR>
 nnoremap <silent> <leader>gV :Gina log <C-R>=expand("%")<CR><CR>
 nnoremap <silent> <leader>gv :Gina log<CR>
+nmap <leader>gm <Plug>(git-messenger)
 " }
 
 " vim-airline {
