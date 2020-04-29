@@ -129,8 +129,6 @@ Plugin 'kana/vim-textobj-entire'
 Plugin 'kana/vim-textobj-line'
 "af/if/aF/iF
 Plugin 'kana/vim-textobj-function'
-"a,/i,
-Plugin 'sgur/vim-textobj-parameter'
 "av/iv
 Plugin 'Julian/vim-textobj-variable-segment'
 "ac/ic/aC/iC
@@ -140,7 +138,7 @@ Plugin 'rhysd/vim-textobj-anyblock'
 Plugin 'binesiyu/vim-textobj-function-syntax'
 Plugin 'binesiyu/vim-textobj-lua'
 
-"an(/in(
+"an(/in(,"a,/i,
 Plugin 'wellle/targets.vim'
 
 " operator
