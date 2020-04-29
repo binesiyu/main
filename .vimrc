@@ -510,9 +510,6 @@ noremap <expr> <C-y> (line("w0") <= 1         ? "k" : "4\<C-y>")
 nmap <Space> <C-e>
 nmap <S-Space> <C-y>
 
-nnoremap <Tab> :wincmd w<CR>
-nnoremap <S-Tab> :wincmd p<CR>
-
 " Visual-mode swapping
 vnoremap <C-W> <Esc>`.``gvP``P
 " nnoremap <leader>d "_
