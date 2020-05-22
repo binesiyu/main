@@ -1154,10 +1154,9 @@ let g:tcomment_mapleader2=''
 let g:tcomment_mapleader_uncomment_anyway=''
 let g:tcomment_mapleader_comment_anyway='gC'
 let g:tcomment_textobject_inlinecomment=''
-map <Leader>cl <Plug>TComment_gcc
-map <Leader>ci <Plug>TComment_gcc
-map <Leader>c<Space> <Plug>TComment_gcc
-
+map <Leader>cl :TComment<CR>
+map <Leader>ci :TComment<CR>
+map <Leader>c<Space> :TComment<CR>
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2 concealcursor=i
