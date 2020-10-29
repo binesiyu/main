@@ -216,6 +216,8 @@ Plugin 'binesiyu/vim-lua-ftplugin'  " Lua file type plug-in for the Vim text edi
 " haskell
 Plugin 'neovimhaskell/haskell-vim'
 Plugin 'Twinside/vim-haskellFold'
+" csharp
+Plugin 'OmniSharp/omnisharp-vim'
 " tabular: invoke by <leader>= alignment-character
 " ---------------------------------------------------
 Plugin 'kshenoy/vim-signature'
@@ -708,6 +710,7 @@ if OSX()
                 \ {'x': '~/Documents/dev/koh/koh.exvim'},
                 \ {'d': '~/Documents/dev-doc/doc.exvim'},
                 \ {'n': '~/Documents/dev/note/note.exvim'},
+                \ {'s': '~/Documents/dev/sultans2/ROS/sultans.exvim'},
                 \'~/.vimrc',
                 \'~/.zshrc',
                 \]
@@ -781,7 +784,7 @@ let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 0
 " if executable('rg') && !exists('g:ctrlp_user_command')
 if !exists('g:ctrlp_user_command')
-    let g:ctrlp_user_command = 'rg %s --no-ignore --hidden --files -g "" '
+    let g:ctrlp_user_command = 'rg %s --no-ignore --hidden L --files -g "" '
                 \ . join(Generate_ignore(g:vim_wildignore,'rg',1))
 endif
 
@@ -1187,6 +1190,39 @@ nnoremap zo zczO
 " }
 
 " haskell {
+" }
+" csharp {
+" let g:OmniSharp_server_stdio = 0
+" let g:OmniSharp_typeLookupInPreview = 1
+let g:omnicomplete_fetch_full_documentation = 1
+
+let g:OmniSharp_server_use_mono = 1
+" let g:OmniSharp_highlight_types = 2
+let g:OmniSharp_selector_ui = 'ctrlp'
+
+autocmd Filetype cs nnoremap <buffer> gd :OmniSharpPreviewDefinition<CR>
+autocmd Filetype cs nnoremap <buffer> gr :OmniSharpFindUsages<CR>
+autocmd Filetype cs nnoremap <buffer> gy :OmniSharpTypeLookup<CR>
+autocmd Filetype cs nnoremap <buffer> ga :OmniSharpGetCodeActions<CR>
+autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +5<CR>
+
+sign define OmniSharpCodeActions text=💡
+
+" augroup OSCountCodeActions
+" 	autocmd!
+" 	autocmd FileType cs set signcolumn=yes
+" 	autocmd CursorHold *.cs call OSCountCodeActions()
+" augroup END
+"
+" function! OSCountCodeActions() abort
+" 	if bufname('%') ==# '' || OmniSharp#FugitiveCheck() | return | endif
+" 	if !OmniSharp#IsServerRunning() | return | endif
+" 	let opts = {
+" 				\ 'CallbackCount': function('s:CBReturnCount'),
+" 				\ 'CallbackCleanup': {-> execute('sign unplace 99')}
+" 				\}
+" 	call OmniSharp#CountCodeActions(opts)
+" endfunction
 " }
 
 " lsp {
