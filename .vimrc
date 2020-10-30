@@ -919,6 +919,8 @@ let g:neomake_verbose =  0
 let g:neomake_haskell_enabled_makers = ['hlint']
 let g:neomake_lua_enabled_makers = ['luacheck']
 let g:neomake_lua_luacheck_exe = expand('~/.luarocks/bin/luacheck')
+" 禁止cs的
+" let g:neomake_cs_enabled_makers = []
 let g:neomake_error_sign = get(g:, 'neomake_error_sign', {
             \ 'text': '✖',
             \ })
@@ -1192,7 +1194,7 @@ nnoremap zo zczO
 " haskell {
 " }
 " csharp {
-" let g:OmniSharp_server_stdio = 0
+let g:OmniSharp_server_stdio = 1
 " let g:OmniSharp_typeLookupInPreview = 1
 let g:omnicomplete_fetch_full_documentation = 1
 
@@ -1207,6 +1209,11 @@ autocmd Filetype cs nnoremap <buffer> ga :OmniSharpGetCodeActions<CR>
 autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +5<CR>
 
 sign define OmniSharpCodeActions text=💡
+
+" let g:OmniSharp_loglevel = 'info'
+" let g:OmniSharp_diagnostic_overrides = {
+" \ 'CS1644': {'type': 'None'},
+" \}
 
 " augroup OSCountCodeActions
 " 	autocmd!
