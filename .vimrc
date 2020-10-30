@@ -166,8 +166,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'binesiyu/vim-easymotion'
 
 " lint
-Plugin 'neomake/neomake'
 Plugin 'sbdchd/neoformat'
+Plugin 'dense-analysis/ale'
 
 " autocomplete
 Plugin 'Shougo/deoplete.nvim'
@@ -912,24 +912,30 @@ autocmd FileType markdown setlocal conceallevel=0
 
 " lint {
 " When writing a buffer.
-call neomake#configure#automake('w')
-" 1 open list and move cursor 2 open list without move cursor
-let g:neomake_open_list =  0
-let g:neomake_verbose =  0
-let g:neomake_haskell_enabled_makers = ['hlint']
-let g:neomake_lua_enabled_makers = ['luacheck']
-let g:neomake_lua_luacheck_exe = expand('~/.luarocks/bin/luacheck')
-" 禁止cs的
-" let g:neomake_cs_enabled_makers = []
-let g:neomake_error_sign = get(g:, 'neomake_error_sign', {
-            \ 'text': '✖',
-            \ })
-let g:neomake_warning_sign = get(g:, 'neomake_warning_sign', {
-            \ 'text': '➤',
-            \ })
-let g:neomake_info_sign = get(g:, 'neomake_info_sign', {
-            \ 'text': '🛈',
-            \ })
+let g:ale_sign_error = get(g:, 'ale_error_symbol', '✖')
+let g:ale_sign_warning = get(g:,'ale_warning_symbol', '➤')
+let g:ale_sign_info = get(g:,'ale_info_symbol', '🛈')
+let g:ale_echo_msg_format = get(g:, 'ale_echo_msg_format', '%severity%: %linter%: %s')
+let g:ale_lint_on_save = get(g:, 'ale_lint_on_save', 1)
+
+highlight link ALEErrorSign GruvboxRedSign
+highlight link ALEWarningSign GruvboxYellowSign
+
+let g:ale_linters = {'cs': ['OmniSharp',],
+            \ 'lua' : ['luacheck',],
+            \ 'haskell' : ['hlint',]
+            \}
+" if g:spacevim_lint_on_the_fly
+"   let g:ale_lint_on_text_changed = 'always'
+"   let g:ale_lint_delay = 750
+" else
+  let g:ale_lint_on_text_changed = 'never'
+  let g:ale_lint_on_enter = 0
+  let g:ale_lint_on_insert_leave = 0
+" endif
+let g:ale_lua_luacheck_executable = expand('~/.luarocks/bin/luacheck')
+
+
 nnoremap <silent> <leader>el :lopen<CR>
 nnoremap <silent> <leader>ec :lclose<CR>
 nnoremap <silent> <leader>ee :lnext<CR>
@@ -1288,9 +1294,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_section_b = "%{fnamemodify(bufname('%'),':p:.:h').'/'}"
 " let g:airline_section_c = '%t'
 let g:airline_section_y = 'B:%{bufnr("%")} W:%{winnr()}'
-" let g:airline_section_warning = airline#section#create(['neomake'])
+" let g:airline_section_warning = airline#section#create(['ale'])
 let g:airline#extensions#whitespace#checks = ['trailing']
-let g:airline_extensions = ['branch', 'ctrlp', 'gutentags', 'whitespace', 'tabline', 'neomake', 'languageclient']
+let g:airline_extensions = ['branch', 'ctrlp', 'gutentags', 'whitespace', 'tabline', 'ale', 'languageclient']
 " }
 
 " util {
