@@ -780,6 +780,7 @@ let g:ctrlp_match_current_file = 1
 let g:ctrlp_switch_buffer = ''
 " CtrlP extensions
 let g:ctrlp_extensions = ['funky']
+let g:ctrlp_root_markers = ['.root']
 let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 0
 " if executable('rg') && !exists('g:ctrlp_user_command')
@@ -823,6 +824,10 @@ nnoremap <Leader>fr :let g:ctrlp_default_input = "<C-R>*" \|
 
 " }
 
+" set vfile=/Users/yubin/vfile.txt
+" set ei=all
+" set verbose=22
+" set viminfo="NONE"
 "ctrlsf {
 "---------------------------------------------------------------------
 " 设置CtrlSF使用的搜索工具,默认使用ag,如果没有ag,则考虑使用ack
