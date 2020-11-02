@@ -150,14 +150,8 @@ Plugin 'thinca/vim-operator-sequence'
 Plugin 'tpope/vim-repeat'
 Plugin 'tomtom/tcomment_vim'
 
-" ctrlp
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tacahiroy/ctrlp-funky'
-if OSX()
-    Plugin 'nixprime/cpsm',{ 'merged' : 0 , 'build': 'PY3=ON ./install.sh' }
-else
-    Plugin 'binesiyu/ctrlp-py-matcher'
-endif
+" leaderf
+Plugin 'Yggdroot/LeaderF',{ 'merged' : 0,}
 "ctrlsf
 Plugin 'dyng/ctrlsf.vim',{'on': 'CtrlSF'}
 " nerdtree
@@ -764,64 +758,87 @@ nmap <expr>gdpp '<Plug>(operator-luaprint)iw'
 map <silent>gdP <Plug>(operator-luaprintbefore)
 nmap <expr>gdPP '<Plug>(operator-luaprintbefore)iw'
 " }
-
-" ctrlp {
-" ctrlp: invoke by <ctrl-p>
-let g:ctrlp_working_path_mode = ''
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
-let g:ctrlp_follow_symlinks = 2
-let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-            \ 'file':  '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
-let g:ctrlp_reuse_window = 'exproject\|nerdtree\|netrw\|help\|quickfix'
-let g:ctrlp_by_filename = 1
-let g:ctrlp_match_current_file = 1
-" let g:ctrlp_user_command_async = 1
-let g:ctrlp_switch_buffer = ''
-" CtrlP extensions
-let g:ctrlp_extensions = ['funky']
-let g:ctrlp_root_markers = ['.root']
-let g:ctrlp_use_caching = 1
-let g:ctrlp_clear_cache_on_exit = 0
-" if executable('rg') && !exists('g:ctrlp_user_command')
-if !exists('g:ctrlp_user_command')
-    let g:ctrlp_user_command = 'rg %s --no-ignore --hidden L --files -g "" '
+" leaderf {
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 1
+let g:Lf_UseMemoryCache = 0
+let g:Lf_FollowLinks = 1
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PopupWidth = 0.5
+let g:Lf_PreviewInPopup = 1
+let g:Lf_WorkingDirectoryMode = 'AF'
+let g:Lf_GtagsAutoGenerate = 0
+let g:Lf_GtagsAutoUpdate = 0
+let g:Lf_ShortcutF = '<C-P>' 
+let g:Lf_ShortcutB = '<C-B>' 
+let g:Lf_StlColorscheme = 'gruvbox_material'
+let g:Lf_PopupColorscheme = 'gruvbox_material'
+let g:Lf_DefaultExternalTool = "rg"
+let g:Lf_ExternalCommand = 'rg %s --no-ignore --hidden -L --files -g "" '
                 \ . join(Generate_ignore(g:vim_wildignore,'rg',1))
-endif
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_PreviewResult = {
+      \ 'File': 0,
+      \ 'Buffer': 0,
+      \ 'Mru': 0,
+      \ 'Tag': 0,
+      \ 'BufTag': 0,
+      \ 'Function': 0,
+      \ 'Line': 0,
+      \ 'Colorscheme': 0
+      \}
 
-if !exists('g:ctrlp_match_func') && (has('python') || has('python3'))
-    if OSX()
-        let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
-    else
-        let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch'  }
-    endif
-endif
+let g:Lf_NormalMap = {
+    \ "_":      [["<C-j>", "j"],
+    \            ["<C-k>", "k"],
+    \            ["<C-n>", "j"],
+    \            ["<C-p>", "k"]
+    \           ],
+    \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>'],
+    \            ["<F6>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']
+    \           ],
+    \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>'],
+    \            ["<F6>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']
+    \           ],
+    \ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
+    \ "Tag":    [],
+    \ "BufTag": [],
+    \ "Function": [],
+    \ "Line":   [],
+    \ "History":[],
+    \ "Help":   [],
+    \ "Self":   [],
+    \ "Colorscheme": []
+    \}
 
-let g:ctrlp_prompt_mappings = {
-\ 'ToggleRegex()':        ['<c-q>'],
-\ 'PrtInsert("c")':       ['<c-e>'],
-\ 'PrtInsert("r")':       ['<c-r>'],
-\ 'PrtInsert("s")':       ['<c-s>'],
-\ 'PrtInsert("w")':       ['<c-g>'],
-\ }
-" let g:ctrlp_cmd = 'CtrlPBuffer'
-"funky
-nnoremap <Leader>fu :CtrlPFunky<Cr>
-nnoremap <leader>fb :CtrlPBuffer<CR>
-nnoremap <leader>fm :CtrlPMRU<CR>
-nnoremap <leader>fl :CtrlPMRUFiles<CR>
-nnoremap <leader>m :CtrlPMRU<CR>
-nnoremap <Leader>v :CtrlPFunky<Cr>
-nnoremap <leader>l :CtrlPBuffer<CR>
-nnoremap <leader>d :exe 'CtrlP ' . fnamemodify(bufname('%'),':h')<CR>
-nnoremap <leader>fd :exe 'CtrlP ' . fnamemodify(bufname('%'),':h')<CR>
-nnoremap <Leader>o :let g:ctrlp_default_input = expand('<cword>') \|
-    \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
-nnoremap <Leader>ff :let g:ctrlp_default_input = expand('<cword>') \|
-    \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
-nnoremap <Leader>fr :let g:ctrlp_default_input = "<C-R>*" \|
-    \ call ctrlp#init(0) \| unlet g:ctrlp_default_input<CR>
+let g:Lf_CommandMap = {
+      \ '<C-]>' : ['<C-V>'],
+      \ '<C-X>' : ['<C-S>'],
+      \ '<C-R>' : ['<C-E>'],
+      \ }
 
+let g:Lf_WildIgnore = {
+        \ 'dir': ['.svn','.git','.hg','.exvim*','*/tmp/*'],
+        \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.ttf',
+        \          '*.o','*.so','*.py[co]']
+        \}
+
+nnoremap <Leader>fu :LeaderfFunction<Cr>
+nnoremap <leader>fb :LeaderfBuffer<CR>
+nnoremap <leader>fm :LeaderfMru<CR>
+nnoremap <leader>fl :LeaderfMru<CR>
+nnoremap <leader>m :LeaderfMru<CR>
+nnoremap <Leader>v :LeaderfFunction<Cr>
+nnoremap <leader>l :LeaderfBuffer<CR>
+nnoremap <leader>d :<C-U><C-R>=printf("Leaderf file --input %s/",fnamemodify(bufname('%'),':h'))<CR><CR>
+nnoremap <leader>fd :<C-U><C-R>=printf("Leaderf file --input %s/",fnamemodify(bufname('%'),':h'))<CR><CR>
+nnoremap <leader>o :<C-U><C-R>=printf("Leaderf file --input %s",expand('<cword>'))<CR><CR>
+nnoremap <leader>ff :<C-U><C-R>=printf("Leaderf file --input %s",expand('<cword>'))<CR><CR>
+nnoremap <leader>fr :<C-U><C-R>=printf("Leaderf file --input %s","<C-R>*")<CR><CR>
 " }
 
 " set vfile=/Users/yubin/vfile.txt
