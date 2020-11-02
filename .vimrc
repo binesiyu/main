@@ -1228,7 +1228,7 @@ let g:omnicomplete_fetch_full_documentation = 1
 
 let g:OmniSharp_server_use_mono = 1
 " let g:OmniSharp_highlight_types = 2
-let g:OmniSharp_selector_ui = 'ctrlp'
+" let g:OmniSharp_selector_ui = 'ctrlp'
 
 autocmd Filetype cs nnoremap <buffer> gd :OmniSharpPreviewDefinition<CR>
 autocmd Filetype cs nnoremap <buffer> gr :OmniSharpFindUsages<CR>
@@ -1318,7 +1318,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_y = 'B:%{bufnr("%")} W:%{winnr()}'
 " let g:airline_section_warning = airline#section#create(['ale'])
 let g:airline#extensions#whitespace#checks = ['trailing']
-let g:airline_extensions = ['branch', 'ctrlp', 'gutentags', 'whitespace', 'tabline', 'ale', 'languageclient']
+let g:airline_extensions = ['branch', 'gutentags', 'whitespace', 'tabline', 'ale', 'languageclient']
 " }
 
 " util {
