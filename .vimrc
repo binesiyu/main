@@ -766,7 +766,7 @@ let g:Lf_UseMemoryCache = 1
 let g:Lf_FollowLinks = 1
 let g:Lf_UseVersionControlTool = 0
 let g:Lf_IgnoreCurrentBufferName = 1
-let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
+let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.vscode']
 " popup mode
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PopupWidth = 0.5
@@ -779,8 +779,8 @@ let g:Lf_ShortcutB = '<C-B>'
 let g:Lf_StlColorscheme = 'gruvbox_material'
 let g:Lf_PopupColorscheme = 'gruvbox_material'
 let g:Lf_DefaultExternalTool = "rg"
-let g:Lf_ExternalCommand = 'rg %s --no-ignore --hidden -L --files -g "" '
-                \ . join(Generate_ignore(g:vim_wildignore,'rg',1))
+" let g:Lf_ExternalCommand = 'rg %s --no-ignore --hidden -L --files -g "" '
+"                 \ . join(Generate_ignore(g:vim_wildignore,'rg',1))
 let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
 let g:Lf_PreviewResult = {
       \ 'File': 0,
@@ -864,7 +864,7 @@ let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_case_sensitive = 'yes'
 " 默认搜索路径, 设置为project则从本文件的工程目录搜索
 let g:ctrlsf_default_root = 'project+wf'
-let g:ctrlsf_extra_root_markers = ['.root']
+let g:ctrlsf_extra_root_markers = ['.vscode']
 " 工程目录的顶级文件夹
 let g:ctrlsf_ignore_dir = ['.exvim', '.git', '.hg', '.svn', '.bzr', '_darcs']
 " make result windows compact
@@ -1375,8 +1375,8 @@ endfunction
 " tags {
     let $GTAGSLABEL = 'native-pygments'
     let $GTAGSCONF = expand('~/.globalrc')
-	" 设定项目目录标志：除了 .git/.svn 外，还有 .root 文件
-	let g:gutentags_project_root = ['.root']
+	" 设定项目目录标志：除了 .git/.svn 外，还有 .vscode 文件
+	let g:gutentags_project_root = ['.vscode']
     let g:gutentags_ctags_tagfile = '.tags'
     " let g:gutentags_generate_idutiles = 1
     let g:gutentags_generate_auto = 0
