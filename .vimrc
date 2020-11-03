@@ -1537,12 +1537,12 @@ function! ExpandFilenameAndExecute(command, file)
 endfunction
 
 function! EditVimrc13Config()
-    call ExpandFilenameAndExecute("tabedit", "$HOME/.vimrc")
+    call ExpandFilenameAndExecute("tabedit", "$HOME/.vim-self/.vimrc")
     execute bufwinnr(".vimrc") . "wincmd w"
 endfunction
 
 noremap <Leader>ev :call EditVimrc13Config()<CR>
-noremap <Leader>er :source $HOME/.vimrc<CR>
+noremap <Leader>er :source $HOME/.vim-self/.vimrc<CR>
 noremap <Leader>es :NeoSnippetEdit<CR>
 " }
 
