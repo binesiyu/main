@@ -774,8 +774,8 @@ let g:Lf_PreviewInPopup = 1
 let g:Lf_WorkingDirectoryMode = 'AF'
 let g:Lf_GtagsAutoGenerate = 0
 let g:Lf_GtagsAutoUpdate = 0
-let g:Lf_ShortcutF = '<C-P>' 
-let g:Lf_ShortcutB = '<C-B>' 
+let g:Lf_ShortcutF = '<C-P>'
+let g:Lf_ShortcutB = '<C-B>'
 let g:Lf_StlColorscheme = 'gruvbox_material'
 let g:Lf_PopupColorscheme = 'gruvbox_material'
 let g:Lf_DefaultExternalTool = "rg"
@@ -820,6 +820,7 @@ let g:Lf_CommandMap = {
       \ '<C-]>' : ['<C-V>'],
       \ '<C-X>' : ['<C-S>'],
       \ '<C-R>' : ['<C-E>'],
+      \ '<Up>' : ['<C-N>'],
       \ }
 
 let g:Lf_WildIgnore = {
