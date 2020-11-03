@@ -761,7 +761,8 @@ nmap <expr>gdPP '<Plug>(operator-luaprintbefore)iw'
 " leaderf {
 let g:Lf_HideHelp = 1
 let g:Lf_UseCache = 1
-let g:Lf_UseMemoryCache = 0
+let g:Lf_NeedCacheTime = 0
+let g:Lf_UseMemoryCache = 1
 let g:Lf_FollowLinks = 1
 let g:Lf_UseVersionControlTool = 0
 let g:Lf_IgnoreCurrentBufferName = 1
