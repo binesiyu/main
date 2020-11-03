@@ -11,6 +11,10 @@ function! WINDOWS()
     return  (has('win16') || has('win32') || has('win64'))
 endfunction
 
+function! ISHOME()
+    return g:isHome
+endfunction
+
 " }
 
 " language and encoding setup {
@@ -683,6 +687,7 @@ fu! Generate_ignore(ignore,tool, ...) abort
     return ignore
 endf
 "}
+let g:global_RootMarkers = ['.git', '.root',]
 
 " ui {
 let g:startify_custom_header = []
@@ -766,10 +771,16 @@ let g:Lf_UseMemoryCache = 1
 let g:Lf_FollowLinks = 1
 let g:Lf_UseVersionControlTool = 0
 let g:Lf_IgnoreCurrentBufferName = 1
-let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.vscode']
+let g:Lf_RootMarkers = g:global_RootMarkers
 " popup mode
 let g:Lf_WindowPosition = 'popup'
-let g:Lf_PopupWidth = 0.5
+
+if ISHOME()
+    let g:Lf_PopupWidth = 0.8
+else
+    let g:Lf_PopupWidth = 0.5
+endif
+
 let g:Lf_PreviewInPopup = 1
 let g:Lf_WorkingDirectoryMode = 'AF'
 let g:Lf_GtagsAutoGenerate = 0
@@ -781,7 +792,7 @@ let g:Lf_PopupColorscheme = 'gruvbox_material'
 let g:Lf_DefaultExternalTool = "rg"
 " let g:Lf_ExternalCommand = 'rg %s --no-ignore --hidden -L --files -g "" '
 "                 \ . join(Generate_ignore(g:vim_wildignore,'rg',1))
-let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2"}
 let g:Lf_PreviewResult = {
       \ 'File': 0,
       \ 'Buffer': 0,
@@ -865,7 +876,7 @@ let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_case_sensitive = 'yes'
 " 默认搜索路径, 设置为project则从本文件的工程目录搜索
 let g:ctrlsf_default_root = 'project+wf'
-let g:ctrlsf_extra_root_markers = ['.vscode','.project']
+let g:ctrlsf_extra_root_markers = g:global_RootMarkers
 " 工程目录的顶级文件夹
 let g:ctrlsf_ignore_dir = ['.exvim', '.git', '.hg', '.svn', '.bzr', '_darcs']
 " make result windows compact
@@ -1377,7 +1388,7 @@ endfunction
     let $GTAGSLABEL = 'native-pygments'
     let $GTAGSCONF = expand('~/.globalrc')
 	" 设定项目目录标志：除了 .git/.svn 外，还有 .vscode 文件
-	let g:gutentags_project_root = ['.vscode','.project']
+    let g:gutentags_project_root = g:global_RootMarkers
     let g:gutentags_ctags_tagfile = '.tags'
     " let g:gutentags_generate_idutiles = 1
     let g:gutentags_generate_auto = 0
