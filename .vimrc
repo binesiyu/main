@@ -865,7 +865,7 @@ let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_case_sensitive = 'yes'
 " 默认搜索路径, 设置为project则从本文件的工程目录搜索
 let g:ctrlsf_default_root = 'project+wf'
-let g:ctrlsf_extra_root_markers = ['.vscode']
+let g:ctrlsf_extra_root_markers = ['.vscode','.project']
 " 工程目录的顶级文件夹
 let g:ctrlsf_ignore_dir = ['.exvim', '.git', '.hg', '.svn', '.bzr', '_darcs']
 " make result windows compact
@@ -1377,7 +1377,7 @@ endfunction
     let $GTAGSLABEL = 'native-pygments'
     let $GTAGSCONF = expand('~/.globalrc')
 	" 设定项目目录标志：除了 .git/.svn 外，还有 .vscode 文件
-	let g:gutentags_project_root = ['.vscode']
+	let g:gutentags_project_root = ['.vscode','.project']
     let g:gutentags_ctags_tagfile = '.tags'
     " let g:gutentags_generate_idutiles = 1
     let g:gutentags_generate_auto = 0
