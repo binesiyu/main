@@ -774,6 +774,7 @@ let g:Lf_NeedCacheTime = 0
 let g:Lf_UseMemoryCache = 1
 let g:Lf_FollowLinks = 1
 let g:Lf_UseVersionControlTool = 0
+let g:Lf_JumpToExistingWindow = 0
 let g:Lf_IgnoreCurrentBufferName = 1
 let g:Lf_RootMarkers = g:global_RootMarkers
 " popup mode
