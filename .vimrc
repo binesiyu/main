@@ -236,6 +236,8 @@ Plugin 'benmills/vimux'
 Plugin 'moll/vim-bbye'
 Plugin 'vim-scripts/BufOnly.vim'
 
+Plugin 'skywind3000/vim-preview'
+
 Plugin 'binesiyu/exvim',{'merged' : 0}
 
 " Plugin 'zchee/vim-flatbuffers',{'merged' : 0}
@@ -790,7 +792,7 @@ let g:Lf_GtagsAutoUpdate = 0
 let g:Lf_ShortcutF = '<C-P>'
 let g:Lf_ShortcutB = '<C-B>'
 let g:Lf_StlColorscheme = 'gruvbox_material'
-let g:Lf_PopupColorscheme = 'gruvbox_material'
+let g:Lf_PopupColorscheme = 'gruvbox_default'
 let g:Lf_DefaultExternalTool = "rg"
 " let g:Lf_ExternalCommand = 'rg %s --no-ignore --hidden -L --files -g "" '
 "                 \ . join(Generate_ignore(g:vim_wildignore,'rg',1))
@@ -945,6 +947,12 @@ let g:mkdp_auto_close=1
 autocmd FileType markdown setlocal conceallevel=0
 " noremap <F7> <Plug>MarkdownPreview
 " noremap <F8> <Plug>StopMarkdownPreview
+" }
+
+" preview {
+autocmd FileType qf nnoremap <silent><buffer> <C-p> :PreviewQuickfix<cr>
+autocmd FileType qf nnoremap <silent><buffer> <S-p> :PreviewClose<cr>
+autocmd FileType qf nnoremap <silent><buffer> <Esc> :cclose<cr>
 " }
 
 " lint {
