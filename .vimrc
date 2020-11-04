@@ -950,8 +950,8 @@ autocmd FileType markdown setlocal conceallevel=0
 " }
 
 " preview {
-autocmd FileType qf nnoremap <silent><buffer> <C-p> :PreviewQuickfix<cr>
-autocmd FileType qf nnoremap <silent><buffer> <S-p> :PreviewClose<cr>
+autocmd FileType qf nnoremap <silent><buffer> <p> :PreviewQuickfix<cr>
+autocmd FileType qf nnoremap <silent><buffer> <C-p> :PreviewClose<cr>
 autocmd FileType qf nnoremap <silent><buffer> <Esc> :cclose<cr>
 " }
 
