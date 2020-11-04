@@ -12,7 +12,9 @@ function! WINDOWS()
 endfunction
 
 function! ISHOME()
-    return g:isHome
+    if exists('g:isHome')
+        return g:isHome
+    end
 endfunction
 
 " }
