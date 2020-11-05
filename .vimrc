@@ -837,6 +837,7 @@ let g:Lf_CommandMap = {
       \ '<C-X>' : ['<C-S>'],
       \ '<C-R>' : ['<C-E>'],
       \ '<Up>' : ['<C-N>'],
+      \ '<C-V>' : ['<C-R>'],
       \ }
 
 let g:Lf_WildIgnore = {
