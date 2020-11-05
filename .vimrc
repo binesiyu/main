@@ -929,7 +929,11 @@ nnoremap <Leader>sp <Plug>CtrlSFPwordExec
 " nerdtree {
 " ---------------------------------------------------
 
-let g:NERDTreeWinSize = 30
+if ISHOME()
+    let g:NERDTreeWinSize = 30
+else
+    let g:NERDTreeWinSize = 50
+endif
 let g:NERDTreeMouseMode = 1
 let g:NERDTreeMapToggleZoom = '<Space>'
 let g:nerdtree_tabs_open_on_gui_startup=0
