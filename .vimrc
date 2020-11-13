@@ -318,6 +318,7 @@ set lazyredraw " do not redraw while executing macros (much faster)
 set display+=lastline " for easy browse last line with wrap text
 set laststatus=2 " always have status-line
 set titlestring=%t\ (%{expand(\"%:p:.:h\")}/)
+set completeopt-=preview
 " }}
 
 " set window size (if it's GUI) {{
@@ -1095,6 +1096,7 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
                 \ })
     " Change the source rank
     call deoplete#custom#source('buffer',      'rank',  200)
+    call deoplete#custom#source('neosnippet',      'rank',  1200)
 
     call deoplete#custom#option('ship_chars', ['(', ')', '<', '>'])
     " keywordk patterns
