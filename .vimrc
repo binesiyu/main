@@ -228,10 +228,10 @@ Plugin 'Konfekt/FastFold'
 Plugin 'Konfekt/FoldText'
 
 Plugin 'binesiyu/vim-winmode'
-Plugin 'dstein64/vim-win'
+" Plugin 'dstein64/vim-win'
 " Window chooser
 Plugin 't9md/vim-choosewin'
-" Plugin 'andymass/vim-tradewinds'
+Plugin 'andymass/vim-tradewinds'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 Plugin 'moll/vim-bbye'
