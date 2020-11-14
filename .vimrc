@@ -230,8 +230,8 @@ Plugin 'Konfekt/FoldText'
 Plugin 'binesiyu/vim-winmode'
 Plugin 'dstein64/vim-win'
 " Window chooser
-" Plugin 't9md/vim-choosewin'
-Plugin 'andymass/vim-tradewinds'
+Plugin 't9md/vim-choosewin'
+" Plugin 'andymass/vim-tradewinds'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'benmills/vimux'
 Plugin 'moll/vim-bbye'
@@ -1361,23 +1361,23 @@ let g:airline_extensions = ['branch', 'gutentags', 'whitespace', 'tabline', 'ale
 nmap <leader>wr <Plug>WinModeStart
 let g:win_mode_default ='resize'
 
-nnoremap <leader>ww :Win<CR>
+" nnoremap <leader>ww :Win<CR>
 " invoke with '-'
-" nnoremap <leader>ww :ChooseWin<CR>
+nnoremap <leader>ww :ChooseWin<CR>
 " if you want to use overlay feature
 " tmux-like overlay color
-" let g:choosewin_color_overlay = {
-"             \ 'gui': ['DodgerBlue3', 'DodgerBlue3'],
-"             \ 'cterm': [25, 25]
-"             \ }
-" let g:choosewin_color_overlay_current = {
-"             \ 'gui': ['firebrick1', 'firebrick1'],
-"             \ 'cterm': [124, 124]
-"             \ }
-" let g:choosewin_overlay_enable = 1
-" let g:choosewin_tabline_replace    = 0 " don't replace tabline
-" let g:choosewin_blink_on_land      = 0 " don't blink at land
-" let g:choosewin_statusline_replace = 0 " don't replace statusline
+let g:choosewin_color_overlay = {
+            \ 'gui': ['DodgerBlue3', 'DodgerBlue3'],
+            \ 'cterm': [25, 25]
+            \ }
+let g:choosewin_color_overlay_current = {
+            \ 'gui': ['firebrick1', 'firebrick1'],
+            \ 'cterm': [124, 124]
+            \ }
+let g:choosewin_overlay_enable = 1
+let g:choosewin_tabline_replace    = 0 " don't replace tabline
+let g:choosewin_blink_on_land      = 0 " don't blink at land
+let g:choosewin_statusline_replace = 0 " don't replace statusline
 
 " }
 
