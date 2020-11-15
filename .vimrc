@@ -1384,7 +1384,7 @@ let g:choosewin_color_other = {
 
 let g:choosewin_overlay_enable = 0
 let g:choosewin_tabline_replace    = 1 " don't replace tabline
-let g:choosewin_blink_on_land      = 1 " don't blink at land
+let g:choosewin_blink_on_land      = 0 " don't blink at land
 let g:choosewin_statusline_replace = 1 " don't replace statusline
 
 " let g:choosewin_hook = {}
