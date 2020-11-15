@@ -1374,10 +1374,24 @@ let g:choosewin_color_overlay_current = {
             \ 'gui': ['firebrick1', 'firebrick1'],
             \ 'cterm': [124, 124]
             \ }
-let g:choosewin_overlay_enable = 1
-let g:choosewin_tabline_replace    = 0 " don't replace tabline
-let g:choosewin_blink_on_land      = 0 " don't blink at land
-let g:choosewin_statusline_replace = 0 " don't replace statusline
+let g:choosewin_color_label = {
+	\ 'cterm': [ 236, 2 ], 'gui': [ '#555555', '#000000' ] }
+let g:choosewin_color_label_current = {
+	\ 'cterm': [ 234, 220 ], 'gui': [ '#333333', '#000000' ] }
+let g:choosewin_color_other = {
+	\ 'cterm': [ 235, 235 ], 'gui': [ '#333333' ] }
+
+let g:choosewin_overlay_enable = 0
+let g:choosewin_tabline_replace    = 1 " don't replace tabline
+let g:choosewin_blink_on_land      = 1 " don't blink at land
+let g:choosewin_statusline_replace = 1 " don't replace statusline
+
+" let g:choosewin_hook = {}
+" function! g:choosewin_hook.filter_window(winnums)
+"   return filter(a:winnums,
+"     \ 'index(g:indent_guides_exclude_filetypes,
+"     \   getwinvar(v:val, "&filetype")) == -1' )
+" endfunction
 
 " }
 
