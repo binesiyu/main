@@ -1366,6 +1366,7 @@ let g:win_mode_default ='resize'
 nnoremap <leader>ww :ChooseWin<CR>
 " if you want to use overlay feature
 " tmux-like overlay color
+let g:choosewin_label = 'ASDFJKLZXGHCV'
 let g:choosewin_color_overlay = {
             \ 'gui': ['DodgerBlue3', 'DodgerBlue3'],
             \ 'cterm': [25, 25]
