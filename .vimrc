@@ -1376,11 +1376,11 @@ let g:choosewin_color_overlay_current = {
             \ 'cterm': [124, 124]
             \ }
 let g:choosewin_color_label = {
-	\ 'cterm': [ 236, 2 ], 'gui': [ '#555555', '#000000' ] }
+	\ 'cterm': [ 22, 15,'bold' ], 'gui': [ 'DarkGreen', 'white', 'bold' ] }
 let g:choosewin_color_label_current = {
-	\ 'cterm': [ 234, 220 ], 'gui': [ '#333333', '#000000' ] }
+	\ 'cterm': [ 40, 16, 'bold' ], 'gui': [ 'LimeGreen', 'black', 'bold' ] }
 let g:choosewin_color_other = {
-	\ 'cterm': [ 235, 235 ], 'gui': [ '#333333' ] }
+	\ 'cterm': [ 240, 0 ], 'gui': [ 'gray20', 'black' ] }
 
 let g:choosewin_overlay_enable = 0
 let g:choosewin_tabline_replace    = 1 " don't replace tabline
