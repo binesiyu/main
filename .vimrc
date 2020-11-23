@@ -936,7 +936,7 @@ else
     let g:NERDTreeWinSize = 50
 endif
 let g:NERDTreeMouseMode = 1
-let g:NERDTreeMapToggleZoom = '<Space>'
+" let g:NERDTreeMapToggleZoom = '<Space>'
 let g:nerdtree_tabs_open_on_gui_startup=0
 let g:nerdtree_tabs_open_on_new_tab=0
 let g:NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.meta$']
