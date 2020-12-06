@@ -177,7 +177,10 @@ if !has('nvim')
     Plugin 'roxma/nvim-yarp'
     Plugin 'roxma/vim-hug-neovim-rpc'
 else
-    Plugin 'tbodt/deoplete-tabnine', { 'build': './install.sh' }
+    if ISHOME()
+    else
+        Plugin 'tbodt/deoplete-tabnine', { 'build': './install.sh' }
+    endif
 endif
 Plugin 'Raimondi/delimitMate'
 " snippet
@@ -240,6 +243,7 @@ Plugin 'vim-scripts/BufOnly.vim'
 Plugin 'skywind3000/vim-preview'
 
 Plugin 'binesiyu/exvim',{'merged' : 0}
+Plugin 'leafo/moonscript-vim'
 
 " Plugin 'zchee/vim-flatbuffers',{'merged' : 0}
 
@@ -837,7 +841,8 @@ let g:Lf_NormalMap = {
 let g:Lf_CommandMap = {
       \ '<C-]>' : ['<C-V>'],
       \ '<C-X>' : ['<C-S>'],
-      \ '<Up>' : ['<C-N>'],
+      \ '<C-J>' : ['<C-N>','<C-J>'],
+      \ '<C-K>' : ['<C-P>','<C-K>'],
       \ '<C-V>' : ['<C-E>'],
       \ }
 
