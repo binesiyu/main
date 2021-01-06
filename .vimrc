@@ -30,7 +30,7 @@ if WINDOWS()
     silent exec 'language english'
 elseif OSX()
     if !has("gui_vimr")
-        silent exec 'language en_US'
+        " silent exec 'language en_US.UTF-8'
     end
 else
     let s:uname = system("uname -s")
