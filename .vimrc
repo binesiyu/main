@@ -654,6 +654,8 @@ else
 endif
 " Visually select the text that was last edited/pasted
 noremap gV `[v`]
+
+cabbr <expr> %% expand('%:p:h')
 "}
 
 " plug-config  {
@@ -719,6 +721,7 @@ if OSX()
                 \ {'x': '~/Documents/dev/koh/koh.exvim'},
                 \ {'d': '~/Documents/dev-doc/doc.exvim'},
                 \ {'n': '~/Documents/dev/note/note.exvim'},
+                \ {'t': '~/Documents/dev/todo/todo.exvim'},
                 \ {'s': '~/Documents/dev/sultans2/ROS/sultans.exvim'},
                 \'~/.vimrc',
                 \'~/.zshrc',
