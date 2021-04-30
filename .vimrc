@@ -191,6 +191,8 @@ Plugin 'autozimu/LanguageClient-neovim',{ 'merged' : 0 ,'on_ft': 'haskell' , 'bu
 
 " colorscheme
 Plugin 'morhetz/gruvbox'
+
+Plugin 'skywind3000/asyncrun.vim'
 " git
 Plugin 'airblade/vim-gitgutter'
 Plugin 'rhysd/git-messenger.vim' ,{ 'on_cmd' : 'GitMessenger','on_map' : '<Plug>(git-messenger',}
