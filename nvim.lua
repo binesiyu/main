@@ -89,7 +89,7 @@ require("packer").startup(function(use)
 
 end)
 
-cmd('filetype plugin on') -- filetype detection
+cmd('filetype plugin indent on') -- filetype detection
 cmd('syntax on') -- syntax highlighting
 
 -- General
