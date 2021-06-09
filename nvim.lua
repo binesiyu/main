@@ -98,6 +98,13 @@ cmd('syntax on') -- syntax highlighting
 -- Default colorscheme setup
 o.background = "dark"
 cmd('colorscheme gruvbox')
+--fix colorscheme
+vim.cmd([[
+highlight clear SignColumn      " SignColumn should match background
+highlight clear LineNr          " Current line number row will have same background color in relative mode
+"highlight clear CursorLineNr    " Remove highlight color from current line number
+hi VertSplit ctermbg=NONE guibg=NONE
+]])
 
 o.timeout = false
 o.backup = false -- make backup file and leave it around
@@ -306,7 +313,86 @@ map('<F4>',':set relativenumber!<BAR>set relativenumber?<CR>')
 map('<F11>',':set cursorline!<BAR>set nocursorline?<CR>')
 map('<F12>',':set cursorcolumn!<BAR>set nocursorcolumn?<CR>')
 
+-- register /
+vim.cmd([[
+function! MakePattern(text)
+  let pat = escape(a:text, '\')
+  let pat = substitute(pat, '\_s\+$', '\\s\\*', '')
+  let pat = substitute(pat, '^\_s\+', '\\s\\*', '')
+  let pat = substitute(pat, '\_s\+',  '\\_s\\+', 'g')
+  return '\\V' . escape(pat, '\"')
+endfunction
+vnoremap <silent> <F3> :<C-U>let @/="<C-R>=MakePattern(@*)<CR>"<CR>:set hls<CR>
+nnoremap <F3> :let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
+function! Del_word_delims()
+   let reg = getreg('/')
+   " After *                i^r/ will give me pattern instead of \<pattern\>
+   let res = substitute(reg, '^\\<\(.*\)\\>$', '\1', '' )
+   if res != reg
+      return res
+   endif
+   " After * on a selection i^r/ will give me pattern instead of \Vpattern
+   let res = substitute(reg, '^\\V'          , ''  , '' )
+   let res = substitute(res, '\\\\'          , '\\', 'g')
+   let res = substitute(res, '\\n'           , '\n', 'g')
+   return res
+endfunction
+
+inoremap <silent> <C-R>/ <C-R>=Del_word_delims()<CR>
+cnoremap          <C-R>/ <C-R>=Del_word_delims()<CR>
+]])
+
+-- edit vimrc
+vim.cmd([[
+function! ExpandFilenameAndExecute(command, file)
+    execute a:command . " " . expand(a:file, ":p")
+endfunction
+
+function! EditVimrc13Config()
+    call ExpandFilenameAndExecute("tabedit", "$HOME/.vim-self/.vimrc")
+    execute bufwinnr(".vimrc") . "wincmd w"
+endfunction
+
+noremap <Leader>ev :call EditVimrc13Config()<CR>
+]])
+-- Strip whitespace
+vim.cmd([[
+function! StripTrailingWhitespace()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " do the business:
+    %s/\s\+$//e
+    " clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+nnoremap <leader>ws :call StripTrailingWhitespace()<CR>
+]])
+
 -- searching
+-- Visual mode pressing
+vim.cmd([[
+function! VisualSelection() range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", "\\/.*'$^~[]")
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+vnoremap <silent> * :<C-u>call VisualSelection()<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> <leader>n :<C-u>call VisualSelection()<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> <leader>h :<C-u>call VisualSelection()<CR>:set hls<CR>
+vnoremap <silent> # :<C-u>call VisualSelection()<CR>?<C-R>=@/<CR><CR>
+vnoremap <silent> <leader>N :<C-u>call VisualSelection()<CR>?<C-R>=@/<CR><CR>
+]])
+
 map('<leader>h',[[:let @/='\<\C<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>]],'n',noremap_cfg)
 map('<leader>n','*','n')
 map('<leader>N','#','n')
@@ -336,6 +422,16 @@ end
 map('<leader>if',[[:exec 'normal ,hciw' . expand('%:t:r:r:r') . "\e"<CR>]],'n',noremap_cfg)
 map('<leader>ip',':normal "_cib*','n',noremap_cfg)
 
+--Terminal
+vim.cmd([[
+exe 'tnoremap <silent><C-Right> <C-\><C-n>:<C-u>wincmd l<CR>'
+exe 'tnoremap <silent><C-Left>  <C-\><C-n>:<C-u>wincmd h<CR>'
+exe 'tnoremap <silent><C-Up>    <C-\><C-n>:<C-u>wincmd k<CR>'
+exe 'tnoremap <silent><C-Down>  <C-\><C-n>:<C-u>wincmd j<CR>'
+exe 'tnoremap <silent><M-Left>  <C-\><C-n>:<C-u>bprev<CR>'
+exe 'tnoremap <silent><M-Right>  <C-\><C-n>:<C-u>bnext<CR>'
+exe 'tnoremap <silent><esc>     <C-\><C-n>'
+]])
 --tab navigation
 map('<leader>f0',':set foldlevel=0<CR>','n',noremap_cfg)
 map('<leader>tj',':tabfirst<CR>','n',noremap_cfg)
