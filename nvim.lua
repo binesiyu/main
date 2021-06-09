@@ -61,6 +61,11 @@ local function require_plugin(plugin)
     return ok, err, code
 end
 
+local function useAndRequire(use,config,plugin)
+    use(config)
+    require_plugin(plugin)
+end
+
 require("packer").startup(function(use)
     -- Packer can manage itself as an optional plugin
     use "wbthomason/packer.nvim"
@@ -78,19 +83,19 @@ require("packer").startup(function(use)
     require_plugin('telescope-project.nvim')
 
     -- Treesitter
-    use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
-    require_plugin("nvim-treesitter")
+    useAndRequire(use,{"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},"nvim-treesitter")
+    useAndRequire(use,{'andymass/vim-matchup', opt = true},"vim-matchup")
 
     -- ui
-    use {"mhinz/vim-startify", opt = true}
-    require_plugin("vim-startify")
+    useAndRequire(use,{"mhinz/vim-startify", opt = true},"vim-startify")
 
     -- colorscheme
     use {"morhetz/gruvbox", opt = true}
 
 end)
 
-cmd('filetype plugin indent on') -- filetype detection
+-- cmd('filetype plugin indent on') -- filetype detection
+cmd('filetype plugin on') -- filetype detection
 cmd('syntax on') -- syntax highlighting
 
 -- General
@@ -457,3 +462,51 @@ defineGroup("TabNam",{
 map('<Leader>tp',':exe "tabn " . g:Lasttab<cr>','n',noremap_silent)
 
 cmd([[cabbr <expr> %% expand('%:p:h')]])
+
+--plugins
+
+--treesitter
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+  },
+  textobjects = {
+      select = {
+        enable = true,
+        keymaps = {
+          -- You can use the capture groups defined in textobjects.scm
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ac"] = "@class.outer",
+          ["ic"] = "@class.inner",
+
+          -- Or you can define your own textobjects like this
+          ["iF"] = {
+            python = "(function_definition) @function",
+            cpp = "(function_definition) @function",
+            c = "(function_definition) @function",
+            java = "(method_declaration) @function",
+          },
+        },
+      },
+  },
+  incremental_selection = {
+     enable = true,
+     keymaps = {
+       init_selection = "gnn",
+       node_incremental = "grn",
+       scope_incremental = "grc",
+       node_decremental = "grm",
+     },
+   },
+   matchup = {
+       enable = true,              -- mandatory, false will disable the whole extension
+       -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
+   },
+   indent = {
+    enable = true
+  }
+}
