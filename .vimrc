@@ -123,7 +123,6 @@ Plugin 'Shougo/vimproc'
 Plugin 'yianwillis/vimcdoc'
 " ui
 Plugin 'mhinz/vim-startify'
-Plugin 'nathanaelkane/vim-indent-guides'
 
 " textobj
 Plugin 'kana/vim-textobj-user'
@@ -176,12 +175,17 @@ Plugin 'deoplete-plugins/deoplete-dictionary'
 if !has('nvim')
     Plugin 'roxma/nvim-yarp'
     Plugin 'roxma/vim-hug-neovim-rpc'
+    Plugin 'nathanaelkane/vim-indent-guides'
 else
     if ISHOME()
-        Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-        Plugin 'nvim-treesitter/playground'
     else
+        Plugin 'binesiyu/nvim-treesitter', {'do': ':TSUpdate','merged' : 0}
+        Plugin 'nvim-treesitter/playground'
+        Plugin 'nvim-treesitter/nvim-treesitter-textobjects'
+        Plugin 'p00f/nvim-ts-rainbow'
         Plugin 'tbodt/deoplete-tabnine', { 'build': './install.sh' }
+        Plugin 'lukas-reineke/indent-blankline.nvim',{ 'rev': 'lua'}
+        set colorcolumn=99999
     endif
 endif
 Plugin 'Raimondi/delimitMate'
@@ -367,33 +371,101 @@ endif
 if has('nvim')
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "lua" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { "javascript" }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = { "c", "rust" },  -- list of language that will be disabled
-    custom_captures = {
+    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ignore_install = { "javascript" }, -- List of parsers to ignore installing
+    highlight = {
+        enable = true,              -- false will disable the whole extension
+        disable = {},  -- list of language that will be disabled
+        custom_captures = {
+        }
     },
-  },
-playground = {
-    enable = true,
-    disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false, -- Whether the query persists across vim sessions
-    keybindings = {
-      toggle_query_editor = 'o',
-      toggle_hl_groups = 'i',
-      toggle_injected_languages = 't',
-      toggle_anonymous_nodes = 'a',
-      toggle_language_display = 'I',
-      focus_language = 'f',
-      unfocus_language = 'F',
-      update = 'R',
-      goto_node = '<cr>',
-      show_help = '?',
+    textobjects = {
+        select = {
+            enable = true,
+            keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner",
+
+                -- Or you can define your own textobjects like this
+                ["iF"] = {
+                    python = "(function_definition) @function",
+                    cpp = "(function_definition) @function",
+                    c = "(function_definition) @function",
+                    java = "(method_declaration) @function",
+                },
+            },
+        },
     },
-},
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "gnn",
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "grm",
+        },
+    },
+    matchup = {
+        enable = true,              -- mandatory, false will disable the whole extension
+        -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
+    },
+    indent = {
+        enable = true
+    },
+    rainbow = {
+        enable = true,
+        extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+        max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+    },
+    -- refactor = {
+    --     highlight_definitions = { enable = true },
+    --     highlight_current_scope = { enable = true },
+    --     navigation = {
+    --         enable = true,
+    --         keymaps = {
+    --             goto_definition = "gnd",
+    --             list_definitions = "gnD",
+    --             list_definitions_toc = "gO",
+    --             goto_next_usage = "<a-*>",
+    --             goto_previous_usage = "<a-#>",
+    --         },
+    --     },
+    -- },
+    playground = {
+        enable = true,
+        disable = {},
+        updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+        persist_queries = false, -- Whether the query persists across vim sessions
+        keybindings = {
+            toggle_query_editor = 'o',
+            toggle_hl_groups = 'i',
+            toggle_injected_languages = 't',
+            toggle_anonymous_nodes = 'a',
+            toggle_language_display = 'I',
+            focus_language = 'f',
+            unfocus_language = 'F',
+            update = 'R',
+            goto_node = '<cr>',
+            show_help = '?',
+        },
+    },
 }
+
+local cmd =_G.vim.cmd
+cmd('highlight link TSKeywordFunction Structure')
+cmd('highlight link TSMethod Structure')
+cmd('highlight link TSFuncMacro Function')
+cmd('highlight link TSKeywordOperator Keyword')
+
+local g = _G.vim.g
+g.matchup_matchparen_enabled = 0
+
+local o = _G.vim.o
+o.foldmethod="expr"
+o.foldexpr="nvim_treesitter#foldexpr()"
 EOF
 endif
 
@@ -420,7 +492,7 @@ set sessionoptions -=folds
 " }}
 
 " Fold text {{
-set foldmethod=marker foldmarker={,} foldlevel=9999
+" set foldmethod=marker foldmarker={,} foldlevel=9999
 set diffopt=filler,context:9999
 " }}
 
@@ -781,11 +853,60 @@ let g:startify_skiplist = [
       \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
       \ ]
 
+if !has('nvim')
 let g:indent_guides_default_mapping = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['nerdtree','help', 'man', 'startify', 'vimfiler']
+else
+lua <<EOF
+local vim = _G.vim
+local g   = vim.g
+g.indent_blankline_char = "│"
+g.indent_blankline_show_first_indent_level = true
+g.indent_blankline_use_treesitter = true
+g.indent_blankline_filetype_exclude = {
+    "startify",
+    "dashboard",
+    "dotooagenda",
+    "log",
+    "fugitive",
+    "gitcommit",
+    "packer",
+    "vimwiki",
+    "markdown",
+    "json",
+    "txt",
+    "vista",
+    "help",
+    "todoist",
+    "NvimTree",
+    "peekaboo",
+    "git",
+    "TelescopePrompt",
+    "undotree",
+    "flutterToolsOutline",
+    "" -- for all buffers without a file type
+}
+g.indent_blankline_buftype_exclude = {"terminal", "nofile"}
+g.indent_blankline_show_trailing_blankline_indent = false
+g.indent_blankline_show_current_context = false
+g.indent_blankline_context_patterns = {
+    "class",
+    "function",
+    "method",
+    "block",
+    "list_literal",
+    "selector",
+    "^if",
+    "^table",
+    "if_statement",
+    "while",
+    "for"
+}
+EOF
+endif
 " }
 
 " textobj {
