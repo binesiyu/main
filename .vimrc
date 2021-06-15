@@ -110,8 +110,10 @@ com! -nargs=* -bang  PluginUpdate call dein#update()
 " PluginReCache
 com! -nargs=* -bang  PluginReCache call dein#recache_runtimepath()
 
-" matchit
-source $VIMRUNTIME/macros/matchit.vim
+if !has('nvim')
+    " matchit
+    source $VIMRUNTIME/macros/matchit.vim
+endif
 
 if dein#load_state(g:ex_dein_path)
 call dein#begin(g:ex_dein_path)
@@ -133,14 +135,14 @@ Plugin 'kana/vim-textobj-entire'
 "al/il
 Plugin 'kana/vim-textobj-line'
 "af/if/aF/iF
-Plugin 'kana/vim-textobj-function'
+" Plugin 'kana/vim-textobj-function'
 "av/iv
 Plugin 'Julian/vim-textobj-variable-segment'
 "ac/ic/aC/iC
 Plugin 'coderifous/textobj-word-column.vim'
 "ab/ib
 Plugin 'rhysd/vim-textobj-anyblock'
-Plugin 'binesiyu/vim-textobj-function-syntax'
+" Plugin 'binesiyu/vim-textobj-function-syntax'
 Plugin 'binesiyu/vim-textobj-lua'
 
 "an(/in(,"a,/i,
@@ -180,6 +182,7 @@ else
     if ISHOME()
     else
         Plugin 'binesiyu/nvim-treesitter', {'do': ':TSUpdate','merged' : 0}
+        Plugin 'andymass/vim-matchup'
         Plugin 'nvim-treesitter/playground'
         Plugin 'nvim-treesitter/nvim-treesitter-textobjects'
         Plugin 'p00f/nvim-ts-rainbow'
@@ -492,7 +495,8 @@ set sessionoptions -=folds
 " }}
 
 " Fold text {{
-" set foldmethod=marker foldmarker={,} foldlevel=9999
+" set foldmethod=marker foldmarker={,} 
+set foldlevel=9999
 set diffopt=filler,context:9999
 " }}
 
@@ -864,7 +868,7 @@ lua <<EOF
 local vim = _G.vim
 local g   = vim.g
 g.indent_blankline_char = "│"
-g.indent_blankline_show_first_indent_level = true
+g.indent_blankline_show_first_indent_level = false
 g.indent_blankline_use_treesitter = true
 g.indent_blankline_filetype_exclude = {
     "startify",
