@@ -180,7 +180,7 @@ if !has('nvim')
     Plugin 'roxma/vim-hug-neovim-rpc'
     Plugin 'nathanaelkane/vim-indent-guides'
 else
-    Plugin 'phaazon/hop.nvim'
+    Plugin 'binesiyu/hop.nvim',{'merged' : 0}
     Plugin 'binesiyu/nvim-treesitter', {'do': ':TSUpdate','merged' : 0}
     Plugin 'andymass/vim-matchup'
     Plugin 'nvim-treesitter/playground'
@@ -1372,8 +1372,8 @@ map('n', 'tj', "<cmd>lua require'hop'.hint_lines()<cr>", {})
 map('n', 'tk', "<cmd>lua require'hop'.hint_lines()<cr>", {})
 map('n', 'tp', "<cmd>lua require'hop'.hint_patterns()<cr>", {})
 map('n', 'ts', "<cmd>lua require'hop'.hint_char2()<cr>", {})
-map('n', 'f', "<cmd>lua require'hop'.hint_char1()<cr>", {})
-map('n', 'F', "<cmd>lua require'hop'.hint_char1()<cr>", {})
+map('n', 'f', "<cmd>lua require'hop'.hint_words_line()<cr>", {})
+map('n', 'F', "<cmd>lua require'hop'.hint_words_line()<cr>", {})
 
 map('v', 'tw', "<cmd>lua require'hop'.hint_words()<cr>", {})
 map('v', 'th', "<cmd>lua require'hop'.hint_words()<cr>", {})
@@ -1382,8 +1382,8 @@ map('v', 'tj', "<cmd>lua require'hop'.hint_lines()<cr>", {})
 map('v', 'tk', "<cmd>lua require'hop'.hint_lines()<cr>", {})
 map('v', 'tp', "<cmd>lua require'hop'.hint_patterns()<cr>", {})
 map('v', 'ts', "<cmd>lua require'hop'.hint_char2()<cr>", {})
-map('v', 'f', "<cmd>lua require'hop'.hint_char1()<cr>", {})
-map('v', 'F', "<cmd>lua require'hop'.hint_char1()<cr>", {})
+map('v', 'f', "<cmd>lua require'hop'.hint_words_line()<cr>", {})
+map('v', 'F', "<cmd>lua require'hop'.hint_words_line()<cr>", {})
 
 vim.cmd [[highlight HopNextKey  cterm=bold ctermfg=196 guifg=#ff007c gui=bold blend=0]]
 vim.cmd [[highlight HopNextKey1 cterm=bold ctermfg=202 guifg=#00dfff gui=bold blend=0]]
