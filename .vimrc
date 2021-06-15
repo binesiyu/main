@@ -163,8 +163,7 @@ Plugin 'Yggdroot/LeaderF',{ 'merged' : 0,}
 Plugin 'dyng/ctrlsf.vim',{'on': 'CtrlSF'}
 " nerdtree
 Plugin 'scrooloose/nerdtree'
-" vim-easymotion
-Plugin 'binesiyu/vim-easymotion'
+
 
 " lint
 Plugin 'sbdchd/neoformat'
@@ -175,20 +174,23 @@ Plugin 'Shougo/deoplete.nvim'
 Plugin 'deoplete-plugins/deoplete-tag'
 Plugin 'deoplete-plugins/deoplete-dictionary'
 if !has('nvim')
+    " vim-easymotion
+    Plugin 'binesiyu/vim-easymotion'
     Plugin 'roxma/nvim-yarp'
     Plugin 'roxma/vim-hug-neovim-rpc'
     Plugin 'nathanaelkane/vim-indent-guides'
 else
+    Plugin 'phaazon/hop.nvim'
+    Plugin 'binesiyu/nvim-treesitter', {'do': ':TSUpdate','merged' : 0}
+    Plugin 'andymass/vim-matchup'
+    Plugin 'nvim-treesitter/playground'
+    Plugin 'nvim-treesitter/nvim-treesitter-textobjects'
+    Plugin 'p00f/nvim-ts-rainbow'
+    Plugin 'lukas-reineke/indent-blankline.nvim',{ 'rev': 'lua'}
+    set colorcolumn=99999
     if ISHOME()
     else
-        Plugin 'binesiyu/nvim-treesitter', {'do': ':TSUpdate','merged' : 0}
-        Plugin 'andymass/vim-matchup'
-        Plugin 'nvim-treesitter/playground'
-        Plugin 'nvim-treesitter/nvim-treesitter-textobjects'
-        Plugin 'p00f/nvim-ts-rainbow'
         Plugin 'tbodt/deoplete-tabnine', { 'build': './install.sh' }
-        Plugin 'lukas-reineke/indent-blankline.nvim',{ 'rev': 'lua'}
-        set colorcolumn=99999
     endif
 endif
 Plugin 'Raimondi/delimitMate'
@@ -1333,6 +1335,7 @@ xmap <C-j>     <Plug>(neosnippet_expand_target)
 " }
 
 " editor {
+if !has('nvim')
 " let g:EasyMotion_do_shade = 0
 " let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 nmap t <Plug>(easymotion-prefix)
@@ -1354,6 +1357,39 @@ nmap f <Plug>(easymotion-lineforward)
 nmap F <Plug>(easymotion-linebackward)
 vmap f <Plug>(easymotion-lineforward)
 vmap F <Plug>(easymotion-linebackward)
+else
+lua <<EOF
+-- you can configure Hop the way you like here; see :h hop-config
+require'hop'.setup { keys = 'etovxqpdygfblzhckisuran', term_seq_bias = 0.5 }
+
+-- place this in one of your configuration file(s)
+local map = vim.api.nvim_set_keymap
+
+map('n', 'tw', "<cmd>lua require'hop'.hint_words()<cr>", {})
+map('n', 'th', "<cmd>lua require'hop'.hint_words()<cr>", {})
+map('n', 'tl', "<cmd>lua require'hop'.hint_words()<cr>", {})
+map('n', 'tj', "<cmd>lua require'hop'.hint_lines()<cr>", {})
+map('n', 'tk', "<cmd>lua require'hop'.hint_lines()<cr>", {})
+map('n', 'tp', "<cmd>lua require'hop'.hint_patterns()<cr>", {})
+map('n', 'ts', "<cmd>lua require'hop'.hint_char2()<cr>", {})
+map('n', 'f', "<cmd>lua require'hop'.hint_char1()<cr>", {})
+map('n', 'F', "<cmd>lua require'hop'.hint_char1()<cr>", {})
+
+map('v', 'tw', "<cmd>lua require'hop'.hint_words()<cr>", {})
+map('v', 'th', "<cmd>lua require'hop'.hint_words()<cr>", {})
+map('v', 'tl', "<cmd>lua require'hop'.hint_words()<cr>", {})
+map('v', 'tj', "<cmd>lua require'hop'.hint_lines()<cr>", {})
+map('v', 'tk', "<cmd>lua require'hop'.hint_lines()<cr>", {})
+map('v', 'tp', "<cmd>lua require'hop'.hint_patterns()<cr>", {})
+map('v', 'ts', "<cmd>lua require'hop'.hint_char2()<cr>", {})
+map('v', 'f', "<cmd>lua require'hop'.hint_char1()<cr>", {})
+map('v', 'F', "<cmd>lua require'hop'.hint_char1()<cr>", {})
+
+vim.cmd [[highlight HopNextKey  cterm=bold ctermfg=196 guifg=#ff007c gui=bold blend=0]]
+vim.cmd [[highlight HopNextKey1 cterm=bold ctermfg=202 guifg=#00dfff gui=bold blend=0]]
+vim.cmd [[highlight HopNextKey2 cterm=bold ctermfg=208 guifg=#2b8db3          blend=0]]
+EOF
+endif
 
 "signature
 let g:SignatureMarkOrder="\m"
