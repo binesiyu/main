@@ -1032,6 +1032,11 @@ nnoremap <leader>ff :<C-U><C-R>=printf("Leaderf file --input %s",expand('<cword>
 nnoremap <leader>fr :<C-U><C-R>=printf("Leaderf file --input %s","<C-R>*")<CR><CR>
 " }
 
+"asynctask {
+let g:asynctasks_extra_config = [
+    \ '~/.vim/.tasks',
+    \ ]
+" }
 " set vfile=/Users/yubin/vfile.txt
 " set ei=all
 " set verbose=22
