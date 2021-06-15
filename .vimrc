@@ -1360,7 +1360,7 @@ vmap F <Plug>(easymotion-linebackward)
 else
 lua <<EOF
 -- you can configure Hop the way you like here; see :h hop-config
-require'hop'.setup { keys = 'etovxqpdygfblzhckisuran', term_seq_bias = 0.5 }
+require'hop'.setup {term_seq_bias = 0.5 }
 
 -- place this in one of your configuration file(s)
 local map = vim.api.nvim_set_keymap
