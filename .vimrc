@@ -180,7 +180,7 @@ if !has('nvim')
     Plugin 'roxma/vim-hug-neovim-rpc'
     Plugin 'nathanaelkane/vim-indent-guides'
 else
-    Plugin 'binesiyu/hop.nvim',{'merged' : 0}
+    Plugin 'binesiyu/hop.nvim'
     Plugin 'binesiyu/nvim-treesitter', {'do': ':TSUpdate','merged' : 0}
     Plugin 'andymass/vim-matchup'
     Plugin 'nvim-treesitter/playground'
