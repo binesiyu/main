@@ -186,6 +186,7 @@ else
     Plugin 'nvim-treesitter/playground'
     Plugin 'nvim-treesitter/nvim-treesitter-textobjects'
     Plugin 'p00f/nvim-ts-rainbow'
+    Plugin 'kevinhwang91/nvim-bqf'
     Plugin 'lukas-reineke/indent-blankline.nvim',{ 'rev': 'lua'}
     set colorcolumn=99999
     if ISHOME()
