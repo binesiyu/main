@@ -215,7 +215,6 @@ Plugin 'lambdalisue/gina.vim',{ 'on_cmd' : 'Gina'}
 " vim-airline
 Plugin 'bling/vim-airline'
 " incsearch
-Plugin 'google/vim-searchindex'
 Plugin 'binesiyu/CmdlineComplete'
 
 " vim-markdown
